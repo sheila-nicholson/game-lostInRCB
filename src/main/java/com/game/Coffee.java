@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Coffee extends rewardItem {
 
-    private string rewardType = "Coffee";
+    private String rewardType = "Coffee";
     private int scoreBonus = 5;
     private int modifierSeconds = 5;
     private Image coffee;
