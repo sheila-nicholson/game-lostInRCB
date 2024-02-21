@@ -2,15 +2,15 @@ package com.game;
 
 import java.awt.*;
 
-public class goodTile extends Tile{
-    private rewardItem tileItem;
+public class GoodTile extends Tile{
+    private RewardItem tileItem;
 
-    goodTile(rewardItem param_item, Image param_image, int param_X, int param_y){
+    GoodTile(RewardItem param_item, Image param_image, int param_X, int param_y){
         this.tileItem = param_item;
         setPosition(param_X,param_y);
         setTileSprite(param_image);
     }
-    public rewardItem getTileItem(){
+    public RewardItem getTileItem(){
         return this.tileItem;
     }
 }

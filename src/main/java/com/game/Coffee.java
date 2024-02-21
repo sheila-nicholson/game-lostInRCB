@@ -1,8 +1,6 @@
 package com.game;
 
-import java.awt.*;
-
-public class Coffee extends rewardItem {
+public class Coffee extends RewardItem {
 
     private String rewardType = "Coffee";
     private int scoreBonus = 5;
