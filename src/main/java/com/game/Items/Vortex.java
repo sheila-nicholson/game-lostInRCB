@@ -1,4 +1,6 @@
-package com.game;
+package com.game.Items;
+
+import com.game.Position;
 
 public class Vortex extends PunishmentItem {
 

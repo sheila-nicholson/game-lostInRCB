@@ -1,4 +1,4 @@
-package com.game;
+package com.game.Items;
 
 public class APlusPaper extends RewardItem {
 

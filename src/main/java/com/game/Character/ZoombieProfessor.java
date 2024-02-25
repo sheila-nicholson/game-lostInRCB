@@ -1,4 +1,6 @@
-package com.game.Character2;
+package com.game.Character;
 public abstract class ZoombieProfessor extends Enemy {
-    
+    protected ZoombieProfessor (int speed){
+        super(speed);
+    }
 }

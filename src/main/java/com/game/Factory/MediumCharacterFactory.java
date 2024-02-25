@@ -1,10 +1,14 @@
-package com.game;
+package com.game.Factory;
 
-public class MediumCharacterFactory extends CharacterFactory{
-    public Hero createHero(
-            return Hero.getInstance(200); //temp speed
-    );
-    public abstract Enemy createEnemy(
-             return Racoon.getInstance(100); //temp speed
-    );
+import com.game.Character.Enemy;
+import com.game.Character.Hero;
+import com.game.Character.ZoombieProfessor;
+
+public class MediumCharacterFactory extends CharacterFactory {
+    public Hero createHero() {
+        return Hero.getInstance(200); //temp speed
+    }
+    public Enemy createEnemy() {
+        return ZoombieProfessor.getInstance(100); //temp speed
+    }
 }

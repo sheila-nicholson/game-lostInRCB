@@ -1,6 +1,6 @@
-package com.game;
+package com.game.Items;
 
-public abstract class RewardItem extends Item{
+public abstract class RewardItem extends Item {
     private int scoreBonus;
 
     public int getScoreModifier(){

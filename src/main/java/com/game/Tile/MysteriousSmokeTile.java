@@ -1,8 +1,8 @@
-package com.game;
+package com.game.Tile;
 
 import java.awt.*;
 
-public class MysteriousSmokeTile extends Tile{
+public class MysteriousSmokeTile extends Tile {
     private int slowSpeed;
     private int handicapTime;
     private Image smokeSprite;

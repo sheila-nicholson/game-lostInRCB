@@ -1,4 +1,4 @@
-package com.game.Character2;
+package com.game.Character;
 
 import com.game.Position;
 
@@ -7,10 +7,9 @@ public abstract class Character extends Position {
     //still need a type
 //    private characterSprite;
 
-    private int movementSpeed;
-    private static Character instance = null;
+    protected int movementSpeed;
     protected abstract void setDefaultPosition();
-    Character(int speed){
+    protected Character(int speed){
             this.setDefaultPosition();
             this.movementSpeed = speed;
     }

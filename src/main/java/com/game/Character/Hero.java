@@ -1,15 +1,16 @@
-package com.game.Character2;
+package com.game.Character;
 
 import com.game.Score;
 
 public class Hero extends Character implements Score {
     private int currentScore;
+    protected static Hero instance = null;
     protected void setDefaultPosition(){
         this.setPosition(100,100);//temp
     }
-    private Hero(int speed){
+    protected Hero(int speed){
         super(speed);
-        this.score = 100; //temp
+        this.currentScore = 100; //temp
     }
     public static synchronized Hero getInstance(int speed) {
         if (instance == null) {
@@ -21,15 +22,15 @@ public class Hero extends Character implements Score {
     }
 
     public boolean checkScore(){
-        return score > 0;
+        return currentScore > 0;
     }
 
     public int getScore(){
-        return this.score;
+        return this.currentScore;
     }
 
     public void setScore(int score){
-        this.score = score; //temp
+        this.currentScore = score; //temp
     }
 
 }

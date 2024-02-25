@@ -1,19 +1,18 @@
-package com.game.Character2;
+package com.game.Character;
 
-public class Enemy extends java.lang.Character {
+public class Enemy extends Character {
+
+    protected static Enemy instance = null;
     protected void setDefaultPosition(){
         this.setPosition(0,100);//temp
     }
 
-    private Enemy(int speed){
-        super((char)speed);
-        this.score = 100; //temp
+    protected Enemy(int speed){
+        super(speed);
     }
     public static synchronized Enemy getInstance(int speed) {
         if (instance == null) {
             instance = new Enemy(speed);
-        }else{
-            instance.movementSpeed = speed;
         }
         return instance;
     }

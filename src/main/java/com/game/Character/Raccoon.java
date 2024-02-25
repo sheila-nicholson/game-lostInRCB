@@ -1,6 +1,6 @@
 package com.game.Character;
-public abstract class Raccon extends Enemy {
-    protected Raccon(int speed){
+public abstract class Raccoon extends Enemy {
+    protected Raccoon(int speed){
         super(speed);
     }
 }

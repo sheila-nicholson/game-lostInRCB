@@ -1,5 +1,9 @@
-package com.game.Character2;
+package com.game.Character;
 
 public abstract class FailedExam extends Enemy {
+    protected FailedExam(int speed){
+        super(speed);
+    }
+
 
 }

@@ -1,7 +1,9 @@
-package com.game;
+package com.game.Map;
 
-import com.game.Character2.Enemy;
-import com.game.Character2.Hero;
+import com.game.Character.Enemy;
+import com.game.Character.Hero;
+import com.game.Items.Wall;
+import com.game.Tile.Tile;
 
 import java.util.ArrayList;
 

@@ -3,10 +3,8 @@ package com.game;
 
 //change this class as an interface
 //the HUD class can get the score through hero
-interface Score {
-    private currentScore;
-    public void setScore(int score);
-    public int getScore();
-    public boolean checkScore();
-
+public interface Score {
+    void setScore(int score);
+    int getScore();
+    boolean checkScore(); // What does this method intend to check?
 }

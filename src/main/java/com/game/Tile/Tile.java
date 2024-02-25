@@ -1,8 +1,10 @@
-package com.game;
+package com.game.Tile;
+
+import com.game.Position;
 
 import java.awt.*;
 
-public abstract class Tile extends Position{
+public abstract class Tile extends Position {
     private Image tileSprite;
 
     public Image getTileSprite() {
