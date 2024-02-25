@@ -1,4 +1,4 @@
 package com.game;
-public abstract class ZoombieProfessor extends Character {
-    
+public abstract class FailedExam extends Enemy {
+
 }

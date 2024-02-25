@@ -1,4 +1,4 @@
 package com.game;
-public abstract class Raccon extends Character {
+public abstract class ZoombieProfessor extends Enemy {
     
 }
