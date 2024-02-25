@@ -1,5 +1,8 @@
 package com.game;
 
+import com.game.Character2.Enemy;
+import com.game.Character2.Hero;
+
 import java.util.ArrayList;
 
 public class Map {
