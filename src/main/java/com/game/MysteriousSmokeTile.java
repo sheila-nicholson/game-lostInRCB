@@ -2,13 +2,13 @@ package com.game;
 
 import java.awt.*;
 
-public class mysteriousSmokeTile extends Tile{
+public class MysteriousSmokeTile extends Tile{
     private int slowSpeed;
     private int handicapTime;
     private Image smokeSprite;
     private boolean isVisible;
 
-    public mysteriousSmokeTile(int slowSpeed, int handicapTime, Image smokeSprite, boolean isVisible, Image paramTileSprite, int param_X, int param_y){
+    public MysteriousSmokeTile(int slowSpeed, int handicapTime, Image smokeSprite, boolean isVisible, Image paramTileSprite, int param_X, int param_y){
         this.slowSpeed = slowSpeed;
         this.handicapTime = handicapTime;
         this.smokeSprite = smokeSprite;
