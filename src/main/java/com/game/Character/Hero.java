@@ -1,3 +1,13 @@
+/*
+ * Hero.java
+ * 
+ * Class Description: [to come Wednesday evening by Jonas]
+ *
+ * Authors: [put your names here]
+ * Last modified on: February 28 4:48 AM
+ */
+
+
 package com.game.Character;
 
 import com.game.Score;
@@ -21,11 +31,11 @@ public class Hero extends Character implements Score {
         return instance;
     }
 
-    public boolean checkScore(){
+    public boolean checkScore(){ // iff true terminate game
         return currentScore > 0;
     }
 
-    public int getScore(){
+    public int getScore(){ // getter
         return this.currentScore;
     }
 
