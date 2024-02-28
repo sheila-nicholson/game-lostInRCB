@@ -13,7 +13,7 @@ import com.game.Character.*;
 
 public class DifficultCharacterFactory extends CharacterFactory {
     public Hero createHero() {
-        return Hero.getInstance(100); //temp speed
+        return Hero.getInstance(70); //temp speed
         // hero should be slower than enemies throughout ALL stages of difficulty
     }
 
