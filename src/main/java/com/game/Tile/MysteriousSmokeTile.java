@@ -3,7 +3,7 @@
  * 
  * Class Description: [to come Wednesday evening by Jonas]
  *
- * Authors: [put your names here]
+ * Authors: [put your names here] + Jonas
  * Last modified on: February 28 4:48 AM
  */
 
