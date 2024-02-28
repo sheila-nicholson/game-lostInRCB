@@ -11,7 +11,6 @@
 package com.game.Character;
 
 public class Enemy extends Character {
-
     protected static Enemy instance = null;
     protected void setDefaultPosition(){
         this.setPosition(0,100);//temp

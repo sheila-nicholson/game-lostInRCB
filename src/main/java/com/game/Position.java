@@ -32,8 +32,15 @@ public class Position {
     public int getXPosition(){ // getter X
         return this.X;
     }
+    public int getYPosition(){ return this.Y;}
 
-    public int getYPosition(){ // getter Y
-        return this.Y;
-    }
+
+    /**  need to check the bound later  */
+    public void moveUp(){this.Y++;}
+    /**  need to check the bound later  */
+    public void moveDown(){this.Y++;}
+    /**  need to check the bound later  */
+    public void moveRight(){this.X++;}
+    /**  need to check the bound later  */
+    public void moveLeft(){this.X--;}
 }

@@ -16,6 +16,8 @@ package com.game;
 public interface Score {
     void setScore(int score);
     int getScore();
-    boolean checkScore(); // What does this method intend to check?
-    // it checks (I think) whether it is negative or not, if the boolean is I think true then the character loses - JL
+    boolean checkScore();
+    void addScore(int score);
+    void minusScore(int score);
+
 }
