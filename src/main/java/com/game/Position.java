@@ -1,3 +1,13 @@
+/*
+ * Position.java
+ * 
+ * Class Description: [to come Wednesday evening by Jonas]
+ *
+ * Authors: [put your names here]
+ * Last modified on: February 28 4:48 AM
+ */
+
+
 package com.game;
 
 public class Position {
@@ -14,16 +24,16 @@ public class Position {
         this.Y = param_y;
     }
 
-    public void setPosition(int param_X, int param_y){
+    public void setPosition(int param_X, int param_y){ // setter
         this.X = param_X;
         this.Y = param_y;
     }
 
-    public int getXPosition(){
+    public int getXPosition(){ // getter X
         return this.X;
     }
 
-    public int getYPosition(){
+    public int getYPosition(){ // getter Y
         return this.Y;
     }
 }
