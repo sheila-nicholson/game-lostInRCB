@@ -1,5 +1,5 @@
 /*
- * Vortex.java
+ * Score.java
  * 
  * Class Description: [to come Wednesday evening by Jonas]
  *
