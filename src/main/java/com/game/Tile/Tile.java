@@ -1,3 +1,13 @@
+/*
+ * Tile.java
+ * 
+ * Class Description: [to come Wednesday evening by Jonas]
+ *
+ * Authors: [put your names here]
+ * Last modified on: February 28 4:48 AM
+ */
+3
+
 package com.game.Tile;
 
 import com.game.Position;
