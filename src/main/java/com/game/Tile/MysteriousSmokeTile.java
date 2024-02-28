@@ -1,3 +1,13 @@
+/*
+ * MysteriousSmokeTile.java
+ * 
+ * Class Description: [to come Wednesday evening by Jonas]
+ *
+ * Authors: [put your names here]
+ * Last modified on: February 28 4:48 AM
+ */
+
+
 package com.game.Tile;
 
 import java.awt.*;
@@ -19,7 +29,11 @@ public class MysteriousSmokeTile extends Tile {
     public int getSpeedModifier(){
         return slowSpeed;
     }
-    public void engageSmoke(){
+    public void engageSmoke(){ 
         this.isVisible = true;
+    }
+
+    public void hideSmoke(){
+        this.isVisible = false; // remains hidden
     }
 }
