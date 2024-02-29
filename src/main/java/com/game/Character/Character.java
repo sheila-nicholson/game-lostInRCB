@@ -9,9 +9,11 @@
 
 package com.game.Character;
 
-import com.game.Key.Key;
+import com.game.Key.Direction;
 import com.game.Position;
 import javafx.animation.Animation;
+
+import java.security.DigestException;
 
 public abstract class Character extends Position {
 
@@ -22,13 +24,13 @@ public abstract class Character extends Position {
     protected boolean fallen = false; //for vortex effect
     protected boolean collision = false; //enemy with playper
 
-
-    protected Key currentDirection;
+    protected Direction currentDirection;
     protected Animation currentAnimation;
 
     protected int movementSpeed;
 
     protected abstract void setDefaultPosition();
+
     protected Character(int speed){
             this.setDefaultPosition();
             this.movementSpeed = speed;
@@ -60,19 +62,19 @@ public abstract class Character extends Position {
      *  */
     public void moveCharacter() {
         if(up){
-            this.currentDirection = Key.UP;
+            this.currentDirection = Direction.UP;
             this.moveUp();
 
         }else if(down){
-            this.currentDirection = Key.DOWN;
+            this.currentDirection = Direction.DOWN;
             this.moveDown();
 
         }else if(right){
-            this.currentDirection = Key.RIGHT;
+            this.currentDirection = Direction.RIGHT;
             this.moveRight();
 
         }else if(left){
-            this.currentDirection = Key.LEFT;
+            this.currentDirection = Direction.LEFT;
             this.moveLeft();
         }
     }
