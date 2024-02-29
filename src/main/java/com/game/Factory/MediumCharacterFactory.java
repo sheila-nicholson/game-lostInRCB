@@ -12,13 +12,13 @@ package com.game.Factory;
 
 import com.game.Character.Enemy;
 import com.game.Character.Hero;
-import com.game.Character.ZoombieProfessor;
+import com.game.Character.ZombieProfessor;
 
 public class MediumCharacterFactory extends CharacterFactory {
     public Hero createHero() {
         return Hero.getInstance(80); //temp speed - see easy + difficult for why it's 80
     }
     public Enemy createEnemy() {
-        return ZoombieProfessor.getInstance(100); //temp speed
+        return ZombieProfessor.getInstance(100); //temp speed
     }
 }

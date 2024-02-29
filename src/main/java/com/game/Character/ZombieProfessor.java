@@ -14,5 +14,3 @@ public class ZombieProfessor extends Enemy {
         super(speed);
     }
 }
-
-// presumable typo? Zoombie -> Zombie
