@@ -30,11 +30,20 @@ public class KeyHandler implements KeyListener{//not finished
         if(k == KeyEvent.VK_S) down.toggle(pressed);
     }
 
-//    void movement(Character character){
-//        if(k == KeyEvent.VK_D) right.toggle(pressed);
-//        if(k == KeyEvent.VK_W) left.toggle(pressed);
-//        if(k == KeyEvent.VK_S) left.toggle(pressed);
-//    }
+    public boolean getPressed(Direction d){
+        switch(d){
+            case UP:
+                return up.getPressed();
+            case DOWN:
+                return down.getPressed();
+            case LEFT:
+                return left.getPressed();
+            case RIGHT:
+                return right.getPressed();
+            default:
+                return false;
+        }
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {}

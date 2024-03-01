@@ -35,12 +35,8 @@ public class Position {
     public int getYPosition(){ return this.Y;}
 
 
-    /**  need to check the bound later  */
-    public void moveUp(){this.Y++;}
-    /**  need to check the bound later  */
-    public void moveDown(){this.Y++;}
-    /**  need to check the bound later  */
-    public void moveRight(){this.X++;}
-    /**  need to check the bound later  */
-    public void moveLeft(){this.X--;}
+    public void moveUp(int s){this.Y+=s;}
+    public void moveDown(int s){this.Y-=s;}
+    public void moveRight(int s){this.X-=s;}
+    public void moveLeft(int s){this.X+=s;}
 }

@@ -10,6 +10,8 @@
 
 package com.game.Character;
 
+import java.io.IOException;
+
 public class Enemy extends Character {
     protected static Enemy instance = null;
     protected void setDefaultPosition(){
@@ -25,4 +27,14 @@ public class Enemy extends Character {
         }
         return instance;
     }
+
+    public void update(){};
+    public void draw (){};
+    public void getImage(){
+//        try{
+//
+//        }catch(IOException e){
+//            e.printStackTrace();
+//        }
+    };
 }

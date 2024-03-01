@@ -4,6 +4,7 @@ package com.game.GamePanel;
 import com.game.Character.Enemy;
 import com.game.Character.Hero;
 import com.game.Key.KeyHandler;
+import sun.font.EAttribute;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -24,7 +25,8 @@ public class GamePanel extends JPanel implements Runnable{
     private int FPS = 60;
     Thread thread;
 
-    private Hero player;
+    private Hero hero;
+    private Enemy enemy;
 
     public synchronized void startGame(){
         if(running) return;
@@ -33,17 +35,18 @@ public class GamePanel extends JPanel implements Runnable{
         thread.start();
     }
 
-    public GamePanel(Hero player, Enemy enemy){ //not finished
+    public GamePanel(){ //not finished
         this.setDoubleBuffered(true);
         this.setFocusable(true);
-        this.player = player;
+        this.hero = Hero.getInstance(4,this.keyHandler);
+        this.enemy = Enemy.getInstance(5);
 
     }
 
     //not finished
     public void update(){
-
-
+        hero.update();
+        enemy.update();
     }
 
     public void render(){
@@ -56,6 +59,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void draw(){
+        //hero.draw();
+        //enemy.draw();
     }
 
     @Override

@@ -30,6 +30,9 @@ public abstract class Character extends Position {
     protected int movementSpeed;
 
     protected abstract void setDefaultPosition();
+    public abstract void update();
+    public abstract void draw();
+    public abstract void getImage();
 
     protected Character(int speed){
             this.setDefaultPosition();
@@ -56,33 +59,6 @@ public abstract class Character extends Position {
 //          .....
 //    }
 
-    /**
-     *  need thread and handler to restrict it only move one time in a tick
-     *  will update later
-     *  */
-    public void moveCharacter() {
-        if(up){
-            this.currentDirection = Direction.UP;
-            this.moveUp();
-
-        }else if(down){
-            this.currentDirection = Direction.DOWN;
-            this.moveDown();
-
-        }else if(right){
-            this.currentDirection = Direction.RIGHT;
-            this.moveRight();
-
-        }else if(left){
-            this.currentDirection = Direction.LEFT;
-            this.moveLeft();
-        }
-    }
-
-    public void update(){
-//        this.displayCharacter();
-
-    }
 
 
 }
