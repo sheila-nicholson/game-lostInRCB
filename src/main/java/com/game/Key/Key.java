@@ -1,8 +1,14 @@
 package com.game.Key;
 
-public enum Key {
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN
+public class Key {
+    private boolean pressed = false;
+
+    public Key(){}
+
+    public boolean getPressed(){return this.pressed;}
+
+    public void toggle(boolean pressed){
+        if(pressed != this.pressed)  this.pressed = pressed;
+    }
+
 }
