@@ -21,12 +21,17 @@ public class Main {
 
         JFrame window = new JFrame();
         GamePanel gamePanel = new GamePanel();
+        gamePanel.startGame();
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-//        window.add(gamePanel);
+        window.setTitle("Game");
+        window.add(gamePanel);
+        window.pack();
 
-        gamePanel.startGame();
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+
 
     }
 }

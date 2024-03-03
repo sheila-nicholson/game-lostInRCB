@@ -15,5 +15,4 @@ public class FailedExam extends Enemy {
         super(speed);
     }
 
-
 }
