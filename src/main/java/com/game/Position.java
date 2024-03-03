@@ -35,8 +35,8 @@ public class Position {
     public int getYPosition(){ return this.Y;}
 
 
-    public void moveUp(int s){this.Y+=s;}
-    public void moveDown(int s){this.Y-=s;}
-    public void moveRight(int s){this.X-=s;}
-    public void moveLeft(int s){this.X+=s;}
+    public void moveUp(int s){this.Y-=s;}
+    public void moveDown(int s){this.Y+=s;}
+    public void moveRight(int s){this.X+=s;}
+    public void moveLeft(int s){this.X-=s;}
 }

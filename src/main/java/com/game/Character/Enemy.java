@@ -10,6 +10,7 @@
 
 package com.game.Character;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Enemy extends Character {
@@ -29,7 +30,7 @@ public class Enemy extends Character {
     }
 
     public void update(){};
-    public void draw (){};
+    public void draw (Graphics2D g2){};
     public void getImage(){
 //        try{
 //

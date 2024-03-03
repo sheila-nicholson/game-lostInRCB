@@ -13,6 +13,7 @@ import com.game.Key.Direction;
 import com.game.Position;
 import javafx.animation.Animation;
 
+import java.awt.*;
 import java.security.DigestException;
 
 public abstract class Character extends Position {
@@ -31,7 +32,7 @@ public abstract class Character extends Position {
 
     protected abstract void setDefaultPosition();
     public abstract void update();
-    public abstract void draw();
+    public abstract void draw(Graphics2D g2);
     public abstract void getImage();
 
     protected Character(int speed){
