@@ -16,10 +16,10 @@ import java.awt.image.BufferedImage;
 public class GamePanel extends JPanel implements Runnable{
 
     //still need to update the object and methods related to tail
-    final int originalTileSize = 16;
+    final int originalTileSize = 48;
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;
-    final int maxScreenCol = 16;
+    final int maxScreenCol = 48;
     final int maxScreeRow = 12;
     final int screenWidth = tileSize * maxScreenCol;
     final int screenHeight = tileSize * maxScreeRow ;
@@ -67,12 +67,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     @Override
     public void run() {
-
-//        while(thread != null){
-//            update();
-//            System.out.println("running");
-//            repaint();
-//        }
 
         long lastTime = System.nanoTime();
         double frameInterval = 1000000000.0 / FPS;
