@@ -27,7 +27,7 @@ public abstract class Character extends Position {
     protected Direction currentDirection;
     protected Animation currentAnimation;
 
-    protected int movementSpeed;
+    protected int movementSpeed; // unsure if necessary
 
     protected abstract void setDefaultPosition();
     public abstract void update();
