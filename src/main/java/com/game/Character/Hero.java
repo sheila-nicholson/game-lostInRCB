@@ -1,10 +1,11 @@
 /*
  * Hero.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Main attributes of the character (hero) controlled
+ *                    by the player throughout the levels.
  *
  * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Last modified on: March 5, 11:44 AM
  */
 
 
@@ -22,17 +23,23 @@ import java.awt.*;
 
 public class Hero extends Character implements Score{
 
-    private int currentScore = 100; //default
+    private int currentScore = 0; //default should be 0...
     protected static Hero instance = null;
     protected boolean alive  = true;
-    protected double invincibletime;
-    protected boolean isInvincible = false;
+    protected double invincibletime; // optional
+    protected boolean isInvincible = false; // optional
+    // invincibility not required since in phase 1 we discussed
+    // whenever the hero goes through the vortex there's a minimum distance
+    // they spawn away from any threats
     protected KeyHandler keyHandler;
     protected GamePanel gamePanel;
 
+    // movementspeed for enemy inherited from character, same for hero?
 
     protected void setDefaultPosition(){
-        this.setPosition(100,100);//temp
+        this.setPosition(100,0); // temporary value at SE corner
+        // deliberate choice to spawn on opposite corner (as far as away as possible)
+        // from enemy
     }
 
     protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
@@ -96,12 +103,12 @@ public class Hero extends Character implements Score{
         return currentScore > 0;
     }
 
-    public int getScore(){ return this.currentScore;}
+    public int getScore(){ return this.currentScore;} // GETTER
 
-    public void setScore(int score){
+    public void setScore(int score){ // SETTER
 
         if(!isInvincible) {
-            this.currentScore = score; //temp
+            this.currentScore = score; 
         }
     }
 
@@ -110,7 +117,7 @@ public class Hero extends Character implements Score{
     }
 
     public void minusScore(int score){
-        if(!isInvincible){
+        if(!isInvincible){ // what scenario exists that requires invincibility?
             this.currentScore -= score;
             if(!this.checkScore()) {
                 alive = false;
@@ -120,6 +127,11 @@ public class Hero extends Character implements Score{
 
     public boolean getAlive(){return this.alive;}
 
+    public void deathAnimation() {
+
+        // graphics
+
+    }
 
 }
 
