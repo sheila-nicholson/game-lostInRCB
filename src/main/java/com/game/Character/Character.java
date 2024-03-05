@@ -1,7 +1,7 @@
 /*
  * Character.java
  * 
- * Class Description: Main attributes of the character controlled by the player.
+ * Class Description: Main attributes of all characters in the game.
  *                    Will be present through all iterations of the game in the
  *                    map (not the main menu).
  *
