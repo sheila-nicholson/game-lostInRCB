@@ -17,7 +17,8 @@ import java.io.IOException;
 public class Enemy extends Character {
 
     protected int damagePoints = 0;
-    protected int movementSpeed = 0; // variable based on level
+    protected int movementSpeed = 0; // variable based on level - not needed?
+    // movementSpeed inherited from Character, declaration not necessary?
     
     protected static Enemy instance = null;
     protected void setDefaultPosition(){
