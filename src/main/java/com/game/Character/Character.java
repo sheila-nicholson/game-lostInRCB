@@ -1,10 +1,12 @@
 /*
  * Character.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Main attributes of the character controlled by the player.
+ *                    Will be present through all iterations of the game in the
+ *                    map (not the main menu).
  *
  * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Last modified on: March 5 10:47 AM
  */
 
 package com.game.Character;
@@ -18,12 +20,9 @@ import java.security.DigestException;
 
 public abstract class Character extends Position {
 
-    protected boolean up = false;
-    protected boolean down = false;
-    protected boolean left = false;
-    protected boolean right = false;
-    protected boolean fallen = false; //for vortex effect
-    protected boolean collision = false; //enemy with playper
+    protected boolean up, down, left, right, fallen, collision;
+    up = down = left = right = fallen = collision = false;
+    // fallen -> vortex effect, false -> enemy with character
 
     protected Direction currentDirection;
     protected Animation currentAnimation;
@@ -48,18 +47,23 @@ public abstract class Character extends Position {
         this.fallen = f;
     }
 
-//    public void setAnimation(Key direction){ //not finished
-//    }
-//
-//    public void displayCharacter(){
-//        if(collision){
-//              then change the animation
-//        }else if (left){
-//           //then change the animation
-//        }
-//          .....
-//    }
+/*  public void setAnimation(Key direction) { <- is this moveCharacter in the UML?
+    
+    //not finished
+    }
 
+    public void displayCharacter(){
+        if (collision) {
+              then change the animation
+        } else if (left) {
+           then change the animation
+        } else if (right) {
+            }
+          .....
+    }
 
+    public void moveCharacter() { See above at setAnimationKey???
 
+    }
+*/
 }
