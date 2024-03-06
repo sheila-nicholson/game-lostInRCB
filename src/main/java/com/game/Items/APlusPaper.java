@@ -1,10 +1,10 @@
 /*
  * APlusPaper.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Details the bonus reward (+10 points)
  *
- * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Authors: [put your names here] + Sheila ???
+ * Last modified on: March 6, 2024 1:01 AM
  */
 
 
@@ -20,6 +20,8 @@ public class APlusPaper extends RewardItem {
      * Constructor
      */
     public APlusPaper() {
+        // set position, no need to randomize, harder level = less spawn
+        this.timeAvaliable = 10; // seconds or milliseconds?
     }
 
     public int getScoreModifier(){
