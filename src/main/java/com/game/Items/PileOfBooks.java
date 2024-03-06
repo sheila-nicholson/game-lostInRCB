@@ -1,10 +1,10 @@
 /*
  * PileOfBooks.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Primary punishment which incurs a 5 point penalty should the player come in contact.
  *
- * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Authors: [put your names here] + Sheila ???
+ * Last modified on: March 6, 2024 1:13 AM
  */
 
 
@@ -13,7 +13,7 @@ package com.game.Items;
 public class PileOfBooks extends RewardItem {
 
     private String punishmentType = "Pile of books";
-    private int damagePoints = 5; // or just make it a signed int that can go negative to keep it to one system of points perhaps?
+    private int damagePoints = 5; 
 
     /**
      * Constructor
@@ -24,5 +24,7 @@ public class PileOfBooks extends RewardItem {
     public int getScoreModifier(){
         return this.damagePoints;
     }
+
+    // play animation? play sound?
 
 }
