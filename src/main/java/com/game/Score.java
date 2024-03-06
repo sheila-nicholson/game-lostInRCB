@@ -13,10 +13,61 @@ package com.game;
 //change this class as an interface
 //the HUD class can get the score through hero
 public interface Score {
+
+    private int currentScore;
+
+    public int getScore() { // getter
+        return this.currentScore;
+    }
+
+    public void setScore(int score) { // setter
+        this.currentScore = this.score; // unclear
+    }
+
+    public void setScore() {}
+
     void setScore(int score);
     int getScore();
     boolean checkScore();
     void addScore(int score);
     void minusScore(int score);
+
+    // per UML: add HUD
+
+    /*
+     *  private Map currentMap;
+     *  private HUD currentHUD;
+     *  private int currentScore;
+     *  private time timeElapsed; <- typo in UML?
+     * 
+     *  public HUD() {
+     *  
+     *  }
+     * 
+     *  public void displayHUD() {
+     * 
+     * 
+     *  }
+     */
+
+     // per UML: add timeElapsed
+
+     /*
+      * private int secondsElapsed; 
+      *
+      * public timeElapsed() {
+      *  
+      * }
+      *  
+      * public void setTime() { // setter
+      *
+      * }
+      *
+      * public int getTime() { // getter
+      *
+      * }
+      *
+      *
+      */
 
 }
