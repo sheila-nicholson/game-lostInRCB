@@ -10,15 +10,15 @@
 
 package com.game.Items;
 
-public class PileOfBooks extends RewardItem {
+public class PileOfBooks extends PunishmentItem {
 
-    private String punishmentType = "Pile of books";
     private int damagePoints = 5; 
 
     /**
      * Constructor
      */
     public PileOfBooks() {
+        this.punishmentType = PunishmentType.BOOKS;
     }
 
     public int getScoreModifier(){

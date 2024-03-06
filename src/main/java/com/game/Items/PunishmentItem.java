@@ -12,7 +12,7 @@ package com.game.Items;
 
 public abstract class PunishmentItem extends Item {
 
-    private PunishmentType punishmentType;
+    protected PunishmentType punishmentType;
     protected int demangePoints;
 
     public int getScoreModifier(){
