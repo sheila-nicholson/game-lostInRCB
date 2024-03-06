@@ -32,4 +32,8 @@ public class BadTile extends Tile {
     public boolean tileSteppable() {
         return this.tileSteppability;
     }
+
+    public Image getTileSprite() {
+        return this.tileSprite;
+    }
 }
