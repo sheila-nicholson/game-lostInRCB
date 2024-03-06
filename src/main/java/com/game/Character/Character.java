@@ -21,7 +21,6 @@ import java.security.DigestException;
 public abstract class Character extends Position {
 
     protected boolean up, down, left, right, fallen, collision;
-    up = down = left = right = fallen = collision = false;
     // fallen -> vortex effect, false -> enemy with character
 
     protected Direction currentDirection;

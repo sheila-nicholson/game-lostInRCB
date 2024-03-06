@@ -13,7 +13,6 @@ package com.game.Items;
 
 public class Coffee extends RewardItem {
 
-    private String rewardType = "Coffee";
     private int scoreBonus = 3; // unsure, temporary value
     private int modifierSeconds = 5;
 
@@ -21,6 +20,7 @@ public class Coffee extends RewardItem {
      * Constructor
      */
     public Coffee() {
+        this.rewardType = RewardType.COFFEE;
         // set position, no need to randomize, harder level = less spawn
     }
 

@@ -14,7 +14,6 @@ package com.game.Items;
 
 public class Bed extends RewardItem {
 
-    private String rewardType = "Bed";
     private int scoreBonus = 5;
     private boolean collected = false; // true means door to finish level is unlocked
 
@@ -22,6 +21,7 @@ public class Bed extends RewardItem {
      * Constructor
      */
     public Bed() {
+        this.rewardType = RewardType.BED;
         // set position, no need to randomize, harder level = more spawn
     }
 

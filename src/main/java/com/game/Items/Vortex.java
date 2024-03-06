@@ -16,17 +16,16 @@ import com.game.Position;
 
 public class Vortex extends PunishmentItem {
 
-    private String punishmentType = "Vortex";
-    // private int damagePoints = 5; you don't lose points in phase 1?
-
+    private PunishmentType punishmentType = PunishmentType.VORTEX;
     /**
      * Constructor
      */
     public Vortex() {
+        this.demangePoints = 10; //temp
     }
 
     public int getScoreModifier(){
-        return this.damagePoints; // unnecessary? 
+        return this.demangePoints; // unnecessary?
     }
 
     public Position moveCharacter() {

@@ -12,7 +12,6 @@ package com.game.Items;
 
 public class APlusPaper extends RewardItem {
 
-    private String rewardType = "A+ Paper";
     private int scoreBonus = 10;
     private int timeAvaliable;
 
@@ -20,6 +19,7 @@ public class APlusPaper extends RewardItem {
      * Constructor
      */
     public APlusPaper() {
+        this.rewardType = RewardType.APLUSPAPAER;
         // set position, no need to randomize, harder level = less spawn
         this.timeAvaliable = 10; // seconds or milliseconds?
     }

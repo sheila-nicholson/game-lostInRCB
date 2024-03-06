@@ -19,6 +19,7 @@ public class Enemy extends Character {
     protected int damagePoints = 0;
     protected int movementSpeed = 0; // variable based on level - not needed?
     // movementSpeed inherited from Character, declaration not necessary?
+    protected boolean collision = false;
     
     protected static Enemy instance = null;
     protected void setDefaultPosition(){
@@ -59,19 +60,5 @@ public class Enemy extends Character {
         }
 
     */
-
-    }
-
-    public int scoreModifier() {
-
-/*
- *      if (game is ended) {
- * 
- *          damagePoints -= 20; // arbitrary value?
- * 
- *      }
- * 
- */
-
     }
 }

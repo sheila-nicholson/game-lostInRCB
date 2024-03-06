@@ -14,7 +14,10 @@ package com.game.Items;
 import java.awt.*;
 
 public abstract class Item{
+
     private Image itemSprite;
+    private int modifierSeconds; //not sure what this used for, but still fix it
+    private int timeAvaliable;
 
     public void setItemSprite(Image param_sprite){
         this.itemSprite = param_sprite;
@@ -22,11 +25,9 @@ public abstract class Item{
     public Image getItemSprite(){
         return this.itemSprite;
     }
-
-    public int getScoreModifer() {
-        return 0;
-    }
-
+//    public int getScoreModifer() {
+//        return 0;
+//    }
     public int getModifierSeconds() { // addition -> necessary?
         return this.modifierSeconds;
     }

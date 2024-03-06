@@ -6,13 +6,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-/**
- *  will update later
- *
- **/
 public class KeyHandler implements KeyListener{//not finished
 
-    //adptor
+    //adaptor
     public Key up = new Key();
     public Key down = new Key();
     public Key left = new Key();

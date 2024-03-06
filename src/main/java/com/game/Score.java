@@ -14,19 +14,7 @@ package com.game;
 //the HUD class can get the score through hero
 public interface Score {
 
-    private int currentScore;
-
-    public int getScore() { // getter
-        return this.currentScore;
-    }
-
-    public void setScore(int score) { // setter
-        this.currentScore = this.score; // unclear
-    }
-
-    public void setScore() {}
-
-    void setScore(int score);
+    void  setScore(int score);
     int getScore();
     boolean checkScore();
     void addScore(int score);

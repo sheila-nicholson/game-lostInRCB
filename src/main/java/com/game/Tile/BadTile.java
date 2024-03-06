@@ -25,7 +25,7 @@ public class BadTile extends Tile {
         setTileSprite(param_image);
     }
 
-    public Item getTileItem() {
+    public PunishmentItem getTileItem() {
         return this.tileItem;
     }
 

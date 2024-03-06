@@ -12,8 +12,8 @@ package com.game.Items;
 
 public abstract class RewardItem extends Item {
     private int scoreBonus;
-    private String rewardType = ""; // tbd
-
+    protected RewardType rewardType; // tbd
+    
     public int getScoreModifier(){
         return this.scoreBonus;
     }

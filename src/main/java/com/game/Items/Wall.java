@@ -11,6 +11,8 @@ package com.game.Items;
 
 import com.game.Position;
 
+import java.awt.*;
+
 public class Wall extends Position {
 
     private int wallLength = 1; // temporary value
@@ -19,5 +21,6 @@ public class Wall extends Position {
     Wall(int param_X, int param_y){
 
         setPosition(param_X,param_y);
+
     }
 }
