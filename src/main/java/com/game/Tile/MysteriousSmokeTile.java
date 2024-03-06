@@ -1,10 +1,11 @@
 /*
  * MysteriousSmokeTile.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Secondary punishment which remains invisible throughout gametime but reveals itself briefly when player steps on it.
+ *                    Causes significant slowness for 5 seconds.
  *
- * Authors: [put your names here] + Jonas
- * Last modified on: February 28 4:48 AM
+ * Authors: [put your names here] + Brendan
+ * Last modified on: March 6, 2024 1:44 AM
  */
 
 
@@ -30,10 +31,10 @@ public class MysteriousSmokeTile extends Tile {
         return slowSpeed;
     }
     public void engageSmoke(){ 
-        this.isVisible = true;
+        this.isVisible = true; // add a timer in main call to cycle between engage and hide
     }
 
     public void hideSmoke(){
-        this.isVisible = false; // remains hidden
+        this.isVisible = false; // remains hidden until player steps on it, reveals itself momentarily, then goes back invisible
     }
 }
