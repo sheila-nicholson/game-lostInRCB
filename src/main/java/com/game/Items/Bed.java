@@ -22,7 +22,7 @@ public class Bed extends RewardItem {
      * Constructor
      */
     public Bed() {
-        // set position, no need to randomize, harder level = less spawn
+        // set position, no need to randomize, harder level = more spawn
     }
 
     public int getScoreModifier(){
