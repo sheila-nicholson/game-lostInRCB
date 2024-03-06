@@ -1,10 +1,10 @@
 /*
  * Position.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Reflects the position of all entities (character/items) primarily.
  *
  * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Last modified on: March 6, 2024 1:51 AM
  */
 
 
@@ -14,12 +14,12 @@ public class Position {
     private int X;
     private int Y;
 
-    public Position(){
+    public Position(){ // default constructor
         this.X = 0;
         this.Y = 0;
     }
 
-    public Position(int param_X, int param_y){
+    public Position(int param_X, int param_y){ // parameterized constructor
         this.X = param_X;
         this.Y = param_y;
     }
@@ -32,8 +32,9 @@ public class Position {
     public int getXPosition(){ // getter X
         return this.X;
     }
-    public int getYPosition(){ return this.Y;}
-
+    public int getYPosition(){ // getter Y
+        return this.Y;
+    }
 
     public void moveUp(int s){this.Y-=s;}
     public void moveDown(int s){this.Y+=s;}
