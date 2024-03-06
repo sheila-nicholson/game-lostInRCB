@@ -1,10 +1,11 @@
 /*
  * Item.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Main attributes of all positive (reward) and negative (punishment) items in the game.
+ *                    Only present during game runtime throughout a level.
  *
- * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Authors: [put your names here] + Sheila ???
+ * Last modified on: March 6, 2024 1:11 AM
  */
 
 
@@ -24,5 +25,13 @@ public abstract class Item{
 
     public int getScoreModifer() {
         return 0;
+    }
+
+    public int getModifierSeconds() { // addition -> necessary?
+        return this.modifierSeconds;
+    }
+
+    public int getTimeAvaliable() { // addition -> necessary?
+        return this.timeAvaliable;
     }
 }
