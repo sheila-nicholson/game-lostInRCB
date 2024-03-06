@@ -29,10 +29,6 @@ public class BadTile extends Tile {
         return this.tileItem;
     }
 
-    public PunishmentItem getTileItem(){
-        return this.tileItem;
-    }
-
     public boolean tileSteppable() {
         return this.tileSteppability;
     }
