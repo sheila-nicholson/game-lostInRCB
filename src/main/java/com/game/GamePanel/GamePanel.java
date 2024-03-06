@@ -1,3 +1,13 @@
+/*
+ * GamePanel.java
+ * 
+ * Class Description: Handles the UI interface
+ * 
+ *
+ * Authors: [put your names here] + Jonas ???
+ * Last modified on: March 6 1:00 AM
+ */
+
 package com.game.GamePanel;
 
 //import javax.awt.event.KeyEvent;
@@ -30,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
     private Graphics g;
     private boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
-    private int FPS = 60;
+    private int FPS = 60; // unnecessary?
     Thread thread;
 
     private Hero hero;
@@ -87,7 +97,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if (System.currentTimeMillis() - timer > 1000) {
-                System.out.println("FPS:" + updates);
+                System.out.println("FPS:" + updates); // unnecessary?
                 updates = 0;
                 timer += 1000; // Increment timer by 1 second
             }
