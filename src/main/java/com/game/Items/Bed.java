@@ -1,10 +1,12 @@
 /*
  * Bed.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Details the main reward of the game.
+ *                    Each 'bed' is worth 5 points.
+ *                    Player must collect all beds in a level to finish it.
  *
- * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Authors: [put your names here] + Sheila ???
+ * Last modified on: March 6, 2024 1:03 AM
  */
 
 
@@ -14,11 +16,13 @@ public class Bed extends RewardItem {
 
     private String rewardType = "Bed";
     private int scoreBonus = 5;
+    private boolean collected = false; // true means door to finish level is unlocked
 
     /**
      * Constructor
      */
     public Bed() {
+        // set position, no need to randomize, harder level = less spawn
     }
 
     public int getScoreModifier(){
