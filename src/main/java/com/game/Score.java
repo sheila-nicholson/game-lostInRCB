@@ -1,15 +1,14 @@
 /*
  * Score.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Handles the score (point system) aspect of the game.
  *
  * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Last modified on: March 6, 2024 1:53 AM
  */
 
 
 package com.game;
-
 
 //change this class as an interface
 //the HUD class can get the score through hero
