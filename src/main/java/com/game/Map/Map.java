@@ -1,10 +1,10 @@
 /*
  * Map.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Controls aspects of items, walls and tiles, along with the game itself during runtime.
  *
- * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Authors: [put your names here] + Brendan ???
+ * Last modified on: March 6, 2024 1:27 AM
  */
 
 
@@ -26,4 +26,6 @@ public class Map {
     Map(ArrayList<Tile>[][] tileGrid){
         this.tileGrid = tileGrid;
     }
+
+    // loadMap public - Map
 }
