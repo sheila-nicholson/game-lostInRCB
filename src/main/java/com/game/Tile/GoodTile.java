@@ -1,10 +1,10 @@
 /*
  * GoodTile.java
  * 
- * Class Description: [to come Wednesday evening by Jonas]
+ * Class Description: Details all tiles that if stepped on provide a positive effect to the player (such as reward items)
  *
- * Authors: [put your names here]
- * Last modified on: February 28 4:48 AM
+ * Authors: [put your names here] + Brendan
+ * Last modified on: March 6, 2024 1:34 AM
  */
 
 
@@ -16,6 +16,8 @@ import java.awt.*;
 
 public class GoodTile extends Tile {
     private RewardItem tileItem;
+    private Image tileSprite;
+    private boolean tileSteppability;
 
     GoodTile(RewardItem param_item, Image param_image, int param_X, int param_y){
         this.tileItem = param_item;
@@ -25,4 +27,13 @@ public class GoodTile extends Tile {
     public RewardItem getTileItem(){
         return this.tileItem;
     }
+
+    public boolean tileSteppable() {
+        return this.tileSteppability;
+    }
+
+    public Image getTileSprite() {
+        return this.tileSprite;
+    }
+   
 }
