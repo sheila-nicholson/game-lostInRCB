@@ -13,7 +13,20 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javafx.version>21</javafx.version>
+        <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
     </properties>
+         
+         
+    <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <type>pom</type>
+         </dependency>
+    </dependencies>
 
     <build>
         <plugins>
