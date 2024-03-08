@@ -13,7 +13,7 @@ package com.game.Character;
 
 import com.game.Key.Direction;
 import com.game.Position;
-import javafx.animation.Animation;
+//import javafx.animation.Animation;
 
 import java.awt.*;
 import java.security.DigestException;
@@ -24,7 +24,7 @@ public abstract class Character extends Position {
     // fallen -> vortex effect, false -> enemy with character
 
     protected Direction currentDirection;
-    protected Animation currentAnimation;
+    //protected Animation currentAnimation;
 
     protected int movementSpeed; 
 

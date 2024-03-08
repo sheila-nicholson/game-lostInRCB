@@ -14,7 +14,7 @@ package com.game.GamePanel;
 import com.game.Character.Enemy;
 import com.game.Character.Hero;
 import com.game.Key.KeyHandler;
-import sun.font.EAttribute;
+//import sun.font.EAttribute;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -30,9 +30,9 @@ public class GamePanel extends JPanel implements Runnable{
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;
     final int maxScreenCol = 48;
-    final int maxScreeRow = 12;
+    final int maxScreenRow = 12;
     final int screenWidth = tileSize * maxScreenCol;
-    final int screenHeight = tileSize * maxScreeRow ;
+    final int screenHeight = tileSize * maxScreenRow ;
 
     private static int width;
     private static int height;
