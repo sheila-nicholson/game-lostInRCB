@@ -17,18 +17,6 @@
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
     </properties>
          
-         
-    <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
-         <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-            <type>pom</type>
-         </dependency>
-    </dependencies>
-
-
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
         <dependency>
