@@ -25,9 +25,10 @@ public abstract class Character extends Position {
     // fallen -> vortex effect, false -> enemy with character
 
     protected Direction currentDirection;
+    protected Direction lastDirection;
     protected Animation currentAnimation;
     protected int movementSpeed;
-    public BufferedImage mainImage;
+    public BufferedImage leftImage, rightImage;
     //up1, up2, down1, down2, .... if we still have time
     public int spriteCounter = 0;
     public int spriteNum = 1;

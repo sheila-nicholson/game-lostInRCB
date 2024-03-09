@@ -37,7 +37,9 @@ public class Hero extends Character implements Score{
     // movementspeed for enemy inherited from character, same for hero?
 
     protected void setDefaultPosition(){
-        this.setPosition(100,0); // temporary value at SE corner
+        this.setPosition(100,0);
+//        this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
+
         // deliberate choice to spawn on opposite corner (as far as away as possible)
         // from enemy
     }
@@ -48,12 +50,14 @@ public class Hero extends Character implements Score{
         this.gamePanel = gamePanel;
         this.setDefaultPosition();
         getImage();
-        currentDirection = Direction.DOWN;
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
     }
 
     public void getImage() {
         try{
-            mainImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student.png"));
+            rightImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student_right.png"));
+            leftImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student_left.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -61,7 +65,18 @@ public class Hero extends Character implements Score{
 
     public void draw(Graphics2D g2) {
 
-        BufferedImage image = mainImage;
+        BufferedImage image = null;
+        switch (currentDirection){
+            case LEFT:
+                image = leftImage;
+                break;
+            case RIGHT:
+                image = rightImage;
+                break;
+            default:
+                image = (lastDirection == Direction.LEFT)?leftImage:rightImage;
+                break;
+        }
         g2.drawImage(image,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
 
     }
@@ -83,11 +98,13 @@ public class Hero extends Character implements Score{
 
         }else if (keyHandler.getPressed(Direction.LEFT)) {
 
+            this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.LEFT;
             this.moveLeft(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.RIGHT)) {
 
+            this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.RIGHT;
             this.moveRight(movementSpeed);
 
