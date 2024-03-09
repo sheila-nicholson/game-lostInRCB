@@ -32,9 +32,7 @@ public class Position {
     public int getXPosition(){ // getter X
         return this.X;
     }
-    public int getYPosition(){ // getter Y
-        return this.Y;
-    }
+    public int getYPosition(){return this.Y;}
 
     public void moveUp(int s){this.Y-=s;}
     public void moveDown(int s){this.Y+=s;}

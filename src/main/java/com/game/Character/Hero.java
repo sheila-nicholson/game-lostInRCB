@@ -13,13 +13,13 @@ package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
-import com.game.Key.Key;
 import com.game.Key.KeyHandler;
 import com.game.Score;
+import javax.imageio.ImageIO;
 
-import javax.swing.JPanel;
-import javax.swing. JFrame;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Hero extends Character implements Score{
 
@@ -47,28 +47,30 @@ public class Hero extends Character implements Score{
         this.keyHandler = keyHandler;
         this.gamePanel = gamePanel;
         this.setDefaultPosition();
+        getImage();
+        currentDirection = Direction.DOWN;
     }
 
-    public void getImage(){
-//        try{
-//
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-
+    public void getImage() {
+        try{
+            mainImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.WHITE);
-        g2.fillRect(this.getXPosition(),this.getYPosition(),gamePanel.tileSize,gamePanel.tileSize);
+
+        BufferedImage image = mainImage;
+        g2.drawImage(image,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
 
     }
 
     public void update(){
         //not finished
-//        if(isInvincible){
-//
-//        }
+        //        if(isInvincible){
+        //
+        //        }
         if(keyHandler.getPressed(Direction.UP)){
 
             this.currentDirection = Direction.UP;

@@ -14,7 +14,7 @@ package com.game.GamePanel;
 import com.game.Character.Enemy;
 import com.game.Character.Hero;
 import com.game.Key.KeyHandler;
-import sun.font.EAttribute;
+//import sun.font.EAttribute;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -26,13 +26,14 @@ import java.awt.image.BufferedImage;
 public class GamePanel extends JPanel implements Runnable{
 
     //still need to update the object and methods related to tail
-    final int originalTileSize = 48;
+    // Screen settings:
+    final int originalTileSize = 16; // I changed this because the screen size was too large, not sure if optimal, feel free to update
     final int scale = 3;
-    public final int tileSize = originalTileSize * scale;
-    final int maxScreenCol = 48;
-    final int maxScreeRow = 12;
-    final int screenWidth = tileSize * maxScreenCol;
-    final int screenHeight = tileSize * maxScreeRow ;
+    public final int tileSize = originalTileSize * scale;   // 48x48 tile (due to scaling)
+    final int maxScreenCol = 28;        // Changed according to UI mockup
+    final int maxScreeRow = 18;         // Changed according to UI mockup
+    final int screenWidth = tileSize * maxScreenCol;    // (48*28) = 1,344 pixels
+    final int screenHeight = tileSize * maxScreeRow ;   // (48*18) = 864 pixels
 
     private static int width;
     private static int height;
