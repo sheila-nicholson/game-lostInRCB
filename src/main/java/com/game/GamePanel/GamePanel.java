@@ -11,8 +11,10 @@
 package com.game.GamePanel;
 
 //import javax.awt.event.KeyEvent;
+import com.game.AssetSetter;
 import com.game.Character.Enemy;
 import com.game.Character.Hero;
+import com.game.Items.Item;
 import com.game.Key.KeyHandler;
 //import sun.font.EAttribute;           // unsure what this for
 
@@ -43,9 +45,11 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60; // unnecessary?
     Thread thread;
+    public AssetSetter assetSetter = new AssetSetter(this);
 
     private Hero hero;
     private Enemy enemy;
+    public Item[] item = new Item[10];  // item slots - how many objects that can be displayed at one time
 
     public synchronized void startGame(){
         if(running) return;
@@ -53,6 +57,11 @@ public class GamePanel extends JPanel implements Runnable{
         thread = new Thread(this);
         thread.start();
     }
+
+    public void setupGame() {
+        assetSetter.setObject();
+    }
+
 
     public GamePanel(){ //not finished
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -72,6 +81,12 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+        // item
+        for(int i = 0; i < item.length; i++) {
+            if (item[i] != null) {
+                item[i].draw(g2, this);
+            }
+        }
         hero.draw(g2);
         g2.dispose();
     }

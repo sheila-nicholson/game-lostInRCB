@@ -11,9 +11,27 @@
 
 package com.game.Items;
 
+import com.game.GamePanel.GamePanel;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public abstract class Item{
+
+    public BufferedImage image;
+    public String name;
+//    public boolean collision = false;         // add back once collisions are done
+    public int worldX, worldY;
+
+    public void draw(Graphics2D g2, GamePanel gp) {
+
+        int screenX = worldX;
+        int screenY = worldY;
+
+        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+    }
+
+
 
     private Image itemSprite;
     private int modifierSeconds; //not sure what this used for, but still fix it

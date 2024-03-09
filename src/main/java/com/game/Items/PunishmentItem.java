@@ -13,7 +13,7 @@ package com.game.Items;
 public abstract class PunishmentItem extends Item {
 
     protected PunishmentType punishmentType;
-    protected int demangePoints;
+    protected int damagePoints;
 
     public int getScoreModifier(){
         // only applicable to pileOfBooks - vortex and smoke don't penalize points

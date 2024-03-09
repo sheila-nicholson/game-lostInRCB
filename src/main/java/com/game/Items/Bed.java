@@ -12,7 +12,13 @@
 
 package com.game.Items;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.util.Objects;
+
 public class Bed extends RewardItem {
+
+
 
     private int scoreBonus = 5;
     private boolean collected = false; // true means door to finish level is unlocked
@@ -22,6 +28,17 @@ public class Bed extends RewardItem {
      */
     public Bed() {
         this.rewardType = RewardType.BED;
+        name = "Bed";
+
+        try {
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/Bed.png")));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
         // set position, no need to randomize, harder level = more spawn
     }
 

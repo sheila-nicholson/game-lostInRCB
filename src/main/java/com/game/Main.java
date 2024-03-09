@@ -21,6 +21,7 @@ public class Main {
 
         JFrame window = new JFrame();
         GamePanel gamePanel = new GamePanel();
+        gamePanel.setupGame();
         gamePanel.startGame();
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
