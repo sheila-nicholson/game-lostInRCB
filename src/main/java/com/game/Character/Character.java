@@ -16,6 +16,7 @@ import com.game.Position;
 import javafx.animation.Animation;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.security.DigestException;
 
 public abstract class Character extends Position {
@@ -24,9 +25,14 @@ public abstract class Character extends Position {
     // fallen -> vortex effect, false -> enemy with character
 
     protected Direction currentDirection;
+    protected Direction lastDirection;
     protected Animation currentAnimation;
+    protected int movementSpeed;
+    public BufferedImage leftImage, rightImage;
+    //up1, up2, down1, down2, .... if we still have time
+    public int spriteCounter = 0;
+    public int spriteNum = 1;
 
-    protected int movementSpeed; 
 
     protected abstract void setDefaultPosition();
     public abstract void update();
