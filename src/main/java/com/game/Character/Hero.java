@@ -13,13 +13,13 @@ package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
-import com.game.Key.Key;
 import com.game.Key.KeyHandler;
 import com.game.Score;
+import javax.imageio.ImageIO;
 
-import javax.swing.JPanel;
-import javax.swing. JFrame;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Hero extends Character implements Score{
 
@@ -37,7 +37,9 @@ public class Hero extends Character implements Score{
     // movementspeed for enemy inherited from character, same for hero?
 
     protected void setDefaultPosition(){
-        this.setPosition(100,0); // temporary value at SE corner
+        this.setPosition(100,0);
+//        this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
+
         // deliberate choice to spawn on opposite corner (as far as away as possible)
         // from enemy
     }
@@ -49,27 +51,43 @@ public class Hero extends Character implements Score{
         this.solidAreaDefaultX = gamePanel.tileSize;
         this.solidAreaDefaultY = gamePanel.tileSize;
         this.setDefaultPosition();
+        getImage();
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
     }
 
     public void getImage() {
-//        try{
-//
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-
+        try{
+            rightImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student_right.png"));
+            leftImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student_left.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.WHITE);
-        g2.fillRect(this.getXPosition(),this.getYPosition(),gamePanel.tileSize,gamePanel.tileSize);
+
+        BufferedImage image = null;
+        switch (currentDirection){
+            case LEFT:
+                image = leftImage;
+                break;
+            case RIGHT:
+                image = rightImage;
+                break;
+            default:
+                image = (lastDirection == Direction.LEFT)?leftImage:rightImage;
+                break;
+        }
+        g2.drawImage(image,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
+
     }
 
     public void update(){
         //not finished
-//        if(isInvincible){
-//
-//        }
+        //        if(isInvincible){
+        //
+        //        }
         if(keyHandler.getPressed(Direction.UP)){
 
             this.currentDirection = Direction.UP;
@@ -82,11 +100,13 @@ public class Hero extends Character implements Score{
 
         }else if (keyHandler.getPressed(Direction.LEFT)) {
 
+            this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.LEFT;
             this.moveLeft(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.RIGHT)) {
 
+            this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.RIGHT;
             this.moveRight(movementSpeed);
 

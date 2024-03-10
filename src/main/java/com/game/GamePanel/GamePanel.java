@@ -17,7 +17,6 @@ import com.game.Character.Hero;
 import com.game.CollisionChecker;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
-//import sun.font.EAttribute;           // unsure what this for
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
