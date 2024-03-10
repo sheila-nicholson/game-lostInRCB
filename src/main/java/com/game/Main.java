@@ -25,11 +25,12 @@ public class Main {
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("Game");
+        window.setTitle("Lost in RCB");         // Placeholder name - can be updated later
         window.add(gamePanel);
         window.pack();
 
-        window.setLocationRelativeTo(null);
+
+        window.setLocationRelativeTo(null);     // centers window in screen
         window.setVisible(true);
     }
  }
