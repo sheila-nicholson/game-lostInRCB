@@ -24,7 +24,7 @@ public class MysteriousSmokeTile extends Tile {
         this.handicapTime = handicapTime;
         this.smokeSprite = smokeSprite;
         this.isVisible = isVisible;
-        setTileSprite(paramTileSprite);
+        //setTileSprite(paramTileSprite);
         setPosition(param_X,param_y);
     }
     public int getSpeedModifier(){

@@ -17,6 +17,7 @@ import com.game.Character.Hero;
 import com.game.CollisionChecker;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
+import com.game.Tile.TileManager;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -32,10 +33,10 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalTileSize = 16; // I changed this because the screen size was too large, not sure if optimal, feel free to update
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;   // 48x48 tile (due to scaling)
-    final int maxScreenCol = 28;        // Changed according to UI mockup - range of columns: 0-27
-    final int maxScreeRow = 18;         // Changed according to UI mockup - range of rows: 0-17
-    final int screenWidth = tileSize * maxScreenCol;    // (48*28) = 1,344 pixels
-    final int screenHeight = tileSize * maxScreeRow ;   // (48*18) = 864 pixels
+    public final int maxScreenCol = 28;        // Changed according to UI mockup - range of columns: 0-27
+    public final int maxScreeRow = 18;         // Changed according to UI mockup - range of rows: 0-17
+    public final int screenWidth = tileSize * maxScreenCol;    // (48*28) = 1,344 pixels
+    public final int screenHeight = tileSize * maxScreeRow ;   // (48*18) = 864 pixels
 
     private static int width;
     private static int height;
@@ -44,6 +45,9 @@ public class GamePanel extends JPanel implements Runnable{
     private boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60; // unnecessary?
+
+    TileManager tileM = new TileManager(this);
+
     Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -82,6 +86,9 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
+        tileM.draw(g2);
+
         // item
         for(int i = 0; i < item.length; i++) {
             if (item[i] != null) {

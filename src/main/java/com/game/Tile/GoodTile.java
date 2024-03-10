@@ -13,17 +13,18 @@ package com.game.Tile;
 import com.game.Items.RewardItem;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class GoodTile extends Tile {
     private RewardItem tileItem;
-    private Image tileSprite;
     private boolean tileSteppability;
 
-    GoodTile(RewardItem param_item, Image param_image, int param_X, int param_y){
+/*    GoodTile(RewardItem param_item, Image param_image, int param_X, int param_y){
         this.tileItem = param_item;
         setPosition(param_X,param_y);
         setTileSprite(param_image);
-    }
+    }*/
+    GoodTile(){};
     public RewardItem getTileItem(){
         return this.tileItem;
     }
@@ -31,9 +32,4 @@ public class GoodTile extends Tile {
     public boolean tileSteppable() {
         return this.tileSteppability;
     }
-
-    public Image getTileSprite() {
-        return this.tileSprite;
-    }
-   
 }
