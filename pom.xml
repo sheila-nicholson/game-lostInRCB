@@ -28,6 +28,11 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>.com.game.Images</directory>
+            </resource>
+        </resources>
         <plugins>
             <!-- Add maven-exec-plugin -->
             <plugin>
@@ -44,6 +49,19 @@
                 </executions>
                 <configuration>
                     <mainClass>com.game.Main</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.game.Main</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
