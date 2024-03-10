@@ -29,7 +29,7 @@ public class Coffee extends RewardItem {
         name = "Coffee";
 
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/Coffee.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Coffee.png")));
         } catch(IOException e) {
             e.printStackTrace();
         }

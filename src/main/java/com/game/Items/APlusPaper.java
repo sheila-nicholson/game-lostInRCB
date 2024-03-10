@@ -29,7 +29,7 @@ public class APlusPaper extends RewardItem {
         name = "APlusPaper";
 
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/APlusPaper.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/APlusPaper.png")));
         } catch(IOException e) {
             e.printStackTrace();
         }

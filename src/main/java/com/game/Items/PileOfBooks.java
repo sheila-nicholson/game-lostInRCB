@@ -26,7 +26,7 @@ public class PileOfBooks extends PunishmentItem {
         name = "PileOfBooks";
 
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/PileOfBooks.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/PileOfBooks.png")));
         } catch(IOException e) {
             e.printStackTrace();
         }

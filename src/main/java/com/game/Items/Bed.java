@@ -31,7 +31,7 @@ public class Bed extends RewardItem {
         name = "Bed";
 
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/Bed.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Bed.png")));
         } catch(IOException e) {
             e.printStackTrace();
         }

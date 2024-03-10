@@ -30,7 +30,7 @@ public class Vortex extends PunishmentItem {
         name = "Vortex";
 
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/items/Vortex.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Vortex.png")));
         } catch(IOException e) {
             e.printStackTrace();
         }
