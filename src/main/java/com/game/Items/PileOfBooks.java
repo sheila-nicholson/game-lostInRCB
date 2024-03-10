@@ -10,6 +10,10 @@
 
 package com.game.Items;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.util.Objects;
+
 public class PileOfBooks extends PunishmentItem {
 
     private int damagePoints = 5; 
@@ -19,6 +23,13 @@ public class PileOfBooks extends PunishmentItem {
      */
     public PileOfBooks() {
         this.punishmentType = PunishmentType.BOOKS;
+        name = "PileOfBooks";
+
+        try {
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/PileOfBooks.png")));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getScoreModifier(){
@@ -26,5 +37,8 @@ public class PileOfBooks extends PunishmentItem {
     }
 
     // play animation? play sound?
+
+    public void collisionAction() {
+    }
 
 }

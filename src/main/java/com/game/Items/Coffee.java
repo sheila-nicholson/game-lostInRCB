@@ -11,6 +11,10 @@
 
 package com.game.Items;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.util.Objects;
+
 public class Coffee extends RewardItem {
 
     private int scoreBonus = 3; // unsure, temporary value
@@ -22,6 +26,13 @@ public class Coffee extends RewardItem {
     public Coffee() {
         this.rewardType = RewardType.COFFEE;
         // set position, no need to randomize, harder level = less spawn
+        name = "Coffee";
+
+        try {
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Coffee.png")));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getModifierSeconds() {
@@ -30,5 +41,8 @@ public class Coffee extends RewardItem {
 
     public int getScoreModifier(){
         return this.scoreBonus;
+    }
+
+    public void collisionAction() {
     }
 }

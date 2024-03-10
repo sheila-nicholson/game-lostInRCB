@@ -48,6 +48,8 @@ public class Hero extends Character implements Score{
         super(speed);
         this.keyHandler = keyHandler;
         this.gamePanel = gamePanel;
+        this.solidAreaDefaultX = gamePanel.tileSize;
+        this.solidAreaDefaultY = gamePanel.tileSize;
         this.setDefaultPosition();
         getImage();
         currentDirection = Direction.RIGHT;
@@ -107,6 +109,19 @@ public class Hero extends Character implements Score{
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.RIGHT;
             this.moveRight(movementSpeed);
+
+        }
+
+        // Check object collision:
+        int itemIndex = gamePanel.collisionChecker.checkObject(this, true);
+        pickUpItem(itemIndex);
+    }
+
+    public void pickUpItem(int itemIndex) {
+
+        if(itemIndex != 999) {
+            gamePanel.item[itemIndex].collisionAction();    // to be implemented
+            gamePanel.item[itemIndex] = null;
 
         }
     }
