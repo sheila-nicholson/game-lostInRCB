@@ -42,4 +42,7 @@ public class Coffee extends RewardItem {
     public int getScoreModifier(){
         return this.scoreBonus;
     }
+
+    public void collisionAction() {
+    }
 }

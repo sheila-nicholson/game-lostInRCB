@@ -14,6 +14,7 @@ package com.game.GamePanel;
 import com.game.AssetSetter;
 import com.game.Character.Enemy;
 import com.game.Character.Hero;
+import com.game.CollisionChecker;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
 //import sun.font.EAttribute;           // unsure what this for
@@ -32,8 +33,8 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalTileSize = 16; // I changed this because the screen size was too large, not sure if optimal, feel free to update
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;   // 48x48 tile (due to scaling)
-    final int maxScreenCol = 28;        // Changed according to UI mockup
-    final int maxScreeRow = 18;         // Changed according to UI mockup
+    final int maxScreenCol = 28;        // Changed according to UI mockup - range of columns: 0-27
+    final int maxScreeRow = 18;         // Changed according to UI mockup - range of rows: 0-17
     final int screenWidth = tileSize * maxScreenCol;    // (48*28) = 1,344 pixels
     final int screenHeight = tileSize * maxScreeRow ;   // (48*18) = 864 pixels
 
@@ -46,10 +47,11 @@ public class GamePanel extends JPanel implements Runnable{
     private int FPS = 60; // unnecessary?
     Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
+    public CollisionChecker collisionChecker = new CollisionChecker(this);
 
     private Hero hero;
     private Enemy enemy;
-    public Item[] item = new Item[10];  // item slots - how many objects that can be displayed at one time
+    public Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
 
     public synchronized void startGame(){
         if(running) return;

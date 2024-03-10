@@ -46,4 +46,7 @@ public class Bed extends RewardItem {
         return this.scoreBonus;
     }
 
+    public void collisionAction() {
+    }
+
 }

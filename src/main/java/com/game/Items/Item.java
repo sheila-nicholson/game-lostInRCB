@@ -12,26 +12,30 @@
 package com.game.Items;
 
 import com.game.GamePanel.GamePanel;
+import com.game.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class Item{
+public abstract class Item extends Position {
 
     public BufferedImage image;
     public String name;
-//    public boolean collision = false;         // add back once collisions are done
-    public int worldX, worldY;
+    public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public int solidAreaDefaultX = 48;
+    public int solidAreaDefaultY = 48;
+    public boolean collision = true;
 
     public void draw(Graphics2D g2, GamePanel gp) {
 
-        int screenX = worldX;
-        int screenY = worldY;
+        int screenX = getXPosition();
+        int screenY = getYPosition();
 
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 
 
+    public abstract void collisionAction();
 
     private Image itemSprite;
     private int modifierSeconds; //not sure what this used for, but still fix it

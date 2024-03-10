@@ -23,10 +23,9 @@ public abstract class Character extends Position {
     protected boolean up, down, left, right, fallen, collision;
     // fallen -> vortex effect, false -> enemy with character
 
-    protected Direction currentDirection;
+
     protected Animation currentAnimation;
 
-    protected int movementSpeed; 
 
     protected abstract void setDefaultPosition();
     public abstract void update();

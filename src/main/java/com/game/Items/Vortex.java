@@ -55,4 +55,7 @@ public class Vortex extends PunishmentItem {
         return new Position();
     }
 
+    public void collisionAction() {
+    }
+
 }

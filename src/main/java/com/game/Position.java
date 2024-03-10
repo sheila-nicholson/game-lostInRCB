@@ -10,9 +10,19 @@
 
 package com.game;
 
+import com.game.Key.Direction;
+
+import java.awt.*;
+
 public class Position {
     private int X;
     private int Y;
+    public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public int solidAreaDefaultX = 48;
+    public int solidAreaDefaultY = 48;
+    protected Direction currentDirection;
+    protected int movementSpeed;
+    protected boolean collisionOn;
 
     public Position(){ // default constructor
         this.X = 0;
@@ -40,4 +50,6 @@ public class Position {
     public void moveDown(int s){this.Y+=s;}
     public void moveRight(int s){this.X+=s;}
     public void moveLeft(int s){this.X-=s;}
+
+
 }

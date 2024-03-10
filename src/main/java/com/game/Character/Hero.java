@@ -46,10 +46,12 @@ public class Hero extends Character implements Score{
         super(speed);
         this.keyHandler = keyHandler;
         this.gamePanel = gamePanel;
+        this.solidAreaDefaultX = gamePanel.tileSize;
+        this.solidAreaDefaultY = gamePanel.tileSize;
         this.setDefaultPosition();
     }
 
-    public void getImage(){
+    public void getImage() {
 //        try{
 //
 //        }catch(IOException e){
@@ -61,7 +63,6 @@ public class Hero extends Character implements Score{
     public void draw(Graphics2D g2) {
         g2.setColor(Color.WHITE);
         g2.fillRect(this.getXPosition(),this.getYPosition(),gamePanel.tileSize,gamePanel.tileSize);
-
     }
 
     public void update(){
@@ -88,6 +89,19 @@ public class Hero extends Character implements Score{
 
             this.currentDirection = Direction.RIGHT;
             this.moveRight(movementSpeed);
+
+        }
+
+        // Check object collision:
+        int itemIndex = gamePanel.collisionChecker.checkObject(this, true);
+        pickUpItem(itemIndex);
+    }
+
+    public void pickUpItem(int itemIndex) {
+
+        if(itemIndex != 999) {
+            gamePanel.item[itemIndex].collisionAction();    // to be implemented
+            gamePanel.item[itemIndex] = null;
 
         }
     }

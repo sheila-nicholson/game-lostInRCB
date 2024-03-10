@@ -38,4 +38,7 @@ public class PileOfBooks extends PunishmentItem {
 
     // play animation? play sound?
 
+    public void collisionAction() {
+    }
+
 }

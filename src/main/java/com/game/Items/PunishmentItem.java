@@ -20,4 +20,6 @@ public abstract class PunishmentItem extends Item {
         int damagePoints = 0;
         return damagePoints;
     }
+
+
 }

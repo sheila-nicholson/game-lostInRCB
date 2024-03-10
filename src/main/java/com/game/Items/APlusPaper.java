@@ -42,4 +42,10 @@ public class APlusPaper extends RewardItem {
     public int getTimeAvaliable() {
         return this.timeAvaliable;
     }
+
+    public void collisionAction() {
+    }
+
 }
+
+
