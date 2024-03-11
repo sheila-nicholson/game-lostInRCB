@@ -13,9 +13,6 @@ package com.game.Character;
 public class ZombieProfessor extends Enemy {
     protected ZombieProfessor (int speed){
         super(speed);
-        // set speed to lowest amount of all three bosses
-        // speed and damagePoints inherited from Enemy and will vary
     }
 
-    // call scoreModifier
 }

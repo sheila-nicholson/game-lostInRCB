@@ -26,22 +26,21 @@ public class Hero extends Character implements Score{
     private int currentScore = 0; //default should be 0...
     protected static Hero instance = null;
     protected boolean alive  = true;
-    protected double invincibletime; // optional
-    protected boolean isInvincible = false; // optional
+    protected double invincibletime;
+    protected boolean isInvincible = false;
     // invincibility not required since in phase 1 we discussed
     // whenever the hero goes through the vortex there's a minimum distance
     // they spawn away from any threats
     protected KeyHandler keyHandler;
     protected GamePanel gamePanel;
 
-    // movementspeed for enemy inherited from character, same for hero?
-
+    // deliberate choice to spawn on opposite corner (as far as away as possible)
+    // from enemy
     protected void setDefaultPosition(){
+        //    this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
         this.setPosition(100,0);
-//        this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
-
-        // deliberate choice to spawn on opposite corner (as far as away as possible)
-        // from enemy
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
     }
 
     protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
@@ -50,8 +49,7 @@ public class Hero extends Character implements Score{
         this.gamePanel = gamePanel;
         this.setDefaultPosition();
         getImage();
-        currentDirection = Direction.RIGHT;
-        lastDirection = Direction.RIGHT;
+
     }
 
     public void getImage() {
@@ -147,7 +145,6 @@ public class Hero extends Character implements Score{
     public boolean getAlive(){return this.alive;}
 
     public void deathAnimation() {
-
         // graphics
 
     }

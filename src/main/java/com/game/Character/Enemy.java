@@ -11,28 +11,30 @@
 
 package com.game.Character;
 
+import com.game.Key.Direction;
+
 import java.awt.*;
 import java.io.IOException;
 
 public class Enemy extends Character {
 
     protected int damagePoints = 0;
-    protected int movementSpeed = 0; // variable based on level - not needed?
-    // movementSpeed inherited from Character, declaration not necessary?
+    protected int movementSpeed = 0;
     protected boolean collision = false;
-    
+
     protected static Enemy instance = null;
+
     protected void setDefaultPosition(){
-        this.setPosition(0,100); // temporary value at NW corner
-        // easier to set enemy's position consistently since there's three different
-        // enemies (one for each level)
-        // upon selecting difficulty level either character's position is also
-        // static or spawns closer to the enemy with each harder difficulty
+        this.setPosition(0,100);
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
     }
 
     protected Enemy(int speed){
         super(speed);
+        this.setDefaultPosition();
     }
+
     public static synchronized Enemy getInstance(int speed) {
         if (instance == null) {
             instance = new Enemy(speed);
@@ -51,10 +53,9 @@ public class Enemy extends Character {
 //        }
     };
 
-    // call moveCharacter with traversing salesman algorithm to hunt for Hero
 
     public void damagePlayer() {
-/* 
+/*
         if (position of enemy == position of hero) {
             end the current level with current score and display result
         }

@@ -17,5 +17,4 @@ public class Raccoon extends Enemy {
         // speed and damagePoints inherited from Enemy and will vary
     }
 
-        // call scoreModifier
 }
