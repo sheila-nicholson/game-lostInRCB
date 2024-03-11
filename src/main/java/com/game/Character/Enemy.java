@@ -11,55 +11,54 @@
 
 package com.game.Character;
 
+import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
-
-import java.awt.*;
-import java.io.IOException;
+import java.util.Random;
 
 public class Enemy extends Character {
 
     protected int damagePoints = 0;
-    protected int movementSpeed = 0;
+    protected int movementSpeed;
     protected boolean collision = false;
+    public int actionCounter = 0;
 
-    protected static Enemy instance = null;
+    //override by other classes
+    protected void setDefaultPosition(){}
+    public void getImage() {}
 
-    protected void setDefaultPosition(){
-        this.setPosition(0,100);
-        currentDirection = Direction.RIGHT;
-        lastDirection = Direction.RIGHT;
+    public Enemy(int speed, GamePanel gamePanel){
+        super(speed,gamePanel);
+        this.movementSpeed = speed;
     }
 
-    protected Enemy(int speed){
-        super(speed);
-        this.setDefaultPosition();
-    }
+    public void setAction(){
+        actionCounter ++;
+        Random random = new Random();
+        int i = random.nextInt(100)+1;
 
-    public static synchronized Enemy getInstance(int speed) {
-        if (instance == null) {
-            instance = new Enemy(speed);
-        }
-        return instance;
-    }
-
-    public void update(){};
-    public void draw (Graphics2D g2){};
-    public void getImage(){
-
-//        try{
-//
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-    };
-
-
-    public void damagePlayer() {
-/*
-        if (position of enemy == position of hero) {
-            end the current level with current score and display result
+    if(actionCounter == 180){//temp
+            if (i <= 25) {
+                currentDirection = Direction.UP;
+            } else if (i <= 50) {
+                currentDirection = Direction.DOWN;
+            } else if (i <= 75) {
+                currentDirection = Direction.LEFT;
+            }else{
+                currentDirection = Direction.RIGHT;
+            }
         }
 
-    */
+    }
+    public void update(){
+        setAction();
+        this.collisionOn = false; //temp
+        if(!collisionOn){
+            switch (currentDirection){
+                case UP: this.moveUp(movementSpeed); break;
+                case DOWN: this.moveDown(movementSpeed); break;
+                case LEFT:  this.moveLeft(movementSpeed); break;
+                case RIGHT:  this.moveRight(movementSpeed); break;
+            }
+        }
     }
 }

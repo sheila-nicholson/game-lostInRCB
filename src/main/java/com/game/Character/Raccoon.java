@@ -10,11 +10,25 @@
 
 
 package com.game.Character;
+
+import com.game.GamePanel.GamePanel;
+import com.game.Key.Direction;
+
 public class Raccoon extends Enemy {
-    protected Raccoon(int speed){
-        super(speed);
-        // set speed to lowest amount of all three bosses
-        // speed and damagePoints inherited from Enemy and will vary
+    protected Raccoon(int speed, GamePanel gamePanel){
+        super(speed,gamePanel);
     }
+
+    protected void setDefaultPosition(){
+        this.setPosition(0,70);
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
+    }
+
+    public void getImage() {//pic is temp
+        rightImage = setImage("/Enemy/Zombie_right");
+        leftImage = setImage("/Enemy/Zombie_right");
+    }
+
 
 }

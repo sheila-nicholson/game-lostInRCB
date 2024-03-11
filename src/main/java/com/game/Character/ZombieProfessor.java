@@ -10,9 +10,23 @@
 
 
 package com.game.Character;
+import com.game.GamePanel.GamePanel;
+import com.game.Key.Direction;
+
 public class ZombieProfessor extends Enemy {
-    protected ZombieProfessor (int speed){
-        super(speed);
+
+    public ZombieProfessor (int speed, GamePanel gamePanel){
+        super(speed, gamePanel);
     }
 
+    protected void setDefaultPosition(){
+        this.setPosition(0,70);
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
+    }
+
+    public void getImage() {
+        rightImage = setImage("/Enemy/Zombie_right");
+        leftImage = setImage("/Enemy/Zombie_right");
+    }
 }
