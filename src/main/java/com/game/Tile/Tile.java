@@ -13,15 +13,17 @@ package com.game.Tile;
 import com.game.Position;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public abstract class Tile extends Position {
-    private Image tileSprite;
+    private BufferedImage tileSprite;
+    public boolean collision = false;
     private boolean tileSteppable;
 
     public Image getTileSprite() {
         return this.tileSprite;
     }
-    public void setTileSprite(Image param_sprite){
+    public void setTileSprite(BufferedImage param_sprite){
         this.tileSprite = param_sprite;
     }
 

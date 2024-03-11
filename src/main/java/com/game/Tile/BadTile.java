@@ -16,14 +16,13 @@ import java.awt.*;
 
 public class BadTile extends Tile {
     private PunishmentItem tileItem;
-    private Image tileSprite;
     private boolean tileSteppability;
 
-    BadTile(PunishmentItem param_item, Image param_image, int param_X, int param_y){
+/*    BadTile(PunishmentItem param_item, Image param_image, int param_X, int param_y){
         this.tileItem = param_item;
         setPosition(param_X,param_y);
         setTileSprite(param_image);
-    }
+    }*/
 
     public PunishmentItem getTileItem() {
         return this.tileItem;
@@ -33,7 +32,4 @@ public class BadTile extends Tile {
         return this.tileSteppability;
     }
 
-    public Image getTileSprite() {
-        return this.tileSprite;
-    }
 }

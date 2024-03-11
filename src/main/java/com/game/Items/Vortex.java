@@ -14,6 +14,10 @@ package com.game.Items;
 
 import com.game.Position;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.util.Objects;
+
 public class Vortex extends PunishmentItem {
 
     private PunishmentType punishmentType = PunishmentType.VORTEX;
@@ -21,11 +25,20 @@ public class Vortex extends PunishmentItem {
      * Constructor
      */
     public Vortex() {
-        this.demangePoints = 10; //temp
+        this.damagePoints = 10; //temp
+
+        name = "Vortex";
+
+        try {
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Vortex.png")));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int getScoreModifier(){
-        return this.demangePoints; // unnecessary?
+        return this.damagePoints; // unnecessary?
     }
 
     public Position moveCharacter() {
@@ -40,6 +53,9 @@ public class Vortex extends PunishmentItem {
          */
 
         return new Position();
+    }
+
+    public void collisionAction() {
     }
 
 }

@@ -17,4 +17,6 @@ public abstract class RewardItem extends Item {
     public int getScoreModifier(){
         return this.scoreBonus;
     }
+
+
 }
