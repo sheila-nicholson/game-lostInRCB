@@ -14,6 +14,8 @@ package com.game.GamePanel;
 import com.game.AssetSetter;
 import com.game.Character.Enemy;
 import com.game.Character.Hero;
+import com.game.Character.ZombieProfessor;
+
 import com.game.CollisionChecker;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
@@ -54,7 +56,16 @@ public class GamePanel extends JPanel implements Runnable{
 
     private Hero hero;
     private Enemy enemy;
-    public Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
+    private Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
+
+    public Enemy getEnemy() {
+        return this.enemy;
+    }
+
+    public Item[] getItem() {
+        return this.item;
+    }
+
 
     public synchronized void startGame(){
         if(running) return;
@@ -69,18 +80,19 @@ public class GamePanel extends JPanel implements Runnable{
 
 
     public GamePanel(){ //not finished
+
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(keyHandler);
         this.hero = Hero.getInstance(4,this.keyHandler,this);
-        this.enemy = Enemy.getInstance(5);
-    }
+        this.enemy = new ZombieProfessor(2,this);
 
+    }
     public void update(){
         hero.update();
-//        enemy.update();
+        enemy.update();
     }
 
     public void paintComponent(Graphics g){
@@ -95,7 +107,11 @@ public class GamePanel extends JPanel implements Runnable{
                 item[i].draw(g2, this);
             }
         }
+
+        enemy.draw(g2);
+
         hero.draw(g2);
+
         g2.dispose();
     }
 
@@ -121,7 +137,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if (System.currentTimeMillis() - timer > 1000) {
-                System.out.println("FPS:" + updates); // unnecessary?
+//                System.out.println("FPS:" + updates);
                 updates = 0;
                 timer += 1000; // Increment timer by 1 second
             }
