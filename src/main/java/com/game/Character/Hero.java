@@ -37,7 +37,7 @@ public class Hero extends Character implements Score{
     // movementspeed for enemy inherited from character, same for hero?
 
     protected void setDefaultPosition(){
-        this.setPosition(100,0);
+        this.setPosition(50,0);
 //        this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
 
         // deliberate choice to spawn on opposite corner (as far as away as possible)
@@ -51,6 +51,12 @@ public class Hero extends Character implements Score{
         this.solidAreaDefaultX = gamePanel.tileSize;
         this.solidAreaDefaultY = gamePanel.tileSize;
         this.setDefaultPosition();
+        this.solidArea = new Rectangle();
+        this.solidArea.x = 0;
+        this.solidArea.y = 0;
+        this.solidArea.width = this.solidAreaDefaultX-3;
+        this.solidArea.height = this.solidAreaDefaultY-3;
+
         getImage();
         currentDirection = Direction.RIGHT;
         lastDirection = Direction.RIGHT;
@@ -91,25 +97,53 @@ public class Hero extends Character implements Score{
         if(keyHandler.getPressed(Direction.UP)){
 
             this.currentDirection = Direction.UP;
-            this.moveUp(movementSpeed);
+            //this.moveUp(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.DOWN)) {
 
             this.currentDirection = Direction.DOWN;
-            this.moveDown(movementSpeed);
+            //this.moveDown(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.LEFT)) {
 
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.LEFT;
-            this.moveLeft(movementSpeed);
+            //this.moveLeft(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.RIGHT)) {
 
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.RIGHT;
-            this.moveRight(movementSpeed);
+            //this.moveRight(movementSpeed);
 
+        }
+        //chec tile collision
+        collisionOn = false;
+        //System.out.println(collisionOn);
+        gamePanel.collisionChecker.checkTile(this);
+        if (collisionOn == false){
+            if(keyHandler.getPressed(Direction.UP)){
+                //this.currentDirection = Direction.UP;
+                this.moveUp(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.DOWN)) {
+
+                //this.currentDirection = Direction.DOWN;
+                this.moveDown(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.LEFT)) {
+
+                //this.lastDirection = this.currentDirection;
+                //this.currentDirection = Direction.LEFT;
+                this.moveLeft(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.RIGHT)) {
+
+                //this.lastDirection = this.currentDirection;
+                //this.currentDirection = Direction.RIGHT;
+                this.moveRight(movementSpeed);
+
+            }
         }
 
         // Check object collision:

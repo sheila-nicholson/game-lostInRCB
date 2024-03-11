@@ -17,13 +17,13 @@ import java.awt.*;
 public class Position {
     private int X;
     private int Y;
-    public Rectangle solidArea = new Rectangle(0,0,48,48);
+    //public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public Rectangle solidArea;
     public int solidAreaDefaultX = 48;
     public int solidAreaDefaultY = 48;
     protected Direction currentDirection;
     protected int movementSpeed;
-    protected boolean collisionOn;
-
+    protected boolean collisionOn = false;
     public Position(){ // default constructor
         this.X = 0;
         this.Y = 0;
