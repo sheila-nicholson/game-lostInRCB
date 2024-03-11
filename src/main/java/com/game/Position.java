@@ -22,6 +22,7 @@ public class Position {
     public int solidAreaDefaultY = 48;
     protected Direction currentDirection;
     protected Direction lastDirection;
+
     protected int movementSpeed;
     protected boolean collisionOn;
 

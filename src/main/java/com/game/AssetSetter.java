@@ -2,7 +2,6 @@ package com.game;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Items.*;
-
 public class AssetSetter {
 
     GamePanel gamePanel;
@@ -61,5 +60,6 @@ public class AssetSetter {
         item[14] = new Vortex();
         item[14].setPosition(13 * gamePanel.tileSize, 3 * gamePanel.tileSize);
     }
+
 
 }

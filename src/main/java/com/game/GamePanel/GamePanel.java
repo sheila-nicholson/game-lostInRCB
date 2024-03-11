@@ -15,6 +15,7 @@ import com.game.AssetSetter;
 import com.game.Character.Enemy;
 import com.game.Character.Hero;
 import com.game.Character.ZombieProfessor;
+
 import com.game.CollisionChecker;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
         return this.item;
     }
 
+
     public synchronized void startGame(){
         if(running) return;
         running = true;
@@ -76,7 +78,9 @@ public class GamePanel extends JPanel implements Runnable{
         assetSetter.setObject();
     }
 
-    public GamePanel(){
+
+    public GamePanel(){ //not finished
+
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -103,7 +107,9 @@ public class GamePanel extends JPanel implements Runnable{
                 item[i].draw(g2, this);
             }
         }
+
         enemy.draw(g2);
+
         hero.draw(g2);
 
         g2.dispose();

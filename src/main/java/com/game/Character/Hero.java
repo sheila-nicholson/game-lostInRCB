@@ -79,6 +79,7 @@ public class Hero extends Character implements Score{
             this.moveRight(movementSpeed);
 
         }
+
         //check enemy collision
         int enemyIndex = gamePanel.collisionChecker.checkEnemy(this,true);
         interactEnemy(enemyIndex);
@@ -98,6 +99,7 @@ public class Hero extends Character implements Score{
         if(itemIndex != 999) {
             item[itemIndex].collisionAction();    // to be implemented
             item[itemIndex] = null;
+
 
         }
     }
