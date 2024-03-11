@@ -7,11 +7,10 @@
  * Authors: [put your names here]
  * Last modified on: March 5, 11:44 AM
  */
-
-
 package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
+import com.game.Items.Item;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Score;
@@ -23,29 +22,27 @@ import java.io.IOException;
 
 public class Hero extends Character implements Score{
 
-    private int currentScore = 0; //default should be 0...
+    private int currentScore = 0;
     protected static Hero instance = null;
     protected boolean alive  = true;
-    protected double invincibletime; // optional
-    protected boolean isInvincible = false; // optional
+    protected boolean isInvincible = false;
+    protected double invincibletime;
     // invincibility not required since in phase 1 we discussed
     // whenever the hero goes through the vortex there's a minimum distance
     // they spawn away from any threats
     protected KeyHandler keyHandler;
-    protected GamePanel gamePanel;
 
-    // movementspeed for enemy inherited from character, same for hero?
-
+    // deliberate choice to spawn on opposite corner (as far as away as possible)
+    // from enemy
     protected void setDefaultPosition(){
+        //    this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
         this.setPosition(50,0);
-//        this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
-
-        // deliberate choice to spawn on opposite corner (as far as away as possible)
-        // from enemy
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
     }
 
     protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
-        super(speed);
+        super(speed,gamePanel);
         this.keyHandler = keyHandler;
         this.gamePanel = gamePanel;
         this.solidAreaDefaultX = gamePanel.tileSize;
@@ -58,8 +55,6 @@ public class Hero extends Character implements Score{
         this.solidArea.height = this.solidAreaDefaultY-3;
 
         getImage();
-        currentDirection = Direction.RIGHT;
-        lastDirection = Direction.RIGHT;
     }
 
     public void getImage() {
@@ -145,20 +140,59 @@ public class Hero extends Character implements Score{
 
             }
         }
+        //chec tile collision
+        collisionOn = false;
+        //System.out.println(collisionOn);
+        gamePanel.collisionChecker.checkTile(this);
+        if (collisionOn == false){
+            if(keyHandler.getPressed(Direction.UP)){
+                //this.currentDirection = Direction.UP;
+                this.moveUp(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.DOWN)) {
+
+                //this.currentDirection = Direction.DOWN;
+                this.moveDown(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.LEFT)) {
+
+                //this.lastDirection = this.currentDirection;
+                //this.currentDirection = Direction.LEFT;
+                this.moveLeft(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.RIGHT)) {
+
+                //this.lastDirection = this.currentDirection;
+                //this.currentDirection = Direction.RIGHT;
+                this.moveRight(movementSpeed);
+
+            }
+        }
+
+        //check enemy collision
+        int enemyIndex = gamePanel.collisionChecker.checkEnemy(this,true);
+        interactEnemy(enemyIndex);
 
         // Check object collision:
         int itemIndex = gamePanel.collisionChecker.checkObject(this, true);
         pickUpItem(itemIndex);
     }
 
+    public void interactEnemy(int enemyIndex){
+        System.out.println("collision"); //for testing
+    }
+
     public void pickUpItem(int itemIndex) {
 
+         Item[] item = gamePanel.getItem();
         if(itemIndex != 999) {
-            gamePanel.item[itemIndex].collisionAction();    // to be implemented
-            gamePanel.item[itemIndex] = null;
+            item[itemIndex].collisionAction();    // to be implemented
+            item[itemIndex] = null;
+
 
         }
     }
+
 
     public static synchronized Hero getInstance(int speed,KeyHandler keyHandler,GamePanel gamePanel) {
         if (instance == null) {
@@ -185,7 +219,7 @@ public class Hero extends Character implements Score{
     }
 
     public void minusScore(int score){
-        if(!isInvincible){ // what scenario exists that requires invincibility?
+        if(!isInvincible){
             this.currentScore -= score;
             if(!this.checkScore()) {
                 alive = false;
@@ -196,9 +230,7 @@ public class Hero extends Character implements Score{
     public boolean getAlive(){return this.alive;}
 
     public void deathAnimation() {
-
         // graphics
-
     }
 
 }
