@@ -18,16 +18,24 @@ import java.awt.Graphics2D;
 public class UI {
     GamePanel gp;
     Font a40;
+    public boolean visibleText = false;
+    public String words = "";
 
     public UI(GamePanel gp) {
         this.gp = gp;
         a40 = new Font("Arial", Font.BOLD, 40);
     }
 
+    public void showMessage(String text) {
+
+        words = text;
+        visibleText = true;
+    }
+
     public void draw(Graphics2D gr2D) {
 
         gr2D.setFont(a40);
         gr2D.setColor(Color.CYAN);
-        gr2D.drawString("HI GUYS WELCOME TO MY MINECRAFT WORLD", 150,40);
+        gr2D.drawString("Score:", 150,40);
     }
 }
