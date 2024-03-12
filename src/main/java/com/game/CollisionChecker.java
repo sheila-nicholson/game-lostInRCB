@@ -161,21 +161,32 @@ public class CollisionChecker {
 
     // Check if there is a collision between hero and item
     public boolean isHeroIntersecting(Item position) {
+        Boolean intersect = false;
+        Hero hero = gamePanel.getHero();
 
-        // Calculate the solid area of the item
+        hero.solidArea.x = hero.getXPosition() + hero.solidArea.x;
+        hero.solidArea.y = hero.getYPosition() + hero.solidArea.y;
+
         position.solidArea.x = position.getXPosition() + position.solidArea.x;
         position.solidArea.y = position.getYPosition() + position.solidArea.y;
 
-        if(position.solidArea.intersects(solidHero)) {
-            return true;
+        if(position.solidArea.intersects(hero.solidArea)) {
+            intersect = true;
+            return intersect;
         }
 
-        return false;
+        hero.solidArea.x = hero.solidAreaDefaultX;
+        hero.solidArea.y = hero.solidAreaDefaultY;
+
+        position.solidArea.x = position.solidAreaDefaultX;
+        position.solidArea.y = position.solidAreaDefaultY;
+
+        return intersect;
     }
 
     // Check if there is a collision between hero and enemy when hero is moved via vortex
     public boolean isEnemyIntersecting() {
-        Boolean interstect = false;
+        Boolean intersect = false;
         Enemy enemy = gamePanel.getEnemy();
         Hero hero = gamePanel.getHero();
 
@@ -185,8 +196,8 @@ public class CollisionChecker {
         enemy.solidArea.x = enemy.getXPosition() + enemy.solidArea.x;
         enemy.solidArea.y = enemy.getYPosition() + enemy.solidArea.y;
 
-        if(solidHero.intersects(solidEnemy)) {
-            interstect = true;
+        if(hero.solidArea.intersects(enemy.solidArea)) {
+            intersect = true;
         }
 
         hero.solidArea.x = hero.solidAreaDefaultX;
@@ -195,7 +206,7 @@ public class CollisionChecker {
         enemy.solidArea.x = enemy.solidAreaDefaultX;
         enemy.solidArea.y = enemy.solidAreaDefaultY;
 
-        return interstect;
+        return intersect;
     }
 
     //check hero and enemy collision
@@ -215,7 +226,6 @@ public class CollisionChecker {
                 // calculate the solid area of the item:
                 enemy.solidArea.x = enemy.getXPosition() + enemy.solidArea.x;
                 enemy.solidArea.y = enemy.getYPosition() + enemy.solidArea.y;
-                solidEnemy = enemy.solidArea;
 
                 switch(position.currentDirection) {
 

@@ -49,9 +49,8 @@ public class GamePanel extends JPanel implements Runnable{
     private Graphics g;
     private boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
-    private int FPS = 60; // unnecessary?
-    private int timeElapsed;    // time elapsed since game started in seconds
     private int FPS = 60;
+    private int timeElapsed;    // time elapsed since game started in seconds
     public UI ui = new UI(this);
 
     public TileManager tileM = new TileManager(this);
