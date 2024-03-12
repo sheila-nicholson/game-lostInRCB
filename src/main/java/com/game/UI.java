@@ -35,12 +35,12 @@ public class UI {
     public void draw(Graphics2D gr2D) {
 
         gr2D.setFont(a40);
-        gr2D.setColor(Color.CYAN);
+        gr2D.setColor(Color.BLUE);
         gr2D.drawString("Score:", 150,40);
 
         if (visibleText) {
             gr2D.setFont(gr2D.getFont().deriveFont(24F));
-            gr2D.drawString(words, gp.tileSize*10, gp.tileSize*12);
+            gr2D.drawString(words, gp.tileSize*10, gp.tileSize*11);
         }
     }
 }
