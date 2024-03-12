@@ -14,8 +14,15 @@ import com.game.Items.Item;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Score;
+import javax.imageio.ImageIO;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
 
 public class Hero extends Character implements Score{
+
 
     private int currentScore = 0;
     protected static Hero instance = null;
@@ -26,12 +33,16 @@ public class Hero extends Character implements Score{
     // whenever the hero goes through the vortex there's a minimum distance
     // they spawn away from any threats
     protected KeyHandler keyHandler;
+    public int coffeeTimeEnd;
+    public int currentTime;
+
+
 
     // deliberate choice to spawn on opposite corner (as far as away as possible)
     // from enemy
     protected void setDefaultPosition(){
         //    this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
-        this.setPosition(100,0);
+        this.setPosition(50,0);
         currentDirection = Direction.RIGHT;
         lastDirection = Direction.RIGHT;
     }
@@ -39,15 +50,26 @@ public class Hero extends Character implements Score{
     protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
         super(speed,gamePanel);
         this.keyHandler = keyHandler;
+        this.gamePanel = gamePanel;
         this.solidAreaDefaultX = gamePanel.tileSize;
         this.solidAreaDefaultY = gamePanel.tileSize;
+        this.setDefaultPosition();
+        this.solidArea = new Rectangle();
+        this.solidArea.x = 0;
+        this.solidArea.y = 0;
+        this.solidArea.width = this.solidAreaDefaultX-3;
+        this.solidArea.height = this.solidAreaDefaultY-3;
+
         getImage();
     }
 
     public void getImage() {
-
-        rightImage = setImage("/Hero/Student_right");
-        leftImage = setImage("/Hero/Student_left");
+        try{
+            rightImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Hero/Student_right.png")));
+            leftImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Hero/Student_left.png")));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void update(){
@@ -55,49 +77,90 @@ public class Hero extends Character implements Score{
         //        if(isInvincible){
         //
         //        }
-
         if(keyHandler.getPressed(Direction.UP)){
 
             this.currentDirection = Direction.UP;
-            this.moveUp(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.DOWN)) {
 
             this.currentDirection = Direction.DOWN;
-            this.moveDown(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.LEFT)) {
 
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.LEFT;
-            this.moveLeft(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.RIGHT)) {
 
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.RIGHT;
-            this.moveRight(movementSpeed);
 
+        }
+        //check tile collision
+        collisionOn = false;
+        //System.out.println(collisionOn);
+        gamePanel.collisionChecker.checkTile(this);
+        if (!collisionOn){
+            if(keyHandler.getPressed(Direction.UP)){
+                this.moveUp(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.DOWN)) {
+
+                this.moveDown(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.LEFT)) {
+
+                this.moveLeft(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.RIGHT)) {
+
+                this.moveRight(movementSpeed);
+
+            }
+        }
+        //check tile collision
+        collisionOn = false;
+        reachedEndOn = false;
+        //System.out.println(collisionOn);
+        gamePanel.collisionChecker.checkTile(this);
+        if (!collisionOn){
+            if(keyHandler.getPressed(Direction.UP)){
+                this.moveUp(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.DOWN)) {
+                this.moveDown(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.LEFT)) {
+                this.moveLeft(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.RIGHT)) {
+                this.moveRight(movementSpeed);
+
+            }
+        }
+        if (reachedEndOn){
+            gamePanel.setVisible(false);
         }
 
         //check enemy collision
         int enemyIndex = gamePanel.collisionChecker.checkEnemy(this,true);
         interactEnemy(enemyIndex);
 
-        // Check object collision:
-        int itemIndex = gamePanel.collisionChecker.checkObject(this, true);
+        // Check item collision:
+        int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
         pickUpItem(itemIndex);
     }
 
     public void interactEnemy(int enemyIndex){
-        System.out.println("collision"); //for testing
+        // System.out.println("collision"); //for testing
     }
 
     public void pickUpItem(int itemIndex) {
 
-         Item[] item = gamePanel.getItem();
+        currentTime = gamePanel.getTimeElapsed();
+        Item[] item = gamePanel.getItem();
         if(itemIndex != 999) {
-            item[itemIndex].collisionAction();    // to be implemented
+            item[itemIndex].collisionAction(this);    // to be implemented
             item[itemIndex] = null;
 
         }

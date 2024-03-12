@@ -10,6 +10,7 @@
 
 package com.game.GamePanel;
 
+
 //import javax.awt.event.KeyEvent;
 import com.game.AssetSetter;
 import com.game.Character.Enemy;
@@ -17,9 +18,11 @@ import com.game.Character.Hero;
 import com.game.Character.ZombieProfessor;
 
 import com.game.CollisionChecker;
+import com.game.Items.APlusPaper;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
 import com.game.Tile.TileManager;
+import com.game.UI;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -46,22 +49,25 @@ public class GamePanel extends JPanel implements Runnable{
     private Graphics g;
     private boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
-    private int FPS = 60; // unnecessary?
+    private int FPS = 60;
+    private int timeElapsed;    // time elapsed since game started in seconds
+    public UI ui = new UI(this);
 
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
 
     Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-
-    private Hero hero;
+    public Hero hero;
     private Enemy enemy;
-    private Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
+    private final Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
 
+    public Hero getHero() {
+        return this.hero;
+    }
     public Enemy getEnemy() {
         return this.enemy;
     }
-
     public Item[] getItem() {
         return this.item;
     }
@@ -92,7 +98,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void update(){
         hero.update();
-        enemy.update();
+//        enemy.update();
+        System.out.println(enemy.update());
     }
 
     public void paintComponent(Graphics g){
@@ -101,7 +108,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         tileM.draw(g2);
 
-        // item
+        // items on map
         for(int i = 0; i < item.length; i++) {
             if (item[i] != null) {
                 item[i].draw(g2, this);
@@ -112,8 +119,30 @@ public class GamePanel extends JPanel implements Runnable{
 
         hero.draw(g2);
 
+        ui.draw(g2);
+
         g2.dispose();
     }
+
+    public int getTimeElapsed() {
+        return timeElapsed;
+    }
+
+    public void alertItemState() {
+
+
+
+        // Move the position of APlusPaper items every 5 seconds
+        for(int i = 0; i < item.length; i++) {
+
+            if(item[i] instanceof APlusPaper){
+                item[i].updateItemState(this);
+            }
+        }
+
+    }
+
+
 
     @Override
     public void run() {
@@ -122,12 +151,28 @@ public class GamePanel extends JPanel implements Runnable{
         double frameInterval = 1000000000.0 / FPS;
         double delta = 0;
         long timer = System.currentTimeMillis();
+        long start = System.currentTimeMillis();    // Used to calculate timeElapsed
         int updates = 0;
+        timeElapsed = 0;
+        int previousTimeElapsed = 0;
 
         while (running) {
             long now = System.nanoTime();
+            long current = System.currentTimeMillis();  // Used to calculated timeElapsed
             delta += (now - lastTime) / frameInterval;
             lastTime = now;
+            timeElapsed = (int) (current - start) / 1000;
+
+            // Calls updateItemState() every 10 seconds that has elapsed
+            if (previousTimeElapsed != timeElapsed && timeElapsed % 10 == 0) {
+                alertItemState();
+                previousTimeElapsed = timeElapsed;
+            }
+
+            if (hero.coffeeTimeEnd == timeElapsed) {
+                hero.setMovementSpeed(4);
+            }
+
 
             while (delta >= 1) {
                 this.update();
@@ -137,11 +182,11 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if (System.currentTimeMillis() - timer > 1000) {
-//                System.out.println("FPS:" + updates);
+                //System.out.println("FPS:" + updates); // for testing purposes
                 updates = 0;
                 timer += 1000; // Increment timer by 1 second
+                timeElapsed++;
             }
-       }
+        }
     }
-
 }

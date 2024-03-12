@@ -16,6 +16,7 @@ import com.game.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import com.game.Character.Hero;
 
 public abstract class Item extends Position {
 
@@ -25,6 +26,7 @@ public abstract class Item extends Position {
     public int solidAreaDefaultX = 48;
     public int solidAreaDefaultY = 48;
     public boolean collision = true;
+    protected GamePanel gamePanel;
 
     public void draw(Graphics2D g2, GamePanel gp) {
 
@@ -34,8 +36,13 @@ public abstract class Item extends Position {
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 
+    public void updateItemState(GamePanel gp) {
 
-    public abstract void collisionAction();
+    }
+
+    public void collisionAction(Hero hero) {
+
+    }
 
     private Image itemSprite;
     private int modifierSeconds; //not sure what this used for, but still fix it

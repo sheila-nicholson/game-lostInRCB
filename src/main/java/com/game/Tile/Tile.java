@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 public abstract class Tile extends Position {
     private BufferedImage tileSprite;
     public boolean collision = false;
+    public boolean levelEnd = false;
     private boolean tileSteppable;
 
     public Image getTileSprite() {

@@ -20,7 +20,6 @@ public class ZombieProfessor extends Enemy {
     }
 
     protected void setDefaultPosition(){
-        this.setPosition(0,70);
         currentDirection = Direction.RIGHT;
         lastDirection = Direction.RIGHT;
     }
