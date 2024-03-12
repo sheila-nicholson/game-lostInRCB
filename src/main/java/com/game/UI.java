@@ -10,5 +10,5 @@
 package com.game;
 
 public class UI {
-    // testing 
+    // testing
 }
