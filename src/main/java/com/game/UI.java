@@ -64,7 +64,7 @@ public class UI {
         gr2D.drawString("Score = WIP",150,40);
 
         timer +=(double)1/60;
-        gr2D.drawString("Time:"+deForm.format(timer), gp.tileSize*16, 40);
+        gr2D.drawString("Time:"+deForm.format(timer), gp.tileSize*20, 40);
 
         if (visibleText) {
             gr2D.setFont(gr2D.getFont().deriveFont(24F));
