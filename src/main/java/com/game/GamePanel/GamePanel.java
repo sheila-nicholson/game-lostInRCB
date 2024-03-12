@@ -29,6 +29,7 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 
 public class GamePanel extends JPanel implements Runnable{
@@ -97,7 +98,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.enemy = new ZombieProfessor(2,this);
 
     }
-    public void update(){
+    public void update() throws IOException {
         hero.update();
         enemy.update();
     }
@@ -175,7 +176,11 @@ public class GamePanel extends JPanel implements Runnable{
 
 
             while (delta >= 1) {
-                this.update();
+                try {
+                    this.update();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 this.repaint();
                 delta--;
                 updates++;

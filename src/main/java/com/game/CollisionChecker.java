@@ -19,8 +19,8 @@ public class CollisionChecker {
     }
 
     public void checkTile(Position position){
-        int entityLeftWorldX = position.getXPosition() + position.solidArea.x - 47;
-        int entityRightWorldX = position.getXPosition() + position.solidArea.x + position.solidArea.width - 47;
+        int entityLeftWorldX = position.getXPosition() + position.solidArea.x - 37;
+        int entityRightWorldX = position.getXPosition() + position.solidArea.x + position.solidArea.width - 57;
         int entityTopWorldY = position.getYPosition() + position.solidArea.y - 47;
         int entityBottomWorldY = position.getYPosition() + position.solidArea.y + position.solidArea.height - 47;
 

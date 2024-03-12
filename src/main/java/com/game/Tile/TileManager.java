@@ -44,6 +44,13 @@ public class TileManager {
             e.printStackTrace();
         }
     }
+    public void setSpriteChange(){
+        try{
+            tile[4].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/dark_brown.png")));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
     public void loadMap(){
         try{
             InputStream is = getClass().getResourceAsStream("/Maps/map01.txt");

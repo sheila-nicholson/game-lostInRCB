@@ -56,8 +56,8 @@ public class Hero extends Character implements Score{
         this.solidArea = new Rectangle();
         this.solidArea.x = 0;
         this.solidArea.y = 0;
-        this.solidArea.width = this.solidAreaDefaultX-3;
-        this.solidArea.height = this.solidAreaDefaultY-3;
+        this.solidArea.width = this.solidAreaDefaultX-5;
+        this.solidArea.height = this.solidAreaDefaultY-5;
 
         getImage();
     }
@@ -89,7 +89,7 @@ public class Hero extends Character implements Score{
 
     }
 
-    public void update(){
+    public void update() throws IOException {
         //not finished
         //        if(isInvincible){
         //
@@ -166,7 +166,8 @@ public class Hero extends Character implements Score{
             }
         }
         if (reachedEndOn == true){
-            gamePanel.setVisible(false);
+            //gamePanel.setVisible(false);
+            gamePanel.tileM.setSpriteChange();
         }
 
         //check enemy collision
