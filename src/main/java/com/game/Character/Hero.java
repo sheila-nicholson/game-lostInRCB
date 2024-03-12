@@ -142,31 +142,26 @@ public class Hero extends Character implements Score{
         }
         //chec tile collision
         collisionOn = false;
+        reachedEndOn = false;
         //System.out.println(collisionOn);
         gamePanel.collisionChecker.checkTile(this);
         if (collisionOn == false){
             if(keyHandler.getPressed(Direction.UP)){
-                //this.currentDirection = Direction.UP;
                 this.moveUp(movementSpeed);
 
             }else if (keyHandler.getPressed(Direction.DOWN)) {
-
-                //this.currentDirection = Direction.DOWN;
                 this.moveDown(movementSpeed);
 
             }else if (keyHandler.getPressed(Direction.LEFT)) {
-
-                //this.lastDirection = this.currentDirection;
-                //this.currentDirection = Direction.LEFT;
                 this.moveLeft(movementSpeed);
 
             }else if (keyHandler.getPressed(Direction.RIGHT)) {
-
-                //this.lastDirection = this.currentDirection;
-                //this.currentDirection = Direction.RIGHT;
                 this.moveRight(movementSpeed);
 
             }
+        }
+        if (reachedEndOn == true){
+            gamePanel.setVisible(false);
         }
 
         //check enemy collision

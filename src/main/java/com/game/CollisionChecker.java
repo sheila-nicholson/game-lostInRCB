@@ -36,6 +36,9 @@ public class CollisionChecker {
                 if (gamePanel.tileM.tile[tileNum1].collision == true || gamePanel.tileM.tile[tileNum2].collision == true){
                     position.collisionOn = true;
                 }
+                if (gamePanel.tileM.tile[tileNum1].levelEnd == true || gamePanel.tileM.tile[tileNum2].levelEnd == true){
+                    position.reachedEndOn = true;
+                }
                 break;
             case DOWN:
                 entityBottomRow = (entityBottomWorldY + position.movementSpeed)/ gamePanel.tileSize;
@@ -43,6 +46,9 @@ public class CollisionChecker {
                 tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityBottomRow];
                 if (gamePanel.tileM.tile[tileNum1].collision == true || gamePanel.tileM.tile[tileNum2].collision == true){
                     position.collisionOn = true;
+                }
+                if (gamePanel.tileM.tile[tileNum1].levelEnd == true || gamePanel.tileM.tile[tileNum2].levelEnd == true){
+                    position.reachedEndOn = true;
                 }
                 break;
             case LEFT:
@@ -52,6 +58,9 @@ public class CollisionChecker {
                 if (gamePanel.tileM.tile[tileNum1].collision == true || gamePanel.tileM.tile[tileNum2].collision == true){
                     position.collisionOn = true;
                 }
+                if (gamePanel.tileM.tile[tileNum1].levelEnd == true || gamePanel.tileM.tile[tileNum2].levelEnd == true){
+                    position.reachedEndOn = true;
+                }
                 break;
             case RIGHT:
                 entityRightCol = (entityRightWorldX + position.movementSpeed)/ gamePanel.tileSize;
@@ -59,6 +68,9 @@ public class CollisionChecker {
                 tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityBottomRow];
                 if (gamePanel.tileM.tile[tileNum1].collision == true || gamePanel.tileM.tile[tileNum2].collision == true){
                     position.collisionOn = true;
+                }
+                if (gamePanel.tileM.tile[tileNum1].levelEnd == true || gamePanel.tileM.tile[tileNum2].levelEnd == true){
+                    position.reachedEndOn = true;
                 }
                 break;
         }
