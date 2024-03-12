@@ -184,14 +184,13 @@ public class Hero extends Character implements Score{
 
     public void pickUpItem(int itemIndex) {
 
-        currentTime = gamePanel.getTimeElapsed();
+        currentTime = gamePanel.getTimeElapsedSec();
         Item[] item = gamePanel.getItem();
-        if(itemIndex != 999) {
-            item[itemIndex].collisionAction(this);    // to be implemented
+        if(itemIndex != 999) { // if there is no hero-item collision index = 999
+            item[itemIndex].collisionAction(this);
             item[itemIndex] = null;
         }
     }
-
 
     public static synchronized Hero getInstance(int speed,KeyHandler keyHandler,GamePanel gamePanel) {
         if (instance == null) {
@@ -215,15 +214,6 @@ public class Hero extends Character implements Score{
 
     public void addScore(int score){
         this.currentScore += score;
-    }
-
-    public void minusScore(int score){
-        if(!isInvincible){
-            this.currentScore -= score;
-            if(!this.checkScore()) {
-                alive = false;
-            }
-        }
     }
 
     public boolean getAlive(){return this.alive;}

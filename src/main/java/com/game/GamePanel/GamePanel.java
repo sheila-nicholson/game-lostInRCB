@@ -25,9 +25,7 @@ import com.game.Tile.TileManager;
 import com.game.UI;
 
 import javax.swing.JPanel;
-import javax.swing.JFrame;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 
@@ -50,7 +48,7 @@ public class GamePanel extends JPanel implements Runnable{
     private boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60;
-    private int timeElapsed;    // time elapsed since game started in seconds
+    private int timeElapsedSec;    // time elapsed since game started in seconds
     public UI ui = new UI(this);
 
     public TileManager tileM = new TileManager(this);
@@ -60,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public Hero hero;
     private Enemy enemy;
-    private Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
+    private Item[] item = new Item[15];  // item slots - dictates how many items can be displayed at one time
 
     public Hero getHero() {
         return this.hero;
@@ -73,7 +71,6 @@ public class GamePanel extends JPanel implements Runnable{
         return this.item;
     }
 
-
     public synchronized void startGame(){
         if(running) return;
         running = true;
@@ -84,7 +81,6 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame() {
         assetSetter.setObject();
     }
-
 
     public GamePanel(){ //not finished
 
@@ -116,33 +112,24 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         enemy.draw(g2);
-
         hero.draw(g2);
-
         ui.draw(g2);
-
         g2.dispose();
     }
 
-    public int getTimeElapsed() {
-        return timeElapsed;
+    public int getTimeElapsedSec() {
+        return timeElapsedSec;
     }
 
     public void alertItemState() {
 
-
-
-        // Move the position of APlusPaper items every 5 seconds
+        // Move the position of APlusPaper items every 10 seconds
         for(int i = 0; i < item.length; i++) {
 
-            if(item[i] instanceof APlusPaper){
+            if(item[i] instanceof APlusPaper)
                 item[i].updateItemState(this);
-            }
         }
-
     }
-
-
 
     @Override
     public void run() {
@@ -153,26 +140,26 @@ public class GamePanel extends JPanel implements Runnable{
         long timer = System.currentTimeMillis();
         long start = System.currentTimeMillis();    // Used to calculate timeElapsed
         int updates = 0;
-        timeElapsed = 0;
-        int previousTimeElapsed = 0;
+        timeElapsedSec = 0;
+        int previousTimeElapsedSec = 0;
 
         while (running) {
             long now = System.nanoTime();
             long current = System.currentTimeMillis();  // Used to calculated timeElapsed
             delta += (now - lastTime) / frameInterval;
             lastTime = now;
-            timeElapsed = (int) (current - start) / 1000;
+            timeElapsedSec = (int) (current - start) / 1000;
 
             // Calls updateItemState() every 10 seconds that has elapsed
-            if (previousTimeElapsed != timeElapsed && timeElapsed % 10 == 0) {
+            if (previousTimeElapsedSec != timeElapsedSec && timeElapsedSec % 10 == 0) {
                 alertItemState();
-                previousTimeElapsed = timeElapsed;
+                previousTimeElapsedSec = timeElapsedSec;
             }
 
-            if (hero.coffeeTimeEnd == timeElapsed) {
+            // Used for ending speed modification effect from coffee object - original hero speed = 4
+            if (hero.coffeeTimeEnd == timeElapsedSec) {
                 hero.setMovementSpeed(4);
             }
-
 
             while (delta >= 1) {
                 this.update();
@@ -185,7 +172,7 @@ public class GamePanel extends JPanel implements Runnable{
                 //System.out.println("FPS:" + updates); // for testing purposes
                 updates = 0;
                 timer += 1000; // Increment timer by 1 second
-                timeElapsed++;
+                timeElapsedSec++;
             }
         }
     }

@@ -55,10 +55,15 @@ public class APlusPaper extends RewardItem {
             // range of columns: 0-27
             newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
             newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            this.setPosition(newColPos * gp.tileSize, newRowPos * gp.tileSize);
+            APlusPaper checkPositionValid = new APlusPaper(gamePanel);
+            checkPositionValid.setPosition(newColPos, newRowPos);
+            //this.setPosition(newColPos * gp.tileSize, newRowPos * gp.tileSize);
 
             if(gp.tileM.mapTileNum[newColPos][newRowPos] == 3)
                 validPosition = !(gp.collisionChecker.isHeroIntersecting(this));        // TODO: ensure hero collision is not an issue
+
+            if(validPosition)
+                this.setPosition(newColPos * gp.tileSize, newRowPos * gp.tileSize);
 
         }
     }

@@ -18,7 +18,6 @@ public interface Score {
     int getScore();
     boolean checkScore();
     void addScore(int score);
-    void minusScore(int score);
 
     // per UML: add HUD
 
