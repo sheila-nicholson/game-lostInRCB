@@ -28,6 +28,6 @@ public class UI {
 
         gr2D.setFont(a40);
         gr2D.setColor(Color.CYAN);
-        gr2D.drawString("HI GUYS WELCOME TO MY MINECRAFT WORLD", 50,50);
+        gr2D.drawString("HI GUYS WELCOME TO MY MINECRAFT WORLD", 50,40);
     }
 }
