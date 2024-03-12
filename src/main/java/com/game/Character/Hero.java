@@ -100,10 +100,8 @@ public class Hero extends Character implements Score{
             item[itemIndex].collisionAction();    // to be implemented
             item[itemIndex] = null;
 
-
         }
     }
-
 
     public static synchronized Hero getInstance(int speed,KeyHandler keyHandler,GamePanel gamePanel) {
         if (instance == null) {

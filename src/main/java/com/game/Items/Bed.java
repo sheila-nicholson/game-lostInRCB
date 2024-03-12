@@ -18,8 +18,6 @@ import java.util.Objects;
 
 public class Bed extends RewardItem {
 
-
-
     private int scoreBonus = 5;
     private boolean collected = false; // true means door to finish level is unlocked
 
