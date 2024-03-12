@@ -20,6 +20,8 @@ public class Coffee extends RewardItem {
 
     private int scoreBonus = 5;
     private int modifierSeconds = 5;
+    private int increaseSpeed = 6;
+
 
     /**
      * Constructor
@@ -46,6 +48,9 @@ public class Coffee extends RewardItem {
 
     public void collisionAction(Hero hero) {
         hero.addScore(scoreBonus);      // adds 5 to hero score
+        hero.setMovementSpeed(increaseSpeed);       // increases hero speed for 5 seconds
+        hero.coffeeTimeEnd = (hero.currentTime + 5);
+
     }
 
     public void updateItemState() {

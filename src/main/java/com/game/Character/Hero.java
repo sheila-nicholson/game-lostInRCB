@@ -31,6 +31,10 @@ public class Hero extends Character implements Score{
     // whenever the hero goes through the vortex there's a minimum distance
     // they spawn away from any threats
     protected KeyHandler keyHandler;
+    public int coffeeTimeEnd;
+    public int currentTime;
+
+
 
     // deliberate choice to spawn on opposite corner (as far as away as possible)
     // from enemy
@@ -184,6 +188,7 @@ public class Hero extends Character implements Score{
 
     public void pickUpItem(int itemIndex) {
 
+        currentTime = gamePanel.getTimeElapsed();
         Item[] item = gamePanel.getItem();
         if(itemIndex != 999) {
             item[itemIndex].collisionAction(this);    // to be implemented

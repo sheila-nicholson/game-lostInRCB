@@ -79,7 +79,7 @@ public abstract class Character extends Position {
         return image;
     }
 
-    private void setMovementSpeed(int speed){
+    public void setMovementSpeed(int speed){
         this.movementSpeed = speed;
     }
     public void setFallen(boolean f){

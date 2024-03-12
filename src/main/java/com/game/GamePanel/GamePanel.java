@@ -122,12 +122,14 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void alertItemState() {
 
+
+
+        // Move the position of APlusPaper items every 5 seconds
         for(int i = 0; i < item.length; i++) {
 
             if(item[i] instanceof APlusPaper){
                 item[i].updateItemState(this);
             }
-
         }
 
     }
@@ -157,6 +159,10 @@ public class GamePanel extends JPanel implements Runnable{
             if(previousTimeElapsed != timeElapsed && timeElapsed % 10 == 0) {
                 alertItemState();
                 previousTimeElapsed = timeElapsed;
+            }
+
+            if(hero.coffeeTimeEnd == timeElapsed){
+                hero.setMovementSpeed(4);
             }
 
 

@@ -31,6 +31,10 @@ public class Position {
         this.Y = 0;
     }
 
+    public void setMovementSpeed(int speed){
+        this.movementSpeed = speed;
+    }
+
     public Position(int param_X, int param_y){ // parameterized constructor
         this.X = param_X;
         this.Y = param_y;

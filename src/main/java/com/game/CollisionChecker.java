@@ -142,7 +142,7 @@ public class CollisionChecker {
     }
 
     // Check if there is a collision between hero and item
-    public boolean isHeroIntersecting(Position position) {
+    public boolean isHeroIntersecting(Item position) {
 
         // Calculate the solid area of the item
         position.solidArea.x = position.getXPosition() + position.solidArea.x;
