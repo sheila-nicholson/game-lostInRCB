@@ -37,5 +37,10 @@ public class UI {
         gr2D.setFont(a40);
         gr2D.setColor(Color.CYAN);
         gr2D.drawString("Score:", 150,40);
+
+        if (visibleText) {
+            gr2D.setFont(gr2D.getFont().deriveFont(24F));
+            gr2D.drawString(words, gp.tileSize/2, gp.tileSize*5);
+        }
     }
 }
