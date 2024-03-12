@@ -17,15 +17,18 @@ import com.game.Position;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
+import com.game.Character.Hero;
 
 public class Vortex extends PunishmentItem {
 
     private PunishmentType punishmentType = PunishmentType.VORTEX;
+    private int damagePoints = 5;
+
     /**
      * Constructor
      */
     public Vortex() {
-        this.damagePoints = 10; //temp
+
 
         name = "Vortex";
 
@@ -55,7 +58,8 @@ public class Vortex extends PunishmentItem {
         return new Position();
     }
 
-    public void collisionAction() {
+    public void collisionAction(Hero hero) {
+        hero.addScore(damagePoints);      // adds -5 to hero score
     }
 
     public void updateItemState() {

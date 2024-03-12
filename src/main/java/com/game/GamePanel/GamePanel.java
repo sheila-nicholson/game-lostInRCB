@@ -55,8 +55,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-
-    private Hero hero;
+    public Hero hero;
     private Enemy enemy;
     private Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
 

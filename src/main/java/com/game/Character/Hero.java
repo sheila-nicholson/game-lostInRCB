@@ -186,7 +186,7 @@ public class Hero extends Character implements Score{
 
         Item[] item = gamePanel.getItem();
         if(itemIndex != 999) {
-            item[itemIndex].collisionAction();    // to be implemented
+            item[itemIndex].collisionAction(this);    // to be implemented
             item[itemIndex] = null;
         }
     }

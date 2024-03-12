@@ -14,10 +14,11 @@ package com.game.Items;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
+import com.game.Character.Hero;
 
 public class Coffee extends RewardItem {
 
-    private int scoreBonus = 3; // unsure, temporary value
+    private int scoreBonus = 5;
     private int modifierSeconds = 5;
 
     /**
@@ -43,7 +44,8 @@ public class Coffee extends RewardItem {
         return this.scoreBonus;
     }
 
-    public void collisionAction() {
+    public void collisionAction(Hero hero) {
+        hero.addScore(scoreBonus);      // adds 5 to hero score
     }
 
     public void updateItemState() {

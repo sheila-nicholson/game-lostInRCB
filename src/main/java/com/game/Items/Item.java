@@ -16,6 +16,7 @@ import com.game.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import com.game.Character.Hero;
 
 public abstract class Item extends Position {
 
@@ -38,7 +39,7 @@ public abstract class Item extends Position {
 
     }
 
-    public void collisionAction() {
+    public void collisionAction(Hero hero) {
 
     }
 
