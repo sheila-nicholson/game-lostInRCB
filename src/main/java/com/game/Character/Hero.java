@@ -57,6 +57,11 @@ public class Hero extends Character implements Score{
         getImage();
     }
 
+    public static Hero createDefaultHero() {
+        // TEMPORARY
+        return new Hero(0, null, null);
+    }
+
     public void getImage() {
         try{
             rightImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student_right.png"));
