@@ -58,4 +58,8 @@ public class Vortex extends PunishmentItem {
     public void collisionAction() {
     }
 
+    public void updateItemState() {
+
+    }
+
 }

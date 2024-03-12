@@ -45,4 +45,8 @@ public class Coffee extends RewardItem {
 
     public void collisionAction() {
     }
+
+    public void updateItemState() {
+
+    }
 }

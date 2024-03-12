@@ -49,4 +49,8 @@ public class Bed extends RewardItem {
     public void collisionAction() {
     }
 
+    public void updateItemState() {
+
+    }
+
 }

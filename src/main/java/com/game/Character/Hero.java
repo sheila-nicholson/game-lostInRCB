@@ -173,23 +173,21 @@ public class Hero extends Character implements Score{
         int enemyIndex = gamePanel.collisionChecker.checkEnemy(this,true);
         interactEnemy(enemyIndex);
 
-        // Check object collision:
-        int itemIndex = gamePanel.collisionChecker.checkObject(this, true);
+        // Check item collision:
+        int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
         pickUpItem(itemIndex);
     }
 
     public void interactEnemy(int enemyIndex){
-        System.out.println("collision"); //for testing
+        // System.out.println("collision"); //for testing
     }
 
     public void pickUpItem(int itemIndex) {
 
-         Item[] item = gamePanel.getItem();
+        Item[] item = gamePanel.getItem();
         if(itemIndex != 999) {
             item[itemIndex].collisionAction();    // to be implemented
             item[itemIndex] = null;
-
-
         }
     }
 

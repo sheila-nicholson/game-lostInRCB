@@ -6,7 +6,12 @@ import com.game.GamePanel.GamePanel;
 import com.game.Items.Item;
 import com.game.Key.Direction;
 
+import java.awt.*;
+
 public class CollisionChecker {
+
+
+    protected Rectangle solidHero;
 
     GamePanel gamePanel;
 
@@ -64,27 +69,24 @@ public class CollisionChecker {
         }
     }
 
-    public int checkObject(Position position, boolean hero) {
+    public int checkItem(Position position, boolean hero) {
         int index = 999;
         Item[] item = gamePanel.getItem();
         
         if(position.currentDirection == null)
             return index;
 
-
         for(int i = 0; i < item.length; i++) {
            if(item[i] != null) {
-
 
                // calculate the solid area of the hero:
                position.solidArea.x = position.getXPosition() + position.solidArea.x;
                position.solidArea.y = position.getYPosition() + position.solidArea.y;
+               solidHero = position.solidArea;
 
                 // calculate the solid area of the item:
-
                item[i].solidArea.x = item[i].getXPosition() + item[i].solidArea.x;
                item[i].solidArea.y = item[i].getYPosition() + item[i].solidArea.y;
-
 
                switch(position.currentDirection) {
 
@@ -95,7 +97,6 @@ public class CollisionChecker {
                            if(item[i].collision)
                                position.collisionOn = true;
                            if(hero)
-
                                index = i;
                        }
                        break;
@@ -126,7 +127,6 @@ public class CollisionChecker {
                            if(item[i].collision)
                                position.collisionOn = true;
                            if(hero)
-
                                index = i;
                        }
                        break;
@@ -134,13 +134,25 @@ public class CollisionChecker {
                position.solidArea.x = position.solidAreaDefaultX;
                position.solidArea.y = position.solidAreaDefaultY;
 
-
                item[i].solidArea.x = item[i].solidAreaDefaultX;
                item[i].solidArea.y = item[i].solidAreaDefaultY;
-
            }
         }
     return index;
+    }
+
+    // Check if there is a collision between hero and item
+    public boolean isHeroIntersecting(Position position) {
+
+        // Calculate the solid area of the item
+        position.solidArea.x = position.getXPosition() + position.solidArea.x;
+        position.solidArea.y = position.getYPosition() + position.solidArea.y;
+
+        if(position.solidArea.intersects(solidHero)) {
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -196,8 +208,6 @@ public class CollisionChecker {
             }
         return 0;
         }
-
-
 }
 
 

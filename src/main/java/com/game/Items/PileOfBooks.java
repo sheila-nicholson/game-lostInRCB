@@ -41,4 +41,8 @@ public class PileOfBooks extends PunishmentItem {
     public void collisionAction() {
     }
 
+    public void updateItemState() {
+
+    }
+
 }

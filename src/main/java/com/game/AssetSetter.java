@@ -11,6 +11,7 @@ public class AssetSetter {
 
     }
 
+    // Setting original position of objects on the map
     public void setObject() {
         Item[] item = gamePanel.getItem();
 

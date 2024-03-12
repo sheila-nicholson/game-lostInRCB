@@ -10,14 +10,20 @@
 
 package com.game.Items;
 
+import com.game.GamePanel.GamePanel;
+
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class APlusPaper extends RewardItem {
 
     private int scoreBonus = 10;
     private int timeAvaliable;
+
+    private GamePanel gp;
 
     /**
      * Constructor
@@ -35,6 +41,9 @@ public class APlusPaper extends RewardItem {
         }
     }
 
+
+
+
     public int getScoreModifier(){
         return this.scoreBonus;
     }
@@ -46,6 +55,26 @@ public class APlusPaper extends RewardItem {
     public void collisionAction() {
     }
 
+    public void updateItemState(GamePanel gp) {
+        this.gp = gp;
+        boolean validPosition = false;
+        int newRowPos;
+        int newColPos;
+
+        while(!validPosition) {
+
+            // range of rows: 0-17
+            // range of columns: 0-27
+            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
+            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
+            this.setPosition(newColPos * gp.tileSize, newRowPos * gp.tileSize);
+
+            if(gp.tileM.mapTileNum[newColPos][newRowPos] == 3) {
+
+                validPosition = !(gp.collisionChecker.isHeroIntersecting(this));        // TODO: ensure hero collision is not an issue
+            }
+        }
+    }
 }
 
 

@@ -34,8 +34,13 @@ public abstract class Item extends Position {
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 
+    public void updateItemState(GamePanel gp) {
 
-    public abstract void collisionAction();
+    }
+
+    public void collisionAction() {
+
+    }
 
     private Image itemSprite;
     private int modifierSeconds; //not sure what this used for, but still fix it
