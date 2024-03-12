@@ -39,7 +39,7 @@ public class UI {
 
         gr2D.setFont(a40);
         gr2D.setColor(Color.BLUE);
-        gr2D.drawString("Score =",150,40);
+        gr2D.drawString("Score = WIP",150,40);
 
         if (visibleText) {
             gr2D.setFont(gr2D.getFont().deriveFont(24F));
