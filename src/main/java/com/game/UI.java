@@ -44,7 +44,7 @@ public class UI {
             gr2D.drawString(words, gp.tileSize*10, gp.tileSize*11);
 
             wordsTime++;
-            if (wordsTime > 90) {
+            if (wordsTime > 60) {
                 wordsTime = 0;
                 visibleText = false;
             }
