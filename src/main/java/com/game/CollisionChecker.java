@@ -94,7 +94,7 @@ public class CollisionChecker {
                        if(position.solidArea.intersects(item[i].solidArea)) {
                            if(item[i].collision) {
                                position.collisionOn = true;
-                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> UP");
+                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> UP"); // temporary
                            }
                            if(hero)
 
@@ -107,7 +107,7 @@ public class CollisionChecker {
                        if(position.solidArea.intersects(item[i].solidArea)) {
                            if(item[i].collision) {
                                position.collisionOn = true;
-                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> DOWN");
+                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> DOWN"); // temporary
                            }
                            if(hero)
                                index = i;
@@ -119,7 +119,7 @@ public class CollisionChecker {
                        if(position.solidArea.intersects(item[i].solidArea)) {
                            if(item[i].collision) {
                                position.collisionOn = true;
-                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> LEFT");
+                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> LEFT"); // temporary
                            }
                            if(hero)
                               index = i;
@@ -131,7 +131,7 @@ public class CollisionChecker {
                        if(position.solidArea.intersects(item[i].solidArea)) {
                            if(item[i].collision) {
                                position.collisionOn = true;
-                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> RIGHT");
+                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> RIGHT"); // temporary
                            }
                            if(hero)
 
