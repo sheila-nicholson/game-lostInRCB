@@ -9,6 +9,7 @@
 
 package com.game;
 
+import com.game.Character.Hero;
 import com.game.GamePanel.GamePanel;
 
 import java.awt.Color;
@@ -16,11 +17,19 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class UI {
+
+    private Hero hero;
+
+    public UI(Hero hero) {
+        this.hero = hero;
+    }
     GamePanel gp;
     Font a40;
     public boolean visibleText = false;
     public String words = "";
     int wordsTime = 0;
+
+    //public Hero hero = new Hero(this);
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -37,7 +46,7 @@ public class UI {
 
         gr2D.setFont(a40);
         gr2D.setColor(Color.BLUE);
-        gr2D.drawString("Score:", 150,40);
+        gr2D.drawString("Score =" + hero.getScore(), 150,40);
 
         if (visibleText) {
             gr2D.setFont(gr2D.getFont().deriveFont(24F));
