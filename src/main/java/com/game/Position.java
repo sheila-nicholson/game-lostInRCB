@@ -26,6 +26,8 @@ public class Position {
 
     protected int movementSpeed;
     protected boolean collisionOn = false;
+    protected boolean reachedEndOn = false;
+
     public Position(){ // default constructor
         this.X = 0;
         this.Y = 0;

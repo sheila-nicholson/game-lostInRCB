@@ -39,6 +39,7 @@ public class TileManager {
 
             tile[4] = new GoodTile();
             tile[4].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/red_end.png")));
+            tile[4].levelEnd = true;
         }catch(IOException e){
             e.printStackTrace();
         }

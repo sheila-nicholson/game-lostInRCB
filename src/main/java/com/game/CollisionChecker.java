@@ -11,9 +11,6 @@ import java.awt.*;
 
 public class CollisionChecker {
 
-
-
-
     GamePanel gamePanel;
 
     public CollisionChecker(GamePanel gamepanel) {
@@ -42,6 +39,9 @@ public class CollisionChecker {
                 if (gamePanel.tileM.tile[tileNum1].collision == true || gamePanel.tileM.tile[tileNum2].collision == true){
                     position.collisionOn = true;
                 }
+                if (gamePanel.tileM.tile[tileNum1].levelEnd == true || gamePanel.tileM.tile[tileNum2].levelEnd == true){
+                    position.reachedEndOn = true;
+                }
                 break;
             case DOWN:
                 entityBottomRow = (entityBottomWorldY + position.movementSpeed)/ gamePanel.tileSize;
@@ -49,6 +49,9 @@ public class CollisionChecker {
                 tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityBottomRow];
                 if (gamePanel.tileM.tile[tileNum1].collision == true || gamePanel.tileM.tile[tileNum2].collision == true){
                     position.collisionOn = true;
+                }
+                if (gamePanel.tileM.tile[tileNum1].levelEnd == true || gamePanel.tileM.tile[tileNum2].levelEnd == true){
+                    position.reachedEndOn = true;
                 }
                 break;
             case LEFT:
@@ -58,6 +61,9 @@ public class CollisionChecker {
                 if (gamePanel.tileM.tile[tileNum1].collision == true || gamePanel.tileM.tile[tileNum2].collision == true){
                     position.collisionOn = true;
                 }
+                if (gamePanel.tileM.tile[tileNum1].levelEnd == true || gamePanel.tileM.tile[tileNum2].levelEnd == true){
+                    position.reachedEndOn = true;
+                }
                 break;
             case RIGHT:
                 entityRightCol = (entityRightWorldX + position.movementSpeed)/ gamePanel.tileSize;
@@ -65,6 +71,9 @@ public class CollisionChecker {
                 tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityBottomRow];
                 if (gamePanel.tileM.tile[tileNum1].collision == true || gamePanel.tileM.tile[tileNum2].collision == true){
                     position.collisionOn = true;
+                }
+                if (gamePanel.tileM.tile[tileNum1].levelEnd == true || gamePanel.tileM.tile[tileNum2].levelEnd == true){
+                    position.reachedEndOn = true;
                 }
                 break;
         }
@@ -83,7 +92,6 @@ public class CollisionChecker {
                // calculate the solid area of the hero:
                position.solidArea.x = position.getXPosition() + position.solidArea.x;
                position.solidArea.y = position.getYPosition() + position.solidArea.y;
-               solidHero = position.solidArea;
 
                 // calculate the solid area of the item:
                item[i].solidArea.x = item[i].getXPosition() + item[i].solidArea.x;
@@ -95,8 +103,10 @@ public class CollisionChecker {
                        position.solidArea.y -= position.movementSpeed;
 
                        if(position.solidArea.intersects(item[i].solidArea)) {
-                           if(item[i].collision)
+                           if(item[i].collision) {
                                position.collisionOn = true;
+                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> UP"); // temporary
+                           }
                            if(hero)
                                index = i;
                        }
@@ -107,6 +117,7 @@ public class CollisionChecker {
                        if(position.solidArea.intersects(item[i].solidArea)) {
                            if(item[i].collision) {
                                position.collisionOn = true;
+                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> DOWN"); // temporary
                            }
                            if(hero)
                                index = i;
@@ -116,8 +127,10 @@ public class CollisionChecker {
                        position.solidArea.x -= position.movementSpeed;
 
                        if(position.solidArea.intersects(item[i].solidArea)) {
-                           if(item[i].collision)
+                           if(item[i].collision) {
                                position.collisionOn = true;
+                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> LEFT"); // temporary
+                           }
                            if(hero)
                               index = i;
                        }
@@ -126,9 +139,12 @@ public class CollisionChecker {
                        position.solidArea.x += position.movementSpeed;
 
                        if(position.solidArea.intersects(item[i].solidArea)) {
-                           if(item[i].collision)
+                           if(item[i].collision) {
                                position.collisionOn = true;
+                               gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> RIGHT"); // temporary
+                           }
                            if(hero)
+
                                index = i;
                        }
                        break;

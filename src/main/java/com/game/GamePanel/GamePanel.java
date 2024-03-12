@@ -10,6 +10,7 @@
 
 package com.game.GamePanel;
 
+
 //import javax.awt.event.KeyEvent;
 import com.game.AssetSetter;
 import com.game.Character.Enemy;
@@ -21,6 +22,7 @@ import com.game.Items.APlusPaper;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
 import com.game.Tile.TileManager;
+import com.game.UI;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -49,6 +51,8 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60; // unnecessary?
     private int timeElapsed;    // time elapsed since game started in seconds
+    private int FPS = 60;
+    public UI ui = new UI(this);
 
     public TileManager tileM = new TileManager(this);
 
@@ -115,6 +119,8 @@ public class GamePanel extends JPanel implements Runnable{
         enemy.draw(g2);
 
         hero.draw(g2);
+
+        ui.draw(g2);
 
         g2.dispose();
     }
