@@ -24,8 +24,6 @@ public class UI {
     public String words = "";
     int wordsTime = 0;
 
-    //public Hero hero = new Hero(this);
-
     public UI(GamePanel gp) {
         this.gp = gp;
         a40 = new Font("Arial", Font.BOLD, 40);
