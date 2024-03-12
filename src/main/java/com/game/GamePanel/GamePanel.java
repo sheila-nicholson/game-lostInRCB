@@ -59,6 +59,9 @@ public class GamePanel extends JPanel implements Runnable{
     private Enemy enemy;
     private Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
 
+    public Hero getHero() {
+        return this.hero;
+    }
     public Enemy getEnemy() {
         return this.enemy;
     }
@@ -153,15 +156,15 @@ public class GamePanel extends JPanel implements Runnable{
             long current = System.currentTimeMillis();  // Used to calculated timeElapsed
             delta += (now - lastTime) / frameInterval;
             lastTime = now;
-            timeElapsed = (int) (current - start)/1000;
+            timeElapsed = (int) (current - start) / 1000;
 
             // Calls updateItemState() every 10 seconds that has elapsed
-            if(previousTimeElapsed != timeElapsed && timeElapsed % 10 == 0) {
+            if (previousTimeElapsed != timeElapsed && timeElapsed % 10 == 0) {
                 alertItemState();
                 previousTimeElapsed = timeElapsed;
             }
 
-            if(hero.coffeeTimeEnd == timeElapsed){
+            if (hero.coffeeTimeEnd == timeElapsed) {
                 hero.setMovementSpeed(4);
             }
 
@@ -177,9 +180,8 @@ public class GamePanel extends JPanel implements Runnable{
                 //System.out.println("FPS:" + updates); // for testing purposes
                 updates = 0;
                 timer += 1000; // Increment timer by 1 second
-                timeElapsed ++;
+                timeElapsed++;
             }
-       }
+        }
     }
-
 }

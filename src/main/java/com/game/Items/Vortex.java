@@ -13,10 +13,13 @@
 package com.game.Items;
 
 import com.game.Position;
+import com.game.GamePanel.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
+
 import com.game.Character.Hero;
 
 public class Vortex extends PunishmentItem {
@@ -27,9 +30,9 @@ public class Vortex extends PunishmentItem {
     /**
      * Constructor
      */
-    public Vortex() {
+    public Vortex(GamePanel gamePanel) {
 
-
+        this.gamePanel = gamePanel;
         name = "Vortex";
 
         try {
@@ -60,6 +63,22 @@ public class Vortex extends PunishmentItem {
 
     public void collisionAction(Hero hero) {
         hero.addScore(damagePoints);      // adds -5 to hero score
+
+        boolean validPosition = false;
+        int newRowPos;
+        int newColPos;
+
+        while(!validPosition) {
+            // range of rows: 0-17
+            // range of columns: 0-27
+            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
+            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
+            hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
+
+            if(gamePanel.tileM.mapTileNum[newColPos][newRowPos] == 3) {
+                validPosition = !(gamePanel.collisionChecker.isEnemyIntersecting()); // TODO: ensure enemy collision is not an issue
+            }
+        }
     }
 
     public void updateItemState() {

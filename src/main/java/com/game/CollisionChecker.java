@@ -5,13 +5,15 @@ import com.game.Character.Enemy;
 import com.game.GamePanel.GamePanel;
 import com.game.Items.Item;
 import com.game.Key.Direction;
+import com.game.Character.Hero;
 
 import java.awt.*;
 
 public class CollisionChecker {
 
 
-    protected Rectangle solidHero;
+    static public Rectangle solidHero;
+    static public Rectangle solidEnemy;
 
     GamePanel gamePanel;
 
@@ -104,8 +106,9 @@ public class CollisionChecker {
                        position.solidArea.y += position.movementSpeed;
 
                        if(position.solidArea.intersects(item[i].solidArea)) {
-                           if(item[i].collision)
+                           if(item[i].collision) {
                                position.collisionOn = true;
+                           }
                            if(hero)
                                index = i;
                        }
@@ -155,6 +158,30 @@ public class CollisionChecker {
         return false;
     }
 
+    // Check if there is a collision between hero and enemy when hero is moved via vortex
+    public boolean isEnemyIntersecting() {
+        Boolean interstect = false;
+        Enemy enemy = gamePanel.getEnemy();
+        Hero hero = gamePanel.getHero();
+
+        hero.solidArea.x = hero.getXPosition() + hero.solidArea.x;
+        hero.solidArea.y = hero.getYPosition() + hero.solidArea.y;
+
+        enemy.solidArea.x = enemy.getXPosition() + enemy.solidArea.x;
+        enemy.solidArea.y = enemy.getYPosition() + enemy.solidArea.y;
+
+        if(solidHero.intersects(solidEnemy)) {
+            interstect = true;
+        }
+
+        hero.solidArea.x = hero.solidAreaDefaultX;
+        hero.solidArea.y = hero.solidAreaDefaultY;
+
+        enemy.solidArea.x = enemy.solidAreaDefaultX;
+        enemy.solidArea.y = enemy.solidAreaDefaultY;
+
+        return interstect;
+    }
 
     //check hero and enemy collision
     public int checkEnemy(Position position, boolean hero){
@@ -169,9 +196,11 @@ public class CollisionChecker {
                 position.solidArea.x = position.getXPosition() + position.solidArea.x;
                 position.solidArea.y = position.getYPosition() + position.solidArea.y;
 
+
                 // calculate the solid area of the item:
                 enemy.solidArea.x = enemy.getXPosition() + enemy.solidArea.x;
                 enemy.solidArea.y = enemy.getYPosition() + enemy.solidArea.y;
+                solidEnemy = enemy.solidArea;
 
                 switch(position.currentDirection) {
 

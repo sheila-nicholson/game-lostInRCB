@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class Hero extends Character implements Score{
 
+
     private int currentScore = 0;
     protected static Hero instance = null;
     protected boolean alive  = true;

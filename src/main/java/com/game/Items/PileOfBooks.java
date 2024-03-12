@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
 import com.game.Character.Hero;
+import com.game.GamePanel.GamePanel;
 
 public class PileOfBooks extends PunishmentItem {
 
@@ -22,7 +23,7 @@ public class PileOfBooks extends PunishmentItem {
     /**
      * Constructor
      */
-    public PileOfBooks() {
+    public PileOfBooks(GamePanel gamePanel) {
         this.punishmentType = PunishmentType.BOOKS;
         name = "PileOfBooks";
 

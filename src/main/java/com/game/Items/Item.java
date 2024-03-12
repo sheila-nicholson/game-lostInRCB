@@ -26,6 +26,7 @@ public abstract class Item extends Position {
     public int solidAreaDefaultX = 48;
     public int solidAreaDefaultY = 48;
     public boolean collision = true;
+    protected GamePanel gamePanel;
 
     public void draw(Graphics2D g2, GamePanel gp) {
 
