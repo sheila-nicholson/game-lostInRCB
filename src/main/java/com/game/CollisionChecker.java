@@ -12,8 +12,7 @@ import java.awt.*;
 public class CollisionChecker {
 
 
-    static public Rectangle solidHero;
-    static public Rectangle solidEnemy;
+
 
     GamePanel gamePanel;
 
