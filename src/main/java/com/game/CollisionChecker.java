@@ -185,23 +185,22 @@ public class CollisionChecker {
     }
 
     // Check if there is a collision between hero and enemy when hero is moved via vortex
-    public boolean isEnemyIntersecting() {
+    public boolean isEnemyIntersecting(Item item) {
         Boolean intersect = false;
         Enemy enemy = gamePanel.getEnemy();
-        Hero hero = gamePanel.getHero();
 
-        hero.solidArea.x = hero.getXPosition() + hero.solidArea.x;
-        hero.solidArea.y = hero.getYPosition() + hero.solidArea.y;
+        item.solidArea.x = item.getXPosition() + item.solidArea.x;
+        item.solidArea.y = item.getYPosition() + item.solidArea.y;
 
         enemy.solidArea.x = enemy.getXPosition() + enemy.solidArea.x;
         enemy.solidArea.y = enemy.getYPosition() + enemy.solidArea.y;
 
-        if(hero.solidArea.intersects(enemy.solidArea)) {
+        if(item.solidArea.intersects(enemy.solidArea)) {
             intersect = true;
         }
 
-        hero.solidArea.x = hero.solidAreaDefaultX;
-        hero.solidArea.y = hero.solidAreaDefaultY;
+        item.solidArea.x = item.solidAreaDefaultX;
+        item.solidArea.y = item.solidAreaDefaultY;
 
         enemy.solidArea.x = enemy.solidAreaDefaultX;
         enemy.solidArea.y = enemy.solidAreaDefaultY;
