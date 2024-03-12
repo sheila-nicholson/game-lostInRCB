@@ -20,6 +20,7 @@ public class UI {
     Font a40;
     public boolean visibleText = false;
     public String words = "";
+    int wordsTime = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -41,6 +42,12 @@ public class UI {
         if (visibleText) {
             gr2D.setFont(gr2D.getFont().deriveFont(24F));
             gr2D.drawString(words, gp.tileSize*10, gp.tileSize*11);
+
+            wordsTime++;
+            if (wordsTime > 90) {
+                wordsTime = 0;
+                visibleText = false;
+            }
         }
     }
 }
