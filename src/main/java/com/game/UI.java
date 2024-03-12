@@ -40,7 +40,7 @@ public class UI {
 
         if (visibleText) {
             gr2D.setFont(gr2D.getFont().deriveFont(24F));
-            gr2D.drawString(words, gp.tileSize*10, gp.tileSize*30);
+            gr2D.drawString(words, gp.tileSize*10, gp.tileSize*10);
         }
     }
 }
