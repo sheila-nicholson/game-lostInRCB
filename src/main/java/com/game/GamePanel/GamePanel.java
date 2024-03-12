@@ -50,8 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60;
 
-    Hero heroInstance = Hero.createDefaultHero(); // POTENTIALLY BUGGY
-    public UI ui = new UI(heroInstance); // REVERT heroInstance to this
+    public UI ui = new UI(this); 
 
     public TileManager tileM = new TileManager(this);
 
