@@ -56,6 +56,8 @@ public class UI {
             y = gp.screenHeight/2 - (gp.tileSize*3);
             gr2D.drawString(txt, x, y);
 
+            // put this in for time display when you're done "Time:"+deForm.format(timer) (format accordingly)
+
             gp.gameThread = null;
         }
         */
