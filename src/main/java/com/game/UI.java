@@ -19,10 +19,7 @@ import java.awt.Graphics2D;
 public class UI {
 
     private Hero hero;
-
-    public UI(Hero hero) {
-        this.hero = hero;
-    }
+    
     GamePanel gp;
     Font a40;
     public boolean visibleText = false;
