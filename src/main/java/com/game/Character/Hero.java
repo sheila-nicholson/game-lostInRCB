@@ -148,6 +148,7 @@ public class Hero extends Character implements Score{
         //chec tile collision
         collisionOn = false;
         reachedEndOn = false;
+        mysteriousSmokeTileOn = false;
         //System.out.println(collisionOn);
         gamePanel.collisionChecker.checkTile(this);
         if (collisionOn == false){
@@ -167,7 +168,10 @@ public class Hero extends Character implements Score{
         }
         if (reachedEndOn == true){
             //gamePanel.setVisible(false);
-            gamePanel.tileM.setSpriteChange();
+            gamePanel.tileM.setSpriteChange(4,"dark_brown");
+        }
+        if(mysteriousSmokeTileOn == true){
+            gamePanel.tileM.setSpriteChange(5,"smoke");
         }
 
         //check enemy collision
