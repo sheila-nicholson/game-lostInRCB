@@ -10,9 +10,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class TileManager {
-    GamePanel gp;
-    Tile[] tile;
-    int mapTileNum[][];
+    private GamePanel gp;
+    private Tile[] tile;
+    private int mapTileNum[][];
+
+    public int[][] getMapTileNum() {
+        return mapTileNum;
+    }
+
+    public Tile[] getTile(){
+        return tile;
+    }
 
     public TileManager(GamePanel gp){
         this.gp = gp;
