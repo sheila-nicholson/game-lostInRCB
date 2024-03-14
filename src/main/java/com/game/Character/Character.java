@@ -82,7 +82,7 @@ public abstract class Character extends Position {
         return image;
     }
 
-    private void setMovementSpeed(int speed){
+    public void setMovementSpeed(int speed){
         this.movementSpeed = speed;
     }
     public void setFallen(boolean f){
@@ -143,13 +143,6 @@ public abstract class Character extends Position {
                     currentDirection = Direction.RIGHT;
 
             }
-
-//            //if reached the goal, stop the search
-//            int nextCol = gamePanel.pathFinder.pathList.get(0).col;
-//            int nextRow = gamePanel.pathFinder.pathList.get(0).row;
-//            if(nextCol == goalCol && nextRow == goalRow){
-//                onPath = false;
-//            }
 
 
         }

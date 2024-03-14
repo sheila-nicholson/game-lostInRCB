@@ -15,6 +15,8 @@ package com.game.Items;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
+import com.game.Character.Hero;
+import com.game.GamePanel.GamePanel;
 
 public class Bed extends RewardItem {
 
@@ -24,7 +26,7 @@ public class Bed extends RewardItem {
     /**
      * Constructor
      */
-    public Bed() {
+    public Bed(GamePanel gamePanel) {
         this.rewardType = RewardType.BED;
         name = "Bed";
 
@@ -44,7 +46,13 @@ public class Bed extends RewardItem {
         return this.scoreBonus;
     }
 
-    public void collisionAction() {
+    public void collisionAction(Hero hero) {
+        hero.addScore(scoreBonus);      // adds 5 to hero score
+
+    }
+
+    public void updateItemState() {
+
     }
 
 }
