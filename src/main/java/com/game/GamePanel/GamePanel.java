@@ -13,6 +13,7 @@ package com.game.GamePanel;
 //import javax.awt.event.KeyEvent;
 import com.game.AssetSetter;
 import com.game.Character.Enemy;
+import com.game.Character.EnemyMovement.PathFinder;
 import com.game.Character.Hero;
 import com.game.Character.ZombieProfessor;
 
@@ -46,9 +47,10 @@ public class GamePanel extends JPanel implements Runnable{
     private Graphics g;
     private boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
-    private int FPS = 60; // unnecessary?
+    private int FPS = 60;
 
     public TileManager tileM = new TileManager(this);
+    public PathFinder pathFinder = new PathFinder(this);
 
     Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
@@ -58,14 +60,14 @@ public class GamePanel extends JPanel implements Runnable{
     private Enemy enemy;
     private Item[] item = new Item[15];  // item slots - how many objects that can be displayed at one time
 
+
     public Enemy getEnemy() {
         return this.enemy;
     }
-
     public Item[] getItem() {
         return this.item;
     }
-
+    public Hero getHero(){return  this.hero;}
 
     public synchronized void startGame(){
         if(running) return;
@@ -77,8 +79,6 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame() {
         assetSetter.setObject();
     }
-
-
     public GamePanel(){ //not finished
 
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));

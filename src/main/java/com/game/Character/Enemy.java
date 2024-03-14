@@ -13,6 +13,8 @@ package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
+
+import java.awt.*;
 import java.util.Random;
 
 public class Enemy extends Character {
@@ -29,9 +31,24 @@ public class Enemy extends Character {
     public Enemy(int speed, GamePanel gamePanel){
         super(speed,gamePanel);
         this.movementSpeed = speed;
+        this.solidAreaDefaultX = gamePanel.tileSize;
+        this.solidAreaDefaultY = gamePanel.tileSize;
+        this.setDefaultPosition();
+        this.solidArea = new Rectangle();
+        this.solidArea.x = 0;
+        this.solidArea.y = 0;
+        this.solidArea.width = this.solidAreaDefaultX-5;
+        this.solidArea.height = this.solidAreaDefaultY-5;
     }
 
     public void setAction(){
+
+        if(onPath == true){
+            int goalCol = gamePanel.getHero().getXPosition() + (gamePanel.getHero().solidArea.x)/gamePanel.tileSize;
+            int goalRow = gamePanel.getHero().getYPosition() + (gamePanel.getHero().solidArea.y)/gamePanel.tileSize;
+
+            searchPath(goalCol,goalRow);
+        }
         actionCounter ++;
         Random random = new Random();
         int i = random.nextInt(100)+1;
@@ -47,11 +64,21 @@ public class Enemy extends Character {
                 currentDirection = Direction.RIGHT;
             }
         }
-
     }
+
+
+    public void checkCollision(){//update later 22:33/46:44
+        collisionOn = false;
+//      gamePanel.collisionChecker.
+    }
+
     public void update(){
+        //check collison
+        //checkCollision();
+        collisionOn = false;
         setAction();
         this.collisionOn = false; //temp
+        gamePanel.collisionChecker.checkTile(this);
         if(!collisionOn){
             switch (currentDirection){
                 case UP: this.moveUp(movementSpeed); break;

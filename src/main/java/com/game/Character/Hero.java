@@ -15,6 +15,8 @@ import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Score;
 
+import java.awt.*;
+
 public class Hero extends Character implements Score{
 
     private int currentScore = 0;
@@ -39,8 +41,16 @@ public class Hero extends Character implements Score{
     protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
         super(speed,gamePanel);
         this.keyHandler = keyHandler;
+        this.gamePanel = gamePanel;
         this.solidAreaDefaultX = gamePanel.tileSize;
         this.solidAreaDefaultY = gamePanel.tileSize;
+        this.setDefaultPosition();
+        this.solidArea = new Rectangle();
+        this.solidArea.x = 0;
+        this.solidArea.y = 0;
+        this.solidArea.width = this.solidAreaDefaultX-5;
+        this.solidArea.height = this.solidAreaDefaultY-5;
+
         getImage();
     }
 
