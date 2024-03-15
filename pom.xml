@@ -28,11 +28,6 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>.com.game.Images</directory>
-            </resource>
-        </resources>
         <plugins>
             <!-- Add maven-exec-plugin -->
             <plugin>
