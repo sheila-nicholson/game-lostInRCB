@@ -13,33 +13,67 @@
 package com.game.Items;
 
 import com.game.Position;
+import com.game.GamePanel.GamePanel;
+
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
+
+import com.game.Character.Hero;
 
 public class Vortex extends PunishmentItem {
 
     private PunishmentType punishmentType = PunishmentType.VORTEX;
+    private int damagePoints = 5;
+
     /**
      * Constructor
      */
-    public Vortex() {
-        this.demangePoints = 10; //temp
+    public Vortex(GamePanel gamePanel) {
+
+        this.gamePanel = gamePanel;
+        name = "Vortex";
+
+        try {
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Vortex.png")));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int getScoreModifier(){
-        return this.demangePoints; // unnecessary?
+        return this.damagePoints; // unnecessary?
     }
 
-    public Position moveCharacter() {
+    public void collisionAction(Hero hero) {
+        hero.addScore(damagePoints);      // adds -5 to hero score
 
-        /* if (difficulty == easy) {
-            Position cannot be ANYWHERE close to other punishments
-        } else if (difficulty = medium) {
-            Position cannot be SOMEWHAT close to other punishments
-        } else if (difficulty = hard) {
-            Position cannot be REALLY close to other punishments
+        boolean validPosition = false;
+        int newRowPos;
+        int newColPos;
+
+        while(!validPosition) {
+            // range of rows: 0-17
+            // range of columns: 0-27
+            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
+            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
+            Vortex checkPositionValid = new Vortex(gamePanel);
+            checkPositionValid.setPosition(newColPos, newRowPos);
+            //hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
+
+            if(gamePanel.tileM.mapTileNum[newColPos][newRowPos] == 3)
+                validPosition = !(gamePanel.collisionChecker.isEnemyIntersecting(checkPositionValid)); // TODO: ensure enemy collision is not an issue
+
+            if(validPosition)
+                hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
+
         }
-         */
+    }
 
-        return new Position();
+    public void updateItemState() {
+
     }
 
 }

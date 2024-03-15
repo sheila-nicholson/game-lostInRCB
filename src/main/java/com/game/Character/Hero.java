@@ -7,11 +7,10 @@
  * Authors: [put your names here]
  * Last modified on: March 5, 11:44 AM
  */
-
-
 package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
+import com.game.Items.Item;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Score;
@@ -23,35 +22,44 @@ import java.io.IOException;
 
 public class Hero extends Character implements Score{
 
-    private int currentScore = 0; //default should be 0...
+
+    private int currentScore = 0;
     protected static Hero instance = null;
     protected boolean alive  = true;
-    protected double invincibletime; // optional
-    protected boolean isInvincible = false; // optional
+    protected boolean isInvincible = false;
+    protected double invincibletime;
     // invincibility not required since in phase 1 we discussed
     // whenever the hero goes through the vortex there's a minimum distance
     // they spawn away from any threats
     protected KeyHandler keyHandler;
-    protected GamePanel gamePanel;
+    public int coffeeTimeEnd;
+    public int currentTime;
 
-    // movementspeed for enemy inherited from character, same for hero?
 
+
+    // deliberate choice to spawn on opposite corner (as far as away as possible)
+    // from enemy
     protected void setDefaultPosition(){
-        this.setPosition(100,0);
-//        this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
-
-        // deliberate choice to spawn on opposite corner (as far as away as possible)
-        // from enemy
+        //    this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
+        this.setPosition(50,0);
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
     }
 
     protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
-        super(speed);
+        super(speed,gamePanel);
         this.keyHandler = keyHandler;
         this.gamePanel = gamePanel;
+        this.solidAreaDefaultX = gamePanel.tileSize;
+        this.solidAreaDefaultY = gamePanel.tileSize;
         this.setDefaultPosition();
+        this.solidArea = new Rectangle();
+        this.solidArea.x = 0;
+        this.solidArea.y = 0;
+        this.solidArea.width = this.solidAreaDefaultX-5;
+        this.solidArea.height = this.solidAreaDefaultY-5;
+
         getImage();
-        currentDirection = Direction.RIGHT;
-        lastDirection = Direction.RIGHT;
     }
 
     public void getImage() {
@@ -81,7 +89,7 @@ public class Hero extends Character implements Score{
 
     }
 
-    public void update(){
+    public void update() throws IOException {
         //not finished
         //        if(isInvincible){
         //
@@ -89,25 +97,103 @@ public class Hero extends Character implements Score{
         if(keyHandler.getPressed(Direction.UP)){
 
             this.currentDirection = Direction.UP;
-            this.moveUp(movementSpeed);
+            //this.moveUp(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.DOWN)) {
 
             this.currentDirection = Direction.DOWN;
-            this.moveDown(movementSpeed);
+            //this.moveDown(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.LEFT)) {
 
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.LEFT;
-            this.moveLeft(movementSpeed);
+            //this.moveLeft(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.RIGHT)) {
 
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.RIGHT;
-            this.moveRight(movementSpeed);
+            //this.moveRight(movementSpeed);
 
+        }
+        //chec tile collision
+        collisionOn = false;
+        //System.out.println(collisionOn);
+        gamePanel.collisionChecker.checkTile(this);
+        if (collisionOn == false){
+            if(keyHandler.getPressed(Direction.UP)){
+                //this.currentDirection = Direction.UP;
+                this.moveUp(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.DOWN)) {
+
+                //this.currentDirection = Direction.DOWN;
+                this.moveDown(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.LEFT)) {
+
+                //this.lastDirection = this.currentDirection;
+                //this.currentDirection = Direction.LEFT;
+                this.moveLeft(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.RIGHT)) {
+
+                //this.lastDirection = this.currentDirection;
+                //this.currentDirection = Direction.RIGHT;
+                this.moveRight(movementSpeed);
+
+            }
+        }
+        //chec tile collision
+        collisionOn = false;
+        reachedEndOn = false;
+        mysteriousSmokeTileOn = false;
+        //System.out.println(collisionOn);
+        gamePanel.collisionChecker.checkTile(this);
+        if (collisionOn == false){
+            if(keyHandler.getPressed(Direction.UP)){
+                this.moveUp(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.DOWN)) {
+                this.moveDown(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.LEFT)) {
+                this.moveLeft(movementSpeed);
+
+            }else if (keyHandler.getPressed(Direction.RIGHT)) {
+                this.moveRight(movementSpeed);
+
+            }
+        }
+        if (reachedEndOn == true){
+            //gamePanel.setVisible(false);
+            gamePanel.tileM.setSpriteChange(4,"dark_brown");
+        }
+        if(mysteriousSmokeTileOn == true){
+            gamePanel.tileM.setSpriteChange(5,"smoke");
+        }
+
+        //check enemy collision
+        int enemyIndex = gamePanel.collisionChecker.checkEnemy(this,true);
+        interactEnemy(enemyIndex);
+
+        // Check item collision:
+        int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
+        pickUpItem(itemIndex);
+    }
+
+    public void interactEnemy(int enemyIndex){
+        // System.out.println("collision"); //for testing
+    }
+
+    public void pickUpItem(int itemIndex) {
+
+        currentTime = gamePanel.getTimeElapsedSec();
+        Item[] item = gamePanel.getItem();
+        if(itemIndex != 999) { // if there is no hero-item collision index = 999
+            item[itemIndex].collisionAction(this);
+            item[itemIndex] = null;
         }
     }
 
@@ -135,21 +221,10 @@ public class Hero extends Character implements Score{
         this.currentScore += score;
     }
 
-    public void minusScore(int score){
-        if(!isInvincible){ // what scenario exists that requires invincibility?
-            this.currentScore -= score;
-            if(!this.checkScore()) {
-                alive = false;
-            }
-        }
-    }
-
     public boolean getAlive(){return this.alive;}
 
     public void deathAnimation() {
-
         // graphics
-
     }
 
 }

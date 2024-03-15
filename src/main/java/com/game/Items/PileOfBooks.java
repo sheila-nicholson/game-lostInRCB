@@ -10,15 +10,28 @@
 
 package com.game.Items;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.util.Objects;
+import com.game.Character.Hero;
+import com.game.GamePanel.GamePanel;
+
 public class PileOfBooks extends PunishmentItem {
 
-    private int damagePoints = 5; 
+    private int damagePoints = -5;
 
     /**
      * Constructor
      */
-    public PileOfBooks() {
+    public PileOfBooks(GamePanel gamePanel) {
         this.punishmentType = PunishmentType.BOOKS;
+        name = "PileOfBooks";
+
+        try {
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/PileOfBooks.png")));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getScoreModifier(){
@@ -26,5 +39,14 @@ public class PileOfBooks extends PunishmentItem {
     }
 
     // play animation? play sound?
+
+    public void collisionAction(Hero hero) {
+
+        hero.addScore(damagePoints);      // adds -5 to hero score
+    }
+
+    public void updateItemState() {
+
+    }
 
 }

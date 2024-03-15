@@ -19,14 +19,21 @@ public class MysteriousSmokeTile extends Tile {
     private Image smokeSprite;
     private boolean isVisible;
 
-    public MysteriousSmokeTile(int slowSpeed, int handicapTime, Image smokeSprite, boolean isVisible, Image paramTileSprite, int param_X, int param_y){
+/*    public MysteriousSmokeTile(int slowSpeed, int handicapTime, Image smokeSprite, boolean isVisible, Image paramTileSprite, int param_X, int param_y){
         this.slowSpeed = slowSpeed;
         this.handicapTime = handicapTime;
         this.smokeSprite = smokeSprite;
         this.isVisible = isVisible;
-        setTileSprite(paramTileSprite);
+        //setTileSprite(paramTileSprite);
         setPosition(param_X,param_y);
+    }*/
+
+    public MysteriousSmokeTile(){
+        this.tileSteppability = true;
+        this.isLevelEndBool = false;
+        this.isMysteriousSmokeTileBool = true;
     }
+
     public int getSpeedModifier(){
         return slowSpeed;
     }

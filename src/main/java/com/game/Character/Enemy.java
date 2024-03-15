@@ -11,54 +11,57 @@
 
 package com.game.Character;
 
+import com.game.GamePanel.GamePanel;
+import com.game.Key.Direction;
+
 import java.awt.*;
-import java.io.IOException;
+import java.util.Random;
 
 public class Enemy extends Character {
 
     protected int damagePoints = 0;
-    protected int movementSpeed = 0; // variable based on level - not needed?
-    // movementSpeed inherited from Character, declaration not necessary?
+    protected int movementSpeed;
     protected boolean collision = false;
-    
-    protected static Enemy instance = null;
-    protected void setDefaultPosition(){
-        this.setPosition(0,100); // temporary value at NW corner
-        // easier to set enemy's position consistently since there's three different
-        // enemies (one for each level)
-        // upon selecting difficulty level either character's position is also
-        // static or spawns closer to the enemy with each harder difficulty
+    public int actionCounter = 0;
+
+    //override by other classes
+    protected void setDefaultPosition(){}
+    public void getImage() {}
+
+    public Enemy(int speed, GamePanel gamePanel){
+        super(speed,gamePanel);
+        this.movementSpeed = speed;
+        this.solidArea = new Rectangle(0,0,1,1);
     }
 
-    protected Enemy(int speed){
-        super(speed);
-    }
-    public static synchronized Enemy getInstance(int speed) {
-        if (instance == null) {
-            instance = new Enemy(speed);
-        }
-        return instance;
-    }
+    public void setAction(){
+        actionCounter ++;
+        Random random = new Random();
+        int i = random.nextInt(100)+1;
 
-    public void update(){};
-    public void draw (Graphics2D g2){};
-    public void getImage(){
-
-//        try{
-//
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-    };
-
-    // call moveCharacter with traversing salesman algorithm to hunt for Hero
-
-    public void damagePlayer() {
-/* 
-        if (position of enemy == position of hero) {
-            end the current level with current score and display result
+    if(actionCounter == 180){//temp
+            if (i <= 25) {
+                currentDirection = Direction.UP;
+            } else if (i <= 50) {
+                currentDirection = Direction.DOWN;
+            } else if (i <= 75) {
+                currentDirection = Direction.LEFT;
+            }else{
+                currentDirection = Direction.RIGHT;
+            }
         }
 
-    */
+    }
+    public void update(){
+        setAction();
+        this.collisionOn = false; //temp
+        if(!collisionOn){
+            switch (currentDirection){
+                case UP: this.moveUp(movementSpeed); break;
+                case DOWN: this.moveDown(movementSpeed); break;
+                case LEFT:  this.moveLeft(movementSpeed); break;
+                case RIGHT:  this.moveRight(movementSpeed); break;
+            }
+        }
     }
 }

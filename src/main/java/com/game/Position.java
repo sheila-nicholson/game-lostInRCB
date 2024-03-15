@@ -10,13 +10,31 @@
 
 package com.game;
 
+import com.game.Key.Direction;
+
+import java.awt.*;
+
 public class Position {
     private int X;
     private int Y;
+    //public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public Rectangle solidArea;
+    public int solidAreaDefaultX = 48;
+    public int solidAreaDefaultY = 48;
+    protected Direction currentDirection;
+    protected Direction lastDirection;
 
+    protected int movementSpeed;
+    protected boolean collisionOn = false;
+    protected boolean reachedEndOn = false;
+    protected boolean mysteriousSmokeTileOn = false;
     public Position(){ // default constructor
         this.X = 0;
         this.Y = 0;
+    }
+
+    public void setMovementSpeed(int speed){
+        this.movementSpeed = speed;
     }
 
     public Position(int param_X, int param_y){ // parameterized constructor
@@ -38,4 +56,6 @@ public class Position {
     public void moveDown(int s){this.Y+=s;}
     public void moveRight(int s){this.X+=s;}
     public void moveLeft(int s){this.X-=s;}
+
+
 }
