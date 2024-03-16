@@ -17,8 +17,9 @@ import com.game.Score;
 import javax.imageio.ImageIO;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
+
 
 public class Hero extends Character implements Score{
 
@@ -27,10 +28,6 @@ public class Hero extends Character implements Score{
     protected static Hero instance = null;
     protected boolean alive  = true;
     protected boolean isInvincible = false;
-    protected double invincibletime;
-    // invincibility not required since in phase 1 we discussed
-    // whenever the hero goes through the vortex there's a minimum distance
-    // they spawn away from any threats
     protected KeyHandler keyHandler;
     public int coffeeTimeEnd;
     public int currentTime;
@@ -56,7 +53,7 @@ public class Hero extends Character implements Score{
         this.solidArea = new Rectangle();
         this.solidArea.x = 0;
         this.solidArea.y = 0;
-        this.solidArea.width = this.solidAreaDefaultX-5;
+        this.solidArea.width = this.solidAreaDefaultX-5; //change for testing Original : 3
         this.solidArea.height = this.solidAreaDefaultY-5;
 
         getImage();
@@ -64,8 +61,8 @@ public class Hero extends Character implements Score{
 
     public void getImage() {
         try{
-            rightImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student_right.png"));
-            leftImage = ImageIO.read(getClass().getResourceAsStream("/Hero/Student_left.png"));
+            rightImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Hero/Student_right.png")));
+            leftImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Hero/Student_left.png")));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -90,68 +87,56 @@ public class Hero extends Character implements Score{
     }
 
     public void update() throws IOException {
-        //not finished
-        //        if(isInvincible){
-        //
-        //        }
         if(keyHandler.getPressed(Direction.UP)){
 
             this.currentDirection = Direction.UP;
-            //this.moveUp(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.DOWN)) {
 
             this.currentDirection = Direction.DOWN;
-            //this.moveDown(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.LEFT)) {
 
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.LEFT;
-            //this.moveLeft(movementSpeed);
 
         }else if (keyHandler.getPressed(Direction.RIGHT)) {
 
             this.lastDirection = this.currentDirection;
             this.currentDirection = Direction.RIGHT;
-            //this.moveRight(movementSpeed);
 
         }
-        //chec tile collision
+        //check tile collision
         collisionOn = false;
-        //System.out.println(collisionOn);
+
         gamePanel.collisionChecker.checkTile(this);
-        if (collisionOn == false){
+        gamePanel.collisionChecker.checkPlayer(this);
+
+        if (!collisionOn){
             if(keyHandler.getPressed(Direction.UP)){
-                //this.currentDirection = Direction.UP;
                 this.moveUp(movementSpeed);
 
             }else if (keyHandler.getPressed(Direction.DOWN)) {
 
-                //this.currentDirection = Direction.DOWN;
                 this.moveDown(movementSpeed);
 
             }else if (keyHandler.getPressed(Direction.LEFT)) {
 
-                //this.lastDirection = this.currentDirection;
-                //this.currentDirection = Direction.LEFT;
                 this.moveLeft(movementSpeed);
 
             }else if (keyHandler.getPressed(Direction.RIGHT)) {
 
-                //this.lastDirection = this.currentDirection;
-                //this.currentDirection = Direction.RIGHT;
                 this.moveRight(movementSpeed);
 
             }
         }
-        //chec tile collision
+        //check tile collision
         collisionOn = false;
         reachedEndOn = false;
         mysteriousSmokeTileOn = false;
         //System.out.println(collisionOn);
         gamePanel.collisionChecker.checkTile(this);
-        if (collisionOn == false){
+        if (!collisionOn){
             if(keyHandler.getPressed(Direction.UP)){
                 this.moveUp(movementSpeed);
 
@@ -166,16 +151,18 @@ public class Hero extends Character implements Score{
 
             }
         }
+
         if (reachedEndOn == true){
             //gamePanel.setVisible(false);
             gamePanel.tileM.setSpriteChange(4,"dark_brown");
         }
         if(mysteriousSmokeTileOn == true){
             gamePanel.tileM.setSpriteChange(5,"smoke");
+
         }
 
         //check enemy collision
-        int enemyIndex = gamePanel.collisionChecker.checkEnemy(this,true);
+        int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
         interactEnemy(enemyIndex);
 
         // Check item collision:
@@ -184,7 +171,11 @@ public class Hero extends Character implements Score{
     }
 
     public void interactEnemy(int enemyIndex){
-        // System.out.println("collision"); //for testing
+
+        if(enemyIndex != 999) {
+             System.out.println("collision"); //for testing
+            System.exit(0);//test for terminating the game after collision between hero and enemy
+        }
     }
 
     public void pickUpItem(int itemIndex) {
@@ -194,6 +185,7 @@ public class Hero extends Character implements Score{
         if(itemIndex != 999) { // if there is no hero-item collision index = 999
             item[itemIndex].collisionAction(this);
             item[itemIndex] = null;
+
         }
     }
 
@@ -222,10 +214,6 @@ public class Hero extends Character implements Score{
     }
 
     public boolean getAlive(){return this.alive;}
-
-    public void deathAnimation() {
-        // graphics
-    }
 
 }
 

@@ -10,9 +10,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class TileManager {
-    GamePanel gp;
-    public Tile[] tile;
-    public int mapTileNum[][];
+    private GamePanel gp;
+    private Tile[] tile;
+    private int mapTileNum[][];
+    boolean drawPath = true;
+
+    public int[][] getMapTileNum() {
+        return mapTileNum;
+    }
+
+    public Tile[] getTile(){
+        return tile;
+    }
 
     public TileManager(GamePanel gp){
         this.gp = gp;
@@ -109,5 +118,16 @@ public class TileManager {
                 y += gp.tileSize;
             }
         }
+        //for testing
+//        if(drawPath){
+//            g2.setColor(new Color(255,0,0,70));
+//
+//            for(int i = 0; i < gp.pathFinder.pathList.size(); i++){
+//                int worldX = gp.pathFinder.pathList.get(i).col * gp.tileSize;
+//                int worldY = gp.pathFinder.pathList.get(i).row * gp.tileSize;
+//
+//            }
+//        }
     }
+
 }

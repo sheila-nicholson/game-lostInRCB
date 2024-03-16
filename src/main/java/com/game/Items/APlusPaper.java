@@ -59,7 +59,7 @@ public class APlusPaper extends RewardItem {
             checkPositionValid.setPosition(newColPos, newRowPos);
             //this.setPosition(newColPos * gp.tileSize, newRowPos * gp.tileSize);
 
-            if(gp.tileM.mapTileNum[newColPos][newRowPos] == 3)
+            if(gp.tileM.getMapTileNum()[newColPos][newRowPos] == 3)
                 validPosition = !(gp.collisionChecker.isHeroIntersecting(this));        // TODO: ensure hero collision is not an issue
 
             if(validPosition)
