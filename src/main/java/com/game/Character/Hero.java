@@ -156,7 +156,8 @@ public class Hero extends Character implements Score{
 
         if (reachedEndOn == true){
             //gamePanel.setVisible(false);
-            gamePanel.tileM.setSpriteChange(4,"dark_brown");
+            System.exit(0);//test for terminating the game after collision between hero and enemy
+
         }
         if(mysteriousSmokeTileOn == true){
             gamePanel.tileM.setSpriteChange(5,"smoke");
