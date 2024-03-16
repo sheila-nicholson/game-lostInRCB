@@ -56,6 +56,7 @@ public class Hero extends Character implements Score{
         this.solidArea.y = 0;
         this.solidArea.width = this.solidAreaDefaultX-5; //change for testing Original : 3
         this.solidArea.height = this.solidAreaDefaultY-5;
+        this.setScore(100);
 
         getImage();
     }
