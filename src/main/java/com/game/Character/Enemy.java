@@ -20,48 +20,105 @@ import java.util.Random;
 public class Enemy extends Character {
 
     protected int damagePoints = 0;
-    protected int movementSpeed;
-    protected boolean collision = false;
     public int actionCounter = 0;
 
     //override by other classes
-    protected void setDefaultPosition(){}
+    protected void setDefaultPosition(){
+        currentDirection = Direction.RIGHT;
+        lastDirection = Direction.RIGHT;
+    }
     public void getImage() {}
 
-    public Enemy(int speed, GamePanel gamePanel){
-        super(speed,gamePanel);
+    public Enemy(int speed, GamePanel gamePanel) {
+        super(speed, gamePanel);
         this.movementSpeed = speed;
-        this.solidArea = new Rectangle(0,0,1,1);
+        this.solidArea = new Rectangle(0, 0, 1, 1);
+        setDefaultPosition();
+        this.solidAreaDefaultX = gamePanel.tileSize;
+        this.solidAreaDefaultY = gamePanel.tileSize;
+        this.solidArea = new Rectangle();
+        this.solidArea.x = 0;
+        this.solidArea.y = 0;
+        this.solidArea.width = this.solidAreaDefaultX - 6; //temp
+        this.solidArea.height = this.solidAreaDefaultY - 6;
+
+        this.setPosition(2 * gamePanel.tileSize, 16* gamePanel.tileSize);
+
     }
 
-    public void setAction(){
-        actionCounter ++;
-        Random random = new Random();
-        int i = random.nextInt(100)+1;
-
-    if(actionCounter == 180){//temp
-            if (i <= 25) {
-                currentDirection = Direction.UP;
-            } else if (i <= 50) {
-                currentDirection = Direction.DOWN;
-            } else if (i <= 75) {
-                currentDirection = Direction.LEFT;
-            }else{
-                currentDirection = Direction.RIGHT;
-            }
+    @Override
+    public void checkCollision() {
+        gamePanel.collisionChecker.checkTile(this);
+        gamePanel.collisionChecker.checkPlayer(this);
+        int index = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getHero());
+        if(index != 999){
+            System.exit(0);//test for terminating the game after collision between enemy and hero
         }
 
     }
-    public void update(){
+
+    public void setAction() {
+
+        if(onPath){
+
+                int goalCol = (gamePanel.getHero().getXPosition() + gamePanel.getHero().solidArea.x)/gamePanel.tileSize;
+                int goalRow = (gamePanel.getHero().getYPosition() + gamePanel.getHero().solidArea.y)/gamePanel.tileSize;
+                searchPath(goalCol,goalRow);
+
+        }else{
+
+            actionCounter++;
+            Random random = new Random();
+            int i = random.nextInt(100) + 1;
+
+            if (actionCounter == 2) {//temp
+                if (i <= 25) {
+                    currentDirection = Direction.UP;
+                } else if (i <= 50) {
+                    currentDirection = Direction.DOWN;
+                } else if (i <= 75) {
+                    currentDirection = Direction.LEFT;
+                } else {
+                    currentDirection = Direction.RIGHT;
+                }
+                gamePanel.collisionChecker.checkTile(this);
+            }
+
+        }
+
+    }
+
+    public Direction update() {
+
+        reachedEndOn = false;
+        collisionOn = false;
+        checkCollision();
         setAction();
-        this.collisionOn = false; //temp
-        if(!collisionOn){
-            switch (currentDirection){
-                case UP: this.moveUp(movementSpeed); break;
-                case DOWN: this.moveDown(movementSpeed); break;
-                case LEFT:  this.moveLeft(movementSpeed); break;
-                case RIGHT:  this.moveRight(movementSpeed); break;
+
+        if(!collisionOn) {
+            switch (currentDirection) {
+                case UP:
+                    this.moveUp(movementSpeed);
+                    return Direction.UP;
+//                   break;
+                case DOWN:
+                    this.moveDown(movementSpeed);
+                    return Direction.DOWN;
+//                    break;
+                case LEFT:
+
+                    this.moveLeft(movementSpeed);
+                    return Direction.LEFT;
+//                break;
+                case RIGHT:
+
+                    this.moveRight(movementSpeed);
+                    return Direction.RIGHT;
+//                break;
             }
         }
+
+        return Direction.DOWN;
     }
+
 }

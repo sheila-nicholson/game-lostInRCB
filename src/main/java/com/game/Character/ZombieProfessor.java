@@ -19,11 +19,6 @@ public class ZombieProfessor extends Enemy {
         super(speed, gamePanel);
     }
 
-    protected void setDefaultPosition(){
-        this.setPosition(0,70);
-        currentDirection = Direction.RIGHT;
-        lastDirection = Direction.RIGHT;
-    }
 
     public void getImage() {
         rightImage = setImage("/Enemy/Zombie_right");

@@ -14,6 +14,7 @@ package com.game.GamePanel;
 //import javax.awt.event.KeyEvent;
 import com.game.AssetSetter;
 import com.game.Character.Enemy;
+import com.game.Character.EnemyMovement.PathFinder;
 import com.game.Character.Hero;
 import com.game.Character.ZombieProfessor;
 
@@ -49,17 +50,24 @@ public class GamePanel extends JPanel implements Runnable{
     private boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60;
+
     private int timeElapsedSec;    // time elapsed since game started in seconds
     public UI ui = new UI(this);
 
+
     public TileManager tileM = new TileManager(this);
+    public PathFinder pathFinder = new PathFinder(this);
+    private int timeElapsed;    // time elapsed since game started in seconds
+    public UI ui = new UI(this);
 
     Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public Hero hero;
     private Enemy enemy;
+
     private Item[] item = new Item[15];  // item slots - dictates how many items can be displayed at one time
+
 
     public Hero getHero() {
         return this.hero;
@@ -67,7 +75,6 @@ public class GamePanel extends JPanel implements Runnable{
     public Enemy getEnemy() {
         return this.enemy;
     }
-
     public Item[] getItem() {
         return this.item;
     }
@@ -83,6 +90,7 @@ public class GamePanel extends JPanel implements Runnable{
         assetSetter.setObject();
     }
 
+
     public GamePanel(){ //not finished
 
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -91,12 +99,13 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.addKeyListener(keyHandler);
         this.hero = Hero.getInstance(4,this.keyHandler,this);
-        this.enemy = new ZombieProfessor(2,this);
+        this.enemy = new ZombieProfessor(3,this); //temp speed for testing
 
     }
     public void update() throws IOException {
         hero.update();
-        enemy.update();
+//        enemy.update();
+        System.out.println(enemy.update());
     }
 
     public void paintComponent(Graphics g){
