@@ -21,10 +21,10 @@ public class UI {
 
     GamePanel gp;
     Font a40, a60;
-    public boolean visibleText = false;
-    public String words = "";
-    int wordsTime = 0;
-    double timer;
+    private boolean visibleText = false;
+    private String words = "";
+    private int wordsTime = 0;
+    private double timer;
     DecimalFormat deForm = new DecimalFormat("#0.00");
 
     public UI(GamePanel gp) {
@@ -34,7 +34,6 @@ public class UI {
     }
 
     public void showMessage(String text) {
-
         words = text;
         visibleText = true;
     }
@@ -63,7 +62,9 @@ public class UI {
         */
         gr2D.setFont(a40);
         gr2D.setColor(Color.BLUE);
-        gr2D.drawString("Score = WIP",150,40);
+
+
+        gr2D.drawString("Score = " + gp.getHero().getScore(),150,40);
 
         timer +=(double)1/60;
         gr2D.drawString("Time:"+deForm.format(timer), gp.tileSize*20, 40);

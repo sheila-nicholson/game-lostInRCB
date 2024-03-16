@@ -58,12 +58,11 @@ public class GamePanel extends JPanel implements Runnable{
     public TileManager tileM = new TileManager(this);
     public PathFinder pathFinder = new PathFinder(this);
     private int timeElapsed;    // time elapsed since game started in seconds
-    public UI ui = new UI(this);
 
     Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public Hero hero;
+    private Hero hero;
     private Enemy enemy;
 
     private Item[] item = new Item[15];  // item slots - dictates how many items can be displayed at one time
