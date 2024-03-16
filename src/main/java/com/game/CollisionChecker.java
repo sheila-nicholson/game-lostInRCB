@@ -14,9 +14,7 @@ public class CollisionChecker {
 
     public CollisionChecker(GamePanel gamepanel) {
         this.gamePanel = gamepanel;
-
     }
-
 
     public void checkTile(Position position){
         int entityLeftWorldX = position.getXPosition() + position.solidArea.x - 37;
@@ -35,59 +33,59 @@ public class CollisionChecker {
         switch (position.currentDirection) {
             case UP:
                 entityTopRow = (entityTopWorldY - position.movementSpeed)/ gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.mapTileNum[entityLeftCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityTopRow];
-                if (gamePanel.tileM.tile[tileNum1].tileSteppable() == false || gamePanel.tileM.tile[tileNum2].tileSteppable() == false){
+                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityTopRow];
+                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityTopRow];
+                if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
                     position.collisionOn = true;
                 }
-                if (gamePanel.tileM.tile[tileNum1].isLevelEnd() == true || gamePanel.tileM.tile[tileNum2].isLevelEnd() == true){
+                if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd()  || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
                     position.reachedEndOn = true;
                 }
-                if(gamePanel.tileM.tile[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.tile[tileNum2].isMysteriousSmokeTile()){
+                if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
                     position.mysteriousSmokeTileOn = true;
                 }
                 break;
             case DOWN:
                 entityBottomRow = (entityBottomWorldY + position.movementSpeed)/ gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.mapTileNum[entityLeftCol][entityBottomRow];
-                tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityBottomRow];
-                if (gamePanel.tileM.tile[tileNum1].tileSteppable() == false || gamePanel.tileM.tile[tileNum2].tileSteppable() == false){
+                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityBottomRow];
+                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityBottomRow];
+                if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
                     position.collisionOn = true;
                 }
-                if (gamePanel.tileM.tile[tileNum1].isLevelEnd() == true || gamePanel.tileM.tile[tileNum2].isLevelEnd() == true){
+                if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd() || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
                     position.reachedEndOn = true;
                 }
-                if(gamePanel.tileM.tile[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.tile[tileNum2].isMysteriousSmokeTile()){
+                if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
                     position.mysteriousSmokeTileOn = true;
                 }
                 break;
             case LEFT:
                 entityLeftCol = (entityLeftWorldX - position.movementSpeed)/ gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.mapTileNum[entityLeftCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.mapTileNum[entityLeftCol][entityBottomRow];
-                if (gamePanel.tileM.tile[tileNum1].tileSteppable() == false || gamePanel.tileM.tile[tileNum2].tileSteppable() == false){
+                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityTopRow];
+                tileNum2 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityBottomRow];
+                if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
                     position.collisionOn = true;
                 }
-                if (gamePanel.tileM.tile[tileNum1].isLevelEnd() == true || gamePanel.tileM.tile[tileNum2].isLevelEnd() == true){
+                if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd() || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
                     position.reachedEndOn = true;
                 }
-                if(gamePanel.tileM.tile[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.tile[tileNum2].isMysteriousSmokeTile()){
+                if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
                     position.mysteriousSmokeTileOn = true;
                 }
                 break;
             case RIGHT:
 
                 entityRightCol = (entityRightWorldX + position.movementSpeed)/ gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.mapTileNum[entityRightCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityBottomRow];
-                if (gamePanel.tileM.tile[tileNum1].tileSteppable() == false || gamePanel.tileM.tile[tileNum2].tileSteppable() == false){
+                tileNum1 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityTopRow];
+                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityBottomRow];
+                if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
                     position.collisionOn = true;
                 }
-                if (gamePanel.tileM.tile[tileNum1].isLevelEnd() == true || gamePanel.tileM.tile[tileNum2].isLevelEnd() == true){
+                if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd() || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
 
                     position.reachedEndOn = true;
                 }
-                if(gamePanel.tileM.tile[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.tile[tileNum2].isMysteriousSmokeTile()){
+                if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
                     position.mysteriousSmokeTileOn = true;
                 }
                 break;

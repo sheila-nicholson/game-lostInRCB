@@ -63,7 +63,7 @@ public class Vortex extends PunishmentItem {
             checkPositionValid.setPosition(newColPos, newRowPos);
             //hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
 
-            if(gamePanel.tileM.mapTileNum[newColPos][newRowPos] == 3)
+            if(gamePanel.tileM.getMapTileNum()[newColPos][newRowPos] == 3)
                 validPosition = !(gamePanel.collisionChecker.isEnemyIntersecting(checkPositionValid)); // TODO: ensure enemy collision is not an issue
 
             if(validPosition)

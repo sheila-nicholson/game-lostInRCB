@@ -33,19 +33,17 @@ public class Enemy extends Character {
         super(speed, gamePanel);
         this.movementSpeed = speed;
         this.solidArea = new Rectangle(0, 0, 1, 1);
-//        this.setPosition(gamePanel.screenWidth - 2 * gamePanel.tileSize, gamePanel.screenHeight - 2 * gamePanel.tileSize);
-        this.setPosition(2 * gamePanel.tileSize, 14* gamePanel.tileSize);
-        setDefaultPosition();
+
 
         this.solidAreaDefaultX = gamePanel.tileSize;
         this.solidAreaDefaultY = gamePanel.tileSize;
         this.solidArea = new Rectangle();
         this.solidArea.x = 0;
         this.solidArea.y = 0;
-        this.solidArea.width = this.solidAreaDefaultX - 6; //temp
-        this.solidArea.height = this.solidAreaDefaultY - 6;
-
-        this.setPosition(2 * gamePanel.tileSize, 16* gamePanel.tileSize);
+        this.solidArea.width = this.solidAreaDefaultX - 3; //temp
+        this.solidArea.height = this.solidAreaDefaultY - 3;
+        setDefaultPosition();
+        this.setPosition(2 * gamePanel.tileSize, 14* gamePanel.tileSize);
 
     }
 
