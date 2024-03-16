@@ -5,6 +5,7 @@ import com.game.Character.Enemy;
 import com.game.GamePanel.GamePanel;
 import com.game.Items.Item;
 import com.game.Character.Hero;
+import com.game.Tile.MysteriousSmokeTile;
 
 
 public class CollisionChecker {
@@ -16,9 +17,11 @@ public class CollisionChecker {
 
     }
 
-    public void checkTile(Position position) {
-        int entityLeftWorldX = position.getXPosition() + position.solidArea.x - 47;
-        int entityRightWorldX = position.getXPosition() + position.solidArea.x + position.solidArea.width - 47;
+
+    public void checkTile(Position position){
+        int entityLeftWorldX = position.getXPosition() + position.solidArea.x - 37;
+        int entityRightWorldX = position.getXPosition() + position.solidArea.x + position.solidArea.width - 57;
+
         int entityTopWorldY = position.getYPosition() + position.solidArea.y - 47;
         int entityBottomWorldY = position.getYPosition() + position.solidArea.y + position.solidArea.height - 47;
 
@@ -31,47 +34,61 @@ public class CollisionChecker {
 
         switch (position.currentDirection) {
             case UP:
-                entityTopRow = (entityTopWorldY - position.movementSpeed) / gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityTopRow];
-                if (gamePanel.tileM.getTile()[tileNum1].collision || gamePanel.tileM.getTile()[tileNum2].collision) {
+                entityTopRow = (entityTopWorldY - position.movementSpeed)/ gamePanel.tileSize;
+                tileNum1 = gamePanel.tileM.mapTileNum[entityLeftCol][entityTopRow];
+                tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityTopRow];
+                if (gamePanel.tileM.tile[tileNum1].tileSteppable() == false || gamePanel.tileM.tile[tileNum2].tileSteppable() == false){
                     position.collisionOn = true;
                 }
-                if (gamePanel.tileM.getTile()[tileNum1].levelEnd || gamePanel.tileM.getTile()[tileNum2].levelEnd) {
+                if (gamePanel.tileM.tile[tileNum1].isLevelEnd() == true || gamePanel.tileM.tile[tileNum2].isLevelEnd() == true){
                     position.reachedEndOn = true;
+                }
+                if(gamePanel.tileM.tile[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.tile[tileNum2].isMysteriousSmokeTile()){
+                    position.mysteriousSmokeTileOn = true;
                 }
                 break;
             case DOWN:
-                entityBottomRow = (entityBottomWorldY + position.movementSpeed) / gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityBottomRow];
-                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityBottomRow];
-                if (gamePanel.tileM.getTile()[tileNum1].collision || gamePanel.tileM.getTile()[tileNum2].collision) {
+                entityBottomRow = (entityBottomWorldY + position.movementSpeed)/ gamePanel.tileSize;
+                tileNum1 = gamePanel.tileM.mapTileNum[entityLeftCol][entityBottomRow];
+                tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityBottomRow];
+                if (gamePanel.tileM.tile[tileNum1].tileSteppable() == false || gamePanel.tileM.tile[tileNum2].tileSteppable() == false){
                     position.collisionOn = true;
                 }
-                if (gamePanel.tileM.getTile()[tileNum1].levelEnd || gamePanel.tileM.getTile()[tileNum2].levelEnd) {
+                if (gamePanel.tileM.tile[tileNum1].isLevelEnd() == true || gamePanel.tileM.tile[tileNum2].isLevelEnd() == true){
                     position.reachedEndOn = true;
+                }
+                if(gamePanel.tileM.tile[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.tile[tileNum2].isMysteriousSmokeTile()){
+                    position.mysteriousSmokeTileOn = true;
                 }
                 break;
             case LEFT:
-                entityLeftCol = (entityLeftWorldX - position.movementSpeed) / gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityBottomRow];
-                if (gamePanel.tileM.getTile()[tileNum1].collision || gamePanel.tileM.getTile()[tileNum2].collision) {
+                entityLeftCol = (entityLeftWorldX - position.movementSpeed)/ gamePanel.tileSize;
+                tileNum1 = gamePanel.tileM.mapTileNum[entityLeftCol][entityTopRow];
+                tileNum2 = gamePanel.tileM.mapTileNum[entityLeftCol][entityBottomRow];
+                if (gamePanel.tileM.tile[tileNum1].tileSteppable() == false || gamePanel.tileM.tile[tileNum2].tileSteppable() == false){
                     position.collisionOn = true;
                 }
-                if (gamePanel.tileM.getTile()[tileNum1].levelEnd || gamePanel.tileM.getTile()[tileNum2].levelEnd) {
+                if (gamePanel.tileM.tile[tileNum1].isLevelEnd() == true || gamePanel.tileM.tile[tileNum2].isLevelEnd() == true){
                     position.reachedEndOn = true;
+                }
+                if(gamePanel.tileM.tile[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.tile[tileNum2].isMysteriousSmokeTile()){
+                    position.mysteriousSmokeTileOn = true;
                 }
                 break;
             case RIGHT:
-                entityRightCol = (entityRightWorldX + position.movementSpeed) / gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityBottomRow];
-                if (gamePanel.tileM.getTile()[tileNum1].collision || gamePanel.tileM.getTile()[tileNum2].collision) {
+
+                entityRightCol = (entityRightWorldX + position.movementSpeed)/ gamePanel.tileSize;
+                tileNum1 = gamePanel.tileM.mapTileNum[entityRightCol][entityTopRow];
+                tileNum2 = gamePanel.tileM.mapTileNum[entityRightCol][entityBottomRow];
+                if (gamePanel.tileM.tile[tileNum1].tileSteppable() == false || gamePanel.tileM.tile[tileNum2].tileSteppable() == false){
                     position.collisionOn = true;
                 }
-                if (gamePanel.tileM.getTile()[tileNum1].levelEnd || gamePanel.tileM.getTile()[tileNum2].levelEnd) {
+                if (gamePanel.tileM.tile[tileNum1].isLevelEnd() == true || gamePanel.tileM.tile[tileNum2].isLevelEnd() == true){
+
                     position.reachedEndOn = true;
+                }
+                if(gamePanel.tileM.tile[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.tile[tileNum2].isMysteriousSmokeTile()){
+                    position.mysteriousSmokeTileOn = true;
                 }
                 break;
         }
@@ -183,23 +200,26 @@ public class CollisionChecker {
     }
 
     // Check if there is a collision between hero and enemy when hero is moved via vortex
-    public boolean isEnemyIntersecting() {
-        boolean intersect = false;
-        Enemy enemy = gamePanel.getEnemy();
-        Hero hero = gamePanel.getHero();
 
-        hero.solidArea.x = hero.getXPosition() + hero.solidArea.x;
-        hero.solidArea.y = hero.getYPosition() + hero.solidArea.y;
+    public boolean isEnemyIntersecting(Item item) {
+        Boolean intersect = false;
+
+        Enemy enemy = gamePanel.getEnemy();
+
+        item.solidArea.x = item.getXPosition() + item.solidArea.x;
+        item.solidArea.y = item.getYPosition() + item.solidArea.y;
 
         enemy.solidArea.x = enemy.getXPosition() + enemy.solidArea.x;
         enemy.solidArea.y = enemy.getYPosition() + enemy.solidArea.y;
 
-        if (hero.solidArea.intersects(enemy.solidArea)) {
+
+        if(item.solidArea.intersects(enemy.solidArea)) {
+
             intersect = true;
         }
 
-        hero.solidArea.x = hero.solidAreaDefaultX;
-        hero.solidArea.y = hero.solidAreaDefaultY;
+        item.solidArea.x = item.solidAreaDefaultX;
+        item.solidArea.y = item.solidAreaDefaultY;
 
         enemy.solidArea.x = enemy.solidAreaDefaultX;
         enemy.solidArea.y = enemy.solidAreaDefaultY;

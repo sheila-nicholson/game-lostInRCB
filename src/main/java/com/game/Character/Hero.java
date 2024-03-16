@@ -68,8 +68,25 @@ public class Hero extends Character implements Score{
         }
     }
 
-    public void update(){
+    public void draw(Graphics2D g2) {
 
+        BufferedImage image = null;
+        switch (currentDirection){
+            case LEFT:
+                image = leftImage;
+                break;
+            case RIGHT:
+                image = rightImage;
+                break;
+            default:
+                image = (lastDirection == Direction.LEFT)?leftImage:rightImage;
+                break;
+        }
+        g2.drawImage(image,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
+
+    }
+
+    public void update() throws IOException {
         if(keyHandler.getPressed(Direction.UP)){
 
             this.currentDirection = Direction.UP;
@@ -116,6 +133,7 @@ public class Hero extends Character implements Score{
         //check tile collision
         collisionOn = false;
         reachedEndOn = false;
+        mysteriousSmokeTileOn = false;
         //System.out.println(collisionOn);
         gamePanel.collisionChecker.checkTile(this);
         if (!collisionOn){
@@ -133,8 +151,14 @@ public class Hero extends Character implements Score{
 
             }
         }
-        if (reachedEndOn){
-            gamePanel.setVisible(false);
+
+        if (reachedEndOn == true){
+            //gamePanel.setVisible(false);
+            gamePanel.tileM.setSpriteChange(4,"dark_brown");
+        }
+        if(mysteriousSmokeTileOn == true){
+            gamePanel.tileM.setSpriteChange(5,"smoke");
+
         }
 
         //check enemy collision
@@ -156,10 +180,10 @@ public class Hero extends Character implements Score{
 
     public void pickUpItem(int itemIndex) {
 
-        currentTime = gamePanel.getTimeElapsed();
+        currentTime = gamePanel.getTimeElapsedSec();
         Item[] item = gamePanel.getItem();
-        if(itemIndex != 999) {
-            item[itemIndex].collisionAction(this);    // to be implemented
+        if(itemIndex != 999) { // if there is no hero-item collision index = 999
+            item[itemIndex].collisionAction(this);
             item[itemIndex] = null;
 
         }
@@ -187,15 +211,6 @@ public class Hero extends Character implements Score{
 
     public void addScore(int score){
         this.currentScore += score;
-    }
-
-    public void minusScore(int score){
-        if(!isInvincible){
-            this.currentScore -= score;
-            if(!this.checkScore()) {
-                alive = false;
-            }
-        }
     }
 
     public boolean getAlive(){return this.alive;}
