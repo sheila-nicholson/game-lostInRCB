@@ -16,20 +16,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GoodTile extends Tile {
-    private RewardItem tileItem;
-    private boolean tileSteppability;
 
-/*    GoodTile(RewardItem param_item, Image param_image, int param_X, int param_y){
-        this.tileItem = param_item;
-        setPosition(param_X,param_y);
-        setTileSprite(param_image);
-    }*/
-    GoodTile(){};
-    public RewardItem getTileItem(){
-        return this.tileItem;
-    }
+    GoodTile(boolean tileSteppability, boolean isLevelEndBool){
+        this.tileSteppability = tileSteppability;
+        this.isLevelEndBool = isLevelEndBool;
+    };
 
-    public boolean tileSteppable() {
-        return this.tileSteppability;
-    }
+
 }

@@ -47,20 +47,6 @@ public class Vortex extends PunishmentItem {
         return this.damagePoints; // unnecessary?
     }
 
-    public Position moveCharacter() {
-
-        /* if (difficulty == easy) {
-            Position cannot be ANYWHERE close to other punishments
-        } else if (difficulty = medium) {
-            Position cannot be SOMEWHAT close to other punishments
-        } else if (difficulty = hard) {
-            Position cannot be REALLY close to other punishments
-        }
-         */
-
-        return new Position();
-    }
-
     public void collisionAction(Hero hero) {
         hero.addScore(damagePoints);      // adds -5 to hero score
 
@@ -73,11 +59,16 @@ public class Vortex extends PunishmentItem {
             // range of columns: 0-27
             newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
             newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
+            Vortex checkPositionValid = new Vortex(gamePanel);
+            checkPositionValid.setPosition(newColPos, newRowPos);
+            //hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
 
-            if(gamePanel.tileM.mapTileNum[newColPos][newRowPos] == 3) {
-                validPosition = !(gamePanel.collisionChecker.isEnemyIntersecting()); // TODO: ensure enemy collision is not an issue
-            }
+            if(gamePanel.tileM.mapTileNum[newColPos][newRowPos] == 3)
+                validPosition = !(gamePanel.collisionChecker.isEnemyIntersecting(checkPositionValid)); // TODO: ensure enemy collision is not an issue
+
+            if(validPosition)
+                hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
+
         }
     }
 
