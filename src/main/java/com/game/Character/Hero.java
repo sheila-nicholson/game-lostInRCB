@@ -28,10 +28,6 @@ public class Hero extends Character implements Score{
     protected static Hero instance = null;
     protected boolean alive  = true;
     protected boolean isInvincible = false;
-    protected double invincibletime;
-    // invincibility not required since in phase 1 we discussed
-    // whenever the hero goes through the vortex there's a minimum distance
-    // they spawn away from any threats
     protected KeyHandler keyHandler;
     public int coffeeTimeEnd;
     public int currentTime;
@@ -57,9 +53,8 @@ public class Hero extends Character implements Score{
         this.solidArea = new Rectangle();
         this.solidArea.x = 0;
         this.solidArea.y = 0;
-        this.solidArea.width = this.solidAreaDefaultX-3;
-        this.solidArea.height = this.solidAreaDefaultY-3;
-
+        this.solidArea.width = this.solidAreaDefaultX-5; //change for testing Original : 3
+        this.solidArea.height = this.solidAreaDefaultY-5;
 
         getImage();
     }
@@ -74,10 +69,7 @@ public class Hero extends Character implements Score{
     }
 
     public void update(){
-        //not finished
-        //        if(isInvincible){
-        //
-        //        }
+
         if(keyHandler.getPressed(Direction.UP)){
 
             this.currentDirection = Direction.UP;
@@ -99,8 +91,10 @@ public class Hero extends Character implements Score{
         }
         //check tile collision
         collisionOn = false;
-        //System.out.println(collisionOn);
+
         gamePanel.collisionChecker.checkTile(this);
+        gamePanel.collisionChecker.checkPlayer(this);
+
         if (!collisionOn){
             if(keyHandler.getPressed(Direction.UP)){
                 this.moveUp(movementSpeed);
@@ -144,20 +138,21 @@ public class Hero extends Character implements Score{
         }
 
         //check enemy collision
-        gamePanel.collisionChecker.checkEnemy(this,gamePanel.getEnemy());
-//        interactEnemy(enemyIndex);
+        int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
+        interactEnemy(enemyIndex);
 
         // Check item collision:
         int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
         pickUpItem(itemIndex);
     }
 
-//    public void interactEnemy(int enemyIndex){
-//
-//        if(enemyIndex != 999) {
-//             System.out.println("collision"); //for testing
-//        }
-//    }
+    public void interactEnemy(int enemyIndex){
+
+        if(enemyIndex != 999) {
+             System.out.println("collision"); //for testing
+            System.exit(0);//test for terminating the game after collision between hero and enemy
+        }
+    }
 
     public void pickUpItem(int itemIndex) {
 

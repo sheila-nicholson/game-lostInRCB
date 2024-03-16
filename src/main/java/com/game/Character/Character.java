@@ -37,7 +37,7 @@ public abstract class Character extends Position {
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
-    public boolean onPath = false;
+    public boolean onPath = true; //temp for testing
 
 
     protected abstract void setDefaultPosition();
@@ -89,12 +89,43 @@ public abstract class Character extends Position {
         this.fallen = f;
     }
 
+    public void checkCollision() {
+        gamePanel.collisionChecker.checkTile(this);
+        gamePanel.collisionChecker.checkItem(this,false);
+        gamePanel.collisionChecker.checkPlayer(this);
+        gamePanel.collisionChecker.checkCharacter(this,gamePanel.getHero());
+        gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
+    }
+
+    public void tempOpt(){
+        int actionCounter = 0;
+
+        while(collisionOn){
+            Random random = new Random();
+            int i = random.nextInt(100) + 1;
+            if (actionCounter == 2) {//temp
+                if (i <= 25) {
+                    currentDirection = Direction.UP;
+                } else if (i <= 50) {
+                    currentDirection = Direction.DOWN;
+                } else if (i <= 75) {
+                    currentDirection = Direction.LEFT;
+                } else {
+                    currentDirection = Direction.RIGHT;
+                }
+                gamePanel.collisionChecker.checkTile(this);
+            }
+            actionCounter++;
+        }
+
+    }
+
     public void searchPath(int goalCol, int goalRow){
         int startCol = (getXPosition() + solidArea.x)/gamePanel.tileSize;
         int startRow = (getYPosition() + solidArea.y)/gamePanel.tileSize;
 
         gamePanel.pathFinder.setNode(startCol,startRow,goalCol,goalRow,this);
-        if(gamePanel.pathFinder.search() == true){
+        if(gamePanel.pathFinder.search()){
             //next worldX & worldY
             int nextX = gamePanel.pathFinder.pathList.get(0).col * gamePanel.tileSize;
             int nextY = gamePanel.pathFinder.pathList.get(0).row * gamePanel.tileSize;
@@ -117,37 +148,54 @@ public abstract class Character extends Position {
             }else if(enTopY > nextY && enLeftX > nextX){
                 //up or right
                 currentDirection = Direction.UP;
-                //checkCollison();
-                if(collisionOn)
+                checkCollision();
+                if(collisionOn){
                     currentDirection = Direction.LEFT;
+                }else{
+                    tempOpt();
+                }
 
             }else if(enTopY > nextY && enLeftX < nextX){
                 //up or right
                 currentDirection = Direction.UP;
-                //checkCollison();
-                if(collisionOn)
+                checkCollision();
+                if(collisionOn){
                     currentDirection = Direction.RIGHT;
+                }else{
+                    tempOpt();
+                }
 
             }else if(enTopY < nextY && enLeftX > nextX){
-                //up or right
+                //down and left
                 currentDirection = Direction.DOWN;
-                //checkCollison();
-                if(collisionOn)
+                checkCollision();
+                if(collisionOn){
                     currentDirection = Direction.LEFT;
+                }else{
+                    tempOpt();
+                }
 
             }else if(enTopY < nextY && enLeftX < nextX){
                 //up or right
                 currentDirection = Direction.DOWN;
-                //checkCollison();
-                if(collisionOn)
+                checkCollision();
+                if(collisionOn){
                     currentDirection = Direction.RIGHT;
+                }else{
+                    tempOpt();
+                }
 
             }
+
+//            int nextCol = gamePanel.pathFinder.pathList.get(0).col;
+//            int nextRow = gamePanel.pathFinder.pathList.get(0).row;
+//            if(nextCol == goalCol && nextRow == goalRow){
+//                onPath = false;
+//            }
 
 
         }
 
     }
-
 
 }

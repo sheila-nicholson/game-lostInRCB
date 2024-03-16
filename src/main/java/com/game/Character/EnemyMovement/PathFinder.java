@@ -105,7 +105,7 @@ public class PathFinder {
     }
 
     public boolean search() {
-        while (goalReached == false && step < 500) {
+        while (!goalReached && step < 2500) { ///temp original: 500
             int col = currentNode.col;
             int row = currentNode.row;
 
@@ -116,15 +116,15 @@ public class PathFinder {
                 openNode(node[col][row - 1]);
 
             }
-            if (row - 1 >= 0) {
+            if (col - 1 >= 0) {
                 openNode(node[col - 1][row]);
 
             }
-            if (row - 1 >= 0) {
+            if (row + 1 < gamePanel.maxScreeRow) {
                 openNode(node[col][row + 1]);
 
             }
-            if (row - 1 >= 0) {
+            if (col + 1 < gamePanel.maxScreenCol) {
                 openNode(node[col + 1][row]);
 
             }
@@ -146,7 +146,7 @@ public class PathFinder {
                     }
                 }
 
-                //if ther is no node in the openlist, end the loop
+                //if there is no node in the openlist, end the loop
                 if (openList.size() == 0) {
                     break;
                 }
