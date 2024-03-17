@@ -338,9 +338,6 @@ public class AssetSetter {
                     }
                 }
             }
-
         }
-
-
     }
 }
