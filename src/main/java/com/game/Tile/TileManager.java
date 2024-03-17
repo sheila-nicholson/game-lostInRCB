@@ -17,6 +17,8 @@ public class TileManager {
     boolean drawPath = true;
     private String mapDifficulty;
 
+    public String getMapDifficulty(){return mapDifficulty;}
+
     public int[][] getMapTileNum() {
         return mapTileNum;
     }

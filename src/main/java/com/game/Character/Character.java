@@ -117,7 +117,6 @@ public abstract class Character extends Position {
             }
             actionCounter++;
         }
-
     }
 
     public void searchPath(int goalCol, int goalRow){
@@ -149,41 +148,33 @@ public abstract class Character extends Position {
                 //up or right
                 currentDirection = Direction.UP;
                 checkCollision();
-                if(collisionOn){
+                if(collisionOn)
                     currentDirection = Direction.LEFT;
-                }else{
-                    tempOpt();
-                }
+
 
             }else if(enTopY > nextY && enLeftX < nextX){
                 //up or right
                 currentDirection = Direction.UP;
                 checkCollision();
-                if(collisionOn){
+                if(collisionOn)
                     currentDirection = Direction.RIGHT;
-                }else{
-                    tempOpt();
-                }
+
 
             }else if(enTopY < nextY && enLeftX > nextX){
                 //down and left
                 currentDirection = Direction.DOWN;
                 checkCollision();
-                if(collisionOn){
+                if(collisionOn)
                     currentDirection = Direction.LEFT;
-                }else{
-                    tempOpt();
-                }
+
 
             }else if(enTopY < nextY && enLeftX < nextX){
                 //up or right
                 currentDirection = Direction.DOWN;
                 checkCollision();
-                if(collisionOn){
+                if(collisionOn)
                     currentDirection = Direction.RIGHT;
-                }else{
-                    tempOpt();
-                }
+
 
             }
 

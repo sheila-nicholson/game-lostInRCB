@@ -13,10 +13,8 @@ package com.game.GamePanel;
 
 //import javax.awt.event.KeyEvent;
 import com.game.AssetSetter;
-import com.game.Character.Enemy;
+import com.game.Character.*;
 import com.game.Character.EnemyMovement.PathFinder;
-import com.game.Character.Hero;
-import com.game.Character.ZombieProfessor;
 
 import com.game.CollisionChecker;
 import com.game.Items.APlusPaper;
@@ -25,11 +23,11 @@ import com.game.Key.KeyHandler;
 import com.game.Tile.TileManager;
 import com.game.UI;
 
+import javax.print.DocFlavor;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -56,7 +54,6 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this);
 
     public TileManager tileM;
-    //public TileManager tileM = new TileManager(this);
     public PathFinder pathFinder = new PathFinder(this);
     private int timeElapsed;    // time elapsed since game started in seconds
 
@@ -86,11 +83,23 @@ public class GamePanel extends JPanel implements Runnable{
         thread.start();
     }
 
+    public void setEnemy(){
+        if(tileM.getMapDifficulty().equals("Easy")){
+            this.enemy = new ZombieProfessor(2,this); //temp speed for testing
+        }else if(tileM.getMapDifficulty().equals("Medium")){
+            this.enemy = new Bear(3,this); //temp speed for testing
+        }else if(tileM.getMapDifficulty().equals("Hard")){
+            this.enemy = new FailedExam(3,this); //temp speed for testing
+        }else if(tileM.getMapDifficulty().equals("Infinite")){
+            this.enemy = new ZombieProfessor(3,this); //temp speed for testing
+        }
+    }
+
     public void setupGame(String diff) {
         tileM = new TileManager(this,diff);
         assetSetter.setObject();
+        setEnemy();
     }
-
 
     public GamePanel(){ //not finished
 
@@ -105,8 +114,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void update() throws IOException {
         hero.update();
-//        enemy.update();
-        //System.out.println(enemy.update());
+        enemy.update();
+//        System.out.println(enemy.update());
     }
 
     public void paintComponent(Graphics g){

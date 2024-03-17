@@ -14,15 +14,13 @@ package com.game.Character;
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
 
-public class Bear extends Enemy {
-    protected Bear(int speed, GamePanel gamePanel){
-        super(speed,gamePanel);
-    }
+import java.security.PublicKey;
 
-    protected void setDefaultPosition(){
-        this.setPosition(0,70);
-        currentDirection = Direction.RIGHT;
-        lastDirection = Direction.RIGHT;
+public class Bear extends Enemy {
+
+    public Bear(int speed, GamePanel gamePanel){
+        super(speed,gamePanel);
+        this.setPosition(7*gamePanel.tileSize,6*gamePanel.tileSize);//temp
     }
 
     public void getImage() {//pic is temp

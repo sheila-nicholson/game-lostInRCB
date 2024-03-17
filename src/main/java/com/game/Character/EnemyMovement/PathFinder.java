@@ -105,7 +105,7 @@ public class PathFinder {
     }
 
     public boolean search() {
-        while (!goalReached && step < 2500) { ///temp original: 500
+        while (!goalReached && step < 4000) { ///temp original: 500
             int col = currentNode.col;
             int row = currentNode.row;
 

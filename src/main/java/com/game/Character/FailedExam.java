@@ -16,19 +16,14 @@ import com.game.Key.Direction;
 
 public class FailedExam extends Enemy {
 
-    protected FailedExam(int speed, GamePanel gamePanel){
+    public FailedExam(int speed, GamePanel gamePanel){
         super(speed,gamePanel);
-    }
-
-    protected void setDefaultPosition(){
-        this.setPosition(0,70);
-        currentDirection = Direction.RIGHT;
-        lastDirection = Direction.RIGHT;
+        this.setPosition(5*gamePanel.tileSize,4*gamePanel.tileSize);
     }
 
     public void getImage() {//pic is temp
-        rightImage = setImage("/Enemy/Zombie_right");
-        leftImage = setImage("/Enemy/Zombie_right");
+        rightImage = setImage("/Enemy/FailedExam");
+        leftImage = setImage("/Enemy/FailedExam");
     }
 
 }

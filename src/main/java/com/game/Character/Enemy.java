@@ -75,9 +75,7 @@ public class Enemy extends Character {
                 }
                 gamePanel.collisionChecker.checkTile(this);
             }
-
         }
-
     }
 
     public Direction update() {
