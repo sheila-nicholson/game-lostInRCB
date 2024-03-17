@@ -1,8 +1,8 @@
 /*
  * GamePanel.java
- * 
+ *
  * Class Description: Handles the UI interface
- * 
+ *
  *
  * Authors: [put your names here] + Jonas ???
  * Last modified on: March 6 1:00 AM
@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxScreeRow = 18;         // Changed according to UI mockup - range of rows: 0-17
     public final int screenWidth = tileSize * maxScreenCol;    // (48*28) = 1,344 pixels
     public final int screenHeight = tileSize * maxScreeRow ;   // (48*18) = 864 pixels
+    private int difficulty;
 
     private static int width;
     private static int height;
@@ -54,8 +55,8 @@ public class GamePanel extends JPanel implements Runnable{
     private int timeElapsedSec;    // time elapsed since game started in seconds
     public UI ui = new UI(this);
 
-
-    public TileManager tileM = new TileManager(this);
+    public TileManager tileM;
+    //public TileManager tileM = new TileManager(this);
     public PathFinder pathFinder = new PathFinder(this);
     private int timeElapsed;    // time elapsed since game started in seconds
 
@@ -86,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setupGame() {
+        tileM = new TileManager(this);
         assetSetter.setObject();
     }
 

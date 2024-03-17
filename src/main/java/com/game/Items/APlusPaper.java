@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 import com.game.Character.Hero;
-import com.game.GamePanel.GamePanel;
 
 
 public class APlusPaper extends RewardItem {
