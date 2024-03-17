@@ -26,8 +26,8 @@ public class Raccoon extends Enemy {
     }
 
     public void getImage() {//pic is temp
-        rightImage = setImage("/Enemy/Zombie_right");
-        leftImage = setImage("/Enemy/Zombie_right");
+        rightImage = setImage("/Enemy/Bear_right");
+        leftImage = setImage("/Enemy/Bear_right");
     }
 
 
