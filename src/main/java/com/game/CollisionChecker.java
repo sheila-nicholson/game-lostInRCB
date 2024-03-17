@@ -225,6 +225,22 @@ public class CollisionChecker {
         return intersect;
     }
 
+    public boolean isTileOccupied(Item[] item, Position newItem) {
+
+        Boolean tileOccupied = false;
+
+        for(int i = 0; i < item.length; i++) {
+            if(item[i] == null) continue;
+            if(item[i].getXPosition() == newItem.getXPosition()) {
+                if(item[i].getYPosition() == newItem.getYPosition()) {
+                    tileOccupied = true;
+                }
+            }
+        }
+        return tileOccupied;
+
+    }
+
 
     //check hero and enemy collision
     public int checkCharacter(Character hero, Character enemy) { ///NEED TO CHANGE THE VARIABLE NAME LATER
