@@ -26,6 +26,7 @@ public class APlusPaper extends RewardItem {
      * Constructor
      */
     public APlusPaper(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
         this.rewardType = RewardType.APLUSPAPAER;
         name = "APlusPaper";
 
@@ -43,7 +44,7 @@ public class APlusPaper extends RewardItem {
         hero.addScore(scoreBonus);      // adds 10 to hero score
     }
 
-    public void updateItemState(GamePanel gp) {
+    public void updateItemState() {
 
         boolean validPosition = false;
         int newRowPos;
@@ -61,11 +62,11 @@ public class APlusPaper extends RewardItem {
 
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
-            if (gp.tileM.getTile()[tileNum].getTileType() == "floor")
-                validPosition = !(gp.collisionChecker.isHeroIntersecting(this));
+            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor")
+                validPosition = !(gamePanel.collisionChecker.isHeroIntersecting(this));
 
             if(validPosition)
-                this.setPosition(newColPos * gp.tileSize, newRowPos * gp.tileSize);
+                this.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
 
         }
     }
