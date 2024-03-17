@@ -69,7 +69,6 @@ public class GamePanel extends JPanel implements Runnable{
         return this.enemy;
     }
     public Item[] getItem() {
-//        item = new Item[25];    // item slots - dictates how many items can be displayed at one time
         return this.item;
     }
 

@@ -183,6 +183,8 @@ public class Hero extends Character implements Score{
         if (reachedEndOn){
             if (this.infinite){
                 setDefaultPosition();
+                gamePanel.assetSetter.setObject("Infinite");
+
             }
             else{
                 System.exit(0);//test for terminating the game after collision between hero and enemy
