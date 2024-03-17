@@ -34,8 +34,6 @@ public class AssetSetter {
 
 
     // Setting original position of objects on the map
-    public void setObject(String mapDifficulty) {
-
     /**
      * Initializes and positions game items on the map.
      * <p>
@@ -43,14 +41,9 @@ public class AssetSetter {
      * the game world. This method is called to populate the game environment with
      * interactive or collectible items, enhancing the gameplay experience.
      */
-    public void setObject() {
-        Item[] item = gamePanel.getItem();
-
-
+    public void setObject(String mapDifficulty) {
 
         this.mapDifficulty = mapDifficulty;
-        System.out.println("map difficulty = " + mapDifficulty);
-
 
         if (mapDifficulty == "Easy") {          // Easy map difficulty has 3 of all types of items - total = 15
 
