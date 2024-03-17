@@ -32,19 +32,11 @@ public class Enemy extends Character {
     public Enemy(int speed, GamePanel gamePanel) {
         super(speed, gamePanel);
         this.movementSpeed = speed;
-        this.solidArea = new Rectangle(0, 0, 1, 1);
-
-
         this.solidAreaDefaultX = gamePanel.tileSize;
         this.solidAreaDefaultY = gamePanel.tileSize;
-        this.solidArea = new Rectangle();
-        this.solidArea.x = 0;
-        this.solidArea.y = 0;
-        this.solidArea.width = this.solidAreaDefaultX - 3; //temp
-        this.solidArea.height = this.solidAreaDefaultY - 3;
+        this.solidArea = new Rectangle(0, 0, this.solidAreaDefaultX-3, this.solidAreaDefaultY-3);
         setDefaultPosition();
         this.setPosition(2 * gamePanel.tileSize, 14* gamePanel.tileSize);
-
     }
 
     @Override
@@ -55,7 +47,6 @@ public class Enemy extends Character {
         if(index != 999){
             System.exit(0);//test for terminating the game after collision between enemy and hero
         }
-
     }
 
     public void setAction() {
