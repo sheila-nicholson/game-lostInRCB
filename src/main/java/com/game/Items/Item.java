@@ -36,7 +36,7 @@ public abstract class Item extends Position {
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 
-    public void updateItemState(GamePanel gp) {
+    public void updateItemState() {
 
     }
 

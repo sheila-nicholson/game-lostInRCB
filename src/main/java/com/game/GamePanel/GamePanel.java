@@ -144,7 +144,7 @@ public class GamePanel extends JPanel implements Runnable{
         for(int i = 0; i < item.length; i++) {
 
             if(item[i] instanceof APlusPaper)
-                item[i].updateItemState(this);
+                item[i].updateItemState();
         }
     }
 
