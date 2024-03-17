@@ -32,6 +32,7 @@ public class Hero extends Character implements Score{
     protected KeyHandler keyHandler;
     public int coffeeTimeEnd;
     public int currentTime;
+    public boolean infinite;
 
 
 
@@ -155,8 +156,12 @@ public class Hero extends Character implements Score{
         }
 
         if (reachedEndOn == true){
-            //gamePanel.setVisible(false);
-            System.exit(0);//test for terminating the game after collision between hero and enemy
+            if (this.infinite == true){
+                setDefaultPosition();
+            }
+            else{
+                System.exit(0);//test for terminating the game after collision between hero and enemy
+            }
 
         }
         if(mysteriousSmokeTileOn == true){

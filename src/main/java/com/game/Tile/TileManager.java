@@ -116,6 +116,23 @@ public class TileManager {
             }
             br.close();
 
+            Random rand = new Random();
+            int floorTileToBeSmoke = rand.nextInt(numFloorTiles - 5 + 1) + 5;
+            numFloorTiles = 0;
+            for (int i = 0; i < mapTileNum.length; i++) {
+                for (int j = 0; j < mapTileNum[i].length ; j++) {
+                    if (mapTileNum[i][j] == 0){
+                        if (numFloorTiles == floorTileToBeSmoke){
+                            mapTileNum[i][j] = 5;
+                            System.out.println(i);
+                            System.out.println(j);
+                            return;
+                        }
+                        numFloorTiles++;
+                    }
+                }
+            }
+
         }catch(Exception e){
         }
     }

@@ -87,6 +87,12 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setupGame(String diff) {
+        if (diff == "Infinite"){
+            hero.infinite = true;
+        }
+        else{
+            hero.infinite = false;
+        }
         tileM = new TileManager(this,diff);
         assetSetter.setObject();
     }
