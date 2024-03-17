@@ -1,13 +1,3 @@
-/*
- * PileOfBooks.java
- * 
- * Class Description: Primary punishment which incurs a 5 point penalty should the player come in contact.
- *
- * Authors: [put your names here] + Sheila ???
- * Last modified on: March 6, 2024 1:13 AM
- */
-
-
 package com.game.Items;
 
 import javax.imageio.ImageIO;
@@ -16,12 +6,25 @@ import java.util.Objects;
 import com.game.Character.Hero;
 import com.game.GamePanel.GamePanel;
 
+/**
+ * Represents a pile of books item that, when collected, reduces the player's score.
+ * <p>
+ * This class extends {@link PunishmentItem} to implement the behavior and effects of
+ * the pile of books item, specifically reducing the player's score upon collection.
+ * It includes methods to handle the collision action with the Hero character.
+ */
 public class PileOfBooks extends PunishmentItem {
 
     private int damagePoints = -5;
 
     /**
-     * Constructor
+     * Constructs a PileOfBooks item associated with a specific game panel.
+     * <p>
+     * Initializes the item with its image and sets the amount of score reduction.
+     * The item's image is loaded from resources, and it is marked with the "PileOfBooks"
+     * punishment type.
+     *
+     * @param gamePanel The game panel to which this item belongs.
      */
     public PileOfBooks(GamePanel gamePanel) {
         this.punishmentType = PunishmentType.BOOKS;
@@ -40,6 +43,12 @@ public class PileOfBooks extends PunishmentItem {
 
     // play animation? play sound?
 
+    /**
+     * Applies the punishment effect to the Hero character upon collision.
+     *
+     * @param hero The Hero character with which the item has collided.
+     */
+    @Override
     public void collisionAction(Hero hero) {
 
         hero.addScore(damagePoints);      // adds -5 to hero score

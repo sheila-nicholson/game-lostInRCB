@@ -1,18 +1,15 @@
-/*
- * MysteriousSmokeTile.java
- * 
- * Class Description: Secondary punishment which remains invisible throughout gametime but reveals itself briefly when player steps on it.
- *                    Causes significant slowness for 5 seconds.
- *
- * Authors: [put your names here] + Brendan
- * Last modified on: March 6, 2024 1:44 AM
- */
-
-
 package com.game.Tile;
 
 import java.awt.*;
 
+/**
+ * Represents a tile that can affect the player's speed and has visibility toggles.
+ * <p>
+ * Extends the {@link Tile} class to introduce a mysterious smoke tile that, when activated or stepped on,
+ * can slow down the player for a certain period. The visibility of the tile can also be toggled to add
+ * an element of surprise and strategy. This tile enhances gameplay by introducing environmental hazards
+ * and challenges.
+ */
 public class MysteriousSmokeTile extends Tile {
     private int slowSpeed;
     private int handicapTime;
@@ -28,19 +25,49 @@ public class MysteriousSmokeTile extends Tile {
         setPosition(param_X,param_y);
     }*/
 
+    /**
+     * Constructs a MysteriousSmokeTile with default properties.
+     * <p>
+     * Initializes the tile to be steppable, not an end-level tile, and marks it as a
+     * mysterious smoke tile. Default properties can be modified as needed for specific
+     * gameplay scenarios.
+     */
     public MysteriousSmokeTile(){
         this.tileSteppability = true;
         this.isLevelEndBool = false;
         this.isMysteriousSmokeTileBool = true;
     }
 
+    /**
+     * Retrieves the speed modifier associated with stepping on this tile.
+     * <p>
+     * This method allows access to the amount by which the player's speed will be reduced
+     * upon interacting with the mysterious smoke, affecting their ability to navigate the game.
+     *
+     * @return The amount of speed reduction.
+     */
     public int getSpeedModifier(){
         return slowSpeed;
     }
+
+    /**
+     * Engages the smoke effect, making the tile visible.
+     * <p>
+     * This method is intended to toggle the visibility of the mysterious smoke effect on,
+     * revealing the tile to the player. It can be called based on specific game events or
+     * conditions.
+     */
     public void engageSmoke(){ 
         this.isVisible = true; // add a timer in main call to cycle between engage and hide
     }
 
+    /**
+     * Hides the smoke effect, making the tile invisible.
+     * <p>
+     * This method toggles the visibility of the mysterious smoke effect off, hiding the tile
+     * from the player. The tile can remain hidden until triggered by player interaction or
+     * another game event.
+     */
     public void hideSmoke(){
         this.isVisible = false; // remains hidden until player steps on it, reveals itself momentarily, then goes back invisible
     }

@@ -1,14 +1,3 @@
-/*
- * Character.java
- * 
- * Class Description: Main attributes of all characters in the game.
- *                    Will be present through all iterations of the game in the
- *                    map (not the main menu).
- *
- * Authors: [put your names here]
- * Last modified on: March 5 10:47 AM
- */
-
 package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
@@ -25,6 +14,16 @@ import java.io.IOException;
 import java.security.DigestException;
 import java.util.Random;
 
+/**
+ * Abstract base class for all game characters, providing common attributes and functionality.
+ * <p>
+ * This class encapsulates the main attributes shared by all characters present in the game world,
+ * excluding the main menu. It includes movement mechanics, animation handling, and collision detection,
+ * among others. Characters derived from this class can be either player-controlled or AI-driven entities
+ * within the game environment.
+ *
+ * @author Yanjun Qian
+ */
 public abstract class Character extends Position {
 
     protected boolean up, down, left, right, fallen;
@@ -39,11 +38,30 @@ public abstract class Character extends Position {
 
     public boolean onPath = true; //temp for testing
 
-
+    /**
+     * Sets the default position of the character within the game world.
+     * Must be implemented by subclasses to define initial character placement.
+     */
     protected abstract void setDefaultPosition();
+
+    /**
+     * Loads the character's image resources.
+     * Must be implemented by subclasses to specify character appearance.
+     */
     public abstract void getImage();
+
+    /**
+     * Performs the character's current action, which may include movement or other behaviors.
+     * Can be overridden by subclasses to define specific character actions.
+     */
     public void setAction(){};
 
+    /**
+     * Constructs a Character with specified movement speed and associates it with a game panel.
+     *
+     * @param speed the movement speed of the character
+     * @param gamePanel the game panel the character belongs to
+     */
     protected Character(int speed, GamePanel gamePanel){
             this.setDefaultPosition();
             this.movementSpeed = speed;
@@ -51,6 +69,11 @@ public abstract class Character extends Position {
             this.getImage();
     }
 
+    /**
+     * Draws the character on the game panel.
+     *
+     * @param g2 the Graphics2D object used for drawing
+     */
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
@@ -69,6 +92,12 @@ public abstract class Character extends Position {
 
     }
 
+    /**
+     * Sets the image for the character based on the provided name.
+     *
+     * @param name the name of the image resource
+     * @return the scaled BufferedImage of the character
+     */
     public BufferedImage setImage(String name){
         BufferedImage image = null;
         UtilityTool uTool = new UtilityTool();
@@ -82,13 +111,27 @@ public abstract class Character extends Position {
         return image;
     }
 
+    /**
+     * Updates the character's movement speed.
+     *
+     * @param speed the new movement speed of the character
+     */
     public void setMovementSpeed(int speed){
         this.movementSpeed = speed;
     }
+
+    /**
+     * Sets the character's fallen state, affecting its interaction with vortex effects.
+     *
+     * @param f the new fallen state
+     */
     public void setFallen(boolean f){
         this.fallen = f;
     }
 
+    /**
+     * Checks for and handles collisions with various game elements.
+     */
     public void checkCollision() {
         gamePanel.collisionChecker.checkTile(this);
         gamePanel.collisionChecker.checkItem(this,false);
@@ -97,29 +140,12 @@ public abstract class Character extends Position {
         gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
     }
 
-    public void tempOpt(){
-        int actionCounter = 0;
-
-        while(collisionOn){
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;
-            if (actionCounter == 2) {//temp
-                if (i <= 25) {
-                    currentDirection = Direction.UP;
-                } else if (i <= 50) {
-                    currentDirection = Direction.DOWN;
-                } else if (i <= 75) {
-                    currentDirection = Direction.LEFT;
-                } else {
-                    currentDirection = Direction.RIGHT;
-                }
-                gamePanel.collisionChecker.checkTile(this);
-            }
-            actionCounter++;
-        }
-
-    }
-
+    /**
+     * Initiates pathfinding from the character's current position to a specified goal.
+     *
+     * @param goalCol the column index of the goal position
+     * @param goalRow the row index of the goal position
+     */
     public void searchPath(int goalCol, int goalRow){
         int startCol = (getXPosition() + solidArea.x)/gamePanel.tileSize;
         int startRow = (getYPosition() + solidArea.y)/gamePanel.tileSize;
@@ -149,51 +175,35 @@ public abstract class Character extends Position {
                 //up or right
                 currentDirection = Direction.UP;
                 checkCollision();
-                if(collisionOn){
+                if(collisionOn)
                     currentDirection = Direction.LEFT;
-                }else{
-                    tempOpt();
-                }
+
 
             }else if(enTopY > nextY && enLeftX < nextX){
                 //up or right
                 currentDirection = Direction.UP;
                 checkCollision();
-                if(collisionOn){
+                if(collisionOn)
                     currentDirection = Direction.RIGHT;
-                }else{
-                    tempOpt();
-                }
+
 
             }else if(enTopY < nextY && enLeftX > nextX){
                 //down and left
                 currentDirection = Direction.DOWN;
                 checkCollision();
-                if(collisionOn){
+                if(collisionOn)
                     currentDirection = Direction.LEFT;
-                }else{
-                    tempOpt();
-                }
+
 
             }else if(enTopY < nextY && enLeftX < nextX){
                 //up or right
                 currentDirection = Direction.DOWN;
                 checkCollision();
-                if(collisionOn){
+                if(collisionOn)
                     currentDirection = Direction.RIGHT;
-                }else{
-                    tempOpt();
-                }
+
 
             }
-
-//            int nextCol = gamePanel.pathFinder.pathList.get(0).col;
-//            int nextRow = gamePanel.pathFinder.pathList.get(0).row;
-//            if(nextCol == goalCol && nextRow == goalRow){
-//                onPath = false;
-//            }
-
-
         }
 
     }
