@@ -1,14 +1,3 @@
-/*
- * Item.java
- * 
- * Class Description: Main attributes of all positive (reward) and negative (punishment) items in the game.
- *                    Only present during game runtime throughout a level.
- *
- * Authors: [put your names here] + Sheila ???
- * Last modified on: March 6, 2024 1:11 AM
- */
-
-
 package com.game.Items;
 
 import com.game.GamePanel.GamePanel;
@@ -18,6 +7,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import com.game.Character.Hero;
 
+/**
+ * Serves as the base class for all items in the game, defining common properties and methods.
+ * <p>
+ * This abstract class extends {@link Position} to include positional data and implements common
+ * item behaviors such as drawing the item on the screen, handling item state updates, and defining
+ * collision actions. Specific item classes extend this base class to implement item-specific
+ * behaviors and effects.
+ */
 public abstract class Item extends Position {
 
     public BufferedImage image;
@@ -28,6 +25,12 @@ public abstract class Item extends Position {
     public boolean collision = true;
     protected GamePanel gamePanel;
 
+    /**
+     * Draws the item on the game panel.
+     *
+     * @param g2 The Graphics2D object used for drawing.
+     * @param gp The game panel where the item is to be drawn.
+     */
     public void draw(Graphics2D g2, GamePanel gp) {
 
         int screenX = getXPosition();
@@ -36,10 +39,18 @@ public abstract class Item extends Position {
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 
+    /**
+     * Updates the state of the item. Override in subclasses to implement state logic.
+     */
     public void updateItemState() {
 
     }
 
+    /**
+     * Defines the action to take when the item collides with the Hero. Override in subclasses.
+     *
+     * @param hero The Hero character with which the item has collided.
+     */
     public void collisionAction(Hero hero) {
 
     }
@@ -57,6 +68,7 @@ public abstract class Item extends Position {
 //    public int getScoreModifer() {
 //        return 0;
 //    }
+
     public int getModifierSeconds() { // addition -> necessary?
         return this.modifierSeconds;
     }
