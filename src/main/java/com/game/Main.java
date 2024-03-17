@@ -128,7 +128,7 @@ public class Main {
         System.out.println("Starting game with difficulty: " + difficulty);
         JFrame gameWindow = new JFrame();
         GamePanel gamePanel = new GamePanel();
-        gamePanel.setupGame();
+        gamePanel.setupGame(difficulty);
         gamePanel.startGame();
 
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -8,12 +8,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 public class TileManager {
     private GamePanel gp;
     private Tile[] tile;
     private int mapTileNum[][];
     boolean drawPath = true;
+    private String mapDifficulty;
 
     public int[][] getMapTileNum() {
         return mapTileNum;
@@ -23,7 +25,8 @@ public class TileManager {
         return tile;
     }
 
-    public TileManager(GamePanel gp){
+    public TileManager(GamePanel gp, String diff){
+        this.mapDifficulty = diff;
         this.gp = gp;
         tile = new Tile[10];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreeRow];
@@ -32,10 +35,9 @@ public class TileManager {
     }
     public void getTileImage(){
         try{
-            tile[0] = new GoodTile(false, false);
-            tile[0].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/orange_grad.png")));
-            tile[0].setTileType("outer wall");
-            //tile[0].collision = true;
+            tile[0] = new GoodTile(true, false);
+            tile[0].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/light_orange.png")));
+            tile[0].setTileType("floor");
 
             tile[1] = new GoodTile(true, false);
             tile[1].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/green.png")));
@@ -46,9 +48,10 @@ public class TileManager {
             tile[2].setTileType("inner wall");
             //tile[2].collision = true;
 
-            tile[3] = new GoodTile(true, false);
-            tile[3].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/light_orange.png")));
-            tile[3].setTileType("floor");
+            tile[3] = new GoodTile(false, false);
+            tile[3].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/orange_grad.png")));
+            tile[3].setTileType("outer wall");
+            //tile[0].collision = true;
 
             tile[4] = new GoodTile(false, true);
             tile[4].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/red_end.png")));
@@ -72,19 +75,37 @@ public class TileManager {
     }
     public void loadMap(){
         try{
-            InputStream is = getClass().getResourceAsStream("/Maps/map01.txt");
+            InputStream is;
+            if (this.mapDifficulty == "Easy"){
+                is = getClass().getResourceAsStream("/Maps/map01.txt");
+            }
+            else if (this.mapDifficulty == "Medium") {
+                is = getClass().getResourceAsStream("/Maps/map02.txt");
+            }
+            else if (this.mapDifficulty == "Hard"){
+                is = getClass().getResourceAsStream("/Maps/map03.txt");
+            }
+            else if (this.mapDifficulty == "Infinite"){
+                is = getClass().getResourceAsStream("/Maps/map03.txt");
+            }
+            else{
+                is = getClass().getResourceAsStream("/Maps/map01.txt");
+            }
+
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
             int row = 0;
-
+            int numFloorTiles = 0;
             while(col < gp.maxScreenCol && row < gp.maxScreeRow){
                 String line = br.readLine();
                 while(col < gp.maxScreenCol){
                     String numbers[] = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
-
+                    if (num == 0){
+                        numFloorTiles++;
+                    }
                     mapTileNum[col][row] = num;
                     col++;
                 }
@@ -94,6 +115,7 @@ public class TileManager {
                 }
             }
             br.close();
+
         }catch(Exception e){
         }
     }

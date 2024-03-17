@@ -86,8 +86,8 @@ public class GamePanel extends JPanel implements Runnable{
         thread.start();
     }
 
-    public void setupGame() {
-        tileM = new TileManager(this);
+    public void setupGame(String diff) {
+        tileM = new TileManager(this,diff);
         assetSetter.setObject();
     }
 
@@ -106,7 +106,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void update() throws IOException {
         hero.update();
 //        enemy.update();
-        System.out.println(enemy.update());
+        //System.out.println(enemy.update());
     }
 
     public void paintComponent(Graphics g){
