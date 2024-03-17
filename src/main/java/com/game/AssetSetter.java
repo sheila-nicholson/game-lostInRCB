@@ -2,16 +2,39 @@ package com.game;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Items.*;
+
+/**
+ * Responsible for setting and positioning items in the game world.
+ * <p>
+ * This class initializes game items, such as beds, papers, coffee, books, and vortexes,
+ * and assigns them to specific positions within the game environment. It is used to
+ * populate the game world with interactive and collectible items that the player can
+ * interact with or collect during gameplay.
+ */
 public class AssetSetter {
 
     GamePanel gamePanel;
 
+    /**
+     * Constructs an AssetSetter associated with a specific game panel.
+     * <p>
+     * Initializes the AssetSetter with a reference to the {@link GamePanel}, allowing
+     * it to place items within the context of the current game environment.
+     *
+     * @param gamepanel The game panel to which the items will be added.
+     */
     public AssetSetter(GamePanel gamepanel) {
         this.gamePanel = gamepanel;
 
     }
 
-    // Setting original position of objects on the map
+    /**
+     * Initializes and positions game items on the map.
+     * <p>
+     * Creates instances of various item types and sets their initial positions within
+     * the game world. This method is called to populate the game environment with
+     * interactive or collectible items, enhancing the gameplay experience.
+     */
     public void setObject() {
         Item[] item = gamePanel.getItem();
 

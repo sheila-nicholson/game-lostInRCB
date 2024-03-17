@@ -1,17 +1,5 @@
-/*
- * GamePanel.java
- *
- * Class Description: Handles the UI interface
- *
- *
- * Authors: [put your names here] + Jonas ???
- * Last modified on: March 6 1:00 AM
- */
-
 package com.game.GamePanel;
 
-
-//import javax.awt.event.KeyEvent;
 import com.game.AssetSetter;
 import com.game.Character.*;
 import com.game.Character.EnemyMovement.PathFinder;
@@ -23,12 +11,20 @@ import com.game.Key.KeyHandler;
 import com.game.Tile.TileManager;
 import com.game.UI;
 
-import javax.print.DocFlavor;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * Manages the main game panel, rendering, and game loop.
+ * <p>
+ * This class extends {@link JPanel} and implements {@link Runnable} to manage the game's main loop,
+ * rendering, and interactions. It initializes and updates game components, processes user input,
+ * and handles rendering of the game world and UI elements.
+ *
+ * @author: [put your names here]
+ */
 public class GamePanel extends JPanel implements Runnable{
 
     //still need to update the object and methods related to tail
@@ -76,6 +72,31 @@ public class GamePanel extends JPanel implements Runnable{
         return this.item;
     }
 
+    /**
+     * Initializes the game panel with default settings.
+     * <p>
+     * Sets up the game panel size, background color, double buffering, and input handling. It initializes
+     * the hero and the enemy characters with default parameters.
+     */
+    public GamePanel(){ //not finished
+
+        this.setPreferredSize(new Dimension(screenWidth,screenHeight));
+        this.setBackground(Color.black);
+        this.setDoubleBuffered(true);
+        this.setFocusable(true);
+        this.addKeyListener(keyHandler);
+        this.hero = Hero.getInstance(4,this.keyHandler,this);
+        this.enemy = new ZombieProfessor(3,this); //temp speed for testing
+
+    }
+
+
+    /**
+     * Starts the game loop in a new thread.
+     * <p>
+     * This method checks if the game is already running to prevent multiple instances of the game loop.
+     * It then starts a new thread that controls the game loop, updating and rendering the game state.
+     */
     public synchronized void startGame(){
         if(running) return;
         running = true;
@@ -83,6 +104,13 @@ public class GamePanel extends JPanel implements Runnable{
         thread.start();
     }
 
+    /**
+     * Sets the enemy based on the current game difficulty level.
+     * <p>
+     * Depending on the difficulty level determined by the {@link TileManager}, this method
+     * initializes the {@code enemy} field with a specific type of enemy. Different enemies
+     * are assigned for different difficulty levels, each with its own speed setting.
+     */
     public void setEnemy(){
         if(tileM.getMapDifficulty().equals("Easy")){
             this.enemy = new ZombieProfessor(2,this); //temp speed for testing
@@ -95,6 +123,15 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
+    /**
+     * Sets the game's difficulty level and initializes game components accordingly.
+     * <p>
+     * Depending on the difficulty level, different enemies are spawned, and other game parameters
+     * are adjusted. This method also initializes the {@link TileManager}, {@link AssetSetter}, and
+     * sets the initial enemy for the game based on the difficulty.
+     *
+     * @param diff A {@link String} representing the game's difficulty level.
+     */
     public void setupGame(String diff) {
         if (diff == "Infinite"){
             hero.infinite = true;
@@ -107,23 +144,29 @@ public class GamePanel extends JPanel implements Runnable{
         setEnemy();
     }
 
-    public GamePanel(){ //not finished
-
-        this.setPreferredSize(new Dimension(screenWidth,screenHeight));
-        this.setBackground(Color.black);
-        this.setDoubleBuffered(true);
-        this.setFocusable(true);
-        this.addKeyListener(keyHandler);
-        this.hero = Hero.getInstance(4,this.keyHandler,this);
-        this.enemy = new ZombieProfessor(3,this); //temp speed for testing
-
-    }
+    /**
+     * Updates the game state, including player, enemy movements, and interactions.
+     * <p>
+     * This method is called within the game loop to handle game logic updates, such as character
+     * movements, collision detection, and interactions between game objects.
+     *
+     * @throws IOException if there is an error loading resources.
+     */
     public void update() throws IOException {
         hero.update();
         enemy.update();
 //        System.out.println(enemy.update());
     }
 
+    /**
+     * Renders the game world and UI components to the screen.
+     * <p>
+     * This method overrides {@link JPanel#paintComponent(Graphics)} to custom draw the game's world and
+     * UI elements. It is called as part of the swing repaint mechanism.
+     *
+     * @param g The {@link Graphics} context used for drawing.
+     */
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
@@ -157,6 +200,14 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
+    /**
+     * The main game loop that controls game updates and rendering.
+     * <p>
+     * This method runs in a separate thread and is responsible for the game's timing mechanism,
+     * ensuring that updates and rendering occur at a consistent rate. It calculates the delta
+     * time between frames to update game states and re-renders the game at a fixed rate. Additionally,
+     * it handles periodic tasks such as updating item states and managing power-up effects' durations.
+     */
     @Override
     public void run() {
 

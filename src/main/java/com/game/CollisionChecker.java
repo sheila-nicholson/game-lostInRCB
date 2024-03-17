@@ -7,15 +7,36 @@ import com.game.Items.Item;
 import com.game.Character.Hero;
 import com.game.Tile.MysteriousSmokeTile;
 
-
+/**
+ * Handles collision detection for various game elements.
+ * <p>
+ * This class is responsible for determining collisions between the player character, enemies, items,
+ * and environmental obstacles within the game. It checks for interactions that can affect movement,
+ * trigger item pickups, initiate combat, or any other game mechanics related to physical interactions
+ * in the game world.
+ */
 public class CollisionChecker {
 
     GamePanel gamePanel;
 
+    /**
+     * Constructs a CollisionChecker associated with a specific game panel.
+     *
+     * @param gamepanel The game panel where the game elements are rendered and interacted with.
+     */
     public CollisionChecker(GamePanel gamepanel) {
         this.gamePanel = gamepanel;
     }
 
+    /**
+     * Checks for collisions with tiles based on the current position and movement direction.
+     * <p>
+     * This method determines if moving in the current direction will result in a collision
+     * with a non-steppable tile or trigger a special tile effect like ending the level or
+     * activating a mysterious smoke tile.
+     *
+     * @param position The current position and solid area of the entity being checked.
+     */
     public void checkTile(Position position){
         int entityLeftWorldX = position.getXPosition() + position.solidArea.x - 37;
         int entityRightWorldX = position.getXPosition() + position.solidArea.x + position.solidArea.width - 57;
@@ -92,6 +113,16 @@ public class CollisionChecker {
         }
     }
 
+    /**
+     * Checks for interactions with items in the game world.
+     * <p>
+     * Determines if the player or an enemy is colliding with any item on the map, potentially
+     * picking it up or triggering its effect depending on the game logic.
+     *
+     * @param position The position of the entity checking for item interaction.
+     * @param hero A boolean indicating if the entity is the hero (true) or not (false).
+     * @return The index of the item interacted with, or 999 if no interaction occurred.
+     */
     public int checkItem(Position position, boolean hero) {
         int index = 999;
         Item[] item = gamePanel.getItem();
@@ -172,7 +203,12 @@ public class CollisionChecker {
         return index;
     }
 
-    // Check if there is a collision between hero and item
+    /**
+     * Checks if the hero intersects with any item.
+     *
+     * @param position The item to check for intersection.
+     * @return {@code true} if there is an intersection, {@code false} otherwise.
+     */
     public boolean isHeroIntersecting(Item position) {
         boolean intersect = false;
         Hero hero = gamePanel.getHero();
@@ -197,8 +233,17 @@ public class CollisionChecker {
         return intersect;
     }
 
-    // Check if there is a collision between hero and enemy when hero is moved via vortex
-
+    /**
+     * Checks for a collision between an enemy and an item, such as a vortex.
+     * <p>
+     * This method is used to determine if an enemy intersects with a specific item on the map,
+     * potentially triggering effects or interactions specific to the item. It's particularly
+     * useful in scenarios where items like vortexes can move the hero or enemies across the map,
+     * requiring collision checks between enemies and such items.
+     *
+     * @param item The item with which the enemy's collision is being checked.
+     * @return {@code true} if the enemy intersects with the item, {@code false} otherwise.
+     */
     public boolean isEnemyIntersecting(Item item) {
         Boolean intersect = false;
 
@@ -226,7 +271,16 @@ public class CollisionChecker {
     }
 
 
-    //check hero and enemy collision
+    /**
+     * Checks for collisions between the hero and enemies.
+     * <p>
+     * This method is used to detect when the hero comes into contact with an enemy, potentially
+     * initiating combat or other interactions.
+     *
+     * @param hero The hero character to check for collisions.
+     * @param enemy The enemy character to check for collisions.
+     * @return An index value representing the collision status or identification.
+     */
     public int checkCharacter(Character hero, Character enemy) { ///NEED TO CHANGE THE VARIABLE NAME LATER
 
         int index = 999;
@@ -278,6 +332,15 @@ public class CollisionChecker {
     return index;
 }
 
+    /**
+     * Checks for collision between a character and the player character.
+     * <p>
+     * This method is specifically used to detect collisions between any character and the player,
+     * which could trigger game events such as combat, dialogue, or other interactions.
+     *
+     * @param character The character to check for collision with the player.
+     * @return {@code true} if there is a collision, {@code false} otherwise.
+     */
      public boolean checkPlayer(Character character){
             boolean check = false;
             if(character != null) {

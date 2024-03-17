@@ -23,7 +23,6 @@ import java.util.Random;
  * within the game environment.
  *
  * @author Yanjun Qian
- * @version 1.0, March 5
  */
 public abstract class Character extends Position {
 
