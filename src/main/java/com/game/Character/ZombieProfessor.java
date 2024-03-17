@@ -22,6 +22,6 @@ public class ZombieProfessor extends Enemy {
 
     public void getImage() {
         rightImage = setImage("/Enemy/Zombie_right");
-        leftImage = setImage("/Enemy/Zombie_right");
+        leftImage = setImage("/Enemy/Zombie_left");
     }
 }
