@@ -40,7 +40,7 @@ public class Hero extends Character implements Score{
     // from enemy
     protected void setDefaultPosition(){
         //    this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
-        this.setPosition(50,0);
+        this.setPosition(50,50);
         currentDirection = Direction.RIGHT;
         lastDirection = Direction.RIGHT;
     }

@@ -39,7 +39,7 @@ public class TileManager {
             tile[0].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/light_orange.png")));
             tile[0].setTileType("floor");
 
-            tile[1] = new GoodTile(true, false);
+            tile[1] = new GoodTile(false, false);
             tile[1].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/green.png")));
             tile[1].setTileType("start");
 
@@ -116,6 +116,7 @@ public class TileManager {
             }
             br.close();
 
+            //randomly placing a smoke tile
             Random rand = new Random();
             int floorTileToBeSmoke = rand.nextInt(numFloorTiles - 5 + 1) + 5;
             numFloorTiles = 0;
@@ -124,15 +125,12 @@ public class TileManager {
                     if (mapTileNum[i][j] == 0){
                         if (numFloorTiles == floorTileToBeSmoke){
                             mapTileNum[i][j] = 5;
-                            System.out.println(i);
-                            System.out.println(j);
                             return;
                         }
                         numFloorTiles++;
                     }
                 }
             }
-
         }catch(Exception e){
         }
     }
