@@ -24,6 +24,8 @@ public abstract class Item extends Position {
     public int solidAreaDefaultY = 48;
     public boolean collision = true;
     protected GamePanel gamePanel;
+    protected int xCoordinate;
+    protected int yCoordinate;
 
     /**
      * Draws the item on the game panel.
@@ -53,6 +55,20 @@ public abstract class Item extends Position {
      */
     public void collisionAction(Hero hero) {
 
+    }
+
+    public void setPosition(int param_X, int param_y) { // setter
+        xCoordinate = param_X;
+        yCoordinate = param_y;
+        super.setPosition(param_X * 48, param_y * 48);
+    }
+
+    public int getXCoordinate() {
+        return xCoordinate;
+    }
+
+    public int getYCoordinate() {
+        return yCoordinate;
     }
 
     private Image itemSprite;

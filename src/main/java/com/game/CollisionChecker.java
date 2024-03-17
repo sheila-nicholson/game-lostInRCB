@@ -270,6 +270,22 @@ public class CollisionChecker {
         return intersect;
     }
 
+    public boolean isTileOccupied(Item[] item, Position newItem) {
+
+        Boolean tileOccupied = false;
+
+        for(int i = 0; i < item.length; i++) {
+            if(item[i] == null) continue;
+            if(item[i].getXPosition() == newItem.getXPosition()) {
+                if(item[i].getYPosition() == newItem.getYPosition()) {
+                    tileOccupied = true;
+                }
+            }
+        }
+        return tileOccupied;
+
+    }
+
 
     /**
      * Checks for collisions between the hero and enemies.
