@@ -64,6 +64,8 @@ public class CollisionChecker {
                 }
                 if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
                     position.mysteriousSmokeTileOn = true;
+                    gamePanel.ui.showMessage("Mysterious smoke tile hit!");
+
                 }
                 break;
             case DOWN:
@@ -149,7 +151,7 @@ public class CollisionChecker {
                         if (position.solidArea.intersects(item[i].solidArea)) {
                             if (item[i].collision) {
                                 position.collisionOn = true;
-                                gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> UP"); // temporary
+                                gamePanel.ui.showMessage("Item collected!"); // temporary
                             }
                             if (hero)
                                 index = i;
@@ -161,7 +163,7 @@ public class CollisionChecker {
                         if (position.solidArea.intersects(item[i].solidArea)) {
                             if (item[i].collision) {
                                 position.collisionOn = true;
-                                gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> DOWN"); // temporary
+                                gamePanel.ui.showMessage("Item collected!"); // temporary
                             }
                             if (hero)
                                 index = i;
@@ -173,7 +175,7 @@ public class CollisionChecker {
                         if (position.solidArea.intersects(item[i].solidArea)) {
                             if (item[i].collision) {
                                 position.collisionOn = true;
-                                gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> LEFT"); // temporary
+                                gamePanel.ui.showMessage("Item collected!"); // temporary
                             }
                             if (hero)
                                 index = i;
@@ -185,7 +187,7 @@ public class CollisionChecker {
                         if (position.solidArea.intersects(item[i].solidArea)) {
                             if (item[i].collision) {
                                 position.collisionOn = true;
-                                gamePanel.ui.showMessage("DIAMONDS FOUND WOOHOO! -> RIGHT"); // temporary
+                                gamePanel.ui.showMessage("Item collected!"); // temporary
                             }
                             if (hero)
 

@@ -5,7 +5,11 @@ import com.game.Items.Item;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Score;
+import com.game.Tile.MysteriousSmokeTile;
+
 import javax.imageio.ImageIO;
+import javax.swing.*;
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -30,6 +34,7 @@ public class Hero extends Character implements Score{
     public int coffeeTimeEnd;
     public int currentTime;
     public boolean infinite;
+
 
     /**
      * Initializes the hero character with specific speed, position, and input handling.
@@ -190,7 +195,8 @@ public class Hero extends Character implements Score{
 
         }
         if(mysteriousSmokeTileOn){
-            gamePanel.tileM.setSpriteChange(5,"smoke");
+            MysteriousSmokeTile.engageSmoke(this,gamePanel);
+            //gamePanel.tileM.setSpriteChange(5,"smoke");
 
         }
 
@@ -281,7 +287,7 @@ public class Hero extends Character implements Score{
     public void setScore(int score){ // SETTER
 
         if(!isInvincible) {
-            this.currentScore = score; 
+            this.currentScore = score;
         }
     }
 

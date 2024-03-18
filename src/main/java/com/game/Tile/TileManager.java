@@ -51,30 +51,30 @@ public class TileManager {
     public void getTileImage(){
         try{
             tile[0] = new GoodTile(true, false);
-            tile[0].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/light_orange.png")));
+            tile[0].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/Wood Floor.png")));
             tile[0].setTileType("floor");
 
             tile[1] = new GoodTile(false, false);
-            tile[1].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/green.png")));
+            tile[1].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/start_door.png")));
             tile[1].setTileType("start");
 
             tile[2] = new GoodTile(false, false);
-            tile[2].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/dark_brown.png")));
+            tile[2].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/locker.png")));
             tile[2].setTileType("inner wall");
             //tile[2].collision = true;
 
             tile[3] = new GoodTile(false, false);
-            tile[3].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/orange_grad.png")));
+            tile[3].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/bricks.png")));
             tile[3].setTileType("outer wall");
             //tile[0].collision = true;
 
             tile[4] = new GoodTile(false, true);
-            tile[4].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/red_end.png")));
+            tile[4].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/end_door.png")));
             //tile[4].levelEnd = true;
             tile[4].setTileType("end");
 
             tile[5] = new MysteriousSmokeTile();
-            tile[5].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/light_orange.png")));
+            tile[5].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/Wood Floor.png")));
             tile[5].setTileType("smoke");
 
         }catch(IOException e){

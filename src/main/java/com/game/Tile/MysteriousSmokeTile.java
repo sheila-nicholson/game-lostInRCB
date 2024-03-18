@@ -1,5 +1,8 @@
 package com.game.Tile;
 
+import com.game.Character.Hero;
+import com.game.GamePanel.GamePanel;
+
 import java.awt.*;
 
 /**
@@ -11,9 +14,8 @@ import java.awt.*;
  * and challenges.
  */
 public class MysteriousSmokeTile extends Tile {
-    private int slowSpeed;
-    private int handicapTime;
-    private Image smokeSprite;
+    private static int slowSpeed = 2;
+    private static int handicapTime = 5;
     private boolean isVisible;
 
 /*    public MysteriousSmokeTile(int slowSpeed, int handicapTime, Image smokeSprite, boolean isVisible, Image paramTileSprite, int param_X, int param_y){
@@ -57,8 +59,10 @@ public class MysteriousSmokeTile extends Tile {
      * revealing the tile to the player. It can be called based on specific game events or
      * conditions.
      */
-    public void engageSmoke(){ 
-        this.isVisible = true; // add a timer in main call to cycle between engage and hide
+    public static void engageSmoke(Hero hero, GamePanel gp){
+        gp.tileM.setSpriteChange(5,"smoke");
+        hero.setMovementSpeed(slowSpeed);
+        hero.coffeeTimeEnd = (hero.currentTime + handicapTime);
     }
 
     /**

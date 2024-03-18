@@ -17,7 +17,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.text.DecimalFormat;
 
-public class UI {
+public class UI{
 
     GamePanel gp;
     Font a40, a60;
@@ -61,7 +61,7 @@ public class UI {
         }
         */
         gr2D.setFont(a40);
-        gr2D.setColor(Color.BLUE);
+        gr2D.setColor(Color.WHITE);
 
 
         gr2D.drawString("Score = " + gp.getHero().getScore(),150,40);

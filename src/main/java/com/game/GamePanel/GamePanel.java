@@ -11,7 +11,7 @@ import com.game.Key.KeyHandler;
 import com.game.Tile.TileManager;
 import com.game.UI;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -90,7 +90,12 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
 
-
+    public void closeGamePanel() {
+        JFrame frame = (JFrame) getTopLevelAncestor();
+        if (frame != null) {
+            frame.dispose();
+        }
+    }
     /**
      * Starts the game loop in a new thread.
      * <p>
