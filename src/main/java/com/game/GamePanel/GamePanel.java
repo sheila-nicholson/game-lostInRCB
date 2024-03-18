@@ -122,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable{
         }else if(tileM.getMapDifficulty().equals("Medium")){
             this.enemy = new Bear(3,this); //temp speed for testing
         }else if(tileM.getMapDifficulty().equals("Hard")){
-            this.enemy = new FailedExam(3,this); //temp speed for testing
+            this.enemy = new FailedExam(4,this); //temp speed for testing
         }
     }
 

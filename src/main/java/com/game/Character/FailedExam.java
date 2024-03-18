@@ -26,7 +26,8 @@ public class FailedExam extends Enemy {
      */
     public FailedExam(int speed, GamePanel gamePanel){
         super(speed,gamePanel);
-        this.setPosition(5*gamePanel.tileSize,4*gamePanel.tileSize);
+        this.setPosition(5*gamePanel.tileSize,11*gamePanel.tileSize);
+        this.currentDirection=Direction.LEFT;
     }
 
     /**

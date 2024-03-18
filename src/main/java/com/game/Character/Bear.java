@@ -2,7 +2,7 @@ package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
 
-/**
+/**a
  * Represents a Bear enemy type in the game.
  * <p>
  * This class extends the {@link Enemy} class to provide specific implementations for the Bear enemy,
@@ -25,7 +25,7 @@ public class Bear extends Enemy {
         this.setPosition(7*gamePanel.tileSize,12*gamePanel.tileSize);//temp
     }
 
-    /**
+    /**s
      * Loads the image resources specifically for the Bear.
      * <p>
      * Overrides the {@code getImage} method in the superclass to load unique images
