@@ -185,6 +185,10 @@ public class Hero extends Character implements Score{
             }
         }
 
+        if(this.getScore() < 0){    // Game ends if hero's score is negative;
+            System.exit(0);
+        }
+
         if (reachedEndOn){
 
             boolean collectedAllRewardItems = true;
