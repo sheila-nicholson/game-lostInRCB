@@ -33,6 +33,7 @@ public class AssetSetter {
     }
 
 
+
     // Setting original position of objects on the map
     /**
      * Initializes and positions game items on the map.
@@ -251,7 +252,7 @@ public class AssetSetter {
                     newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
                     newColPos = ThreadLocalRandom.current().nextInt(0, 28);
                     int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newRowPos * 48, newColPos * 48);
+                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
                     floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
                     itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
 
@@ -277,7 +278,7 @@ public class AssetSetter {
                     newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
                     newColPos = ThreadLocalRandom.current().nextInt(0, 28);
                     int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newRowPos * 48, newColPos * 48);
+                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
                     floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
                     itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
 
@@ -302,7 +303,7 @@ public class AssetSetter {
                     newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
                     newColPos = ThreadLocalRandom.current().nextInt(0, 28);
                     int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newRowPos * 48, newColPos * 48);
+                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
                     floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
                     itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
 
@@ -327,7 +328,7 @@ public class AssetSetter {
                     newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
                     newColPos = ThreadLocalRandom.current().nextInt(0, 28);
                     int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newRowPos * 48, newColPos * 48);
+                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
                     floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
                     itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
 
