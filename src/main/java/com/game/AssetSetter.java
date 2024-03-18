@@ -32,6 +32,33 @@ public class AssetSetter {
 
     }
 
+    private Position SpawnRandPosItems(Item[] items){
+
+        int newRowPos;
+        int newColPos;
+        Position checkPosValid = new Position();
+        boolean validPosition = false;
+
+        while (!validPosition) {
+
+            boolean floorPosition = false;
+            boolean itemOccupy = false;
+            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
+            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
+            int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
+            checkPosValid.setPosition(newColPos * 48, newRowPos * 48);
+            floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
+            itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(items, checkPosValid));
+
+            if (floorPosition && itemOccupy)
+                return checkPosValid;
+
+        }
+        return checkPosValid;
+    }
+
+
+
 
 
     // Setting original position of objects on the map
@@ -207,137 +234,46 @@ public class AssetSetter {
 
             Item[] item = gamePanel.getItem();
 
-            int newRowPos;
-            int newColPos;
-            //boolean validPosition = false;
+            int arrayIndex = 0;
 
-            // Spawn Bed items
-            for (int i = 0; i < 5; i++) {
-
-                boolean validPosition = false;
-
-
-                while (!validPosition) {
-
-                    boolean floorPosition = false;
-                    boolean itemOccupy = false;
-
-                    newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-                    newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-                    int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
-                    floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-                    itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
-
-                    if (floorPosition && itemOccupy) {
-
-                        validPosition = true;
-                        item[i] = new Bed(gamePanel);
-                        item[i].setPosition(newColPos, newRowPos);
-                    }
-                }
+            // Spawning Beds
+            for(int i = 0; i < 5; i++) {
+                Position validPosition = SpawnRandPosItems(item);
+                item[arrayIndex] = new Bed(gamePanel);
+                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
+                arrayIndex++;
             }
 
-            // Spawn APlusPaper items
-            for (int i = 0; i < 5; i++) {
-
-                boolean validPosition = false;
-
-                while (!validPosition) {
-
-                    boolean floorPosition = false;
-                    boolean itemOccupy = false;
-
-
-                    newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-                    newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-                    int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
-                    floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-                    itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
-
-                    if (floorPosition && itemOccupy) {
-                        validPosition = true;
-                        item[i + 5] = new APlusPaper(gamePanel);
-                        item[i + 5].setPosition(newColPos, newRowPos);
-                    }
-                }
+            // Spawning APlusPapers
+            for(int i = 0; i < 5; i++) {
+                Position validPosition = SpawnRandPosItems(item);
+                item[arrayIndex] = new APlusPaper(gamePanel);
+                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
+                arrayIndex++;
             }
 
-            // Spawn Coffee items
-            for (int i = 0; i < 5; i++) {
-
-                boolean validPosition = false;
-
-                while (!validPosition) {
-
-                    boolean floorPosition = false;
-                    boolean itemOccupy = false;
-
-
-                    newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-                    newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-                    int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
-                    floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-                    itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
-
-                    if (floorPosition && itemOccupy) {
-                        validPosition = true;
-                        item[i + 10] = new Coffee(gamePanel);
-                        item[i + 10].setPosition(newColPos, newRowPos);
-                    }
-                }
+            // Spawning Coffees
+            for(int i = 0; i < 5; i++) {
+                Position validPosition = SpawnRandPosItems(item);
+                item[arrayIndex] = new Coffee(gamePanel);
+                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
+                arrayIndex++;
             }
 
-            // Spawn PileOfBooks items
-            for (int i = 0; i < 5; i++) {
-
-                boolean validPosition = false;
-
-                while (!validPosition) {
-
-                    boolean floorPosition = false;
-                    boolean itemOccupy = false;
-
-                    newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-                    newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-                    int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
-                    floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-                    itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
-
-                    if (floorPosition && itemOccupy) {
-                        validPosition = true;
-                        item[i + 15] = new PileOfBooks(gamePanel);
-                        item[i + 15].setPosition(newColPos, newRowPos);
-                    }
-                }
+            // Spawning PileOfBooks
+            for(int i = 0; i < 5; i++) {
+                Position validPosition = SpawnRandPosItems(item);
+                item[arrayIndex] = new PileOfBooks(gamePanel);
+                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
+                arrayIndex++;
             }
 
-            // Spawn Vortex items
-            for (int i = 0; i < 5; i++) {
-
-                boolean validPosition = false;
-
-                while (!validPosition) {
-
-                    boolean floorPosition = false;
-                    boolean itemOccupy = false;
-
-                    newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-                    newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-                    int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-                    Position checkPosValid = new Position(newColPos * 48, newRowPos * 48);
-                    floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-                    itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(item, checkPosValid));
-
-                    if (floorPosition && itemOccupy) {
-                        validPosition = true;
-                        item[i + 20] = new Vortex(gamePanel);
-                        item[i + 20].setPosition(newColPos, newRowPos);
-                    }
-                }
+            // Spawning Vortexes
+            for(int i = 0; i < 5; i++) {
+                Position validPosition = SpawnRandPosItems(item);
+                item[arrayIndex] = new Vortex(gamePanel);
+                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
+                arrayIndex++;
             }
         }
     }
