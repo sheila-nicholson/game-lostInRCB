@@ -230,51 +230,6 @@ public class AssetSetter {
             item[15] = new Vortex(gamePanel);
             item[15].setPosition(26, 15);
 
-        } else if (mapDifficulty == "Infinite") {             // Hard map difficulty has 5 of all items types      = 25 total // all items are spawned into random locations when map is initiated
-
-            Item[] item = gamePanel.getItem();
-
-            int arrayIndex = 0;
-
-            // Spawning Beds
-            for(int i = 0; i < 5; i++) {
-                Position validPosition = SpawnRandPosItems(item);
-                item[arrayIndex] = new Bed(gamePanel);
-                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
-                arrayIndex++;
-            }
-
-            // Spawning APlusPapers
-            for(int i = 0; i < 5; i++) {
-                Position validPosition = SpawnRandPosItems(item);
-                item[arrayIndex] = new APlusPaper(gamePanel);
-                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
-                arrayIndex++;
-            }
-
-            // Spawning Coffees
-            for(int i = 0; i < 5; i++) {
-                Position validPosition = SpawnRandPosItems(item);
-                item[arrayIndex] = new Coffee(gamePanel);
-                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
-                arrayIndex++;
-            }
-
-            // Spawning PileOfBooks
-            for(int i = 0; i < 5; i++) {
-                Position validPosition = SpawnRandPosItems(item);
-                item[arrayIndex] = new PileOfBooks(gamePanel);
-                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
-                arrayIndex++;
-            }
-
-            // Spawning Vortexes
-            for(int i = 0; i < 5; i++) {
-                Position validPosition = SpawnRandPosItems(item);
-                item[arrayIndex] = new Vortex(gamePanel);
-                item[arrayIndex].setPosition(validPosition.getXPosition() / 48, validPosition.getYPosition() / 48);
-                arrayIndex++;
-            }
         }
     }
 }

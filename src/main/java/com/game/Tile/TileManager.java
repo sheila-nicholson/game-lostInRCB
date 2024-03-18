@@ -118,9 +118,6 @@ public class TileManager {
             else if (this.mapDifficulty == "Hard"){
                 is = getClass().getResourceAsStream("/Maps/map03.txt");
             }
-            else if (this.mapDifficulty == "Infinite"){
-                is = getClass().getResourceAsStream("/Maps/map03.txt");
-            }
             else{
                 is = getClass().getResourceAsStream("/Maps/map01.txt");
             }

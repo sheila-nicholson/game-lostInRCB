@@ -31,7 +31,6 @@ public class Main {
         JButton easyButton = new JButton("Easy");
         JButton mediumButton = new JButton("Medium");
         JButton hardButton = new JButton("Hard");
-        JButton infiniteButton = new JButton("Infinite");
 
         // Make buttons bigger, white, and square
         Dimension buttonSize = new Dimension(120, 120); // Set width and height to the same value for square buttons
@@ -50,11 +49,6 @@ public class Main {
         hardButton.setFont(new Font("Arial", Font.BOLD, 30));
         hardButton.setBackground(buttonColor);
         hardButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add black border for a square shape
-
-        infiniteButton.setPreferredSize(buttonSize);
-        infiniteButton.setFont(new Font("Arial", Font.BOLD, 30));
-        infiniteButton.setBackground(buttonColor);
-        infiniteButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add black border for a square shape
 
         // Add action listeners to the buttons
         easyButton.addActionListener(new ActionListener() {
@@ -75,18 +69,11 @@ public class Main {
                 startGame("Hard");
             }
         });
-        infiniteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                startGame("Infinite");
-            }
-        });
 
         buttonPanel.setOpaque(false);
         buttonPanel.add(easyButton);
         buttonPanel.add(mediumButton);
         buttonPanel.add(hardButton);
-        buttonPanel.add(infiniteButton);
 
         // Create exit button
         JButton exitButton = new JButton("Exit");

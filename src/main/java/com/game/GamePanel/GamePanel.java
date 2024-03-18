@@ -123,8 +123,6 @@ public class GamePanel extends JPanel implements Runnable{
             this.enemy = new Bear(3,this); //temp speed for testing
         }else if(tileM.getMapDifficulty().equals("Hard")){
             this.enemy = new FailedExam(3,this); //temp speed for testing
-        }else if(tileM.getMapDifficulty().equals("Infinite")){
-            this.enemy = new ZombieProfessor(3,this); //temp speed for testing
         }
     }
 
@@ -138,18 +136,9 @@ public class GamePanel extends JPanel implements Runnable{
      * @param diff A {@link String} representing the game's difficulty level.
      */
     public void setupGame(String diff) {
-        if (diff == "Infinite"){
-            hero.infinite = true;
-        }
-        else{
-            hero.infinite = false;
-        }
         hero.diff = diff;
-
         tileM = new TileManager(this,diff);
-
         assetSetter.setObject(diff);
-
         setEnemy();
 
     }

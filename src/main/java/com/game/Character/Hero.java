@@ -33,7 +33,6 @@ public class Hero extends Character implements Score{
     protected KeyHandler keyHandler;
     public int coffeeTimeEnd;
     public int currentTime;
-    public boolean infinite;
     private int itemsCollected = 0;
     public String diff;
 
