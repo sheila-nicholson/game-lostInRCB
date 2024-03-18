@@ -34,7 +34,8 @@ public class Hero extends Character implements Score{
     public int coffeeTimeEnd;
     public int currentTime;
     public boolean infinite;
-
+    private int itemsCollected = 0;
+    public String diff;
 
     /**
      * Initializes the hero character with specific speed, position, and input handling.
@@ -186,15 +187,40 @@ public class Hero extends Character implements Score{
         }
 
         if (reachedEndOn){
-            if (this.infinite){
-                setDefaultPosition();
-                gamePanel.assetSetter.setObject("Infinite");
+            if (this.diff == "Easy") {
+                if (this.itemsCollected == 15) {
+                    System.exit(0);//test for terminating the game after collision between hero and enemy
+                }
+                else{
+                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (15-this.itemsCollected) + " more.");
+                }
+            }
 
+            else if (this.diff == "Medium"){
+                if (this.itemsCollected == 17) {
+                    System.exit(0);//test for terminating the game after collision between hero and enemy
+                }
+                else{
+                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (17-this.itemsCollected) + " more.");
+                }
+
+            }
+            else if(this.diff == "Hard"){
+                if (this.itemsCollected == 16) {
+                    System.exit(0);//test for terminating the game after collision between hero and enemy
+                }
+                else{
+                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
+                }
             }
             else{
-                System.exit(0);//test for terminating the game after collision between hero and enemy
+                if (this.itemsCollected == 15) {
+                    System.exit(0);//test for terminating the game after collision between hero and enemy
+                }
+                else{
+                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
+                }
             }
-
         }
         if(mysteriousSmokeTileOn){
             MysteriousSmokeTile.engageSmoke(this,gamePanel);
@@ -235,6 +261,7 @@ public class Hero extends Character implements Score{
         currentTime = gamePanel.getTimeElapsedSec();
         Item[] item = gamePanel.getItem();
         if(itemIndex != 999) { // if there is no hero-item collision index = 999
+            this.itemsCollected++;
             item[itemIndex].collisionAction(this);
             item[itemIndex] = null;
 

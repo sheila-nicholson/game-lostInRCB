@@ -144,6 +144,8 @@ public class GamePanel extends JPanel implements Runnable{
         else{
             hero.infinite = false;
         }
+        hero.diff = diff;
+
         tileM = new TileManager(this,diff);
 
         assetSetter.setObject(diff);
