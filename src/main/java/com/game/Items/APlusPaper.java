@@ -88,11 +88,14 @@ public class APlusPaper extends RewardItem {
 
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
-            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor")
+            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor") {
                 validPosition = !(gamePanel.collisionChecker.isHeroIntersecting(this));
+                validPosition = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
+            }
+
 
             if(validPosition)
-                this.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
+                this.setPosition(newColPos, newRowPos);
 
         }
     }

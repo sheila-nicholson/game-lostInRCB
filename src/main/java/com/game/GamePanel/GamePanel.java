@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable{
     private Hero hero;
     private Enemy enemy;
 
-    private Item[] item = new Item[15];  // item slots - dictates how many items can be displayed at one time
+    public Item[] item = new Item[25]; // item slots - dictates how many items can be displayed at one time
 
 
     public Hero getHero() {
@@ -145,8 +145,11 @@ public class GamePanel extends JPanel implements Runnable{
             hero.infinite = false;
         }
         tileM = new TileManager(this,diff);
-        assetSetter.setObject();
+
+        assetSetter.setObject(diff);
+
         setEnemy();
+
     }
 
     /**

@@ -20,7 +20,7 @@ import com.game.Character.Hero;
 public class Vortex extends PunishmentItem {
 
     private PunishmentType punishmentType = PunishmentType.VORTEX;
-    private int damagePoints = 5;
+    private int damagePoints = -5;
 
     /**
      * Constructs a Vortex item associated with a specific game panel.
