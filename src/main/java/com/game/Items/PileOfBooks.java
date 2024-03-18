@@ -29,6 +29,7 @@ public class PileOfBooks extends PunishmentItem {
     public PileOfBooks(GamePanel gamePanel) {
         this.punishmentType = PunishmentType.BOOKS;
         name = "PileOfBooks";
+        this.itemType = "Punishment";
 
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/PileOfBooks.png")));

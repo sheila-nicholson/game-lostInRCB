@@ -26,6 +26,7 @@ public abstract class Item extends Position {
     protected GamePanel gamePanel;
     protected int xCoordinate;
     protected int yCoordinate;
+    public String itemType;
 
     /**
      * Draws the item on the game panel.

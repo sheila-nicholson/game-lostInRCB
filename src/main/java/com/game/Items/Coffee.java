@@ -33,6 +33,7 @@ public class Coffee extends RewardItem {
         this.rewardType = RewardType.COFFEE;
         // set position, no need to randomize, harder level = less spawn
         name = "Coffee";
+        this.itemType = "Reward";
 
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Coffee.png")));

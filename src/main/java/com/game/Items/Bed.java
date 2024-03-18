@@ -32,6 +32,7 @@ public class Bed extends RewardItem {
     public Bed(GamePanel gamePanel) {
         this.rewardType = RewardType.BED;
         name = "Bed";
+        this.itemType = "Reward";
 
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Bed.png")));

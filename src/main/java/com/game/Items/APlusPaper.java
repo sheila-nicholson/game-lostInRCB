@@ -31,6 +31,7 @@ public class APlusPaper extends RewardItem {
         this.gamePanel = gamePanel;
         this.rewardType = RewardType.APLUSPAPAER;
         name = "APlusPaper";
+        this.itemType = "Reward";
 
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/APlusPaper.png")));

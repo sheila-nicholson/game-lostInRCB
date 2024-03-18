@@ -151,7 +151,7 @@ public class CollisionChecker {
                         if (position.solidArea.intersects(item[i].solidArea)) {
                             if (item[i].collision) {
                                 position.collisionOn = true;
-                                gamePanel.ui.showMessage("Item collected!"); // temporary
+                                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
                             }
                             if (hero)
                                 index = i;
@@ -163,7 +163,7 @@ public class CollisionChecker {
                         if (position.solidArea.intersects(item[i].solidArea)) {
                             if (item[i].collision) {
                                 position.collisionOn = true;
-                                gamePanel.ui.showMessage("Item collected!"); // temporary
+                                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
                             }
                             if (hero)
                                 index = i;
@@ -175,7 +175,7 @@ public class CollisionChecker {
                         if (position.solidArea.intersects(item[i].solidArea)) {
                             if (item[i].collision) {
                                 position.collisionOn = true;
-                                gamePanel.ui.showMessage("Item collected!"); // temporary
+                                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
                             }
                             if (hero)
                                 index = i;
@@ -187,7 +187,7 @@ public class CollisionChecker {
                         if (position.solidArea.intersects(item[i].solidArea)) {
                             if (item[i].collision) {
                                 position.collisionOn = true;
-                                gamePanel.ui.showMessage("Item collected!"); // temporary
+                                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
                             }
                             if (hero)
 
