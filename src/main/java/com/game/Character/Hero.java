@@ -186,40 +186,66 @@ public class Hero extends Character implements Score{
         }
 
         if (reachedEndOn){
-            if (this.diff == "Easy") {
-                if (this.itemsCollected == 15) {
-                    System.exit(0);//test for terminating the game after collision between hero and enemy
+
+            boolean collectedAllRewardItems = true;
+
+            for(int i = 0; i < gamePanel.item.length; i++){
+
+                if(gamePanel.item[i] == null) continue;
+
+                else if(gamePanel.item[i].name == "Bed") {
+                    gamePanel.ui.showMessage("You haven't collected all reward items!");
+                    collectedAllRewardItems = false;
                 }
-                else{
-                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (15-this.itemsCollected) + " more.");
+
+                else if(gamePanel.item[i].name == "APlusPaper") {
+                    gamePanel.ui.showMessage("You haven't collected all reward items!");
+                    collectedAllRewardItems = false;
+                }
+
+                else if(gamePanel.item[i].name == "Coffee") {
+                    gamePanel.ui.showMessage("You haven't collected all reward items!");
+                    collectedAllRewardItems = false;
                 }
             }
 
-            else if (this.diff == "Medium"){
-                if (this.itemsCollected == 17) {
-                    System.exit(0);//test for terminating the game after collision between hero and enemy
-                }
-                else{
-                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (17-this.itemsCollected) + " more.");
-                }
-
+            if(collectedAllRewardItems){
+                System.exit(0);
             }
-            else if(this.diff == "Hard"){
-                if (this.itemsCollected == 16) {
-                    System.exit(0);//test for terminating the game after collision between hero and enemy
-                }
-                else{
-                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
-                }
-            }
-            else{
-                if (this.itemsCollected == 15) {
-                    System.exit(0);//test for terminating the game after collision between hero and enemy
-                }
-                else{
-                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
-                }
-            }
+//            if (this.diff == "Easy") {
+//                if (this.itemsCollected == 15) {
+//                    System.exit(0);//test for terminating the game after collision between hero and enemy
+//                }
+//                else{
+//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (15-this.itemsCollected) + " more.");
+//                }
+//            }
+//
+//            else if (this.diff == "Medium"){
+//                if (this.itemsCollected == 17) {
+//                    System.exit(0);//test for terminating the game after collision between hero and enemy
+//                }
+//                else{
+//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (17-this.itemsCollected) + " more.");
+//                }
+//
+//            }
+//            else if(this.diff == "Hard"){
+//                if (this.itemsCollected == 16) {
+//                    System.exit(0);//test for terminating the game after collision between hero and enemy
+//                }
+//                else{
+//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
+//                }
+//            }
+//            else{
+//                if (this.itemsCollected == 15) {
+//                    System.exit(0);//test for terminating the game after collision between hero and enemy
+//                }
+//                else{
+//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
+//                }
+//            }
         }
         if(mysteriousSmokeTileOn){
             MysteriousSmokeTile.engageSmoke(this,gamePanel);
