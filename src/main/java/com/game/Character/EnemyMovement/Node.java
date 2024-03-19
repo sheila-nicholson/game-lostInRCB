@@ -9,7 +9,6 @@ package com.game.Character.EnemyMovement;
  * to determine and track the shortest path between two points.
  *
  * @author Yanjun Qian
- * @version 1.0
  */
 public class Node {
     Node parent;

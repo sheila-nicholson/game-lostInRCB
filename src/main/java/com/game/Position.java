@@ -1,33 +1,33 @@
-/*
- * Position.java
- * 
- * Class Description: Reflects the position of all entities (character/items) primarily.
- *
- * Authors: [put your names here]
- * Last modified on: March 6, 2024 1:51 AM
- */
-
-
 package com.game;
 
 import com.game.Key.Direction;
 
 import java.awt.*;
 
+/**
+ * Represents the spatial position and movement capabilities of game entities.
+ * <p>
+ * This class provides the basic functionality for managing the coordinates (X, Y) of game entities,
+ * along with their movement behaviors and collision detection flags. It serves as a base class for
+ * characters, items, and other objects within the game that require spatial positioning and movement.
+ */
 public class Position {
-    private int X;
-    private int Y;
-    //public Rectangle solidArea = new Rectangle(0,0,48,48);
-    public Rectangle solidArea;
-    public int solidAreaDefaultX = 48;
-    public int solidAreaDefaultY = 48;
-    protected Direction currentDirection;
-    protected Direction lastDirection;
+    private int X; // The X-coordinate of the entity
+    private int Y; // The Y-coordinate of the entity
+    public Rectangle solidArea; // The collision area of the entity
+    public int solidAreaDefaultX = 48; // Default width of the solid area
+    public int solidAreaDefaultY = 48; // Default height of the solid area
+    protected Direction currentDirection; // The current movement direction of the entity
+    protected Direction lastDirection; // The last movement direction of the entity
 
-    protected int movementSpeed;
-    protected boolean collisionOn = false;
-    protected boolean reachedEndOn = false;
-    protected boolean mysteriousSmokeTileOn = false;
+    protected int movementSpeed; // The movement speed of the entity
+    protected boolean collisionOn = false; // Flag indicating if a collision has occurred
+    protected boolean reachedEndOn = false; // Flag indicating if the end of a level or segment has been reached
+    protected boolean mysteriousSmokeTileOn = false; // Flag indicating if an effect from a mysterious smoke tile is active
+
+    /**
+     * Default constructor initializing the position with default coordinates (0, 0).
+     */
     public Position(){ // default constructor
         this.X = 0;
         this.Y = 0;
@@ -37,11 +37,23 @@ public class Position {
         this.movementSpeed = speed;
     }
 
+    /**
+     * Parameterized constructor for setting the initial position.
+     *
+     * @param param_X The initial X-coordinate.
+     * @param param_y The initial Y-coordinate.
+     */
     public Position(int param_X, int param_y){ // parameterized constructor
         this.X = param_X;
         this.Y = param_y;
     }
 
+    /**
+     * Sets the position of the entity.
+     *
+     * @param param_X The X-coordinate to move the entity to.
+     * @param param_y The Y-coordinate to move the entity to.
+     */
     public void setPosition(int param_X, int param_y){ // setter
         this.X = param_X;
         this.Y = param_y;
