@@ -22,7 +22,6 @@ import java.util.Random;
  * among others. Characters derived from this class can be either player-controlled or AI-driven entities
  * within the game environment.
  *
- * @author Yanjun Qian
  */
 public abstract class Character extends Position {
 

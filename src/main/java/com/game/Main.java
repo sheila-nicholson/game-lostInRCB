@@ -10,7 +10,25 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * The main class that initializes and displays the game's start menu.
+ * <p>
+ * This class is responsible for setting up the initial user interface of the game,
+ * including loading the background image, creating menu buttons for difficulty selection,
+ * and handling the game's start based on the selected difficulty. It also features an exit
+ * button to close the game.
+ */
 public class Main {
+
+    /**
+     * The main method that serves as the entry point for the game application.
+     * <p>
+     * It sets up the main game window, including the background, buttons for difficulty selection,
+     * and the exit button. It defines the action listeners for these buttons to start the game
+     * with the chosen difficulty or exit the game.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         JFrame window = new JFrame();
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -109,7 +127,16 @@ public class Main {
         window.setVisible(true);
     }
 
-    // Method to start the game with selected difficulty
+
+    /**
+     * Starts the game with the selected difficulty level.
+     * <p>
+     * This method initializes the game environment and begins the game based on the chosen
+     * difficulty from the main menu. It sets up a new window for the game and loads the game
+     * panel configured with the selected difficulty.
+     *
+     * @param difficulty The difficulty level chosen by the player ("Easy", "Medium", or "Hard").
+     */
     private static void startGame(String difficulty) {
         // Implement your game startup logic here based on difficulty
         System.out.println("Starting game with difficulty: " + difficulty);
@@ -129,14 +156,35 @@ public class Main {
     }
 }
 
-// JPanel subclass for displaying background image
+/**
+ * A custom JPanel subclass for displaying a background image.
+ * <p>
+ * This panel is used in the game's main menu to display a background image. It overrides
+ * the {@code paintComponent} method to draw the background image scaled to fill the panel.
+ */
 class ImagePanel extends JPanel {
     private Image backgroundImage;
 
+    /**
+     * Constructs an ImagePanel with a specified background image.
+     *
+     * @param backgroundImage The image to set as the background.
+     */
     public ImagePanel(Image backgroundImage) {
         this.backgroundImage = backgroundImage;
     }
 
+    /**
+     * Paints the panel's background image to fit its current size.
+     * <p>
+     * This method overrides the {@code paintComponent} method of {@link JPanel} to
+     * draw the specified background image across the entire area of the panel. It
+     * scales the image to match the panel's width and height, ensuring the background
+     * fully covers the panel. The method is called automatically by the Swing framework
+     * whenever the panel needs to be redrawn, such as after being resized or made visible.
+     *
+     * @param g The {@link Graphics} context used for drawing operations.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

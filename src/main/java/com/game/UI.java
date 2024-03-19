@@ -1,12 +1,3 @@
-/*
- * UI.java
- *
- * Class Description: Handles the UI aspect
- *
- * Authors: Jonas
- * Last modified on: March 11, 2014 5:57 PM
- */
-
 package com.game;
 
 import com.game.Character.Hero;
@@ -17,6 +8,13 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.text.DecimalFormat;
 
+/**
+ * Manages and renders the user interface elements in the game.
+ * <p>
+ * This class is responsible for drawing UI components such as the score, game timer,
+ * and temporary messages on the screen. It uses custom fonts and formatting to present
+ * information clearly to the player during gameplay.
+ */
 public class UI{
 
     GamePanel gp;
@@ -28,6 +26,11 @@ public class UI{
     DecimalFormat deForm = new DecimalFormat("#0.00");
     public boolean gameDone = false;
 
+    /**
+     * Constructs a UI manager for a specific game panel.
+     *
+     * @param gp The game panel where UI elements are to be rendered.
+     */
     public UI(GamePanel gp) {
         this.gp = gp;
         a40 = new Font("Arial", Font.PLAIN, 40);
@@ -35,11 +38,21 @@ public class UI{
         a80BIG = new Font("Arial", Font.BOLD, 80);
     }
 
+    /**
+     * Displays a temporary message at a predetermined location on the screen.
+     *
+     * @param text The message text to display.
+     */
     public void showMessage(String text) {
         words = text;
         visibleText = true;
     }
 
+    /**
+     * Draws UI elements such as the score, timer, and temporary messages on the screen.
+     *
+     * @param gr2D The Graphics2D object used for drawing UI components.
+     */
     public void draw(Graphics2D gr2D) {
 
         if (gameDone) {

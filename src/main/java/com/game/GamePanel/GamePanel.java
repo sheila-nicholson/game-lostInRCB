@@ -23,7 +23,6 @@ import java.io.IOException;
  * rendering, and interactions. It initializes and updates game components, processes user input,
  * and handles rendering of the game world and UI elements.
  *
- * @author: [put your names here]
  */
 public class GamePanel extends JPanel implements Runnable{
 
