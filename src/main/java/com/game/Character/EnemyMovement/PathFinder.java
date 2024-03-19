@@ -14,7 +14,6 @@ import java.util.ArrayList;
  * simplified A* (A-Star) pathfinding algorithm and is specifically tailored
  * for use within a {@link GamePanel} context.
  *
- * @author Yanjun Qian
  */
 public class PathFinder {
     GamePanel gamePanel;

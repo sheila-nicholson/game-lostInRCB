@@ -8,7 +8,6 @@ package com.game.Character.EnemyMovement;
  * its position, pathfinding costs, and state. It is used by the {@link PathFinder}
  * to determine and track the shortest path between two points.
  *
- * @author Yanjun Qian
  */
 public class Node {
     Node parent;
