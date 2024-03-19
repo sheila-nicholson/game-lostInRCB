@@ -52,7 +52,7 @@ public class UI{
             int a;
             int b;
 
-            endtext = "You collected all the rewards.";
+            endtext = "You got all the rewards and escaped RCB!";
             endtextlen = (int)gr2D.getFontMetrics().getStringBounds(endtext, gr2D).getWidth();
 
             a = gp.screenWidth/2 - endtextlen/2;
@@ -61,7 +61,7 @@ public class UI{
 
             gr2D.setColor(Color.ORANGE);
 
-            endtext = "You escaped RCB! Hooray!";
+            endtext = "Your total score is " + gp.getHero().getScore() + " points.";
             endtextlen = (int)gr2D.getFontMetrics().getStringBounds(endtext, gr2D).getWidth();
 
             a = gp.screenWidth/2 - endtextlen/2;
