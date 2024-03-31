@@ -63,6 +63,7 @@ public class Position {
         return this.X;
     }
     public int getYPosition(){return this.Y;}
+    public int getMovementSpeed(){return  this.movementSpeed;}
 
     public void moveUp(int s){this.Y-=s;}
     public void moveDown(int s){this.Y+=s;}
