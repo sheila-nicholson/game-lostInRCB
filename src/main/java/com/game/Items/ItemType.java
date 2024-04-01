@@ -1,2 +1,6 @@
-package com.game.Items;public enum ItemType {
+package com.game.Items;
+
+public enum ItemType {
+    Reward,
+    Punishment
 }

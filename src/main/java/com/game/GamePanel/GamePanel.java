@@ -60,6 +60,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     public Item[] item = new Item[25]; // item slots - dictates how many items can be displayed at one time
 
+    public Graphics2D g2;
+
 
     public Hero getHero() {
         return this.hero;
@@ -167,7 +169,7 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        g2 = (Graphics2D)g;
 
         tileM.draw(g2);
 

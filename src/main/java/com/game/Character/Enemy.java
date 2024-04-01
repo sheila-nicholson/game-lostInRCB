@@ -45,10 +45,6 @@ public class Enemy extends Character {
     public Enemy(int speed, GamePanel gamePanel) {
         super(speed, gamePanel);
         this.movementSpeed = speed;
-        this.solidAreaDefaultX = gamePanel.tileSize;
-        this.solidAreaDefaultY = gamePanel.tileSize;
-        this.solidArea = new Rectangle(0, 0, this.solidAreaDefaultX-3, this.solidAreaDefaultY-3);
-        setDefaultPosition();
         this.setPosition(2 * gamePanel.tileSize, 14* gamePanel.tileSize);
     }
 
@@ -76,9 +72,9 @@ public class Enemy extends Character {
 
         if(onPath){
 
-                int goalCol = (gamePanel.getHero().getXPosition() + gamePanel.getHero().solidArea.x)/gamePanel.tileSize;
-                int goalRow = (gamePanel.getHero().getYPosition() + gamePanel.getHero().solidArea.y)/gamePanel.tileSize;
-                searchPath(goalCol,goalRow);
+            int goalCol = (gamePanel.getHero().getXPosition() + gamePanel.getHero().solidArea.x)/gamePanel.tileSize;
+            int goalRow = (gamePanel.getHero().getYPosition() + gamePanel.getHero().solidArea.y)/gamePanel.tileSize;
+            searchPath(goalCol,goalRow);
 
         }else{
 
@@ -109,7 +105,7 @@ public class Enemy extends Character {
      *
      * @return The current direction of the enemy after the update.
      */
-    public Direction update() {
+    public void update() {
 
         reachedEndOn = false;
         collisionOn = false;
@@ -120,26 +116,19 @@ public class Enemy extends Character {
             switch (currentDirection) {
                 case UP:
                     this.moveUp(movementSpeed);
-                    return Direction.UP;
-//                   break;
+                   break;
                 case DOWN:
                     this.moveDown(movementSpeed);
-                    return Direction.DOWN;
-//                    break;
+                    break;
                 case LEFT:
-
                     this.moveLeft(movementSpeed);
-                    return Direction.LEFT;
-//                break;
+                    break;
                 case RIGHT:
-
                     this.moveRight(movementSpeed);
-                    return Direction.RIGHT;
-//                break;
+                    break;
             }
         }
 
-        return Direction.DOWN;
     }
 
 }

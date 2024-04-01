@@ -25,9 +25,9 @@ import java.util.Random;
  */
 public abstract class Character extends Position {
 
-    protected boolean up, down, left, right, fallen;
+//    protected boolean up, down, left, right, fallen;
     // fallen -> vortex effect, false -> enemy with character
-    protected Animation currentAnimation;
+    public BufferedImage currentImage = null;
     public BufferedImage leftImage, rightImage;
     protected GamePanel gamePanel;
 
@@ -35,7 +35,8 @@ public abstract class Character extends Position {
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
-    public boolean onPath = true; //temp for testing
+    public boolean onPath = true; //temp for testing]
+
 
     /**
      * Sets the default position of the character within the game world.
@@ -65,6 +66,9 @@ public abstract class Character extends Position {
             this.setDefaultPosition();
             this.movementSpeed = speed;
             this.gamePanel = gamePanel;
+            this.solidAreaDefaultX = gamePanel.tileSize;
+            this.solidAreaDefaultY = gamePanel.tileSize;
+            this.solidArea = new Rectangle(0, 0, this.solidAreaDefaultX-3, this.solidAreaDefaultY-3);
             this.getImage();
     }
 
@@ -75,19 +79,21 @@ public abstract class Character extends Position {
      */
     public void draw(Graphics2D g2) {
 
-        BufferedImage image = null;
+
         switch (currentDirection){
             case LEFT:
-                image = leftImage;
+                currentImage = leftImage;
                 break;
             case RIGHT:
-                image = rightImage;
+                currentImage = rightImage;
                 break;
             default:
-                image = (lastDirection == Direction.LEFT)?leftImage:rightImage;
+                currentImage = (lastDirection == Direction.LEFT)?leftImage:rightImage;
                 break;
         }
-        g2.drawImage(image,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
+
+
+        g2.drawImage(currentImage,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
 
     }
 
@@ -119,14 +125,6 @@ public abstract class Character extends Position {
         this.movementSpeed = speed;
     }
 
-    /**
-     * Sets the character's fallen state, affecting its interaction with vortex effects.
-     *
-     * @param f the new fallen state
-     */
-    public void setFallen(boolean f){
-        this.fallen = f;
-    }
 
     /**
      * Checks for and handles collisions with various game elements.

@@ -2,6 +2,7 @@ package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Items.Item;
+import com.game.Items.ItemType;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Score;
@@ -46,21 +47,15 @@ public class Hero extends Character implements Score{
      * @param gamePanel the game panel the hero belongs to
      */
     protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
+
         super(speed,gamePanel);
         this.keyHandler = keyHandler;
-        this.gamePanel = gamePanel;
-        this.solidAreaDefaultX = gamePanel.tileSize;
-        this.solidAreaDefaultY = gamePanel.tileSize;
         this.solidArea = new Rectangle(0, 0, this.solidAreaDefaultX-5, this.solidAreaDefaultY-5);
-        this.setDefaultPosition();
         this.setScore(20);
         this.alive = true;
-
-        getImage();
     }
 
     protected void setDefaultPosition(){
-        //    this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
         this.setPosition(50,50);
         currentDirection = Direction.RIGHT;
         lastDirection = Direction.RIGHT;
@@ -82,14 +77,12 @@ public class Hero extends Character implements Score{
         }
     }
 
-
-
     public void checkCollisionAndMoveHero() {
         //check tile collision
         collisionOn = false;
         mysteriousSmokeTileOn = false;
         gamePanel.collisionChecker.checkTile(this);
-        gamePanel.collisionChecker.checkPlayer(this);
+//        gamePanel.collisionChecker.checkPlayer(this);
 
         if(keyHandler.getPressed(Direction.UP)){
             this.currentDirection = Direction.UP;
@@ -110,6 +103,21 @@ public class Hero extends Character implements Score{
             this.currentDirection = Direction.RIGHT;
             if(!collisionOn)  this.moveRight(movementSpeed);
 
+        }
+
+        //check enemy collision
+        int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
+        interactEnemy(enemyIndex);
+
+        // Check item collision:
+        int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
+        pickUpItem(itemIndex);
+
+    }
+
+    public void handleMysteriousSmoke() {
+        if (mysteriousSmokeTileOn) {
+            MysteriousSmokeTile.engageSmoke(this, gamePanel);
         }
     }
 
@@ -133,21 +141,8 @@ public class Hero extends Character implements Score{
 
             boolean collectedAllRewardItems = true;
 
-            for(int i = 0; i < gamePanel.item.length; i++){
-
-                if(gamePanel.item[i] == null) continue;
-
-                else if(Objects.equals(gamePanel.item[i].name, "Bed")) {
-                    gamePanel.ui.showMessage("You haven't collected all reward items!");
-                    collectedAllRewardItems = false;
-                }
-
-                else if(Objects.equals(gamePanel.item[i].name, "APlusPaper")) {
-                    gamePanel.ui.showMessage("You haven't collected all reward items!");
-                    collectedAllRewardItems = false;
-                }
-
-                else if(Objects.equals(gamePanel.item[i].name, "Coffee")) {
+            for(Item item: gamePanel.getItem()){
+                if (item != null && (item.itemType == ItemType.Reward)){
                     gamePanel.ui.showMessage("You haven't collected all reward items!");
                     collectedAllRewardItems = false;
                 }
@@ -192,19 +187,8 @@ public class Hero extends Character implements Score{
 //                }
 //            }
         }
-        if(mysteriousSmokeTileOn){
-            MysteriousSmokeTile.engageSmoke(this,gamePanel);
-            //gamePanel.tileM.setSpriteChange(5,"smoke");
 
-        }
-
-        //check enemy collision
-        int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
-        interactEnemy(enemyIndex);
-
-        // Check item collision:
-        int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
-        pickUpItem(itemIndex);
+        handleMysteriousSmoke();
     }
 
     /**
