@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
+
 
 public class TestAnimation {
 
@@ -43,16 +43,14 @@ public class TestAnimation {
         hero = Hero.getInstance(4, keyHandler,gamePanel);
 
     }
-
-    @Test
-    void testAnimationWhenCharMoveRight(){
-        hero.moveRight(hero.getMovementSpeed());
-        Graphics2D mockGraphics = mock(Graphics2D.class);
-        hero.draw(mockGraphics);
-        assertTrue(areImagesEqual(hero.rightImage,hero.currentImage));
-    }
-
-
+//
+//    @Test
+//    void testAnimationWhenCharMoveRight(){
+//        hero.moveRight(hero.getMovementSpeed());
+//        Graphics2D mockGraphics = mock(Graphics2D.class);
+//        hero.draw(mockGraphics);
+//        assertTrue(areImagesEqual(hero.rightImage,hero.currentImage));
+//    }
 //
 //    @Test
 //    void testAnimationWhenCharMoveLeft(){

@@ -77,7 +77,7 @@ public class Hero extends Character implements Score{
         }
     }
 
-    public void checkCollisionAndMoveHero() {
+    public void checkTileCollisionAndMoveHero() {
         //check tile collision
         collisionOn = false;
         mysteriousSmokeTileOn = false;
@@ -104,12 +104,15 @@ public class Hero extends Character implements Score{
             if(!collisionOn)  this.moveRight(movementSpeed);
 
         }
+    }
 
-        //check enemy collision
+    public void checkEnemyCollision(){
         int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
         interactEnemy(enemyIndex);
 
-        // Check item collision:
+    }
+
+    public void checkItemCollsion(){
         int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
         pickUpItem(itemIndex);
 
@@ -135,7 +138,9 @@ public class Hero extends Character implements Score{
             System.exit(0);
         }
 
-        checkCollisionAndMoveHero();
+        checkTileCollisionAndMoveHero();
+        checkEnemyCollision();
+        checkItemCollsion();
 
         if (reachedEndOn){
 

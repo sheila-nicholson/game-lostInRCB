@@ -206,7 +206,7 @@ public class PathFinder {
                 }
 
                 //if there is no node in the openlist, end the loop
-                if (openList.size() == 0) {
+                if (openList.isEmpty()) {
                     break;
                 }
 
