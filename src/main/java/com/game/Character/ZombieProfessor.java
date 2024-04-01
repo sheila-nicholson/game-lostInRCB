@@ -36,7 +36,7 @@ public class ZombieProfessor extends Enemy {
      */
     @Override
     public void getImage() {
-        rightImage = setImage("/Enemy/Zombie_right");
-        leftImage = setImage("/Enemy/Zombie_left");
+        rightImage = utilityTool.setImage("/Enemy/Zombie_right",gamePanel);
+        leftImage = utilityTool.setImage("/Enemy/Zombie_left",gamePanel);
     }
 }

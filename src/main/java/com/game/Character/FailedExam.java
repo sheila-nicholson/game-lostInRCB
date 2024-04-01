@@ -2,6 +2,7 @@ package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
+import com.game.UtilityTool;
 
 /**
  * Represents the "FailedExam" enemy within the game.
@@ -38,8 +39,8 @@ public class FailedExam extends Enemy {
      */
     @Override
     public void getImage() {//pic is temp
-        rightImage = setImage("/Enemy/FailedExam");
-        leftImage = setImage("/Enemy/FailedExam");
+        rightImage = utilityTool.setImage("/Enemy/FailedExam",gamePanel);
+        leftImage = utilityTool.setImage("/Enemy/FailedExam",gamePanel);
     }
 
 }

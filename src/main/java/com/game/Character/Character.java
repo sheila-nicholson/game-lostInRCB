@@ -25,18 +25,14 @@ import java.util.Random;
  */
 public abstract class Character extends Position {
 
-//    protected boolean up, down, left, right, fallen;
-    // fallen -> vortex effect, false -> enemy with character
     public BufferedImage currentImage = null;
     public BufferedImage leftImage, rightImage;
+    public UtilityTool utilityTool = new UtilityTool();
     protected GamePanel gamePanel;
 
-    //up1, up2, down1, down2, .... if we still have time
     public int spriteCounter = 0;
     public int spriteNum = 1;
-
     public boolean onPath = true; //temp for testing]
-
 
     /**
      * Sets the default position of the character within the game world.
@@ -79,7 +75,6 @@ public abstract class Character extends Position {
      */
     public void draw(Graphics2D g2) {
 
-
         switch (currentDirection){
             case LEFT:
                 currentImage = leftImage;
@@ -92,29 +87,10 @@ public abstract class Character extends Position {
                 break;
         }
 
-
         g2.drawImage(currentImage,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
 
     }
 
-    /**
-     * Sets the image for the character based on the provided name.
-     *
-     * @param name the name of the image resource
-     * @return the scaled BufferedImage of the character
-     */
-    public BufferedImage setImage(String name){
-        BufferedImage image = null;
-        UtilityTool uTool = new UtilityTool();
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream( name + ".png"));
-            image = uTool.scaleImage(image, gamePanel.tileSize,gamePanel.tileSize);
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        return image;
-    }
 
     /**
      * Updates the character's movement speed.
@@ -174,7 +150,6 @@ public abstract class Character extends Position {
                 checkCollision();
                 if(collisionOn)
                     currentDirection = Direction.LEFT;
-
 
             }else if(enTopY > nextY && enLeftX < nextX){
                 //up or right

@@ -32,11 +32,7 @@ public class Bed extends RewardItem {
         super(gamePanel);
         this.rewardType = RewardType.BED;
         name = "Bed";
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Bed.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        image = utilityTool.setImage("/Items/Bed",gamePanel);
         // set position, no need to randomize, harder level = more spawn
     }
 

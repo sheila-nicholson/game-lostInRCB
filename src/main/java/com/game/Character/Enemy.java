@@ -2,6 +2,7 @@ package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
+import com.game.UtilityTool;
 
 import java.awt.*;
 import java.util.Random;
@@ -45,7 +46,7 @@ public class Enemy extends Character {
     public Enemy(int speed, GamePanel gamePanel) {
         super(speed, gamePanel);
         this.movementSpeed = speed;
-        this.setPosition(2 * gamePanel.tileSize, 14* gamePanel.tileSize);
+        this.setPosition(2 * gamePanel.tileSize, 14 * gamePanel.tileSize);
     }
 
     /**
@@ -103,7 +104,6 @@ public class Enemy extends Character {
      * This method manages collision detection, action decisions, and movement execution.
      * It ensures that the enemy navigates the game world according to its AI behavior.
      *
-     * @return The current direction of the enemy after the update.
      */
     public void update() {
 

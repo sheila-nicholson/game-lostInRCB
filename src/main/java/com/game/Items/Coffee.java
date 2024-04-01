@@ -34,12 +34,8 @@ public class Coffee extends RewardItem {
         this.rewardType = RewardType.COFFEE;
         // set position, no need to randomize, harder level = less spawn
         name = "Coffee";
+        image = utilityTool.setImage("/Items/Coffee",gamePanel);
 
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Coffee.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

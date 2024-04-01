@@ -34,12 +34,7 @@ public class Vortex extends PunishmentItem {
         super(gamePanel);
         this.gamePanel = gamePanel;
         name = "Vortex";
-
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Vortex.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        image = utilityTool.setImage("/Items/Vortex",gamePanel);
 
     }
 

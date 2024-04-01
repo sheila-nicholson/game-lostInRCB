@@ -31,11 +31,8 @@ public class PileOfBooks extends PunishmentItem {
         this.punishmentType = PunishmentType.BOOKS;
         name = "PileOfBooks";
 
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/PileOfBooks.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        image = utilityTool.setImage("/Items/PileOfBooks",gamePanel);
+
     }
 
     public int getScoreModifier(){

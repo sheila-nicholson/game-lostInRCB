@@ -6,6 +6,7 @@ import com.game.Position;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import com.game.Character.Hero;
+import com.game.UtilityTool;
 
 /**
  * Serves as the base class for all items in the game, defining common properties and methods.
@@ -27,6 +28,7 @@ public abstract class Item extends Position {
     protected int xCoordinate;
     protected int yCoordinate;
     public ItemType itemType;
+    public UtilityTool utilityTool = new UtilityTool();
 
 
     /**
@@ -55,9 +57,7 @@ public abstract class Item extends Position {
      *
      * @param hero The Hero character with which the item has collided.
      */
-    public void collisionAction(Hero hero) {
-
-    }
+    public void collisionAction(Hero hero) {}
 
     public void setPosition(int param_X, int param_y) { // setter
         xCoordinate = param_X;
