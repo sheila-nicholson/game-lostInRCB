@@ -1,6 +1,6 @@
-package com.game.Key;
-
 import com.game.GamePanel.GamePanel;
+import com.game.Key.Direction;
+import com.game.Key.KeyHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,17 +19,37 @@ public class TestKeyHandler {
     }
 
     @Test
-    void testKeyPress() {
+    void testKeyPressUP() {
         KeyEvent keyEvent = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_W, 'W');
         keyHandler.keyPressed(keyEvent);
         assertTrue(keyHandler.getPressed(Direction.UP));
     }
 
     @Test
+    void testKeyPressDown() {
+        KeyEvent keyEvent = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_S, 'S');
+        keyHandler.keyPressed(keyEvent);
+        assertTrue(keyHandler.getPressed(Direction.DOWN));
+    }
+
+    @Test
+    void testKeyPressLeft() {
+        KeyEvent keyEvent = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_A, 'A');
+        keyHandler.keyPressed(keyEvent);
+        assertTrue(keyHandler.getPressed(Direction.LEFT));
+    }
+
+    @Test
+    void testKeyPressRight() {
+        KeyEvent keyEvent = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_D, 'D');
+        keyHandler.keyPressed(keyEvent);
+        assertTrue(keyHandler.getPressed(Direction.RIGHT));
+    }
+
+    @Test
     void testKeyRelease() {
         KeyEvent pressEvent = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_W, 'W');
         keyHandler.keyPressed(pressEvent);
-
         KeyEvent releaseEvent = new KeyEvent(gamePanel, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, KeyEvent.VK_W, 'W');
         keyHandler.keyReleased(releaseEvent);
         assertFalse(keyHandler.getPressed(Direction.UP));
