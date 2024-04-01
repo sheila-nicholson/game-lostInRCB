@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 
 public class TestAnimation {
@@ -43,37 +44,15 @@ public class TestAnimation {
         hero = Hero.getInstance(4, keyHandler,gamePanel);
 
     }
-//
-//    @Test
-//    void testAnimationWhenCharMoveRight(){
-//        hero.moveRight(hero.getMovementSpeed());
-//        Graphics2D mockGraphics = mock(Graphics2D.class);
-//        hero.draw(mockGraphics);
-//        assertTrue(areImagesEqual(hero.rightImage,hero.currentImage));
-//    }
-//
-//    @Test
-//    void testAnimationWhenCharMoveLeft(){
-//
-//        gamePanel.getHero().moveLeft(4);
-//        gamePanel.getHero().draw(gamePanel.g2);
-//        assertTrue(areImagesEqual(gamePanel.getHero().leftImage,gamePanel.getHero().currentImage));
-//
-//    }
-//
-//    @Test
-//    void testAnimationWhenCharMoveUp(){
-//        int expectY = hero.getYPosition() - hero.getMovementSpeed();
-//        hero.moveUp(hero.getMovementSpeed());
-//        assertEquals(expectY,hero.getYPosition());
-//
-//    }
-//
-//    @Test
-//    void testAnimationWhenCharDown(){
-//        int expectY = hero.getYPosition() + hero.getMovementSpeed();
-//        hero.moveDown(hero.getMovementSpeed());
-//        assertEquals(expectY,hero.getYPosition());
-//    }
+
+    @Test
+    void testAnimationWhenCharMoveRight(){
+        hero.moveRight(hero.getMovementSpeed());
+        Graphics2D mockGraphics = mock(Graphics2D.class);
+        hero.draw(mockGraphics);
+        assertTrue(areImagesEqual(hero.rightImage,hero.currentImage));
+    }
+
+    //not finish (need integration test)
 
 }

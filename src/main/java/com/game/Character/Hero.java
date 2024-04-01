@@ -69,12 +69,8 @@ public class Hero extends Character implements Score{
      */
     @Override
     public void getImage() {
-        try{
-            rightImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Hero/Student_right.png")));
-            leftImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Hero/Student_left.png")));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        rightImage = utilityTool.setImage("/Hero/Student_right",gamePanel);
+        leftImage = utilityTool.setImage("/Hero/Student_left",gamePanel);
     }
 
     public void checkTileCollisionAndMoveHero() {
@@ -292,16 +288,6 @@ public class Hero extends Character implements Score{
         this.currentScore += score;
     }
 
-    /**
-     * Retrieves the alive status of the hero.
-     * <p>
-     * This method is used to check if the hero is still alive in the game. It can be utilized
-     * in game logic to determine the outcome of certain events or interactions, such as whether
-     * the game should continue or end based on the hero's survival.
-     *
-     * @return {@code true} if the hero is alive, otherwise {@code false}.
-     */
-    public boolean getAlive(){return this.alive;}
 
 }
 

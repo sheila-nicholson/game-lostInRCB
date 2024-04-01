@@ -87,7 +87,6 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.addKeyListener(keyHandler);
         this.hero = Hero.getInstance(4,this.keyHandler,this);
-        this.enemy = new ZombieProfessor(3,this); //temp speed for testing
 
     }
 

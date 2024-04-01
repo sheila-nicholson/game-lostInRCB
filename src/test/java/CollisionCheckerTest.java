@@ -19,8 +19,6 @@ public class CollisionCheckerTest {
     private String difficulty = "easy";
 
 
-
-
     @BeforeEach
     public void setUp() {
         this.gamePanel = new GamePanel();
