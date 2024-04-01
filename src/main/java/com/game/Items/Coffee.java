@@ -30,16 +30,12 @@ public class Coffee extends RewardItem {
      * @param gamePanel The game panel to which this coffee item belongs.
      */
     public Coffee(GamePanel gamePanel) {
+        super(gamePanel);
         this.rewardType = RewardType.COFFEE;
         // set position, no need to randomize, harder level = less spawn
         name = "Coffee";
-        this.itemType = "Reward";
+        image = utilityTool.setImage("/Items/Coffee",gamePanel);
 
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Coffee.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

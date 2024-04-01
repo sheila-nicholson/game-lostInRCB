@@ -28,16 +28,11 @@ public class APlusPaper extends RewardItem {
      * @param gamePanel The game panel to which this item belongs.
      */
     public APlusPaper(GamePanel gamePanel) {
+        super(gamePanel);
         this.gamePanel = gamePanel;
         this.rewardType = RewardType.APLUSPAPAER;
         name = "APlusPaper";
-        this.itemType = "Reward";
-
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/APlusPaper.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        utilityTool.setImage("/Items/APlusPaper",gamePanel);
     }
 
     /**

@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //still need to update the object and methods related to tail
     // Screen settings:
-    final int originalTileSize = 16; // I changed this because the screen size was too large, not sure if optimal, feel free to update
+    final int originalTileSize = 16;
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;   // 48x48 tile (due to scaling)
     public final int maxScreenCol = 28;        // Changed according to UI mockup - range of columns: 0-27
@@ -37,10 +37,10 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight = tileSize * maxScreeRow ;   // (48*18) = 864 pixels
     private int difficulty;
 
-    private static int width;
-    private static int height;
-    private BufferedImage img;
-    private Graphics g;
+//    private static int width;
+//    private static int height;
+//    private BufferedImage img;
+//    private Graphics g;
     private boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60;
@@ -59,6 +59,8 @@ public class GamePanel extends JPanel implements Runnable{
     private Enemy enemy;
 
     public Item[] item = new Item[25]; // item slots - dictates how many items can be displayed at one time
+
+    public Graphics2D g2;
 
 
     public Hero getHero() {
@@ -85,7 +87,6 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.addKeyListener(keyHandler);
         this.hero = Hero.getInstance(4,this.keyHandler,this);
-        this.enemy = new ZombieProfessor(3,this); //temp speed for testing
 
     }
 
@@ -116,12 +117,10 @@ public class GamePanel extends JPanel implements Runnable{
      * are assigned for different difficulty levels, each with its own speed setting.
      */
     public void setEnemy(){
-        if(tileM.getMapDifficulty().equals("Easy")){
-            this.enemy = new ZombieProfessor(2,this); //temp speed for testing
-        }else if(tileM.getMapDifficulty().equals("Medium")){
-            this.enemy = new Bear(3,this); //temp speed for testing
-        }else if(tileM.getMapDifficulty().equals("Hard")){
-            this.enemy = new FailedExam(4,this); //temp speed for testing
+        switch (tileM.getMapDifficulty()) {
+            case "Easy" -> this.enemy = new ZombieProfessor(2, this); //temp speed for testing
+            case "Medium" -> this.enemy = new Bear(3, this); //temp speed for testing
+            case "Hard" -> this.enemy = new FailedExam(4, this); //temp speed for testing
         }
     }
 
@@ -153,7 +152,6 @@ public class GamePanel extends JPanel implements Runnable{
     public void update() throws IOException {
         hero.update();
         enemy.update();
-//        System.out.println(enemy.update());
     }
 
     /**
@@ -167,14 +165,13 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        g2 = (Graphics2D)g;
 
         tileM.draw(g2);
-
         // items on map
-        for(int i = 0; i < item.length; i++) {
-            if (item[i] != null) {
-                item[i].draw(g2, this);
+        for (Item item : item) {
+            if (item != null) {
+                item.draw(g2, this);
             }
         }
 

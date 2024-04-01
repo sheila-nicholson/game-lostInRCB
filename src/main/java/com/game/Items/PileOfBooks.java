@@ -27,15 +27,12 @@ public class PileOfBooks extends PunishmentItem {
      * @param gamePanel The game panel to which this item belongs.
      */
     public PileOfBooks(GamePanel gamePanel) {
+        super(gamePanel);
         this.punishmentType = PunishmentType.BOOKS;
         name = "PileOfBooks";
-        this.itemType = "Punishment";
 
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/PileOfBooks.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        image = utilityTool.setImage("/Items/PileOfBooks",gamePanel);
+
     }
 
     public int getScoreModifier(){

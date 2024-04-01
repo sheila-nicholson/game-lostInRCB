@@ -58,18 +58,13 @@ public class KeyHandler implements KeyListener{
      * @return {@code true} if the specified key is pressed, {@code false} otherwise.
      */
     public boolean getPressed(Direction d){
-        switch(d){
-            case UP:
-                return up.getPressed();
-            case DOWN:
-                return down.getPressed();
-            case LEFT:
-                return left.getPressed();
-            case RIGHT:
-                return right.getPressed();
-            default:
-                return false;
-        }
+        return switch (d) {
+            case UP -> up.getPressed();
+            case DOWN -> down.getPressed();
+            case LEFT -> left.getPressed();
+            case RIGHT -> right.getPressed();
+            default -> false;
+        };
     }
 
     @Override

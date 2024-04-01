@@ -1,7 +1,11 @@
 package com.game;
 
+import com.game.GamePanel.GamePanel;
+
+import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * Provides utility functions for common operations, such as image scaling.
@@ -31,6 +35,25 @@ public class UtilityTool {
         i2.dispose();
 
         return Image;
+    }
+
+    /**
+     * Sets the image for the character based on the provided name.
+     *
+     * @param name the name of the image resource
+     * @return the scaled BufferedImage of the character
+     */
+    public BufferedImage setImage(String name, GamePanel gamePanel){
+        BufferedImage image = null;
+        UtilityTool uTool = new UtilityTool();
+        try{
+            image = ImageIO.read(getClass().getResourceAsStream( name + ".png"));
+            image = uTool.scaleImage(image, gamePanel.tileSize,gamePanel.tileSize);
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return image;
     }
 
 }

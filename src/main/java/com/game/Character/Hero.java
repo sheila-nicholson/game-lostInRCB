@@ -2,17 +2,16 @@ package com.game.Character;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Items.Item;
+import com.game.Items.ItemType;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Score;
 import com.game.Tile.MysteriousSmokeTile;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -33,8 +32,8 @@ public class Hero extends Character implements Score{
     protected KeyHandler keyHandler;
     public int coffeeTimeEnd;
     public int currentTime;
-    private int itemsCollected = 0;
     public String diff;
+    private int itemsCollected = 0;
 
     /**
      * Initializes the hero character with specific speed, position, and input handling.
@@ -48,21 +47,15 @@ public class Hero extends Character implements Score{
      * @param gamePanel the game panel the hero belongs to
      */
     protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
+
         super(speed,gamePanel);
         this.keyHandler = keyHandler;
-        this.gamePanel = gamePanel;
-        this.solidAreaDefaultX = gamePanel.tileSize;
-        this.solidAreaDefaultY = gamePanel.tileSize;
         this.solidArea = new Rectangle(0, 0, this.solidAreaDefaultX-5, this.solidAreaDefaultY-5);
-        this.setDefaultPosition();
         this.setScore(20);
         this.alive = true;
-
-        getImage();
     }
 
     protected void setDefaultPosition(){
-        //    this.setPosition(this.gamePanel.tileSize,this.gamePanel.tileSize);
         this.setPosition(50,50);
         currentDirection = Direction.RIGHT;
         lastDirection = Direction.RIGHT;
@@ -76,39 +69,55 @@ public class Hero extends Character implements Score{
      */
     @Override
     public void getImage() {
-        try{
-            rightImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Hero/Student_right.png")));
-            leftImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Hero/Student_left.png")));
-        }catch(IOException e){
-            e.printStackTrace();
+        rightImage = utilityTool.setImage("/Hero/Student_right",gamePanel);
+        leftImage = utilityTool.setImage("/Hero/Student_left",gamePanel);
+    }
+
+    public void checkTileCollisionAndMoveHero() {
+        //check tile collision
+        collisionOn = false;
+        mysteriousSmokeTileOn = false;
+        gamePanel.collisionChecker.checkTile(this);
+//        gamePanel.collisionChecker.checkPlayer(this);
+
+        if(keyHandler.getPressed(Direction.UP)){
+            this.currentDirection = Direction.UP;
+            if(!collisionOn)  this.moveUp(movementSpeed);
+
+        }else if (keyHandler.getPressed(Direction.DOWN)) {
+            this.currentDirection = Direction.DOWN;
+            if(!collisionOn)  this.moveDown(movementSpeed);
+
+        }else if (keyHandler.getPressed(Direction.LEFT)) {
+            this.lastDirection = this.currentDirection;
+            this.currentDirection = Direction.LEFT;
+            if(!collisionOn)  this.moveLeft(movementSpeed);
+
+        }else if (keyHandler.getPressed(Direction.RIGHT)) {
+
+            this.lastDirection = this.currentDirection;
+            this.currentDirection = Direction.RIGHT;
+            if(!collisionOn)  this.moveRight(movementSpeed);
+
         }
     }
 
-    /**
-     * Draws the hero character on the game panel.
-     * <p>
-     * This method overrides the {@code draw} method in the superclass, rendering the hero character
-     * on the game panel based on the current direction and position.
-     *
-     * @param g2 the Graphics2D object used for drawing
-     */
-    @Override
-    public void draw(Graphics2D g2) {
+    public void checkEnemyCollision(){
+        int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
+        interactEnemy(enemyIndex);
 
-        BufferedImage image = null;
-        switch (currentDirection){
-            case LEFT:
-                image = leftImage;
-                break;
-            case RIGHT:
-                image = rightImage;
-                break;
-            default:
-                image = (lastDirection == Direction.LEFT)?leftImage:rightImage;
-                break;
+    }
+
+    public void checkItemCollsion(){
+        int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
+        pickUpItem(itemIndex);
+
+    }
+
+    public void handleMysteriousSmoke() {
+        if (mysteriousSmokeTileOn) {
+            MysteriousSmokeTile.engageSmoke(this, gamePanel);
         }
-        g2.drawImage(image,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
-
     }
 
     /**
@@ -120,94 +129,21 @@ public class Hero extends Character implements Score{
      * @throws IOException if there is an error loading image resources
      */
     public void update() throws IOException {
-        if(keyHandler.getPressed(Direction.UP)){
-
-            this.currentDirection = Direction.UP;
-
-        }else if (keyHandler.getPressed(Direction.DOWN)) {
-
-            this.currentDirection = Direction.DOWN;
-
-        }else if (keyHandler.getPressed(Direction.LEFT)) {
-
-            this.lastDirection = this.currentDirection;
-            this.currentDirection = Direction.LEFT;
-
-        }else if (keyHandler.getPressed(Direction.RIGHT)) {
-
-            this.lastDirection = this.currentDirection;
-            this.currentDirection = Direction.RIGHT;
-
-        }
-        //check tile collision
-        collisionOn = false;
-
-        gamePanel.collisionChecker.checkTile(this);
-        gamePanel.collisionChecker.checkPlayer(this);
-
-        if (!collisionOn){
-            if(keyHandler.getPressed(Direction.UP)){
-                this.moveUp(movementSpeed);
-
-            }else if (keyHandler.getPressed(Direction.DOWN)) {
-
-                this.moveDown(movementSpeed);
-
-            }else if (keyHandler.getPressed(Direction.LEFT)) {
-
-                this.moveLeft(movementSpeed);
-
-            }else if (keyHandler.getPressed(Direction.RIGHT)) {
-
-                this.moveRight(movementSpeed);
-
-            }
-        }
-        //check tile collision
-        collisionOn = false;
-        reachedEndOn = false;
-        mysteriousSmokeTileOn = false;
-        //System.out.println(collisionOn);
-        gamePanel.collisionChecker.checkTile(this);
-        if (!collisionOn){
-            if(keyHandler.getPressed(Direction.UP)){
-                this.moveUp(movementSpeed);
-
-            }else if (keyHandler.getPressed(Direction.DOWN)) {
-                this.moveDown(movementSpeed);
-
-            }else if (keyHandler.getPressed(Direction.LEFT)) {
-                this.moveLeft(movementSpeed);
-
-            }else if (keyHandler.getPressed(Direction.RIGHT)) {
-                this.moveRight(movementSpeed);
-
-            }
-        }
 
         if(this.getScore() < 0){    // Game ends if hero's score is negative;
             System.exit(0);
         }
 
+        checkTileCollisionAndMoveHero();
+        checkEnemyCollision();
+        checkItemCollsion();
+
         if (reachedEndOn){
 
             boolean collectedAllRewardItems = true;
 
-            for(int i = 0; i < gamePanel.item.length; i++){
-
-                if(gamePanel.item[i] == null) continue;
-
-                else if(gamePanel.item[i].name == "Bed") {
-                    gamePanel.ui.showMessage("You haven't collected all reward items!");
-                    collectedAllRewardItems = false;
-                }
-
-                else if(gamePanel.item[i].name == "APlusPaper") {
-                    gamePanel.ui.showMessage("You haven't collected all reward items!");
-                    collectedAllRewardItems = false;
-                }
-
-                else if(gamePanel.item[i].name == "Coffee") {
+            for(Item item: gamePanel.getItem()){
+                if (item != null && (item.itemType == ItemType.Reward)){
                     gamePanel.ui.showMessage("You haven't collected all reward items!");
                     collectedAllRewardItems = false;
                 }
@@ -252,19 +188,8 @@ public class Hero extends Character implements Score{
 //                }
 //            }
         }
-        if(mysteriousSmokeTileOn){
-            MysteriousSmokeTile.engageSmoke(this,gamePanel);
-            //gamePanel.tileM.setSpriteChange(5,"smoke");
 
-        }
-
-        //check enemy collision
-        int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
-        interactEnemy(enemyIndex);
-
-        // Check item collision:
-        int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
-        pickUpItem(itemIndex);
+        handleMysteriousSmoke();
     }
 
     /**
@@ -363,16 +288,6 @@ public class Hero extends Character implements Score{
         this.currentScore += score;
     }
 
-    /**
-     * Retrieves the alive status of the hero.
-     * <p>
-     * This method is used to check if the hero is still alive in the game. It can be utilized
-     * in game logic to determine the outcome of certain events or interactions, such as whether
-     * the game should continue or end based on the hero's survival.
-     *
-     * @return {@code true} if the hero is alive, otherwise {@code false}.
-     */
-    public boolean getAlive(){return this.alive;}
 
 }
 

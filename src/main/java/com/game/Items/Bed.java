@@ -27,18 +27,12 @@ public class Bed extends RewardItem {
      * Initializes the item with its image and sets the score bonus for collecting the bed.
      * The bed's image is loaded from resources, and it's marked with the "Bed" reward type.
      *
-     * @param gamePanel The game panel to which this bed item belongs.
      */
     public Bed(GamePanel gamePanel) {
+        super(gamePanel);
         this.rewardType = RewardType.BED;
         name = "Bed";
-        this.itemType = "Reward";
-
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Items/Bed.png")));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        image = utilityTool.setImage("/Items/Bed",gamePanel);
         // set position, no need to randomize, harder level = more spawn
     }
 
