@@ -41,26 +41,6 @@ public class UI {
 
     public void draw(Graphics2D gr2D) {
 
-        /* UNCOMMENT THIS FOR GAME OVER
-        if (gameFinished) {
-            gr2D.setFont(a60);
-            gr2D.setColor(Color.GREEN);
-
-            String txt;
-            int txtLen;
-            int x, y;
-
-            txt = "Game Over" // add conditionals for victory or loss
-            txtLen = (int)gr2D.getFontMetrics().getStringBounds(txt, gr2D).getWidth();
-            x = gp.screenWidth/2 - txtLen/2;
-            y = gp.screenHeight/2 - (gp.tileSize*3);
-            gr2D.drawString(txt, x, y);
-
-            // put this in for time display when you're done "Time:"+deForm.format(timer) (format accordingly)
-
-            gp.gameThread = null;
-        }
-        */
         gr2D.setFont(a40);
         gr2D.setColor(Color.BLUE);
         gr2D.drawString("Score = WIP",150,40);
