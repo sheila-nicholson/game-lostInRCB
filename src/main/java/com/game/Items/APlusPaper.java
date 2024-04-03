@@ -29,10 +29,10 @@ public class APlusPaper extends RewardItem {
      */
     public APlusPaper(GamePanel gamePanel) {
         super(gamePanel);
-        this.gamePanel = gamePanel;
+        //this.gamePanel = gamePanel;
         this.rewardType = RewardType.APLUSPAPAER;
         name = "APlusPaper";
-        utilityTool.setImage("/Items/APlusPaper",gamePanel);
+        image = utilityTool.setImage("/Items/APlusPaper",gamePanel);
     }
 
     /**

@@ -151,7 +151,7 @@ public class Hero extends Character implements Score{
 
             if(collectedAllRewardItems){
                 gamePanel.ui.gameDone = true;
-                //System.exit(0);
+                System.exit(0);
             }
 //            if (this.diff == "Easy") {
 //                if (this.itemsCollected == 15) {
