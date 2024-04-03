@@ -84,7 +84,7 @@ public class APlusPaper extends RewardItem {
 
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
-            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor") {
+            if (Objects.equals(gamePanel.tileM.getTile()[tileNum].getTileType(), "floor")) {
                 validPosition = !(gamePanel.collisionChecker.isHeroIntersecting(this));
                 validPosition = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
             }

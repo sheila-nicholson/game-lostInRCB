@@ -63,7 +63,6 @@ public class KeyHandler implements KeyListener{
             case DOWN -> down.getPressed();
             case LEFT -> left.getPressed();
             case RIGHT -> right.getPressed();
-            default -> false;
         };
     }
 

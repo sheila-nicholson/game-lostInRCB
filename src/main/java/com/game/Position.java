@@ -43,10 +43,10 @@ public class Position {
      * @param param_X The initial X-coordinate.
      * @param param_y The initial Y-coordinate.
      */
-    public Position(int param_X, int param_y){ // parameterized constructor
-        this.X = param_X;
-        this.Y = param_y;
-    }
+//    public Position(int param_X, int param_y){ // parameterized constructor
+//        this.X = param_X;
+//        this.Y = param_y;
+//    }
 
     /**
      * Sets the position of the entity.

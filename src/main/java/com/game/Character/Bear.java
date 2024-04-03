@@ -34,7 +34,7 @@ public class Bear extends Enemy {
     @Override
     public void getImage() {//pic is temp
         rightImage = utilityTool.setImage("/Enemy/Bear_right",gamePanel);
-        leftImage = utilityTool.setImage("/Enemy/Bear_right",gamePanel);
+        leftImage = utilityTool.setImage("/Enemy/Bear_left",gamePanel);
     }
 
 }
