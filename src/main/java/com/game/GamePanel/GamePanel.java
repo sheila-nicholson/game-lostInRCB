@@ -28,8 +28,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     //still need to update the object and methods related to tail
     // Screen settings:
-    final int originalTileSize = 16;
-    final int scale = 3;
+    public final int originalTileSize = 16;
+    public final int scale = 3;
     public final int tileSize = originalTileSize * scale;   // 48x48 tile (due to scaling)
     public final int maxScreenCol = 28;        // Changed according to UI mockup - range of columns: 0-27
     public final int maxScreeRow = 18;         // Changed according to UI mockup - range of rows: 0-17
