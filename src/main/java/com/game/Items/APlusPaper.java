@@ -32,7 +32,7 @@ public class APlusPaper extends RewardItem {
         this.gamePanel = gamePanel;
         this.rewardType = RewardType.APLUSPAPAER;
         name = "APlusPaper";
-        utilityTool.setImage("/Items/APlusPaper",gamePanel);
+        image = utilityTool.setImage("/Items/APlusPaper",gamePanel);
     }
 
     /**
@@ -68,29 +68,29 @@ public class APlusPaper extends RewardItem {
      */
     public void updateItemState() {
 
-        boolean validPosition = false;
+        boolean validPositionItem = false;
+        boolean validPositionHero = false;
         int newRowPos;
         int newColPos;
 
-        while(!validPosition) {
+        while(!validPositionItem && !validPositionHero) {
             // range of rows: 0-17
             // range of columns: 0-27
             newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
             newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            APlusPaper checkPositionValid = new APlusPaper(gamePanel);
+            RewardItem checkPositionValid = new RewardItem(gamePanel);
             checkPositionValid.setPosition(newColPos, newRowPos);
-            //this.setPosition(newColPos * gp.tileSize, newRowPos * gp.tileSize);
 
 
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
-            if (Objects.equals(gamePanel.tileM.getTile()[tileNum].getTileType(), "floor")) {
-                validPosition = !(gamePanel.collisionChecker.isHeroIntersecting(this));
-                validPosition = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
+            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor") {
+                validPositionItem = !(gamePanel.collisionChecker.isHeroIntersecting(checkPositionValid));
+                validPositionHero = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
+
             }
 
-
-            if(validPosition)
+            if(validPositionItem && validPositionHero)
                 this.setPosition(newColPos, newRowPos);
 
         }
