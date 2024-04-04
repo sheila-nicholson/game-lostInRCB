@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class PathFinder {
     GamePanel gamePanel;
-    Node[][] node;
+    public Node[][] node;
     ArrayList<Node> openList = new ArrayList<>();
     public ArrayList<Node> pathList = new ArrayList<>();
     Node startNode, goalNode, currentNode;
@@ -106,12 +106,12 @@ public class PathFinder {
 
         int col = 0;
         int row = 0;
-        int tileNum = 0;
+//        int tileNum = 0;
 
         while (col < gamePanel.maxScreenCol && row < gamePanel.maxScreeRow) {
 
             //set solid node and check tiles
-            tileNum = gamePanel.tileM.getMapTileNum()[col][row];
+            int tileNum = gamePanel.tileM.getMapTileNum()[col][row];
 
             //set cost
             if (gamePanel.tileM.getTile()[tileNum].collision) {
@@ -138,14 +138,16 @@ public class PathFinder {
      *
      * @param node the {@link Node} for which costs are calculated
      */
-    public void getCost(Node node){//not finished
+    public void getCost(Node node){
 
         int xDistance = Math.abs(node.col-startNode.col);
         int yDistance = Math.abs(node.row-startNode.row);
         node.gCost = xDistance + yDistance;
 
-        xDistance = Math.abs(node.col-startNode.col);
-        yDistance = Math.abs(node.row-startNode.row);
+//        xDistance = Math.abs(node.col-startNode.col);
+//        yDistance = Math.abs(node.row-startNode.row);
+        xDistance = Math.abs(node.col-goalNode.col);
+        yDistance = Math.abs(node.row-goalNode.row);
         node.hCost = xDistance + yDistance;
 
         node.fCost = node.gCost + node.hCost;
@@ -164,7 +166,7 @@ public class PathFinder {
      * @return {@code true} if a path to the goal was found, {@code false} otherwise
      */
     public boolean search() {
-        while (!goalReached && step < 4000) { ///temp original: 500
+        while (!goalReached && step < 8000) { ///temp original: 500
             int col = currentNode.col;
             int row = currentNode.row;
 
@@ -205,25 +207,25 @@ public class PathFinder {
                     }
                 }
 
-                //if there is no node in the openlist, end the loop
-                if (openList.isEmpty()) {
-                    break;
-                }
-
-                //after the loop, openList[bestNodeIndex] is the next step => currentNode
-                currentNode = openList.get(bestNodeIndex);
-
-                if (currentNode == goalNode) {
-                    goalReached = true;
-                    trackThePath();
-
-                }
-
-                step++;
+            }
+            //if there is no node in the openlist, end the loop
+            if (openList.isEmpty()) {
+                break;
             }
 
+            //after the loop, openList[bestNodeIndex] is the next step => currentNode
+            currentNode = openList.get(bestNodeIndex);
+
+            if (currentNode == goalNode) {
+                goalReached = true;
+                trackThePath();
+
+            }
+
+            step++;
+
         }
-            return goalReached;
+        return goalReached;
     }
 
     /**

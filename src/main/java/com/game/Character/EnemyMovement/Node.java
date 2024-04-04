@@ -28,5 +28,4 @@ public class Node {
         this.col = col;
         this.row = row;
     }
-
 }
