@@ -46,6 +46,7 @@ public abstract class Character extends Position {
      */
     public abstract void getImage();
 
+
     /**
      * Performs the character's current action, which may include movement or other behaviors.
      * Can be overridden by subclasses to define specific character actions.
@@ -90,8 +91,6 @@ public abstract class Character extends Position {
         g2.drawImage(currentImage,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
 
     }
-
-
     /**
      * Updates the character's movement speed.
      *
@@ -101,17 +100,8 @@ public abstract class Character extends Position {
         this.movementSpeed = speed;
     }
 
+    public void checkCollision(){};
 
-    /**
-     * Checks for and handles collisions with various game elements.
-     */
-    public void checkCollision() {
-        gamePanel.collisionChecker.checkTile(this);
-        gamePanel.collisionChecker.checkItem(this,false);
-        gamePanel.collisionChecker.checkPlayer(this);
-        gamePanel.collisionChecker.checkCharacter(this,gamePanel.getHero());
-        gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
-    }
 
     /**
      * Initiates pathfinding from the character's current position to a specified goal.
@@ -165,17 +155,17 @@ public abstract class Character extends Position {
                 checkCollision();
                 if(collisionOn)
                     currentDirection = Direction.LEFT;
-
-
-            }else if(enTopY < nextY && enLeftX < nextX){
-                //up or right
-                currentDirection = Direction.DOWN;
-                checkCollision();
-                if(collisionOn)
-                    currentDirection = Direction.RIGHT;
-
-
             }
+
+//            else if(enTopY < nextY && enLeftX < nextX){
+//                //up or right
+//                currentDirection = Direction.DOWN;
+//                checkCollision();
+//                if(collisionOn)
+//                    currentDirection = Direction.RIGHT;
+//
+//
+//            }
         }
 
     }
