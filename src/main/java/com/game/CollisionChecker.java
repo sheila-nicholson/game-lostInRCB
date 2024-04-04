@@ -331,6 +331,7 @@ public class CollisionChecker {
                     hero.solidArea.x -= hero.movementSpeed;
                     if (hero.solidArea.intersects(enemy.solidArea)) {
                         hero.collisionOn = true;
+                        index = 1;
                     }
                     break;
                 case RIGHT:

@@ -11,7 +11,7 @@ import com.game.GamePanel.GamePanel;
  * the score modifier associated with each reward item, which can be overridden by subclasses
  * for item-specific behavior.
  */
-public abstract class RewardItem extends Item {
+public class RewardItem extends Item {
     private int scoreBonus;
     protected RewardType rewardType; // tbd
 
