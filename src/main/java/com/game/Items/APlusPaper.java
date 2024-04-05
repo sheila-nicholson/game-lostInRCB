@@ -90,6 +90,7 @@ public class APlusPaper extends RewardItem {
 
             }
 
+
             if(validPositionItem && validPositionHero)
                 this.setPosition(newColPos, newRowPos);
 
