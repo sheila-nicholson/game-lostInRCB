@@ -46,7 +46,7 @@ public class Hero extends Character implements Score{
      * @param keyHandler the key handler for processing player input
      * @param gamePanel the game panel the hero belongs to
      */
-    protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
+    public Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
 
         super(speed,gamePanel);
         this.keyHandler = keyHandler;
@@ -126,10 +126,9 @@ public class Hero extends Character implements Score{
      * Manages movement, collision detection, enemy interactions, and item pickups. Also handles
      * game state transitions such as reaching the end of a level or encountering an enemy.
      *
-     * @throws IOException if there is an error loading image resources
      */
 
-    public void update() throws IOException {
+    public void update() {
 
         if(this.getScore() < 0){    // Game ends if hero's score is negative;
             System.exit(0);
@@ -154,40 +153,6 @@ public class Hero extends Character implements Score{
                 gamePanel.ui.gameDone = true;
                 System.exit(0);
             }
-//            if (this.diff == "Easy") {
-//                if (this.itemsCollected == 15) {
-//                    System.exit(0);//test for terminating the game after collision between hero and enemy
-//                }
-//                else{
-//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (15-this.itemsCollected) + " more.");
-//                }
-//            }
-//
-//            else if (this.diff == "Medium"){
-//                if (this.itemsCollected == 17) {
-//                    System.exit(0);//test for terminating the game after collision between hero and enemy
-//                }
-//                else{
-//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (17-this.itemsCollected) + " more.");
-//                }
-//
-//            }
-//            else if(this.diff == "Hard"){
-//                if (this.itemsCollected == 16) {
-//                    System.exit(0);//test for terminating the game after collision between hero and enemy
-//                }
-//                else{
-//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
-//                }
-//            }
-//            else{
-//                if (this.itemsCollected == 15) {
-//                    System.exit(0);//test for terminating the game after collision between hero and enemy
-//                }
-//                else{
-//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
-//                }
-//            }
         }
 
         handleMysteriousSmoke();
@@ -224,20 +189,6 @@ public class Hero extends Character implements Score{
         }
     }
 
-    /**
-     * Retrieves the singleton instance of the Hero, creating it if it does not already exist.
-     *
-     * @param speed the speed of the hero
-     * @param keyHandler the key handler for the hero
-     * @param gamePanel the game panel to which the hero belongs
-     * @return the singleton instance of the Hero
-     */
-    public static synchronized Hero getInstance(int speed,KeyHandler keyHandler,GamePanel gamePanel) {
-        if (instance == null) {
-            instance = new Hero(speed,keyHandler,gamePanel);
-        }
-        return instance;
-    }
 
     /**
      * Checks if the current score is greater than zero.

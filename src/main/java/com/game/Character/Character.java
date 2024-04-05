@@ -157,15 +157,15 @@ public abstract class Character extends Position {
                     currentDirection = Direction.LEFT;
             }
 
-//            else if(enTopY < nextY && enLeftX < nextX){
-//                //up or right
-//                currentDirection = Direction.DOWN;
-//                checkCollision();
-//                if(collisionOn)
-//                    currentDirection = Direction.RIGHT;
-//
-//
-//            }
+            else if(enTopY < nextY && enLeftX < nextX){
+                //up or right
+                currentDirection = Direction.DOWN;
+                checkCollision();
+                if(collisionOn)
+                    currentDirection = Direction.RIGHT;
+
+
+            }
         }
 
     }
