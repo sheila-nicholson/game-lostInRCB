@@ -2,6 +2,7 @@ package com.game;
 
 import com.game.Key.Direction;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -65,6 +66,7 @@ public class Position {
     public int getYPosition(){return this.Y;}
     public int getMovementSpeed(){return  this.movementSpeed;}
     public Direction getCurrentDirection(){return this.currentDirection;}
+    public void setCurrentDirection(Direction d){this.currentDirection = d;}
 
 
     public void moveUp(int s){this.Y-=s;}
