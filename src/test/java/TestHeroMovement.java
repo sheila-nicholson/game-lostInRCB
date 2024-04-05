@@ -15,7 +15,7 @@ public class TestHeroMovement {
     void setHero(){
         GamePanel gamePanel = new GamePanel();
         KeyHandler keyHandler = new KeyHandler(gamePanel);
-        hero = Hero.getInstance(4, keyHandler,gamePanel);
+        hero = gamePanel.getHero();
     }
 
     @Test
