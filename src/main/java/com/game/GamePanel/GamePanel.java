@@ -7,14 +7,12 @@ import com.game.Character.EnemyMovement.PathFinder;
 import com.game.CollisionChecker;
 import com.game.Items.APlusPaper;
 import com.game.Items.Item;
-import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Tile.TileManager;
 import com.game.UI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
@@ -31,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable{
     // Screen settings:
     public final int originalTileSize = 16;
     public final int scale = 3;
-    public int tileSize = originalTileSize * scale;   // 48x48 tile (due to scaling)
+    public final int tileSize = originalTileSize * scale;   // 48x48 tile (due to scaling)
     public final int maxScreenCol = 28;        // Changed according to UI mockup - range of columns: 0-27
     public final int maxScreeRow = 18;         // Changed according to UI mockup - range of rows: 0-17
     public final int screenWidth = tileSize * maxScreenCol;    // (48*28) = 1,344 pixels
@@ -71,6 +69,30 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
 
+    public void closeGamePanel() {
+        // Stop the game loop
+        running = false;
+
+        // Wait for the game loop to finish
+        if (thread != null) {
+            try {
+                thread.join(); // Wait for the game thread to terminate
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // Re-interrupt the thread
+                System.out.println("Failed to stop the game thread gracefully.");
+            }
+        }
+
+        // Close any other resources like network connections, timers, etc.
+
+        // If you have a JFrame containing this panel, you might want to close it as well
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        if (frame != null) {
+            frame.dispose();
+        }
+    }
+
+
 
     /**
      * Initializes the game panel with default settings.
@@ -85,16 +107,17 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(keyHandler);
-        this.hero = Hero.getInstance(4,this.keyHandler,this);
+        this.hero = new Hero(4,this.keyHandler,this);
+        this.enemy = new Enemy(2,this); //default
 
     }
 
-    public void closeGamePanel() {
-        JFrame frame = (JFrame) getTopLevelAncestor();
-        if (frame != null) {
-            frame.dispose();
-        }
-    }
+//    public void closeGamePanel() {
+//        JFrame frame = (JFrame) getTopLevelAncestor();
+//        if (frame != null) {
+//            frame.dispose();
+//        }
+//    }
 
 //    private synchronized void initializeComponents() {
 //        // Initialize tileM and other components safely here
