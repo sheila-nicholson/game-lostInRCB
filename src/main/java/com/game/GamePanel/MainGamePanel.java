@@ -11,6 +11,7 @@ import com.game.Items.APlusPaper;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
 import com.game.Tile.TileManager;
+import com.game.UI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,18 +25,14 @@ import java.io.IOException;
  * and handles rendering of the game world and UI elements.
  *
  */
-public class MainGamePanel extends GamePanel {
+public class MainGamePanel extends GamePanel{
 
-    protected int timeElapsed;    // time elapsed since game started in seconds
-    public Thread thread;
-
-    public KeyHandler keyHandler = new KeyHandler(this);
-    public TileManager tileM = new TileManager(this,"Easy"); //default
-    public PathFinder pathFinder = new PathFinder(this);
+    private int difficulty;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public GameTerminator gameTerminator;
-
+    public PathFinder pathFinder = new PathFinder(this);
+    public TileManager tileM = new TileManager(this,"Easy"); //default
+    KeyHandler keyHandler = new KeyHandler(this);
 
     /**
      * Initializes the game panel with default settings.
@@ -43,12 +40,13 @@ public class MainGamePanel extends GamePanel {
      * Sets up the game panel size, background color, double buffering, and input handling. It initializes
      * the hero and the enemy characters with default parameters.
      */
-    public MainGamePanel(){
+    public MainGamePanel(){ //not finished
         super();
         this.addKeyListener(keyHandler);
         this.hero = new Hero(4,this.keyHandler,this);
         this.enemy = new Enemy(2,this); //default
         this.item = new Item[25];
+        this.ui = new UI(this);
         gameTerminator = new DefaultGameTerminator(this);
     }
 
@@ -66,6 +64,7 @@ public class MainGamePanel extends GamePanel {
         tileM = new TileManager(this,diff);
         assetSetter.setObject(diff);
         setEnemy();
+
     }
 
     /**
@@ -82,6 +81,16 @@ public class MainGamePanel extends GamePanel {
         setupGame(diff);
         thread = new Thread(this);
         thread.start();
+
+    }
+
+    public void alertItemState() {
+        // Move the position of APlusPaper items every 10 seconds
+        for(int i = 0; i < item.length; i++) {
+
+            if(item[i] instanceof APlusPaper)
+                item[i].updateItemState();
+        }
     }
 
     /**
@@ -91,7 +100,7 @@ public class MainGamePanel extends GamePanel {
      * initializes the {@code enemy} field with a specific type of enemy. Different enemies
      * are assigned for different difficulty levels, each with its own speed setting.
      */
-    public void setEnemy(){
+    public void setEnemy() {
         switch (tileM.getMapDifficulty()) {
             case "Easy" -> this.enemy = new ZombieProfessor(2, this); //temp speed for testing
             case "Medium" -> this.enemy = new Bear(3, this); //temp speed for testing
@@ -99,21 +108,93 @@ public class MainGamePanel extends GamePanel {
         }
     }
 
-    /**
-     * Updates the game state, including player, enemy movements, and interactions.
-     * <p>
-     * This method is called within the game loop to handle game logic updates, such as character
-     * movements, collision detection, and interactions between game objects.
-     *
-     * @throws IOException if there is an error loading resources.
-     */
-    public void alertItemState() {
 
-        // Move the position of APlusPaper items every 10 seconds
-        for (Item value : item) {
-            if (value instanceof APlusPaper)
-                value.updateItemState();
+    /**
+     * Renders the game world and UI components to the screen.
+     * <p>
+     * This method overrides {@link JPanel#paintComponent(Graphics)} to custom draw the game's world and
+     * UI elements. It is called as part of the swing repaint mechanism.
+     *
+     * @param g The {@link Graphics} context used for drawing.
+     */
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g2 = (Graphics2D)g;
+
+        tileM.draw(g2);
+        // items on map
+        for (Item item : item) {
+            if (item != null) {
+                item.draw(g2, (MainGamePanel) this);
+            }
+        }
+
+        enemy.draw(g2);
+        hero.draw(g2);
+        ui.draw(g2);
+        g2.dispose();
+    }
+
+
+    /**
+     * The main game loop that controls game updates and rendering.
+     * <p>
+     * This method runs in a separate thread and is responsible for the game's timing mechanism,
+     * ensuring that updates and rendering occur at a consistent rate. It calculates the delta
+     * time between frames to update game states and re-renders the game at a fixed rate. Additionally,
+     * it handles periodic tasks such as updating item states and managing power-up effects' durations.
+     */
+    @Override
+    public void run() {
+
+        long lastTime = System.nanoTime();
+        double frameInterval = 1000000000.0 / FPS;
+        double delta = 0;
+        long timer = System.currentTimeMillis();
+        long start = System.currentTimeMillis();    // Used to calculate timeElapsed
+        int updates = 0;
+        timeElapsedSec = 0;
+        int previousTimeElapsedSec = 0;
+
+        while (running) {
+            long now = System.nanoTime();
+            long current = System.currentTimeMillis();  // Used to calculated timeElapsed
+            delta += (now - lastTime) / frameInterval;
+            lastTime = now;
+            timeElapsedSec = (int) (current - start) / 1000;
+
+            // Calls updateItemState() every 10 seconds that has elapsed
+            if (previousTimeElapsedSec != timeElapsedSec && timeElapsedSec % 10 == 0) {
+                alertItemState();
+                previousTimeElapsedSec = timeElapsedSec;
+            }
+
+            // Used for ending speed modification effect from coffee object - original hero speed = 4
+            if (hero.coffeeTimeEnd == timeElapsedSec) {
+                hero.setMovementSpeed(4);
+            }
+
+            while (delta >= 1) {
+                try {
+                    this.update();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                this.repaint();
+                delta--;
+                updates++;
+            }
+
+            if (System.currentTimeMillis() - timer > 1000) {
+                //System.out.println("FPS:" + updates); // for testing purposes
+                updates = 0;
+                timer += 1000; // Increment timer by 1 second
+                timeElapsedSec++;
+            }
         }
     }
+
+
 
 }
