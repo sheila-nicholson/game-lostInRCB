@@ -1,9 +1,6 @@
 package com.game.Items;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
-import com.game.Character.Hero;
+import com.game.Characters.Hero;
 import com.game.GamePanel.GamePanel;
 
 /**

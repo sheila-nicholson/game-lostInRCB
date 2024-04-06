@@ -34,6 +34,8 @@ public class Position {
         this.Y = 0;
     }
 
+    public boolean getCollisionOn(){return this.collisionOn;}
+
     public void setMovementSpeed(int speed){
         this.movementSpeed = speed;
     }

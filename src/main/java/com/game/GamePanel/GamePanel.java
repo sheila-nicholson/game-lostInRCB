@@ -1,8 +1,8 @@
 package com.game.GamePanel;
 
 import com.game.AssetSetter;
-import com.game.Character.*;
-import com.game.Character.EnemyMovement.PathFinder;
+import com.game.Characters.*;
+import com.game.Characters.EnemyMovement.PathFinder;
 
 import com.game.CollisionChecker;
 import com.game.Items.APlusPaper;

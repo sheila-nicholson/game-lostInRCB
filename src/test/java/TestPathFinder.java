@@ -1,5 +1,5 @@
-import com.game.Character.Enemy;
-import com.game.Character.EnemyMovement.PathFinder;
+import com.game.Characters.Enemy;
+import com.game.Characters.EnemyMovement.PathFinder;
 import com.game.GamePanel.GamePanel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class TestPathFinder {
         int goalCol = 4;
         int goalRow = 4;
 
-        gamePanel.getEnemy().setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
+        enemy.setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
 
         pathFinder.setNode(startCol, startRow, goalCol, goalRow, enemy);
 
@@ -51,7 +51,7 @@ public class TestPathFinder {
         int goalCol = 25;
         int goalRow = 16;
 
-        gamePanel.getEnemy().setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
+        enemy.setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
         pathFinder.setNode(startCol, startRow, goalCol, goalRow, enemy);
         boolean pathFound = pathFinder.search();
         assertTrue(pathFound);
@@ -66,7 +66,7 @@ public class TestPathFinder {
         int goalCol = 27;
         int goalRow = 16;
 
-        gamePanel.getEnemy().setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
+        enemy.setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
         pathFinder.setNode(startCol, startRow, goalCol, goalRow, enemy);
 
         // Run the pathfinding search
@@ -83,7 +83,7 @@ public class TestPathFinder {
         int goalCol = 0;
         int goalRow = 0;
 
-        gamePanel.getEnemy().setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
+        enemy.setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
         pathFinder.setNode(startCol, startRow, goalCol, goalRow, enemy);
 
         // Run the pathfinding search

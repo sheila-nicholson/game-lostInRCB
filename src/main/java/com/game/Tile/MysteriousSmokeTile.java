@@ -1,9 +1,7 @@
 package com.game.Tile;
 
-import com.game.Character.Hero;
+import com.game.Characters.Hero;
 import com.game.GamePanel.GamePanel;
-
-import java.awt.*;
 
 /**
  * Represents a tile that can affect the player's speed and has visibility toggles.

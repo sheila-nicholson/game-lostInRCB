@@ -1,5 +1,5 @@
-import com.game.Character.Enemy;
-import com.game.Character.Hero;
+import com.game.Characters.Enemy;
+import com.game.Characters.Hero;
 import com.game.CollisionChecker;
 import com.game.GamePanel.GamePanel;
 import com.game.Items.APlusPaper;

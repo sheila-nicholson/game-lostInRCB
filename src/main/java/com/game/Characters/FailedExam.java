@@ -1,8 +1,7 @@
-package com.game.Character;
+package com.game.Characters;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
-import com.game.UtilityTool;
 
 /**
  * Represents the "FailedExam" enemy within the game.

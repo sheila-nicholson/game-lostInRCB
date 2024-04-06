@@ -2,12 +2,9 @@ package com.game.Items;
 
 import com.game.GamePanel.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-import com.game.Character.Hero;
+import com.game.Characters.Hero;
 
 
 /**

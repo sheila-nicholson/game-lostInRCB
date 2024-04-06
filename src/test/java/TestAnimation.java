@@ -1,15 +1,6 @@
-import com.game.Character.Enemy;
-import com.game.Character.Hero;
-import com.game.GamePanel.GamePanel;
-import com.game.Key.Direction;
-import com.game.Key.KeyHandler;
 import com.game.UtilityTool;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

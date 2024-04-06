@@ -1,11 +1,10 @@
 package com.game;
 
-import com.game.Character.Character;
-import com.game.Character.Enemy;
+import com.game.Characters.Character;
+import com.game.Characters.Enemy;
 import com.game.GamePanel.GamePanel;
 import com.game.Items.Item;
-import com.game.Character.Hero;
-import com.game.Tile.MysteriousSmokeTile;
+import com.game.Characters.Hero;
 
 /**
  * Handles collision detection for various game elements.
@@ -276,10 +275,10 @@ public class CollisionChecker {
 
         Boolean tileOccupied = false;
 
-        for(int i = 0; i < item.length; i++) {
-            if(item[i] == null) continue;
-            if(item[i].getXPosition() == newItem.getXPosition()) {
-                if(item[i].getYPosition() == newItem.getYPosition()) {
+        for (Item value : item) {
+            if (value == null) continue;
+            if (value.getXPosition() == newItem.getXPosition()) {
+                if (value.getYPosition() == newItem.getYPosition()) {
                     tileOccupied = true;
                 }
             }
@@ -288,6 +287,15 @@ public class CollisionChecker {
 
     }
 
+
+    public int checkInteract(Character hero, Character enemy){
+
+        if (hero.solidArea.intersects(enemy.solidArea)) {
+            hero.collisionOn = true;
+            return 1;
+        }
+        return 999;
+    }
 
     /**
      * Checks for collisions between the hero and enemies.
@@ -315,31 +323,23 @@ public class CollisionChecker {
 
                 case UP:
                     hero.solidArea.y -= hero.movementSpeed;
-                    if (hero.solidArea.intersects(enemy.solidArea)) {
-                        hero.collisionOn = true;
-                        index = 1;
-                    }
+                    index = checkInteract(hero,enemy);
+
                     break;
                 case DOWN:
                     hero.solidArea.y += hero.movementSpeed;
-                    if (hero.solidArea.intersects(enemy.solidArea)) {
-                        hero.collisionOn = true;
-                        index = 1;
-                    }
+                    index = checkInteract(hero,enemy);
+
                     break;
                 case LEFT:
                     hero.solidArea.x -= hero.movementSpeed;
-                    if (hero.solidArea.intersects(enemy.solidArea)) {
-                        hero.collisionOn = true;
-                        index = 1;
-                    }
+                    index = checkInteract(hero,enemy);
+
                     break;
                 case RIGHT:
                     hero.solidArea.x += hero.movementSpeed;
-                    if (hero.solidArea.intersects(enemy.solidArea)) {
-                        hero.collisionOn = true;
-                        index = 1;
-                    }
+                    index = checkInteract(hero,enemy);
+
                     break;
             }
             hero.solidArea.x = hero.solidAreaDefaultX;

@@ -1,11 +1,7 @@
-package com.game.Character;
+package com.game.Characters;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
-import com.game.UtilityTool;
-
-import java.awt.*;
-import java.util.Random;
 
 /**
  * Represents an enemy character within the game.

@@ -5,7 +5,7 @@ import com.game.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import com.game.Character.Hero;
+import com.game.Characters.Hero;
 import com.game.UtilityTool;
 
 /**

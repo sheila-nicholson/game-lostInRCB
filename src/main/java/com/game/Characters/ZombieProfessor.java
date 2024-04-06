@@ -1,6 +1,5 @@
-package com.game.Character;
+package com.game.Characters;
 import com.game.GamePanel.GamePanel;
-import com.game.Key.Direction;
 
 /**
  * Represents a "ZombieProfessor" enemy type within the game.

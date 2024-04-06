@@ -1,4 +1,4 @@
-import com.game.Character.Hero;
+import com.game.Characters.Hero;
 import com.game.GamePanel.GamePanel;
 import com.game.Key.KeyHandler;
 import org.junit.jupiter.api.BeforeEach;

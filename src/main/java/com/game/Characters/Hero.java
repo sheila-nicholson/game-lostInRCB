@@ -1,4 +1,4 @@
-package com.game.Character;
+package com.game.Characters;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Items.Item;
@@ -8,12 +8,8 @@ import com.game.Key.KeyHandler;
 import com.game.Score;
 import com.game.Tile.MysteriousSmokeTile;
 
-import javax.imageio.ImageIO;
-
 
 import java.awt.*;
-import java.io.IOException;
-import java.util.Objects;
 
 /**
  * Represents the hero character controlled by the player in the game.

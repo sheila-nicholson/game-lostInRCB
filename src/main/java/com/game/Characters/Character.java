@@ -1,18 +1,12 @@
-package com.game.Character;
+package com.game.Characters;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
 import com.game.Position;
 import com.game.UtilityTool;
-import javafx.animation.Animation;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.dnd.DragGestureEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.security.DigestException;
-import java.util.Random;
 
 /**
  * Abstract base class for all game characters, providing common attributes and functionality.
