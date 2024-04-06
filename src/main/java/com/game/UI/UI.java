@@ -1,4 +1,4 @@
-package com.game;
+package com.game.UI;
 
 import com.game.GamePanel.MainGamePanel;
 

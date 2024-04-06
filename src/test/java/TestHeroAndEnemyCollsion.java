@@ -1,6 +1,6 @@
 import com.game.Characters.Enemy;
 import com.game.Characters.Hero;
-import com.game.CollisionChecker;
+import com.game.Utilities.CollisionChecker;
 import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
 import org.junit.jupiter.api.BeforeEach;

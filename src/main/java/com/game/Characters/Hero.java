@@ -5,7 +5,7 @@ import com.game.Items.Item;
 import com.game.Items.ItemType;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
-import com.game.Score;
+import com.game.Utilities.Score;
 import com.game.Tile.MysteriousSmokeTile;
 
 

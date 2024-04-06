@@ -1,5 +1,5 @@
 import com.game.Characters.*;
-import com.game.CollisionChecker;
+import com.game.Utilities.CollisionChecker;
 import com.game.GamePanel.MainGamePanel;
 import com.game.Items.*;
 import com.game.Key.KeyHandler;

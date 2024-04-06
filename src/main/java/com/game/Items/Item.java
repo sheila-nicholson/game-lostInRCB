@@ -1,12 +1,12 @@
 package com.game.Items;
 
 import com.game.GamePanel.MainGamePanel;
-import com.game.Position;
+import com.game.Utilities.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import com.game.Characters.Hero;
-import com.game.UtilityTool;
+import com.game.Utilities.UtilityTool;
 
 /**
  * Serves as the base class for all items in the game, defining common properties and methods.

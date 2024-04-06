@@ -1,6 +1,6 @@
 package com.game.Tile;
 
-import com.game.Position;
+import com.game.Utilities.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

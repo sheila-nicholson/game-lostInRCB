@@ -1,4 +1,4 @@
-package com.game;
+package com.game.Utilities;
 
 import com.game.Characters.Character;
 import com.game.Characters.Enemy;

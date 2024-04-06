@@ -2,8 +2,8 @@ package com.game.Characters;
 
 import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
-import com.game.Position;
-import com.game.UtilityTool;
+import com.game.Utilities.Position;
+import com.game.Utilities.UtilityTool;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -1,12 +1,10 @@
 package com.game.GamePanel;
 
-import com.game.AssetSetter;
 import com.game.Characters.*;
 import com.game.GameTerminator.GameTerminator;
-import com.game.Items.APlusPaper;
 import com.game.Items.Item;
 import com.game.Tile.TileManager;
-import com.game.UI;
+import com.game.UI.UI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,6 +52,5 @@ public abstract class GamePanel extends JPanel implements Runnable, ScreenSettin
         hero.update();
         enemy.update();
     }
-
 
 }

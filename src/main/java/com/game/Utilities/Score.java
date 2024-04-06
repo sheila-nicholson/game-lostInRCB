@@ -1,4 +1,4 @@
-package com.game;
+package com.game.Utilities;
 
 /**
  * Defines the functionality for managing and manipulating score in the game.
