@@ -127,7 +127,7 @@ public class Hero extends Character implements Score{
     public void update() {
 
         if(this.getScore() < 0){    // Game ends if hero's score is negative;
-            System.exit(0);
+            gamePanel.gameTerminator.terminate();
         }
 
         checkTileCollisionAndMoveHero();
@@ -147,7 +147,7 @@ public class Hero extends Character implements Score{
 
             if(collectedAllRewardItems){
                 gamePanel.ui.gameDone = true;
-                System.exit(0);
+                gamePanel.gameTerminator.terminate();
             }
         }
 
@@ -162,9 +162,9 @@ public class Hero extends Character implements Score{
     public void interactEnemy(int enemyIndex){
 
         if(enemyIndex != 999) {
-             System.out.println("collision"); //for testing
-            System.exit(0);//test for terminating the game after collision between hero and enemy
+
             this.alive = false;
+            gamePanel.gameTerminator.terminate();
         }
     }
 

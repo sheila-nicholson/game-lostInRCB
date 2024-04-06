@@ -69,6 +69,7 @@ public class Position {
     public int getMovementSpeed(){return  this.movementSpeed;}
     public Direction getCurrentDirection(){return this.currentDirection;}
     public void setCurrentDirection(Direction d){this.currentDirection = d;}
+    public Direction getLastDirection(){return this.lastDirection;}
 
 
     public void moveUp(int s){this.Y-=s;}
