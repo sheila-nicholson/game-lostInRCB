@@ -1,4 +1,4 @@
-import com.game.Character.*;
+import com.game.Characters.*;
 import com.game.CollisionChecker;
 import com.game.GamePanel.GamePanel;
 import com.game.Items.*;
@@ -18,7 +18,7 @@ public class TestItemScoreBonus {
     public void setUp() {
         gamePanel = new GamePanel();
         keyHandler = new KeyHandler(gamePanel);
-        hero = Hero.getInstance(4, keyHandler,gamePanel);
+        hero = gamePanel.getHero();
         hero.getGamePanel().item[0] = new APlusPaper(gamePanel);
         hero.getGamePanel().item[1] = new Bed(gamePanel);
         hero.getGamePanel().item[2] = new Coffee(gamePanel);
