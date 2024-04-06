@@ -1,6 +1,6 @@
 package com.game;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
@@ -43,7 +43,7 @@ public class UtilityTool {
      * @param name the name of the image resource
      * @return the scaled BufferedImage of the character
      */
-    public BufferedImage setImage(String name, GamePanel gamePanel){
+    public BufferedImage setImage(String name, MainGamePanel gamePanel){
         BufferedImage image = null;
         UtilityTool uTool = new UtilityTool();
         try{

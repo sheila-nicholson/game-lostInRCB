@@ -1,19 +1,17 @@
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Items.*;
-import com.game.Tile.TileManager;
 import org.junit.jupiter.api.*;
-import org.awaitility.*;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSpawnAPlusPapers {
 
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
     private String difficulty = "Easy";
 
     @BeforeEach
     public void setUp() {
-        this.gamePanel = new GamePanel();
+        this.gamePanel = new MainGamePanel();
         gamePanel.setupGame(difficulty);
 
     }

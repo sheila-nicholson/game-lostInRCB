@@ -1,6 +1,6 @@
 package com.game.Characters;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
 
 /**
@@ -24,7 +24,7 @@ public class FailedExam extends Enemy {
      * @param speed the movement speed of the {@code FailedExam} enemy
      * @param gamePanel the game panel the enemy belongs to
      */
-    public FailedExam(int speed, GamePanel gamePanel){
+    public FailedExam(int speed, MainGamePanel gamePanel){
         super(speed,gamePanel);
         this.setPosition(5*gamePanel.tileSize,11*gamePanel.tileSize);
         this.currentDirection=Direction.LEFT;

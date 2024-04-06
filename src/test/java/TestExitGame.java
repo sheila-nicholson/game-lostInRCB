@@ -1,6 +1,6 @@
 import com.game.Characters.Enemy;
 import com.game.Characters.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.GameTerminator.DefaultGameTerminator;
 import com.game.GameTerminator.GameTerminator;
 import com.game.Key.Direction;
@@ -13,13 +13,13 @@ import static org.mockito.Mockito.verify;
 
 public class TestExitGame {
 
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
     private Enemy enemy;
     private Hero hero;
 
     @BeforeEach
     void setUp() {
-        this.gamePanel = new GamePanel();
+        this.gamePanel = new MainGamePanel();
 
         gamePanel.setupGame("Easy");
         hero = gamePanel.getHero();

@@ -1,6 +1,6 @@
 package com.game.Characters;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
 
 /**
@@ -39,7 +39,7 @@ public class Enemy extends Character {
      * @param speed the movement speed of the enemy
      * @param gamePanel the game panel the enemy belongs to
      */
-    public Enemy(int speed, GamePanel gamePanel) {
+    public Enemy(int speed, MainGamePanel gamePanel) {
         super(speed, gamePanel);
         this.movementSpeed = speed;
         this.setPosition(2 * gamePanel.tileSize, 14 * gamePanel.tileSize);

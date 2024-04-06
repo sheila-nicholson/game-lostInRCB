@@ -1,9 +1,8 @@
 import com.game.Characters.Enemy;
 import com.game.Characters.Hero;
 import com.game.CollisionChecker;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestHeroAndEnemyCollsion {
 
     private CollisionChecker collisionChecker;
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
     private String difficulty = "easy";
     private Hero hero;
     private Enemy enemy;
@@ -21,7 +20,7 @@ public class TestHeroAndEnemyCollsion {
 
     @BeforeEach
     void setUp() {
-        this.gamePanel = new GamePanel();
+        this.gamePanel = new MainGamePanel();
         this.collisionChecker = gamePanel.collisionChecker;
         gamePanel.setupGame(difficulty);
         hero = gamePanel.getHero();

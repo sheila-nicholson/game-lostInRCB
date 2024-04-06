@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents items in the game that reward the player upon collection.
@@ -15,7 +15,7 @@ public class RewardItem extends Item {
     private int scoreBonus;
     protected RewardType rewardType; // tbd
 
-    public RewardItem(GamePanel gamePanel){this.itemType = ItemType.Reward;}
+    public RewardItem(MainGamePanel gamePanel){this.itemType = ItemType.Reward;}
 
     /**
      * Retrieves the score bonus amount provided by this reward item.

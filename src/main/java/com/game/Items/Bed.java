@@ -1,7 +1,7 @@
 package com.game.Items;
 
 import com.game.Characters.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a bed item in the game, serving as a main reward for the player.
@@ -25,7 +25,7 @@ public class Bed extends RewardItem {
      * The bed's image is loaded from resources, and it's marked with the "Bed" reward type.
      *
      */
-    public Bed(GamePanel gamePanel) {
+    public Bed(MainGamePanel gamePanel) {
         super(gamePanel);
         this.rewardType = RewardType.BED;
         name = "Bed";

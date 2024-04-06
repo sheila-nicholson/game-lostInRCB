@@ -1,4 +1,4 @@
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,12 +9,12 @@ import static org.mockito.Mockito.*;
 import java.awt.event.KeyEvent;
 
 public class TestKeyHandler {
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
     private KeyHandler keyHandler;
 
     @BeforeEach
     void setUp() {
-        gamePanel = mock(GamePanel.class);
+        gamePanel = mock(MainGamePanel.class);
         keyHandler = new KeyHandler(gamePanel);
     }
 

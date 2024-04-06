@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents items that have negative effects on the player, such as reducing score.
@@ -14,7 +14,7 @@ public abstract class PunishmentItem extends Item {
     protected PunishmentType punishmentType;
     protected int damagePoints;
 
-    public PunishmentItem(GamePanel gamePanel){
+    public PunishmentItem(MainGamePanel gamePanel){
         this.itemType = ItemType.Punishment;
     }
 

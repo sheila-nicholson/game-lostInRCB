@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import java.util.concurrent.ThreadLocalRandom;
 import com.game.Characters.Hero;
@@ -25,7 +25,7 @@ public class APlusPaper extends RewardItem {
      *
      * @param gamePanel The game panel to which this item belongs.
      */
-    public APlusPaper(GamePanel gamePanel) {
+    public APlusPaper(MainGamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
         this.rewardType = RewardType.APLUSPAPAER;

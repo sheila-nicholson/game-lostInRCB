@@ -1,6 +1,6 @@
 package com.game.Characters;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Items.Item;
 import com.game.Items.ItemType;
 import com.game.Key.Direction;
@@ -42,7 +42,7 @@ public class Hero extends Character implements Score{
      * @param keyHandler the key handler for processing player input
      * @param gamePanel the game panel the hero belongs to
      */
-    public Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
+    public Hero(int speed, KeyHandler keyHandler, MainGamePanel gamePanel){
 
         super(speed,gamePanel);
         this.keyHandler = keyHandler;

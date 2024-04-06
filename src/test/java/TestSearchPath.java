@@ -1,5 +1,5 @@
 import com.game.Characters.Enemy;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestSearchPath {
 
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
     private Enemy enemy;
 
     @BeforeEach
     void setUp(){
-        gamePanel = new GamePanel();
+        gamePanel = new MainGamePanel();
         gamePanel.setupGame("Easy");
         enemy = gamePanel.getEnemy();
 

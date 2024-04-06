@@ -1,5 +1,5 @@
 package com.game.Characters;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a "ZombieProfessor" enemy type within the game.
@@ -21,7 +21,7 @@ public class ZombieProfessor extends Enemy {
      * @param speed the movement speed of the {@code ZombieProfessor}
      * @param gamePanel the game panel the enemy belongs to
      */
-    public ZombieProfessor (int speed, GamePanel gamePanel){
+    public ZombieProfessor (int speed, MainGamePanel gamePanel){
         super(speed, gamePanel);
     }
 

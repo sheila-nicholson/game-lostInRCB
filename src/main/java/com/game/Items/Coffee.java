@@ -1,7 +1,7 @@
 package com.game.Items;
 
 import com.game.Characters.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a coffee item in the game that temporarily increases the Hero's movement speed.
@@ -26,7 +26,7 @@ public class Coffee extends RewardItem {
      *
      * @param gamePanel The game panel to which this coffee item belongs.
      */
-    public Coffee(GamePanel gamePanel) {
+    public Coffee(MainGamePanel gamePanel) {
         super(gamePanel);
         this.rewardType = RewardType.COFFEE;
         // set position, no need to randomize, harder level = less spawn

@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Position;
 
 import java.awt.*;
@@ -24,7 +24,7 @@ public abstract class Item extends Position {
     public int solidAreaDefaultX = 48;
     public int solidAreaDefaultY = 48;
     public boolean collision = true;
-    protected GamePanel gamePanel;
+    protected MainGamePanel gamePanel;
     protected int xCoordinate;
     protected int yCoordinate;
     public ItemType itemType;
@@ -37,7 +37,7 @@ public abstract class Item extends Position {
      * @param g2 The Graphics2D object used for drawing.
      * @param gp The game panel where the item is to be drawn.
      */
-    public void draw(Graphics2D g2, GamePanel gp) {
+    public void draw(Graphics2D g2, MainGamePanel gp) {
 
         int screenX = getXPosition();
         int screenY = getYPosition();

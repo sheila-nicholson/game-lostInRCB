@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -27,7 +27,7 @@ public class Vortex extends PunishmentItem {
      *
      * @param gamePanel The game panel to which this vortex item belongs.
      */
-    public Vortex(GamePanel gamePanel) {
+    public Vortex(MainGamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
         name = "Vortex";

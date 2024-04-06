@@ -1,7 +1,7 @@
 package com.game.Items;
 
 import com.game.Characters.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a pile of books item that, when collected, reduces the player's score.
@@ -23,7 +23,7 @@ public class PileOfBooks extends PunishmentItem {
      *
      * @param gamePanel The game panel to which this item belongs.
      */
-    public PileOfBooks(GamePanel gamePanel) {
+    public PileOfBooks(MainGamePanel gamePanel) {
         super(gamePanel);
         this.punishmentType = PunishmentType.BOOKS;
         name = "PileOfBooks";
