@@ -1,2 +1,5 @@
-package com.game.GameTerminator;public interface GameTerminator {
+package com.game.GameTerminator;
+
+public interface GameTerminator {
+    void terminate();
 }

@@ -5,6 +5,8 @@ import com.game.Characters.*;
 import com.game.Characters.EnemyMovement.PathFinder;
 
 import com.game.CollisionChecker;
+import com.game.GameTerminator.DefaultGameTerminator;
+import com.game.GameTerminator.GameTerminator;
 import com.game.Items.APlusPaper;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
@@ -13,6 +15,7 @@ import com.game.UI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
@@ -36,7 +39,9 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight = tileSize * maxScreeRow ;   // (48*18) = 864 pixels
     private int difficulty;
 
-    private boolean running = false;
+
+
+    public boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60;
 
@@ -47,15 +52,15 @@ public class GamePanel extends JPanel implements Runnable{
     public PathFinder pathFinder = new PathFinder(this);
     private int timeElapsed;    // time elapsed since game started in seconds
 
-    Thread thread;
+    public Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     private Hero hero;
     private Enemy enemy;
 
     public Item[] item = new Item[25]; // item slots - dictates how many items can be displayed at one time
-
     public Graphics2D g2;
+    public GameTerminator gameTerminator;
 
 
     public Hero getHero() {
@@ -69,30 +74,16 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
 
-    public void closeGamePanel() {
-        // Stop the game loop
-        running = false;
-
-        // Wait for the game loop to finish
-        if (thread != null) {
-            try {
-                thread.join(); // Wait for the game thread to terminate
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Re-interrupt the thread
-                System.out.println("Failed to stop the game thread gracefully.");
-            }
-        }
-
-        // Close any other resources like network connections, timers, etc.
-
-        // If you have a JFrame containing this panel, you might want to close it as well
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        if (frame != null) {
-            frame.dispose();
-        }
-    }
-
-
+//    public void closeGamePanel() {
+//
+//        System.out.println("Game over! Thank you for playing.");
+//        running = false;
+//        thread = null;
+//        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+//        if (frame != null) {
+//            frame.dispose();
+//        }
+//    }
 
     /**
      * Initializes the game panel with default settings.
@@ -109,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.addKeyListener(keyHandler);
         this.hero = new Hero(4,this.keyHandler,this);
         this.enemy = new Enemy(2,this); //default
-
+        gameTerminator = new DefaultGameTerminator(this);
     }
 
 //    public void closeGamePanel() {
