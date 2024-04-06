@@ -148,6 +148,7 @@ public class Hero extends Character implements Score{
             if(collectedAllRewardItems){
                 gamePanel.ui.gameDone = true;
                 gamePanel.gameTerminator.terminate();
+
             }
         }
 

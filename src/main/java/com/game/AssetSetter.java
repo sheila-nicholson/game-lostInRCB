@@ -32,34 +32,6 @@ public class AssetSetter {
 
     }
 
-    private Position SpawnRandPosItems(Item[] items){
-
-        int newRowPos;
-        int newColPos;
-        Position checkPosValid = new Position();
-        boolean validPosition = false;
-
-        while (!validPosition) {
-
-            boolean floorPosition = false;
-            boolean itemOccupy = false;
-            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-            checkPosValid.setPosition(newColPos * 48, newRowPos * 48);
-            floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-            itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(items, checkPosValid));
-
-            if (floorPosition && itemOccupy)
-                return checkPosValid;
-
-        }
-        return checkPosValid;
-    }
-
-
-
-
 
     // Setting original position of objects on the map
     /**

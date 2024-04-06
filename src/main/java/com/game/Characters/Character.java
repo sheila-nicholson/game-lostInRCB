@@ -63,6 +63,10 @@ public abstract class Character extends Position {
             this.getImage();
     }
 
+    public GamePanel getGamePanel() {
+        return gamePanel;
+    }
+
     /**
      * Draws the character on the game panel.
      *
