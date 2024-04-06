@@ -20,6 +20,7 @@ public abstract class GamePanel extends JPanel implements Runnable, ScreenSettin
     public Item[] item;
     public Graphics2D g2;
     public TileManager tileM;
+    public int FPS = 60;
 
     public UI ui = new UI((MainGamePanel) this);
 

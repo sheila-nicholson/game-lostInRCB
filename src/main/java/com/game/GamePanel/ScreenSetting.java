@@ -8,5 +8,5 @@ public interface ScreenSetting {
     int maxScreeRow = 18;         // Changed according to UI mockup - range of rows: 0-17
     int screenWidth = tileSize * maxScreenCol;    // (48*28) = 1,344 pixels
     int screenHeight = tileSize * maxScreeRow ;  // (48*18) = 864 pixels
-    int FPS = 60;
+
 }
