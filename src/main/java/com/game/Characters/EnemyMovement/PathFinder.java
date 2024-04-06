@@ -95,10 +95,10 @@ public class PathFinder {
         for (int r = 0; r < gamePanel.maxScreeRow; r++) {
             for (int c = 0; c < gamePanel.maxScreenCol; c++) {
                 int tileNum = gamePanel.tileM.getMapTileNum()[c][r];
-
-                if (gamePanel.tileM.getTile()[tileNum].getCollisionOn()) {
-                    node[c][r].solid = true;
-                }
+//                if (gamePanel.tileM.getTile()[tileNum].getCollisionOn()) {
+//                    node[c][r].solid = true;
+//                    System.out.println("check");
+//                }
 
                 getCost(node[c][r]);
             }
@@ -233,12 +233,10 @@ public class PathFinder {
      * @param node the {@link Node} to be opened
      */
     public void openNode(Node node){
-        if (!node.open && !node.checked && !node.solid){
-            node.open =true;
+        if (!node.open && !node.checked && !node.solid) {
+            node.open = true;
             node.parent = currentNode;
             openList.add(node);
-        }else{
-            System.out.println("hell");
         }
     }
 
