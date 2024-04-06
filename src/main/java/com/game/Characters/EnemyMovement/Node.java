@@ -1,4 +1,4 @@
-package com.game.Character.EnemyMovement;
+package com.game.Characters.EnemyMovement;
 
 /**
  * Represents a single node in the grid for pathfinding purposes.
@@ -28,5 +28,4 @@ public class Node {
         this.col = col;
         this.row = row;
     }
-
 }

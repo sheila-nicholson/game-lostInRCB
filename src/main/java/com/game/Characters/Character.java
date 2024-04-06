@@ -1,18 +1,12 @@
-package com.game.Character;
+package com.game.Characters;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
 import com.game.Position;
 import com.game.UtilityTool;
-import javafx.animation.Animation;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.dnd.DragGestureEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.security.DigestException;
-import java.util.Random;
 
 /**
  * Abstract base class for all game characters, providing common attributes and functionality.
@@ -45,6 +39,7 @@ public abstract class Character extends Position {
      * Must be implemented by subclasses to specify character appearance.
      */
     public abstract void getImage();
+
 
     /**
      * Performs the character's current action, which may include movement or other behaviors.
@@ -94,8 +89,6 @@ public abstract class Character extends Position {
         g2.drawImage(currentImage,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
 
     }
-
-
     /**
      * Updates the character's movement speed.
      *
@@ -105,17 +98,8 @@ public abstract class Character extends Position {
         this.movementSpeed = speed;
     }
 
+    public void checkCollision(){};
 
-    /**
-     * Checks for and handles collisions with various game elements.
-     */
-    public void checkCollision() {
-        gamePanel.collisionChecker.checkTile(this);
-        gamePanel.collisionChecker.checkItem(this,false);
-        gamePanel.collisionChecker.checkPlayer(this);
-        gamePanel.collisionChecker.checkCharacter(this,gamePanel.getHero());
-        gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
-    }
 
     /**
      * Initiates pathfinding from the character's current position to a specified goal.
@@ -141,7 +125,7 @@ public abstract class Character extends Position {
 
             if(enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gamePanel.tileSize){
                 currentDirection = Direction.UP;
-            }else if(enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gamePanel.tileSize){
+            }else if( enLeftX >= nextX && enTopY < nextY && enRightX < nextX + gamePanel.tileSize){
                 currentDirection = Direction.DOWN;
             }else if(enTopY >= nextY && enBottomY < nextY + gamePanel.tileSize){
                 if(enLeftX > nextX)
@@ -155,31 +139,31 @@ public abstract class Character extends Position {
                 if(collisionOn)
                     currentDirection = Direction.LEFT;
 
-            }else if(enTopY > nextY && enLeftX < nextX){
+            }else if(enLeftX < nextX && enTopY > nextY){
                 //up or right
                 currentDirection = Direction.UP;
                 checkCollision();
                 if(collisionOn)
                     currentDirection = Direction.RIGHT;
 
-
-            }else if(enTopY < nextY && enLeftX > nextX){
+           //}else if(enTopY < nextY && enLeftX > nextX){
+            }else{
                 //down and left
                 currentDirection = Direction.DOWN;
                 checkCollision();
                 if(collisionOn)
                     currentDirection = Direction.LEFT;
-
-
-            }else if(enTopY < nextY && enLeftX < nextX){
-                //up or right
-                currentDirection = Direction.DOWN;
-                checkCollision();
-                if(collisionOn)
-                    currentDirection = Direction.RIGHT;
-
-
             }
+//
+//            else if(enTopY < nextY && enLeftX < nextX){
+//                //up or right
+//                currentDirection = Direction.DOWN;
+//                checkCollision();
+//                if(collisionOn)
+//                    currentDirection = Direction.RIGHT;
+//
+//
+//            }
         }
 
     }

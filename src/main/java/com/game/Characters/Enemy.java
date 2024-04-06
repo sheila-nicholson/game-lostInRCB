@@ -1,11 +1,7 @@
-package com.game.Character;
+package com.game.Characters;
 
 import com.game.GamePanel.GamePanel;
 import com.game.Key.Direction;
-import com.game.UtilityTool;
-
-import java.awt.*;
-import java.util.Random;
 
 /**
  * Represents an enemy character within the game.
@@ -60,7 +56,7 @@ public class Enemy extends Character {
         int index = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getHero());
         if(index != 999){
             this.gamePanel.getHero().alive = false;
-            System.exit(0);//test for terminating the game after collision between enemy and hero
+            gamePanel.gameTerminator.terminate();
         }
     }
 
@@ -71,31 +67,10 @@ public class Enemy extends Character {
     @Override
     public void setAction() {
 
-        if(onPath){
-
             int goalCol = (gamePanel.getHero().getXPosition() + gamePanel.getHero().solidArea.x)/gamePanel.tileSize;
             int goalRow = (gamePanel.getHero().getYPosition() + gamePanel.getHero().solidArea.y)/gamePanel.tileSize;
             searchPath(goalCol,goalRow);
 
-        }else{
-
-            actionCounter++;
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;
-
-            if (actionCounter == 2) {//temp
-                if (i <= 25) {
-                    currentDirection = Direction.UP;
-                } else if (i <= 50) {
-                    currentDirection = Direction.DOWN;
-                } else if (i <= 75) {
-                    currentDirection = Direction.LEFT;
-                } else {
-                    currentDirection = Direction.RIGHT;
-                }
-                gamePanel.collisionChecker.checkTile(this);
-            }
-        }
     }
 
     /**
@@ -112,11 +87,11 @@ public class Enemy extends Character {
         checkCollision();
         setAction();
 
-        if(!collisionOn) {
+        if (!collisionOn) {
             switch (currentDirection) {
                 case UP:
                     this.moveUp(movementSpeed);
-                   break;
+                    break;
                 case DOWN:
                     this.moveDown(movementSpeed);
                     break;
@@ -130,5 +105,7 @@ public class Enemy extends Character {
         }
 
     }
+
+
 
 }

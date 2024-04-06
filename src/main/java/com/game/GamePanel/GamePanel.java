@@ -1,10 +1,12 @@
 package com.game.GamePanel;
 
 import com.game.AssetSetter;
-import com.game.Character.*;
-import com.game.Character.EnemyMovement.PathFinder;
+import com.game.Characters.*;
+import com.game.Characters.EnemyMovement.PathFinder;
 
 import com.game.CollisionChecker;
+import com.game.GameTerminator.DefaultGameTerminator;
+import com.game.GameTerminator.GameTerminator;
 import com.game.Items.APlusPaper;
 import com.game.Items.Item;
 import com.game.Key.KeyHandler;
@@ -28,8 +30,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     //still need to update the object and methods related to tail
     // Screen settings:
-    final int originalTileSize = 16;
-    final int scale = 3;
+    public final int originalTileSize = 16;
+    public final int scale = 3;
     public final int tileSize = originalTileSize * scale;   // 48x48 tile (due to scaling)
     public final int maxScreenCol = 28;        // Changed according to UI mockup - range of columns: 0-27
     public final int maxScreeRow = 18;         // Changed according to UI mockup - range of rows: 0-17
@@ -37,30 +39,28 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight = tileSize * maxScreeRow ;   // (48*18) = 864 pixels
     private int difficulty;
 
-//    private static int width;
-//    private static int height;
-//    private BufferedImage img;
-//    private Graphics g;
-    private boolean running = false;
+
+
+    public boolean running = false;
     KeyHandler keyHandler = new KeyHandler(this);
     private int FPS = 60;
 
     private int timeElapsedSec;    // time elapsed since game started in seconds
     public UI ui = new UI(this);
 
-    public TileManager tileM;
+    public TileManager tileM = new TileManager(this,"Easy"); //default
     public PathFinder pathFinder = new PathFinder(this);
     private int timeElapsed;    // time elapsed since game started in seconds
 
-    Thread thread;
+    public Thread thread;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     private Hero hero;
     private Enemy enemy;
 
     public Item[] item = new Item[25]; // item slots - dictates how many items can be displayed at one time
-
     public Graphics2D g2;
+    public GameTerminator gameTerminator;
 
 
     public Hero getHero() {
@@ -72,6 +72,18 @@ public class GamePanel extends JPanel implements Runnable{
     public Item[] getItem() {
         return this.item;
     }
+
+
+//    public void closeGamePanel() {
+//
+//        System.out.println("Game over! Thank you for playing.");
+//        running = false;
+//        thread = null;
+//        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+//        if (frame != null) {
+//            frame.dispose();
+//        }
+//    }
 
     /**
      * Initializes the game panel with default settings.
@@ -86,28 +98,64 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(keyHandler);
-        this.hero = Hero.getInstance(4,this.keyHandler,this);
+        this.hero = new Hero(4,this.keyHandler,this);
+        this.enemy = new Enemy(2,this); //default
+        gameTerminator = new DefaultGameTerminator(this);
+    }
+
+//    public void closeGamePanel() {
+//        JFrame frame = (JFrame) getTopLevelAncestor();
+//        if (frame != null) {
+//            frame.dispose();
+//        }
+//    }
+
+//    private synchronized void initializeComponents() {
+//        // Initialize tileM and other components safely here
+//        tileM = new TileManager(this, "defaultDifficulty"); // Just an example
+//        pathFinder = new PathFinder(this);
+//        // other necessary initializations
+//    }
+
+
+
+    /**
+     * Sets the game's difficulty level and initializes game components accordingly.
+     * <p>
+     * Depending on the difficulty level, different enemies are spawned, and other game parameters
+     * are adjusted. This method also initializes the {@link TileManager}, {@link AssetSetter}, and
+     * sets the initial enemy for the game based on the difficulty.
+     *
+     * @param diff A {@link String} representing the game's difficulty level.
+     */
+    public void  setupGame(String diff) {
+        hero.diff = diff;
+//        synchronized (this){
+            tileM = new TileManager(this,diff);
+            assetSetter.setObject(diff);
+            setEnemy();
+//        }
+
 
     }
 
-    public void closeGamePanel() {
-        JFrame frame = (JFrame) getTopLevelAncestor();
-        if (frame != null) {
-            frame.dispose();
-        }
-    }
     /**
      * Starts the game loop in a new thread.
      * <p>
      * This method checks if the game is already running to prevent multiple instances of the game loop.
      * It then starts a new thread that controls the game loop, updating and rendering the game state.
      */
-    public synchronized void startGame(){
+    public void  startGame(String diff){
+        //public synchronized void startGame
         if(running) return;
         running = true;
+
+        setupGame(diff);
         thread = new Thread(this);
         thread.start();
+
     }
+
 
     /**
      * Sets the enemy based on the current game difficulty level.
@@ -122,24 +170,13 @@ public class GamePanel extends JPanel implements Runnable{
             case "Medium" -> this.enemy = new Bear(3, this); //temp speed for testing
             case "Hard" -> this.enemy = new FailedExam(4, this); //temp speed for testing
         }
-    }
 
-    /**
-     * Sets the game's difficulty level and initializes game components accordingly.
-     * <p>
-     * Depending on the difficulty level, different enemies are spawned, and other game parameters
-     * are adjusted. This method also initializes the {@link TileManager}, {@link AssetSetter}, and
-     * sets the initial enemy for the game based on the difficulty.
-     *
-     * @param diff A {@link String} representing the game's difficulty level.
-     */
-    public void setupGame(String diff) {
-        hero.diff = diff;
-        tileM = new TileManager(this,diff);
-        assetSetter.setObject(diff);
-        setEnemy();
+//        hero.setPosition( 9 * this.tileSize+2, 4 * this.tileSize);
+//        hero.setPosition(10 * this.tileSize, 5 * this.tileSize);
 
     }
+
+
 
     /**
      * Updates the game state, including player, enemy movements, and interactions.
@@ -252,4 +289,6 @@ public class GamePanel extends JPanel implements Runnable{
             }
         }
     }
+
+
 }

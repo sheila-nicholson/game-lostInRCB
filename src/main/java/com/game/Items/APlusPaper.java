@@ -1,11 +1,9 @@
 package com.game.Items;
 
 import com.game.GamePanel.GamePanel;
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
+
 import java.util.concurrent.ThreadLocalRandom;
-import com.game.Character.Hero;
+import com.game.Characters.Hero;
 
 /**
  * Represents an A+ paper item in the game that grants the player a score bonus upon collection.

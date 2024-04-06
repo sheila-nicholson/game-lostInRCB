@@ -1,6 +1,5 @@
 package com.game;
 
-import com.game.Character.Hero;
 import com.game.GamePanel.GamePanel;
 
 import java.awt.Color;

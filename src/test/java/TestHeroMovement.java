@@ -1,4 +1,4 @@
-import com.game.Character.Hero;
+import com.game.Characters.Hero;
 import com.game.GamePanel.GamePanel;
 import com.game.Key.KeyHandler;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +15,7 @@ public class TestHeroMovement {
     void setHero(){
         GamePanel gamePanel = new GamePanel();
         KeyHandler keyHandler = new KeyHandler(gamePanel);
-        hero = Hero.getInstance(4, keyHandler,gamePanel);
+        hero = gamePanel.getHero();
     }
 
     @Test

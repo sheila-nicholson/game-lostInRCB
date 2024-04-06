@@ -10,8 +10,8 @@
 
 package com.game.Map;
 
-import com.game.Character.Enemy;
-import com.game.Character.Hero;
+import com.game.Characters.Enemy;
+import com.game.Characters.Hero;
 import com.game.Items.Wall;
 import com.game.Tile.Tile;
 
