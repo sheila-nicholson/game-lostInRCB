@@ -17,8 +17,8 @@ public class CollisionCheckerTest {
 //    private GamePanel gamePanel;
 //    //private Item[] items;
 //    private String difficulty = "easy";
-
-
+//
+//
 //    @BeforeEach
 //    public void setUp() {
 //        this.gamePanel = new GamePanel();
@@ -26,7 +26,7 @@ public class CollisionCheckerTest {
 //        gamePanel.setupGame(difficulty);
 //
 //    }
-
+//
 //    @Test
 //    public void itemPlacementAllowed(){
 //
@@ -45,6 +45,8 @@ public class CollisionCheckerTest {
 //    @Test
 //    public void itemPlacementNotAllowed(){
 //
+//
+//
 //        APlusPaper testItem = new APlusPaper(gamePanel);
 //        testItem.setPosition(1, 0);
 //        APlusPaper testItem2 = new APlusPaper(gamePanel);
@@ -55,6 +57,6 @@ public class CollisionCheckerTest {
 //        assertFalse(validPosition);
 //
 //    }
-
-
+//
+//
 }

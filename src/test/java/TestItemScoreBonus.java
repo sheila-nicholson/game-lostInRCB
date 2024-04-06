@@ -17,7 +17,9 @@ public class TestItemScoreBonus {
     public void setUp() {
         this.gamePanel = new GamePanel();
         KeyHandler keyHandler = new KeyHandler(gamePanel);
-        this.hero = Hero.getInstance(4, keyHandler,gamePanel);
+        hero = gamePanel.getHero();
+        gamePanel.setupGame("Easy");
+        //Hero hero = Hero.getInstance(4, keyHandler,gamePanel);
         gamePanel.item[0] = new APlusPaper(gamePanel);
         gamePanel.item[1] = new Bed(gamePanel);
         gamePanel.item[2] = new Coffee(gamePanel);
@@ -28,6 +30,7 @@ public class TestItemScoreBonus {
     @Test
     public void heroPicksUpAPlusPaper() {
 
+        gamePanel.item[0] = new APlusPaper(gamePanel);
         int initialScore = hero.getScore();
         hero.pickUpItem(0);
         int scoreAfterPickup = hero.getScore();
@@ -38,6 +41,7 @@ public class TestItemScoreBonus {
     @Test
     public void heroPicksUpBed() {
 
+        gamePanel.item[1] = new Bed(gamePanel);
         int initialScore = hero.getScore();
         hero.pickUpItem(1);
         int scoreAfterPickup = hero.getScore();
@@ -48,6 +52,7 @@ public class TestItemScoreBonus {
     @Test
     public void heroPicksUpCoffee() {
 
+        gamePanel.item[2] = new Coffee(gamePanel);
         int initialScore = hero.getScore();
         hero.pickUpItem(2);
         int scoreAfterPickup = hero.getScore();
@@ -58,6 +63,7 @@ public class TestItemScoreBonus {
     @Test
     public void heroPicksUpPileOfBooks() {
 
+        gamePanel.item[3] = new PileOfBooks(gamePanel);
         int initialScore = hero.getScore();
         hero.pickUpItem(3);
         int scoreAfterPickup = hero.getScore();
@@ -67,6 +73,8 @@ public class TestItemScoreBonus {
 
     @Test
     public void heroPicksUpVortex() {
+
+        gamePanel.item[4] = new Vortex(gamePanel);
 
         int initialScore = hero.getScore();
         try {

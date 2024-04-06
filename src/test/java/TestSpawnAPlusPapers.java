@@ -1,5 +1,6 @@
 import com.game.GamePanel.GamePanel;
 import com.game.Items.*;
+import com.game.Tile.TileManager;
 import org.junit.jupiter.api.*;
 import org.awaitility.*;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
