@@ -121,7 +121,7 @@ public abstract class Character extends Position {
 
             if(enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gamePanel.tileSize){
                 currentDirection = Direction.UP;
-            }else if(enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gamePanel.tileSize){
+            }else if( enLeftX >= nextX && enTopY < nextY && enRightX < nextX + gamePanel.tileSize){
                 currentDirection = Direction.DOWN;
             }else if(enTopY >= nextY && enBottomY < nextY + gamePanel.tileSize){
                 if(enLeftX > nextX)
@@ -135,31 +135,31 @@ public abstract class Character extends Position {
                 if(collisionOn)
                     currentDirection = Direction.LEFT;
 
-            }else if(enTopY > nextY && enLeftX < nextX){
+            }else if(enLeftX < nextX && enTopY > nextY){
                 //up or right
                 currentDirection = Direction.UP;
                 checkCollision();
                 if(collisionOn)
                     currentDirection = Direction.RIGHT;
 
-
-            }else if(enTopY < nextY && enLeftX > nextX){
+           //}else if(enTopY < nextY && enLeftX > nextX){
+            }else{
                 //down and left
                 currentDirection = Direction.DOWN;
                 checkCollision();
                 if(collisionOn)
                     currentDirection = Direction.LEFT;
             }
-
-            else if(enTopY < nextY && enLeftX < nextX){
-                //up or right
-                currentDirection = Direction.DOWN;
-                checkCollision();
-                if(collisionOn)
-                    currentDirection = Direction.RIGHT;
-
-
-            }
+//
+//            else if(enTopY < nextY && enLeftX < nextX){
+//                //up or right
+//                currentDirection = Direction.DOWN;
+//                checkCollision();
+//                if(collisionOn)
+//                    currentDirection = Direction.RIGHT;
+//
+//
+//            }
         }
 
     }

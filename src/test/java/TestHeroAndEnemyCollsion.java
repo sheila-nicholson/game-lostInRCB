@@ -115,7 +115,10 @@ public class CollisionCheckerTest {
         enemy.setAction();
 
         assertTrue(collisionChecker.checkCharacter(enemy,hero) != 999);
+
+        enemy.checkCollision();
     }
+
 
 
 }
