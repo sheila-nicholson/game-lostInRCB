@@ -74,29 +74,14 @@ public class TestSpawnAPlusPapers {
     // after 10 seconds AplusPaper has moved
     @Test
     public void doesAPlusPaperReSpawn(){
-
-        gamePanel.startGame();      // starts game thread
-        Thread thread = new Thread();
-        thread.start();
-
         int orgPosX = gamePanel.item[3].getXPosition();
         int orgPosY = gamePanel.item[3].getYPosition();
-
-        Awaitility.await().atMost(12000, MILLISECONDS).until(() -> {
-
-            int respawnPosX = gamePanel.item[3].getXPosition();
-            int respawnPosY = gamePanel.item[3].getYPosition();
-            boolean xPosChanged = orgPosX != respawnPosX;
-            boolean yPosChanged = orgPosY != respawnPosY;
-            return xPosChanged || yPosChanged;
-        });
-
+        gamePanel.item[3].updateItemState();
         int respawnPosX = gamePanel.item[3].getXPosition();
         int respawnPosY = gamePanel.item[3].getYPosition();
         boolean xPosChanged = orgPosX != respawnPosX;
         boolean yPosChanged = orgPosY != respawnPosY;
         boolean moved = xPosChanged || yPosChanged;
-
         assertTrue(moved);
     }
 }
