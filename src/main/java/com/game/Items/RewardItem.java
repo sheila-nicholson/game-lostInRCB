@@ -12,7 +12,7 @@ import com.game.GamePanel.MainGamePanel;
  * for item-specific behavior.
  */
 public class RewardItem extends Item {
-    private int scoreBonus;
+    protected int scoreBonus;
 
     public RewardItem(MainGamePanel gamePanel){this.itemType = ItemType.Reward;}
 

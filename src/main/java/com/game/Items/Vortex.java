@@ -68,12 +68,4 @@ public class Vortex extends PunishmentItem {
         }
     }
 
-    public int getScoreModifier(){
-        return this.damagePoints; // unnecessary?
-    }
-
-    public void updateItemState() {
-
-    }
-
 }

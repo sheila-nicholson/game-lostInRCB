@@ -49,7 +49,7 @@ public abstract class Item extends Position {
      * Updates the state of the item. Override in subclasses to implement state logic.
      */
     public void updateItemState() {
-
+        return;
     }
 
     /**
@@ -63,35 +63,5 @@ public abstract class Item extends Position {
         xCoordinate = param_X;
         yCoordinate = param_y;
         super.setPosition(param_X * 48, param_y * 48);
-    }
-
-    public int getXCoordinate() {
-        return xCoordinate;
-    }
-
-    public int getYCoordinate() {
-        return yCoordinate;
-    }
-
-    private Image itemSprite;
-    private int modifierSeconds; //not sure what this used for, but still fix it
-    private int timeAvaliable;
-
-    public void setItemSprite(Image param_sprite){
-        this.itemSprite = param_sprite;
-    }
-    public Image getItemSprite(){
-        return this.itemSprite;
-    }
-//    public int getScoreModifer() {
-//        return 0;
-//    }
-
-    public int getModifierSeconds() { // addition -> necessary?
-        return this.modifierSeconds;
-    }
-
-    public int getTimeAvaliable() { // addition -> necessary?
-        return this.timeAvaliable;
     }
 }

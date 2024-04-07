@@ -11,7 +11,6 @@ import com.game.GamePanel.MainGamePanel;
  */
 public abstract class PunishmentItem extends Item {
 
-
     protected int damagePoints;
 
     public PunishmentItem(MainGamePanel gamePanel){
@@ -25,9 +24,7 @@ public abstract class PunishmentItem extends Item {
      * @return The amount of score reduction or damage.
      */
     public int getScoreModifier(){
-        // only applicable to pileOfBooks - vortex and smoke don't penalize points
-        int damagePoints = 0;
-        return damagePoints;
+        return this.damagePoints;
     }
 
 

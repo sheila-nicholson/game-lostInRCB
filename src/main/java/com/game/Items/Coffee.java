@@ -12,9 +12,7 @@ import com.game.GamePanel.MainGamePanel;
  * of the speed boost and the score bonus provided.
  */
 public class Coffee extends RewardItem {
-
-    private int scoreBonus = 5;
-    private int modifierSeconds = 5;
+    private int speedModifierSeconds = 5;
     private int increaseSpeed = 6;
 
     /**
@@ -28,6 +26,7 @@ public class Coffee extends RewardItem {
      */
     public Coffee(MainGamePanel gamePanel) {
         super(gamePanel);
+        scoreBonus = 5;
         name = "Coffee";
         image = utilityTool.setImage("/Items/Coffee",gamePanel);
 
@@ -41,20 +40,8 @@ public class Coffee extends RewardItem {
      *
      * @return The duration of the speed boost effect in seconds.
      */
-    public int getModifierSeconds() {
-        return this.modifierSeconds;
-    }
-
-    /**
-     * Retrieves the score bonus amount provided by this coffee item.
-     * <p>
-     * This method allows access to the specific score bonus value that the Hero receives upon
-     * collecting a coffee.
-     *
-     * @return The score bonus value.
-     */
-    public int getScoreModifier(){
-        return this.scoreBonus;
+    public int getSpeedModifierSeconds() {
+        return this.speedModifierSeconds;
     }
 
     /**
@@ -69,7 +56,7 @@ public class Coffee extends RewardItem {
     public void collisionAction(Hero hero) {
         hero.addScore(scoreBonus);      // adds 5 to hero score
         hero.setMovementSpeed(increaseSpeed);       // increases hero speed for 5 seconds
-        hero.coffeeTimeEnd = (hero.currentTime + 5);
+        hero.coffeeTimeEnd = (hero.currentTime + speedModifierSeconds);
 
     }
 

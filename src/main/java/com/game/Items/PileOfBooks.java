@@ -30,10 +30,6 @@ public class PileOfBooks extends PunishmentItem {
 
     }
 
-    public int getScoreModifier(){
-        return this.damagePoints;
-    }
-
     /**
      * Applies the punishment effect to the Hero character upon collision.
      *
@@ -43,10 +39,6 @@ public class PileOfBooks extends PunishmentItem {
     public void collisionAction(Hero hero) {
 
         hero.addScore(damagePoints);      // adds -5 to hero score
-    }
-
-    public void updateItemState() {
-
     }
 
 }
