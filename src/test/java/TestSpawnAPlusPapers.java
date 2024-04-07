@@ -1,7 +1,6 @@
 import com.game.GamePanel.MainGamePanel;
 import com.game.Items.*;
 import org.junit.jupiter.api.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSpawnAPlusPapers {
@@ -69,7 +68,7 @@ public class TestSpawnAPlusPapers {
         assertTrue(validPositionFloor);
     }
 
-    // after 10 seconds AplusPaper has moved
+    // APlusPaper location is different after spawn
     @Test
     public void doesAPlusPaperReSpawn(){
         int orgPosX = gamePanel.item[3].getXPosition();

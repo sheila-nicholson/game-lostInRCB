@@ -55,7 +55,7 @@ public class Vortex extends PunishmentItem {
             // range of columns: 0-27
             newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
             newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            Vortex checkPositionValid = new Vortex(gamePanel);
+            RewardItem checkPositionValid = new RewardItem(gamePanel);
             checkPositionValid.setPosition(newColPos, newRowPos);
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
