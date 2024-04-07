@@ -11,7 +11,7 @@ import com.game.GamePanel.MainGamePanel;
  */
 public abstract class PunishmentItem extends Item {
 
-    protected PunishmentType punishmentType;
+
     protected int damagePoints;
 
     public PunishmentItem(MainGamePanel gamePanel){

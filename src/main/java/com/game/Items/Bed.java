@@ -27,10 +27,8 @@ public class Bed extends RewardItem {
      */
     public Bed(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.rewardType = RewardType.BED;
         name = "Bed";
         image = utilityTool.setImage("/Items/Bed",gamePanel);
-        // set position, no need to randomize, harder level = more spawn
     }
 
     /**

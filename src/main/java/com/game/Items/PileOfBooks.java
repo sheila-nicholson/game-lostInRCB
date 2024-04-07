@@ -25,9 +25,7 @@ public class PileOfBooks extends PunishmentItem {
      */
     public PileOfBooks(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.punishmentType = PunishmentType.BOOKS;
         name = "PileOfBooks";
-
         image = utilityTool.setImage("/Items/PileOfBooks",gamePanel);
 
     }
@@ -35,8 +33,6 @@ public class PileOfBooks extends PunishmentItem {
     public int getScoreModifier(){
         return this.damagePoints;
     }
-
-    // play animation? play sound?
 
     /**
      * Applies the punishment effect to the Hero character upon collision.

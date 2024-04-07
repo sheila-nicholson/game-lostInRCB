@@ -28,8 +28,6 @@ public class Coffee extends RewardItem {
      */
     public Coffee(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.rewardType = RewardType.COFFEE;
-        // set position, no need to randomize, harder level = less spawn
         name = "Coffee";
         image = utilityTool.setImage("/Items/Coffee",gamePanel);
 

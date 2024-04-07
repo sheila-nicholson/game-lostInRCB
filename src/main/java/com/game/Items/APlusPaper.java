@@ -28,7 +28,6 @@ public class APlusPaper extends RewardItem {
     public APlusPaper(MainGamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.rewardType = RewardType.APLUSPAPAER;
         name = "APlusPaper";
         image = utilityTool.setImage("/Items/APlusPaper",gamePanel);
     }

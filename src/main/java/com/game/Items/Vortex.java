@@ -15,8 +15,6 @@ import com.game.Characters.Hero;
  * determining a valid new position for the Hero within the game environment.
  */
 public class Vortex extends PunishmentItem {
-
-    private PunishmentType punishmentType = PunishmentType.VORTEX;
     private int damagePoints = -5;
 
     /**
@@ -59,7 +57,6 @@ public class Vortex extends PunishmentItem {
             newColPos = ThreadLocalRandom.current().nextInt(0, 28);
             Vortex checkPositionValid = new Vortex(gamePanel);
             checkPositionValid.setPosition(newColPos, newRowPos);
-            //hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
             if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor")
