@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import java.util.concurrent.ThreadLocalRandom;
 import com.game.Characters.Hero;
@@ -15,8 +15,6 @@ import com.game.Characters.Hero;
  */
 public class APlusPaper extends RewardItem {
 
-    private final int scoreBonus = 10;
-
     /**
      * Constructs an APlusPaper item associated with a specific game panel.
      * <p>
@@ -25,24 +23,12 @@ public class APlusPaper extends RewardItem {
      *
      * @param gamePanel The game panel to which this item belongs.
      */
-    public APlusPaper(GamePanel gamePanel) {
+    public APlusPaper(MainGamePanel gamePanel) {
         super(gamePanel);
+        scoreBonus = 10;
         this.gamePanel = gamePanel;
-        this.rewardType = RewardType.APLUSPAPAER;
         name = "APlusPaper";
         image = utilityTool.setImage("/Items/APlusPaper",gamePanel);
-    }
-
-    /**
-     * Retrieves the score bonus amount provided by this item.
-     * <p>
-     * This method allows access to the specific score bonus value that the hero receives upon
-     * collecting an A+ paper.
-     *
-     * @return The score bonus value.
-     */
-    public int getScoreModifier(){
-        return this.scoreBonus;
     }
 
     /**
@@ -79,14 +65,12 @@ public class APlusPaper extends RewardItem {
             RewardItem checkPositionValid = new RewardItem(gamePanel);
             checkPositionValid.setPosition(newColPos, newRowPos);
 
-
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
             if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor") {
                 validPositionItem = !(gamePanel.collisionChecker.isHeroIntersecting(checkPositionValid));
                 validPositionHero = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
             }
-
 
             if(validPositionItem && validPositionHero)
                 this.setPosition(newColPos, newRowPos);

@@ -1,6 +1,6 @@
 import com.game.Characters.*;
-import com.game.CollisionChecker;
-import com.game.GamePanel.GamePanel;
+import com.game.Utilities.CollisionChecker;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Items.*;
 import com.game.Key.KeyHandler;
 import org.junit.jupiter.api.*;
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestItemScoreBonus {
     private CollisionChecker collisionChecker;
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
     KeyHandler keyHandler;
     private static Hero hero;
     private Enemy enemy;
@@ -16,7 +16,7 @@ public class TestItemScoreBonus {
 
     @BeforeEach
     public void setUp() {
-        gamePanel = new GamePanel();
+        gamePanel = new MainGamePanel();
         keyHandler = new KeyHandler(gamePanel);
         hero = gamePanel.getHero();
         hero.getGamePanel().item[0] = new APlusPaper(gamePanel);

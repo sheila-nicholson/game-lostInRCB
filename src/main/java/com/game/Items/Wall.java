@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.Position;
+import com.game.Utilities.Position;
 
 import java.awt.*;
 

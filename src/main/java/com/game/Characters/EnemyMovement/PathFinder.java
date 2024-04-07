@@ -1,7 +1,7 @@
 package com.game.Characters.EnemyMovement;
 
 import com.game.Characters.Character;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import java.util.ArrayList;
 
@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * the shortest path for an enemy character from a starting point to a goal
  * point considering obstacles and terrain costs. This class relies on a
  * simplified A* (A-Star) pathfinding algorithm and is specifically tailored
- * for use within a {@link GamePanel} context.
+ * for use within a {@link MainGamePanel} context.
  *
  */
 public class PathFinder {
-    GamePanel gamePanel;
+    MainGamePanel gamePanel;
     public Node[][] node;
     ArrayList<Node> openList = new ArrayList<>();
     public ArrayList<Node> pathList = new ArrayList<>();
@@ -24,13 +24,13 @@ public class PathFinder {
     public boolean goalReached = false;
     int step = 0;
 
-    public PathFinder(GamePanel gamePanel){
+    public PathFinder(MainGamePanel gamePanel){
         this.gamePanel = gamePanel;
         instantiateNode();
     }
 
     /**
-     * Instantiates grid nodes based on the dimensions provided by the {@link GamePanel}.
+     * Instantiates grid nodes based on the dimensions provided by the {@link MainGamePanel}.
      * <p>
      * This method creates a grid of {@link Node} objects that represent possible
      * positions in the game environment. Each node is initialized with its grid

@@ -1,11 +1,11 @@
 package com.game.Characters;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Items.Item;
 import com.game.Items.ItemType;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
-import com.game.Score;
+import com.game.Utilities.Score;
 import com.game.Tile.MysteriousSmokeTile;
 
 
@@ -42,7 +42,7 @@ public class Hero extends Character implements Score{
      * @param keyHandler the key handler for processing player input
      * @param gamePanel the game panel the hero belongs to
      */
-    public Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
+    public Hero(int speed, KeyHandler keyHandler, MainGamePanel gamePanel){
 
         super(speed,gamePanel);
         this.keyHandler = keyHandler;
@@ -124,10 +124,11 @@ public class Hero extends Character implements Score{
      *
      */
 
-    public void update() {
+    public boolean update() {
 
         if(this.getScore() < 0){    // Game ends if hero's score is negative;
             gamePanel.gameTerminator.terminate();
+            return true;
         }
 
         checkTileCollisionAndMoveHero();
@@ -142,17 +143,20 @@ public class Hero extends Character implements Score{
                 if (item != null && (item.itemType == ItemType.Reward)){
                     gamePanel.ui.showMessage("You haven't collected all reward items!");
                     collectedAllRewardItems = false;
+                    return true;
                 }
             }
 
             if(collectedAllRewardItems){
                 gamePanel.ui.gameDone = true;
                 gamePanel.gameTerminator.terminate();
+                return true;
 
             }
         }
 
         handleMysteriousSmoke();
+        return true;
     }
 
     /**

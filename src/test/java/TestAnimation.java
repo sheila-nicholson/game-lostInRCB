@@ -1,5 +1,5 @@
 import com.game.Characters.*;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ public class TestAnimation {
 
     private Hero hero;
     private Enemy enemy;
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
 
     public boolean areImagesEqual(BufferedImage img1, BufferedImage img2) {
         if (img1.getWidth() != img2.getWidth() || img1.getHeight() != img2.getHeight()) {
@@ -31,7 +31,7 @@ public class TestAnimation {
 
     @BeforeEach
     void setUp(){
-        gamePanel = new GamePanel();
+        gamePanel = new MainGamePanel();
         gamePanel.setupGame("Easy");
         hero = gamePanel.getHero();
         enemy = gamePanel.getEnemy();

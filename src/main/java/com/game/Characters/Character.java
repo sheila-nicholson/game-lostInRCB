@@ -1,9 +1,9 @@
 package com.game.Characters;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
-import com.game.Position;
-import com.game.UtilityTool;
+import com.game.Utilities.Position;
+import com.game.Utilities.UtilityTool;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,7 +22,7 @@ public abstract class Character extends Position {
     public BufferedImage currentImage = null;
     public BufferedImage leftImage, rightImage;
     public UtilityTool utilityTool = new UtilityTool();
-    protected GamePanel gamePanel;
+    protected MainGamePanel gamePanel;
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -53,7 +53,7 @@ public abstract class Character extends Position {
      * @param speed the movement speed of the character
      * @param gamePanel the game panel the character belongs to
      */
-    protected Character(int speed, GamePanel gamePanel){
+    protected Character(int speed, MainGamePanel gamePanel){
             this.setDefaultPosition();
             this.movementSpeed = speed;
             this.gamePanel = gamePanel;
@@ -63,7 +63,7 @@ public abstract class Character extends Position {
             this.getImage();
     }
 
-    public GamePanel getGamePanel() {
+    public MainGamePanel getGamePanel() {
         return gamePanel;
     }
 

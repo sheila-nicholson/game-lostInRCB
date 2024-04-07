@@ -1,7 +1,7 @@
 package com.game.Items;
 
 import com.game.Characters.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a pile of books item that, when collected, reduces the player's score.
@@ -23,20 +23,12 @@ public class PileOfBooks extends PunishmentItem {
      *
      * @param gamePanel The game panel to which this item belongs.
      */
-    public PileOfBooks(GamePanel gamePanel) {
+    public PileOfBooks(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.punishmentType = PunishmentType.BOOKS;
         name = "PileOfBooks";
-
         image = utilityTool.setImage("/Items/PileOfBooks",gamePanel);
 
     }
-
-    public int getScoreModifier(){
-        return this.damagePoints;
-    }
-
-    // play animation? play sound?
 
     /**
      * Applies the punishment effect to the Hero character upon collision.
@@ -47,10 +39,6 @@ public class PileOfBooks extends PunishmentItem {
     public void collisionAction(Hero hero) {
 
         hero.addScore(damagePoints);      // adds -5 to hero score
-    }
-
-    public void updateItemState() {
-
     }
 
 }

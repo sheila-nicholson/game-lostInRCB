@@ -1,10 +1,9 @@
 package com.game.Key;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 /**
  * Handles keyboard input for the game, tracking the state of specific keys.
@@ -25,9 +24,9 @@ public class KeyHandler implements KeyListener{
     /**
      * Constructs a KeyHandler and associates it with a GamePanel to listen for key events.
      *
-     * @param gp the {@link GamePanel} to which this KeyHandler will be attached.
+     * @param gp the {@link MainGamePanel} to which this KeyHandler will be attached.
      */
-    public KeyHandler(GamePanel gp){
+    public KeyHandler(MainGamePanel gp){
         gp.addKeyListener(this);
     }
 

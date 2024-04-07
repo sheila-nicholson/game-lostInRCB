@@ -1,6 +1,7 @@
 package com.game;
 
 import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -141,8 +142,7 @@ public class Main {
         // Implement your game startup logic here based on difficulty
         System.out.println("Starting game with difficulty: " + difficulty);
         JFrame gameWindow = new JFrame();
-        GamePanel gamePanel = new GamePanel();
-//        gamePanel.setupGame(difficulty);
+        GamePanel gamePanel = new MainGamePanel();
         gamePanel.startGame(difficulty);
 
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

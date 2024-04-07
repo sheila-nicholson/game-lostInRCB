@@ -1,6 +1,6 @@
 import com.game.Characters.Enemy;
 import com.game.Characters.EnemyMovement.PathFinder;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestPathFinder {
 
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
     private Enemy enemy;
     private PathFinder pathFinder;
 
     @BeforeEach
     public void setUp() {
 
-        gamePanel = new GamePanel();
+        gamePanel = new MainGamePanel();
         gamePanel.setupGame("Medium");
         enemy = gamePanel.getEnemy();
         pathFinder = gamePanel.pathFinder;

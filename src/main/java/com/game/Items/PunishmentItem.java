@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents items that have negative effects on the player, such as reducing score.
@@ -11,10 +11,9 @@ import com.game.GamePanel.GamePanel;
  */
 public abstract class PunishmentItem extends Item {
 
-    protected PunishmentType punishmentType;
     protected int damagePoints;
 
-    public PunishmentItem(GamePanel gamePanel){
+    public PunishmentItem(MainGamePanel gamePanel){
         this.itemType = ItemType.Punishment;
     }
 
@@ -25,9 +24,7 @@ public abstract class PunishmentItem extends Item {
      * @return The amount of score reduction or damage.
      */
     public int getScoreModifier(){
-        // only applicable to pileOfBooks - vortex and smoke don't penalize points
-        int damagePoints = 0;
-        return damagePoints;
+        return this.damagePoints;
     }
 
 

@@ -1,6 +1,6 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -15,8 +15,6 @@ import com.game.Characters.Hero;
  * determining a valid new position for the Hero within the game environment.
  */
 public class Vortex extends PunishmentItem {
-
-    private PunishmentType punishmentType = PunishmentType.VORTEX;
     private int damagePoints = -5;
 
     /**
@@ -27,7 +25,7 @@ public class Vortex extends PunishmentItem {
      *
      * @param gamePanel The game panel to which this vortex item belongs.
      */
-    public Vortex(GamePanel gamePanel) {
+    public Vortex(MainGamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
         name = "Vortex";
@@ -57,9 +55,8 @@ public class Vortex extends PunishmentItem {
             // range of columns: 0-27
             newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
             newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            Vortex checkPositionValid = new Vortex(gamePanel);
+            RewardItem checkPositionValid = new RewardItem(gamePanel);
             checkPositionValid.setPosition(newColPos, newRowPos);
-            //hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
             if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor")
@@ -69,14 +66,6 @@ public class Vortex extends PunishmentItem {
                 hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
 
         }
-    }
-
-    public int getScoreModifier(){
-        return this.damagePoints; // unnecessary?
-    }
-
-    public void updateItemState() {
-
     }
 
 }

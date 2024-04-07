@@ -1,14 +1,12 @@
 package com.game.GameTerminator;
 
-import com.game.GamePanel.GamePanel;
-
-import javax.swing.*;
+import com.game.GamePanel.MainGamePanel;
 
 public class DefaultGameTerminator implements GameTerminator {
 
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
 
-    public DefaultGameTerminator(GamePanel gamePanel){
+    public DefaultGameTerminator(MainGamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
 
@@ -22,6 +20,5 @@ public class DefaultGameTerminator implements GameTerminator {
     public void terminate() {
         endGame(); // Update the game state to reflect it's over
         System.exit(0);
-
     }
 }

@@ -1,12 +1,12 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
-import com.game.Position;
+import com.game.GamePanel.MainGamePanel;
+import com.game.Utilities.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import com.game.Characters.Hero;
-import com.game.UtilityTool;
+import com.game.Utilities.UtilityTool;
 
 /**
  * Serves as the base class for all items in the game, defining common properties and methods.
@@ -24,7 +24,7 @@ public abstract class Item extends Position {
     public int solidAreaDefaultX = 48;
     public int solidAreaDefaultY = 48;
     public boolean collision = true;
-    protected GamePanel gamePanel;
+    protected MainGamePanel gamePanel;
     protected int xCoordinate;
     protected int yCoordinate;
     public ItemType itemType;
@@ -37,7 +37,7 @@ public abstract class Item extends Position {
      * @param g2 The Graphics2D object used for drawing.
      * @param gp The game panel where the item is to be drawn.
      */
-    public void draw(Graphics2D g2, GamePanel gp) {
+    public void draw(Graphics2D g2, MainGamePanel gp) {
 
         int screenX = getXPosition();
         int screenY = getYPosition();
@@ -49,7 +49,7 @@ public abstract class Item extends Position {
      * Updates the state of the item. Override in subclasses to implement state logic.
      */
     public void updateItemState() {
-
+        return;
     }
 
     /**
@@ -63,35 +63,5 @@ public abstract class Item extends Position {
         xCoordinate = param_X;
         yCoordinate = param_y;
         super.setPosition(param_X * 48, param_y * 48);
-    }
-
-    public int getXCoordinate() {
-        return xCoordinate;
-    }
-
-    public int getYCoordinate() {
-        return yCoordinate;
-    }
-
-    private Image itemSprite;
-    private int modifierSeconds; //not sure what this used for, but still fix it
-    private int timeAvaliable;
-
-    public void setItemSprite(Image param_sprite){
-        this.itemSprite = param_sprite;
-    }
-    public Image getItemSprite(){
-        return this.itemSprite;
-    }
-//    public int getScoreModifer() {
-//        return 0;
-//    }
-
-    public int getModifierSeconds() { // addition -> necessary?
-        return this.modifierSeconds;
-    }
-
-    public int getTimeAvaliable() { // addition -> necessary?
-        return this.timeAvaliable;
     }
 }

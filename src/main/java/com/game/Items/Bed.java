@@ -1,7 +1,7 @@
 package com.game.Items;
 
 import com.game.Characters.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a bed item in the game, serving as a main reward for the player.
@@ -11,12 +11,9 @@ import com.game.GamePanel.GamePanel;
  * to unlock the finish. This class extends {@link RewardItem} to implement the specific behaviors
  * and properties associated with bed items.
  *
- * @author:
+ * @author: Sheila
  */
 public class Bed extends RewardItem {
-
-    private int scoreBonus = 5;
-    private boolean collected = false; // true means door to finish level is unlocked
 
     /**
      * Constructs a Bed item associated with a specific game panel.
@@ -25,24 +22,11 @@ public class Bed extends RewardItem {
      * The bed's image is loaded from resources, and it's marked with the "Bed" reward type.
      *
      */
-    public Bed(GamePanel gamePanel) {
+    public Bed(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.rewardType = RewardType.BED;
+        scoreBonus = 5;
         name = "Bed";
         image = utilityTool.setImage("/Items/Bed",gamePanel);
-        // set position, no need to randomize, harder level = more spawn
-    }
-
-    /**
-     * Retrieves the score bonus amount provided by this bed item.
-     * <p>
-     * This method allows access to the specific score bonus value that the hero receives upon
-     * collecting a bed.
-     *
-     * @return The score bonus value.
-     */
-    public int getScoreModifier(){
-        return this.scoreBonus;
     }
 
     /**
@@ -55,7 +39,6 @@ public class Bed extends RewardItem {
      */
     public void collisionAction(Hero hero) {
         hero.addScore(scoreBonus);      // adds 5 to hero score
-
     }
 
 }

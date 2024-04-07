@@ -1,7 +1,7 @@
 package com.game.Items;
 
 import com.game.Characters.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a coffee item in the game that temporarily increases the Hero's movement speed.
@@ -12,9 +12,7 @@ import com.game.GamePanel.GamePanel;
  * of the speed boost and the score bonus provided.
  */
 public class Coffee extends RewardItem {
-
-    private int scoreBonus = 5;
-    private int modifierSeconds = 5;
+    private int speedModifierSeconds = 5;
     private int increaseSpeed = 6;
 
     /**
@@ -26,10 +24,9 @@ public class Coffee extends RewardItem {
      *
      * @param gamePanel The game panel to which this coffee item belongs.
      */
-    public Coffee(GamePanel gamePanel) {
+    public Coffee(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.rewardType = RewardType.COFFEE;
-        // set position, no need to randomize, harder level = less spawn
+        scoreBonus = 5;
         name = "Coffee";
         image = utilityTool.setImage("/Items/Coffee",gamePanel);
 
@@ -43,20 +40,8 @@ public class Coffee extends RewardItem {
      *
      * @return The duration of the speed boost effect in seconds.
      */
-    public int getModifierSeconds() {
-        return this.modifierSeconds;
-    }
-
-    /**
-     * Retrieves the score bonus amount provided by this coffee item.
-     * <p>
-     * This method allows access to the specific score bonus value that the Hero receives upon
-     * collecting a coffee.
-     *
-     * @return The score bonus value.
-     */
-    public int getScoreModifier(){
-        return this.scoreBonus;
+    public int getSpeedModifierSeconds() {
+        return this.speedModifierSeconds;
     }
 
     /**
@@ -71,7 +56,7 @@ public class Coffee extends RewardItem {
     public void collisionAction(Hero hero) {
         hero.addScore(scoreBonus);      // adds 5 to hero score
         hero.setMovementSpeed(increaseSpeed);       // increases hero speed for 5 seconds
-        hero.coffeeTimeEnd = (hero.currentTime + 5);
+        hero.coffeeTimeEnd = (hero.currentTime + speedModifierSeconds);
 
     }
 

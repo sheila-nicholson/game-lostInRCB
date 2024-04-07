@@ -1,6 +1,6 @@
-package com.game;
+package com.game.UI;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
  */
 public class UI{
 
-    GamePanel gp;
+    MainGamePanel gp;
     Font a40, a60, a80BIG;
     private boolean visibleText = false;
     private String words = "";
@@ -30,7 +30,7 @@ public class UI{
      *
      * @param gp The game panel where UI elements are to be rendered.
      */
-    public UI(GamePanel gp) {
+    public UI(MainGamePanel gp) {
         this.gp = gp;
         a40 = new Font("Arial", Font.PLAIN, 40);
         a60 = new Font("Arial", Font.BOLD, 60);

@@ -1,8 +1,8 @@
-package com.game;
+package com.game.Utilities;
 
 import com.game.Characters.Character;
 import com.game.Characters.Enemy;
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Items.Item;
 import com.game.Characters.Hero;
 
@@ -16,14 +16,14 @@ import com.game.Characters.Hero;
  */
 public class CollisionChecker {
 
-    GamePanel gamePanel;
+    MainGamePanel gamePanel;
 
     /**
      * Constructs a CollisionChecker associated with a specific game panel.
      *
      * @param gamepanel The game panel where the game elements are rendered and interacted with.
      */
-    public CollisionChecker(GamePanel gamepanel) {
+    public CollisionChecker(MainGamePanel gamepanel) {
         this.gamePanel = gamepanel;
     }
 

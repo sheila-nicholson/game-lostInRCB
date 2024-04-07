@@ -1,6 +1,6 @@
 package com.game.Tile;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -19,7 +19,7 @@ import java.util.Random;
  * to reflect different game states or effects.
  */
 public class TileManager {
-    private GamePanel gp;
+    private MainGamePanel gp;
     private Tile[] tile;
     private int mapTileNum[][];
     boolean drawPath = true;
@@ -33,7 +33,7 @@ public class TileManager {
      * @param gp The game panel to which the tiles will be rendered.
      * @param diff The difficulty setting of the game, affecting map layout and tile types.
      */
-    public TileManager(GamePanel gp, String diff){
+    public TileManager(MainGamePanel gp, String diff){
         this.mapDifficulty = diff;
         this.gp = gp;
         tile = new Tile[10];
