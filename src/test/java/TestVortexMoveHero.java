@@ -4,6 +4,9 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import com.game.Characters.*;
 
+/**
+ * This class contains unit tests for the movement of the hero when interacting with a vortex.
+ */
 public class TestVortexMoveHero {
 
     private MainGamePanel gamePanel;
@@ -20,7 +23,9 @@ public class TestVortexMoveHero {
 
     }
 
-//    - hero cannot move to new tile b/c map tile is anything other than a ‘floor’ tile
+    /**
+     * Test to verify that the hero cannot move to a new tile because the map tile is not a 'floor' tile.
+     */
     @Test
     public void placementNotAllowedNotFloor(){
 
@@ -31,7 +36,9 @@ public class TestVortexMoveHero {
         assertFalse(validPosition);
     }
 
-//- hero cannot move to new tile b/c enemy already present
+    /**
+     * Test to verify that the hero cannot move to a new tile because an enemy is already present in the tile.
+     */
     @Test
     public void placementNotAllowedEnemy(){
 
@@ -44,7 +51,9 @@ public class TestVortexMoveHero {
         assertFalse(validPosition);
     }
 
-//- hero move is valid (tile is floor, item not present, enemy not present)
+    /**
+     * Test to verify that the hero's move is valid: the tile is a floor, no item present, no enemy present.
+     */
     @Test
     public void placementAllowed(){
 
@@ -59,12 +68,14 @@ public class TestVortexMoveHero {
         assertTrue(validPositionFloor);
     }
 
-    //- has the hero’s position actually changed after interaction with vortex
+    /**
+     * Test to verify that the hero's position changes after interaction with a vortex.
+     */
     @Test
     public void doesHeroLocationChange(){
         int orgPosX = hero.getXPosition();
         int orgPosY = hero.getYPosition();
-        gamePanel.item[12].collisionAction(hero);
+        hero.pickUpItem(12);
         int respawnPosX = hero.getXPosition();
         int respawnPosY = hero.getYPosition();
         boolean xPosChanged = orgPosX != respawnPosX;

@@ -6,6 +6,10 @@ import com.game.Key.KeyHandler;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class contains unit tests for the functionality related to scoring bonuses
+ * when a hero picks up different items in the game.
+ */
 public class TestItemScoreBonus {
     private CollisionChecker collisionChecker;
     private MainGamePanel gamePanel;
@@ -26,6 +30,9 @@ public class TestItemScoreBonus {
         hero.getGamePanel().item[4] = new Vortex(gamePanel);
     }
 
+    /**
+     * Test case to verify the score increment when the hero picks up an APlusPaper item.
+     */
     @Test
     public void heroPicksUpAPlusPaper() {
         int initialScore = gamePanel.getHero().getScore();
@@ -35,6 +42,9 @@ public class TestItemScoreBonus {
         assertEquals(10, scoreDiff);
     }
 
+    /**
+     * Test case to verify the score increment when the hero picks up a Bed item.
+     */
     @Test
     public void heroPicksUpBed() {
         int initialScore = gamePanel.getHero().getScore();
@@ -44,6 +54,9 @@ public class TestItemScoreBonus {
         assertEquals(5, scoreDiff);
     }
 
+    /**
+     * Test case to verify the score increment when the hero picks up a Coffee item.
+     */
     @Test
     public void heroPicksUpCoffee() {
         int initialScore = gamePanel.getHero().getScore();
@@ -53,6 +66,9 @@ public class TestItemScoreBonus {
         assertEquals(5, scoreDiff);
     }
 
+    /**
+     * Test case to verify the score increment when the hero picks up a PileOfBooks item.
+     */
     @Test
     public void heroPicksUpPileOfBooks() {
         int initialScore = gamePanel.getHero().getScore();
@@ -62,6 +78,9 @@ public class TestItemScoreBonus {
         assertEquals(-5, scoreDiff);
     }
 
+    /**
+     * Test case to verify the score increment when the hero picks up a Vortex item.
+     */
     @Test
     public void heroPicksUpVortex() {
         int initialScore = gamePanel.getHero().getScore();

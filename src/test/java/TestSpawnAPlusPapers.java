@@ -3,6 +3,9 @@ import com.game.Items.*;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class contains unit tests for the spawning behavior of APlusPaper items.
+ */
 public class TestSpawnAPlusPapers {
 
     private MainGamePanel gamePanel;
@@ -15,7 +18,9 @@ public class TestSpawnAPlusPapers {
 
     }
 
-    // cannot place item b/c item already present
+    /**
+     * Test to verify that an APlusPaper item cannot be placed because an item is already present in the position.
+     */
     @Test
     public void placementNotAllowedItemAlreadyPresent(){
 
@@ -26,7 +31,9 @@ public class TestSpawnAPlusPapers {
         assertFalse(validPosition);
     }
 
-    // cannot place item b/c not floor
+    /**
+     * Test to verify that an APlusPaper item cannot be placed because the position is not a floor tile.
+     */
     @Test
     public void placementNotAllowedNotFloor(){
 
@@ -38,7 +45,9 @@ public class TestSpawnAPlusPapers {
         assertFalse(validPosition);
     }
 
-    // cannot place item b/c hero present
+    /**
+     * Test to verify that an APlusPaper item cannot be placed because the hero is already present in the position.
+     */
     @Test
     public void placementNotAllowedHeroAlreadyPresent(){
 
@@ -49,7 +58,9 @@ public class TestSpawnAPlusPapers {
         assertFalse(validPosition);
     }
 
-    // can place item → is floor, item not present, enemy not present
+    /**
+     * Test to verify that an APlusPaper item can be placed when conditions are met: floor tile, no item, no hero.
+     */
     @Test
     public void placementAllowed(){
 
@@ -57,18 +68,21 @@ public class TestSpawnAPlusPapers {
         boolean validPositionHero;
         boolean validPositionFloor;
         APlusPaper testItem = new APlusPaper(gamePanel);
-        testItem.setPosition(6,1);
-        int tileNum = gamePanel.tileM.getMapTileNum()[6][1];
+        testItem.updateItemState();
+        int spawnXCoord = testItem.getXPosition()/48;
+        int spawnYCoord = testItem.getYPosition()/48;
+        int tileNum = gamePanel.tileM.getMapTileNum()[spawnXCoord][spawnYCoord];
         validPositionItem = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, testItem));
         validPositionHero = !(gamePanel.collisionChecker.isHeroIntersecting(testItem));
         validPositionFloor = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-
         assertTrue(validPositionItem);
         assertTrue(validPositionHero);
         assertTrue(validPositionFloor);
     }
 
-    // APlusPaper location is different after spawn
+    /**
+     * Test to verify that the APlusPaper item changes its location after spawning.
+     */
     @Test
     public void doesAPlusPaperReSpawn(){
         int orgPosX = gamePanel.item[3].getXPosition();
