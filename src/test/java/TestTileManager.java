@@ -1,4 +1,6 @@
 import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
+import com.game.Main;
 import com.game.Tile.GoodTile;
 import com.game.Tile.Tile;
 import com.game.Tile.TileManager;
@@ -16,14 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class TestTileManager {
 
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
     private TileManager tileManager;
     private String difficulty = "Easy";
 
     @BeforeEach
     public void setUp() {
-        this.gamePanel = new GamePanel();
-        gamePanel.setupGame(difficulty);
+        this.gamePanel = new MainGamePanel();
+        gamePanel.startGame(difficulty);
         this.tileManager = new TileManager(gamePanel, difficulty);
     }
 
@@ -78,9 +80,8 @@ public class TestTileManager {
      */
     @Test
     public void testGetMapDifficulty() {
-        GamePanel mockPanel = new GamePanel();
         String expectedDifficulty = "Easy";
-        TileManager tileManager = new TileManager(mockPanel, expectedDifficulty);
+        TileManager tileManager = new TileManager(gamePanel, expectedDifficulty);
 
         assertEquals(expectedDifficulty, tileManager.getMapDifficulty());
     }
