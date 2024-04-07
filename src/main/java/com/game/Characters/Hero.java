@@ -124,10 +124,11 @@ public class Hero extends Character implements Score{
      *
      */
 
-    public void update() {
+    public boolean update() {
 
         if(this.getScore() < 0){    // Game ends if hero's score is negative;
             gamePanel.gameTerminator.terminate();
+            return true;
         }
 
         checkTileCollisionAndMoveHero();
@@ -142,17 +143,20 @@ public class Hero extends Character implements Score{
                 if (item != null && (item.itemType == ItemType.Reward)){
                     gamePanel.ui.showMessage("You haven't collected all reward items!");
                     collectedAllRewardItems = false;
+                    return true;
                 }
             }
 
             if(collectedAllRewardItems){
                 gamePanel.ui.gameDone = true;
                 gamePanel.gameTerminator.terminate();
+                return true;
 
             }
         }
 
         handleMysteriousSmoke();
+        return true;
     }
 
     /**

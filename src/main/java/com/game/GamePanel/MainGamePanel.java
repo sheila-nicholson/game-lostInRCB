@@ -41,12 +41,17 @@ public class MainGamePanel extends GamePanel{
      */
     public MainGamePanel(){ //not finished
         super();
-        this.addKeyListener(keyHandler);
+        initialDefaultGamePanel();
         this.hero = new Hero(4,this.keyHandler,this);
         this.enemy = new Enemy(2,this); //default
         this.item = new Item[25];
+
+    }
+
+    public void initialDefaultGamePanel(){
         this.ui = new UI(this);
         gameTerminator = new DefaultGameTerminator(this);
+        this.addKeyListener(keyHandler);
     }
 
     /**
@@ -63,7 +68,6 @@ public class MainGamePanel extends GamePanel{
         tileM = new TileManager(this,diff);
         assetSetter.setObject(diff);
         setEnemy();
-
     }
 
     /**
@@ -80,7 +84,6 @@ public class MainGamePanel extends GamePanel{
         setupGame(diff);
         thread = new Thread(this);
         thread.start();
-
     }
 
     public void alertItemState() {
@@ -101,13 +104,11 @@ public class MainGamePanel extends GamePanel{
      */
     public void setEnemy() {
         switch (tileM.getMapDifficulty()) {
-            case "Easy" -> this.enemy = new ZombieProfessor(2, this); //temp speed for testing
-            case "Medium" -> this.enemy = new Bear(3, this); //temp speed for testing
-            case "Hard" -> this.enemy = new FailedExam(4, this); //temp speed for testing
+            case "Easy" -> this.enemy = new ZombieProfessor(2, this);
+            case "Medium" -> this.enemy = new Bear(3, this);
+            case "Hard" -> this.enemy = new FailedExam(4, this);
         }
     }
-
-
     /**
      * Renders the game world and UI components to the screen.
      * <p>
@@ -193,7 +194,6 @@ public class MainGamePanel extends GamePanel{
             }
         }
     }
-
 
 
 }

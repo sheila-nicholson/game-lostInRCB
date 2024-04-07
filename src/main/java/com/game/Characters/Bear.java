@@ -22,7 +22,9 @@ public class Bear extends Enemy {
      */
     public Bear(int speed, MainGamePanel gamePanel){
         super(speed,gamePanel);
-        this.setPosition(7*gamePanel.tileSize,12*gamePanel.tileSize);//temp
+//        this.setPosition(7*gamePanel.tileSize,12*gamePanel.tileSize);//temp
+       this.setPosition(13*gamePanel.tileSize,11*gamePanel.tileSize);
+
     }
 
     /**s

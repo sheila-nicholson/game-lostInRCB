@@ -20,6 +20,5 @@ public class DefaultGameTerminator implements GameTerminator {
     public void terminate() {
         endGame(); // Update the game state to reflect it's over
         System.exit(0);
-
     }
 }

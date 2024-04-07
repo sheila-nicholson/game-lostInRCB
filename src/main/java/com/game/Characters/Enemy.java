@@ -80,7 +80,7 @@ public class Enemy extends Character {
      * It ensures that the enemy navigates the game world according to its AI behavior.
      *
      */
-    public void update() {
+    public boolean update() {
 
         reachedEndOn = false;
         collisionOn = false;
@@ -91,21 +91,20 @@ public class Enemy extends Character {
             switch (currentDirection) {
                 case UP:
                     this.moveUp(movementSpeed);
-                    break;
+                    return true;
                 case DOWN:
                     this.moveDown(movementSpeed);
-                    break;
+                    return true;
                 case LEFT:
                     this.moveLeft(movementSpeed);
-                    break;
+                    return true;
                 case RIGHT:
                     this.moveRight(movementSpeed);
-                    break;
+                    return true;
             }
         }
+        return false;
 
     }
-
-
 
 }

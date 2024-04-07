@@ -32,6 +32,9 @@ public abstract class GamePanel extends JPanel implements Runnable, ScreenSettin
     public Item[] getItem() {return this.item;}
     public int getTimeElapsedSec() {return timeElapsedSec;}
 
+    public abstract void startGame(String diff);
+    public abstract void alertItemState();
+
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -53,4 +56,7 @@ public abstract class GamePanel extends JPanel implements Runnable, ScreenSettin
         enemy.update();
     }
 
+    public boolean isRunning() {
+        return running;
+    }
 }
