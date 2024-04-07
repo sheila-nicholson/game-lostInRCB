@@ -30,7 +30,7 @@ public abstract class Tile extends Position {
      *
      * @return The sprite image of the tile.
      */
-    public Image getTileSprite() {
+    public BufferedImage getTileSprite() {
         return this.tileSprite;
     }
 

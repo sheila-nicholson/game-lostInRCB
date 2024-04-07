@@ -128,15 +128,13 @@ public class GamePanel extends JPanel implements Runnable{
      *
      * @param diff A {@link String} representing the game's difficulty level.
      */
-    public void  setupGame(String diff) {
+    public void setupGame(String diff) {
         hero.diff = diff;
 //        synchronized (this){
             tileM = new TileManager(this,diff);
             assetSetter.setObject(diff);
             setEnemy();
 //        }
-
-
     }
 
     /**
@@ -145,7 +143,7 @@ public class GamePanel extends JPanel implements Runnable{
      * This method checks if the game is already running to prevent multiple instances of the game loop.
      * It then starts a new thread that controls the game loop, updating and rendering the game state.
      */
-    public void  startGame(String diff){
+    public void startGame(String diff){
         //public synchronized void startGame
         if(running) return;
         running = true;
@@ -153,7 +151,6 @@ public class GamePanel extends JPanel implements Runnable{
         setupGame(diff);
         thread = new Thread(this);
         thread.start();
-
     }
 
 

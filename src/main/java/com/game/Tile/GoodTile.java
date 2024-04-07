@@ -18,7 +18,7 @@ public class GoodTile extends Tile {
      * @param tileSteppability Indicates if the tile can be stepped on.
      * @param isLevelEndBool Indicates if stepping on the tile should trigger the end of the level.
      */
-    GoodTile(boolean tileSteppability, boolean isLevelEndBool){
+    public GoodTile(boolean tileSteppability, boolean isLevelEndBool){
         this.tileSteppability = tileSteppability;
         this.isLevelEndBool = isLevelEndBool;
     };
