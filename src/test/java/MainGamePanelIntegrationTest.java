@@ -2,15 +2,15 @@ import com.game.Characters.*;
 import com.game.GamePanel.GamePanel;
 import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
+import com.game.Tile.TileManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.awt.image.BufferedImage;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MainGamePanelIntegrationTest {
-    private GamePanel gamePanel;
+    private MainGamePanel gamePanel;
 
     @BeforeEach
     void setUp(){
@@ -46,5 +46,27 @@ public class MainGamePanelIntegrationTest {
         gamePanel.gameTerminator.endGame();
         assertFalse(gamePanel.isRunning());
     }
+
+
+    @Test
+    void testGameLevelOfDifficulty(){
+
+        gamePanel.startGame("Easy");
+        gamePanel.tileM = new TileManager(gamePanel,"Easy");
+        assertEquals("Easy", gamePanel.getDifficulty());
+        gamePanel.gameTerminator.endGame();
+
+        gamePanel.startGame("Medium");
+        gamePanel.tileM = new TileManager(gamePanel,"Medium");
+        assertEquals("Medium", gamePanel.getDifficulty());
+        gamePanel.gameTerminator.endGame();
+
+        gamePanel.startGame("Hard");
+        gamePanel.tileM = new TileManager(gamePanel,"Hard");
+        assertEquals("Hard", gamePanel.getDifficulty());
+        gamePanel.gameTerminator.endGame();
+    }
+
+
 }
 

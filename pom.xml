@@ -53,6 +53,20 @@
                 <version>4.5.1</version> <!-- Check for the latest version -->
             </dependency>
 
+            <dependency>
+                <groupId>org.jmockit</groupId>
+                <artifactId>jmockit</artifactId>
+                <version>1.49</version>
+                <scope>test</scope>
+            </dependency>
+
+<!--            <dependency>-->
+<!--                <groupId>org.mockito</groupId>-->
+<!--                <artifactId>mockito-inline</artifactId>-->
+<!--                <version>3.4.0</version> &lt;!&ndash; or the latest version &ndash;&gt;-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+
     </dependencies>
 
     <build>
@@ -74,6 +88,17 @@
                     <mainClass>com.game.Main</mainClass>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.3</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}"/org/jmockit/jmockit/1.49/jmockit-1.49.jar
+                    </argLine>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <!-- Build an executable JAR -->
                 <groupId>org.apache.maven.plugins</groupId>

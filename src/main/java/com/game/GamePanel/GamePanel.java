@@ -26,11 +26,13 @@ public abstract class GamePanel extends JPanel implements Runnable, ScreenSettin
     protected int timeElapsed;    // time elapsed since game started in seconds
     public Graphics2D g2;
     public GameTerminator gameTerminator;
+    protected String difficulty;
 
     public Hero getHero() {return this.hero;}
     public Enemy getEnemy() {return this.enemy;}
     public Item[] getItem() {return this.item;}
     public int getTimeElapsedSec() {return timeElapsedSec;}
+    public String getDifficulty(){return difficulty;}
 
     public abstract void startGame(String diff);
     public abstract void alertItemState();

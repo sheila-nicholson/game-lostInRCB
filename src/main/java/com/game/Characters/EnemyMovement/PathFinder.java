@@ -120,9 +120,6 @@ public class PathFinder {
         int xDistance = Math.abs(node.col-startNode.col);
         int yDistance = Math.abs(node.row-startNode.row);
         node.gCost = xDistance + yDistance;
-
-//        xDistance = Math.abs(node.col-startNode.col);
-//        yDistance = Math.abs(node.row-startNode.row);
         xDistance = Math.abs(node.col-goalNode.col);
         yDistance = Math.abs(node.row-goalNode.row);
         node.hCost = xDistance + yDistance;

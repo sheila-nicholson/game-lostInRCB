@@ -249,5 +249,4 @@ public class TestSearchPath {
         assertTrue(isDirectionCorrect);
     }
 
-
 }

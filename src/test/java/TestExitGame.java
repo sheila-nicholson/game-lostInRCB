@@ -4,12 +4,15 @@ import com.game.GamePanel.MainGamePanel;
 import com.game.GameTerminator.DefaultGameTerminator;
 import com.game.GameTerminator.GameTerminator;
 import com.game.Key.Direction;
+import mockit.Mock;
+import mockit.MockUp;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
+
 
 public class TestExitGame {
 
@@ -28,7 +31,29 @@ public class TestExitGame {
     }
 
     @Test
-    public void testExitGameAfterCollisionBetweenHeroAndEnemy() {
+    void testExitGameAfterCollisionBetweenHeroAndEnemy() throws Exception {
+        new MockUp<System>() {
+            @Mock
+            public void exit(int value) {
+                throw new RuntimeException(String.valueOf(value));
+            }
+        };
+
+        try{
+            hero.setPosition(gamePanel.tileSize, gamePanel.tileSize);
+            enemy.setPosition(gamePanel.tileSize, enemy.getMovementSpeed() + gamePanel.tileSize);
+            enemy.setCurrentDirection(Direction.UP);
+            gamePanel.gameTerminator.terminate();
+
+        }catch(RuntimeException e){
+            Assertions.assertEquals("0", e.getMessage());
+
+        }
+
+    }
+
+    @Test
+    public void testExitGameAfterCollisionBetweenHeroAndEnemy2() {
         hero.setPosition(gamePanel.tileSize, gamePanel.tileSize);
         enemy.setPosition(gamePanel.tileSize, enemy.getMovementSpeed() + gamePanel.tileSize);
         enemy.setCurrentDirection(Direction.UP);
