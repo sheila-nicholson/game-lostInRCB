@@ -14,9 +14,6 @@ import com.game.Key.Direction;
  */
 public class Enemy extends Character {
 
-    protected int damagePoints = 0;
-    public int actionCounter = 0;
-
     /**
      * Sets the default position and orientation of the enemy character.
      * This method is intended to be overridden by subclasses for custom positioning.
