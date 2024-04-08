@@ -139,15 +139,13 @@ public class Hero extends Character implements Score{
 
         if (reachedEndOn){
 
-            boolean collectedAllRewardItems = true;
-
             for(Item item: gamePanel.getItem()){
                 if (item != null && (item.itemType == ItemType.Reward)){
                     gamePanel.ui.showMessage("You haven't collected all reward items!");
-                    collectedAllRewardItems = false;
                     return true;
                 }
             }
+<<<<<<< HEAD
 
             if(collectedAllRewardItems){
                 gamePanel.ui.gameDone = true;
@@ -162,6 +160,11 @@ public class Hero extends Character implements Score{
                 timer.setRepeats(false);
                 timer.start();
             }
+=======
+            gamePanel.ui.gameDone = true;
+            gamePanel.gameTerminator.terminate();
+            return true;
+>>>>>>> 97318eaa0925da07952092e8236e6e1c12d2c881
         }
 
         handleMysteriousSmoke();
