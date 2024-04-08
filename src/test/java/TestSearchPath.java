@@ -255,8 +255,7 @@ public class TestSearchPath {
      */
     @Test
     void testAdjustedEnemyDirectionWithObstacleOnRightSideAndHeroOnRightDownSide() {
-
-        enemy.setPosition( 9 * gamePanel.tileSize+2, 4 * gamePanel.tileSize);
+        enemy.setPosition(9 * gamePanel.tileSize + 2, 4 * gamePanel.tileSize);
         int goalCol = 10;
         int goalRow = 5;
 
