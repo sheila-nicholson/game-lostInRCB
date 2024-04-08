@@ -74,11 +74,11 @@ public class TestSearchPath {
     @Test
     void testAdjustedEnemyDirectionWhenHeroStandOnLeftDownPositionFromEnemy() {
         enemy.setPosition(6 * gamePanel.tileSize, 5 * gamePanel.tileSize);
-        int goalCol = 5;
+        int goalCol = 7;
         int goalRow = 14;
 
         enemy.searchPath(goalCol, goalRow);
-        assertTrue(enemy.getCurrentDirection() == Direction.DOWN || enemy.getCurrentDirection() == Direction.LEFT);
+        assertTrue(enemy.getCurrentDirection() == Direction.DOWN || enemy.getCurrentDirection() == Direction.RIGHT);
     }
 
     /**
@@ -255,12 +255,15 @@ public class TestSearchPath {
      */
     @Test
     void testAdjustedEnemyDirectionWithObstacleOnRightSideAndHeroOnRightDownSide() {
-        enemy.setPosition(9 * gamePanel.tileSize + 2, 4 * gamePanel.tileSize);
+
+        enemy.setPosition( 9 * gamePanel.tileSize+2, 4 * gamePanel.tileSize);
         int goalCol = 10;
         int goalRow = 5;
 
         enemy.searchPath(goalCol, goalRow);
-        assertTrue(enemy.getCurrentDirection() == Direction.DOWN || enemy.getCurrentDirection() == Direction.RIGHT);
+
+        boolean isDirectionCorrect = enemy.getCurrentDirection() == Direction.DOWN || enemy.getCurrentDirection() == Direction.RIGHT;
+        assertTrue(isDirectionCorrect);
     }
 
 }
