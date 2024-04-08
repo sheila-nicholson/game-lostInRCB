@@ -57,7 +57,7 @@ public abstract class Item extends Position {
      *
      * @param hero The Hero character with which the item has collided.
      */
-    public void collisionAction(Hero hero) {}
+    public abstract void collisionAction(Hero hero);
 
     public void setPosition(int param_X, int param_y) { // setter
         xCoordinate = param_X;

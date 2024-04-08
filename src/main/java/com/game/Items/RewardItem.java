@@ -1,5 +1,6 @@
 package com.game.Items;
 
+import com.game.Characters.Hero;
 import com.game.GamePanel.MainGamePanel;
 
 /**
@@ -16,18 +17,7 @@ public class RewardItem extends Item {
 
     public RewardItem(MainGamePanel gamePanel){this.itemType = ItemType.Reward;}
 
-    /**
-     * Retrieves the score bonus amount provided by this reward item.
-     * <p>
-     * This method allows access to the specific score bonus value that the player receives upon
-     * collecting the reward item. It forms the basis for reward items to influence the player's score
-     * positively.
-     *
-     * @return The score bonus value associated with the reward item.
-     */
-    public int getScoreModifier(){
-        return this.scoreBonus;
-    }
+    public void collisionAction(Hero hero) {}
 
 
 }

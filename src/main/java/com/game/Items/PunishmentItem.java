@@ -17,15 +17,6 @@ public abstract class PunishmentItem extends Item {
         this.itemType = ItemType.Punishment;
     }
 
-    /**
-     * Retrieves the score reduction or damage points associated with the punishment item.
-     * Override in subclasses to return specific damage points.
-     *
-     * @return The amount of score reduction or damage.
-     */
-    public int getScoreModifier(){
-        return this.damagePoints;
-    }
 
 
 }
