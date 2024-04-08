@@ -7,7 +7,6 @@ import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Utilities.Score;
 import com.game.Tile.MysteriousSmokeTile;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
