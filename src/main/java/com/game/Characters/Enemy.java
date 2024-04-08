@@ -52,7 +52,6 @@ public class Enemy extends Character {
     @Override
     public void checkCollision() {
         gamePanel.collisionChecker.checkTile(this);
-        gamePanel.collisionChecker.checkPlayer(this);
         int index = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getHero());
         if(index != 999){
             this.gamePanel.getHero().alive = false;

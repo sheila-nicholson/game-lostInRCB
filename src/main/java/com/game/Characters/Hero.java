@@ -74,7 +74,6 @@ public class Hero extends Character implements Score{
         collisionOn = false;
         mysteriousSmokeTileOn = false;
         gamePanel.collisionChecker.checkTile(this);
-//        gamePanel.collisionChecker.checkPlayer(this);
 
         if(keyHandler.getPressed(Direction.UP)){
             this.currentDirection = Direction.UP;
@@ -104,7 +103,7 @@ public class Hero extends Character implements Score{
 
     }
 
-    public void checkItemCollsion(){
+    public void checkItemCollision(){
         int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
         pickUpItem(itemIndex);
 
@@ -133,7 +132,7 @@ public class Hero extends Character implements Score{
 
         checkTileCollisionAndMoveHero();
         checkEnemyCollision();
-        checkItemCollsion();
+        checkItemCollision();
 
         if (reachedEndOn){
 

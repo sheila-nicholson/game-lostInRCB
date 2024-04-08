@@ -298,7 +298,7 @@ public class CollisionChecker {
     }
 
     /**
-     * Checks for collisions between the hero and enemies.
+     * Checks for collisions between the hero and enemy.
      * <p>
      * This method is used to detect when the hero comes into contact with an enemy, potentially
      * initiating combat or other interactions.
@@ -350,70 +350,6 @@ public class CollisionChecker {
 
     return index;
 }
-
-    /**
-     * Checks for collision between a character and the player character.
-     * <p>
-     * This method is specifically used to detect collisions between any character and the player,
-     * which could trigger game events such as combat, dialogue, or other interactions.
-     *
-     * @param character The character to check for collision with the player.
-     * @return {@code true} if there is a collision, {@code false} otherwise.
-     */
-     public boolean checkPlayer(Character character){
-            boolean check = false;
-            if(character != null) {
-
-                Hero hero = gamePanel.getHero();
-
-                // calculate the solid area of enemy(temp):
-                character.solidArea.x = character.getXPosition() + character.solidArea.x;
-                character.solidArea.y = character.getYPosition() + character.solidArea.y;
-
-                // calculate the solid area of hero:
-                hero.solidArea.x = hero.getXPosition() + hero.solidArea.x;
-                hero.solidArea.y = hero.getYPosition() + hero.solidArea.y;
-
-                    switch(character.currentDirection) {
-
-                        case UP:
-                            character.solidArea.y -= character.movementSpeed;
-                            if(character.solidArea.intersects(hero.solidArea)) {
-                                character.collisionOn = true;
-                                check = true;
-                            }
-                            break;
-                        case DOWN:
-                            character.solidArea.y += character.movementSpeed;
-                            if(character.solidArea.intersects(hero.solidArea)) {
-                                character.collisionOn = true;
-                                check = true;
-
-                            }
-                            break;
-                        case LEFT:
-                            character.solidArea.x -= character.movementSpeed;
-                            if(character.solidArea.intersects(hero.solidArea)) {
-                                character.collisionOn = true;
-                                check = true;
-                            }
-                            break;
-                        case RIGHT:
-                            character.solidArea.x += character.movementSpeed;
-                            if(character.solidArea.intersects(hero.solidArea)) {
-                                character.collisionOn = true;
-                                check = true;
-                            }
-                            break;
-                    }
-                    character.solidArea.x = character.solidAreaDefaultX;
-                    character.solidArea.y = character.solidAreaDefaultY;
-                    hero.solidArea.x = hero.solidAreaDefaultX;
-                    hero.solidArea.y = hero.solidAreaDefaultY;
-                }
-            return check;
-    }
-
 }
 
 
