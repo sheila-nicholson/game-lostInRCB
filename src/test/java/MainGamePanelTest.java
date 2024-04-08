@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MainGamePanelIntegrationTest {
+public class MainGamePanelTest {
     private MainGamePanel gamePanel;
 
     @BeforeEach
@@ -15,6 +15,12 @@ public class MainGamePanelIntegrationTest {
         gamePanel = new MainGamePanel();
     }
 
+    /**
+     * Test that the game is not running initially, starts correctly, updates the hero's position,
+     * and the enemy's movement when the hero is at the left top side of the enemy.
+     * The game should also terminate correctly.
+     * @throws InterruptedException if the thread sleep is interrupted
+     */
     @Test
     void runShouldUpdateAndRenderEnemyMovementWhenHeroOnTheLeftTopSideOfEnemy() throws InterruptedException {
 
@@ -30,6 +36,12 @@ public class MainGamePanelIntegrationTest {
 
     }
 
+    /**
+     * Test that the game is not running initially, starts correctly, and updates both the hero's
+     * and the enemy's positions when the hero is at the right bottom side of the enemy.
+     * The game should also terminate correctly.
+     * @throws InterruptedException if the thread sleep is interrupted
+     */
     @Test
     void runShouldUpdateAndRenderEnemyMovementWhenHeroOnTheRightBottomSideOfEnemy() throws InterruptedException {
 
@@ -45,6 +57,10 @@ public class MainGamePanelIntegrationTest {
         assertFalse(gamePanel.isRunning());
     }
 
+    /**
+     * Test that the {@code paintComponent} method executes without throwing exceptions
+     * by drawing onto a {@link BufferedImage}'s graphics object.
+     */
     @Test
     void paintComponentShouldDrawWithoutErrors() {
 
