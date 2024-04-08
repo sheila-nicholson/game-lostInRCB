@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestSpawnAPlusPapers {
 
     private MainGamePanel gamePanel;
-    private String difficulty = "Easy";
+    private String difficulty = "Hard";
 
     @BeforeEach
     public void setUp() {
@@ -26,7 +26,7 @@ public class TestSpawnAPlusPapers {
 
         boolean validPosition;
         APlusPaper testItem = new APlusPaper(gamePanel);
-        testItem.setPosition(22,1);
+        testItem.setPosition(20,4);
         validPosition = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, testItem));
         assertFalse(validPosition);
     }
