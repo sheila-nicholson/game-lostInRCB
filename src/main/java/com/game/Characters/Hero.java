@@ -141,6 +141,7 @@ public class Hero extends Character implements Score{
             for(Item item: gamePanel.getItem()){
                 if (item != null && (item.itemType == ItemType.Reward)){
                     gamePanel.ui.showMessage("You haven't collected all reward items!");
+                    reachedEndOn = false;
                     return true;
                 }
             }
