@@ -87,7 +87,6 @@ public abstract class Character extends Position {
         }
 
         g2.drawImage(currentImage,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
-
     }
     /**
      * Updates the character's movement speed.
@@ -154,16 +153,6 @@ public abstract class Character extends Position {
                 if(collisionOn)
                     currentDirection = Direction.LEFT;
             }
-//
-//            else if(enTopY < nextY && enLeftX < nextX){
-//                //up or right
-//                currentDirection = Direction.DOWN;
-//                checkCollision();
-//                if(collisionOn)
-//                    currentDirection = Direction.RIGHT;
-//
-//
-//            }
         }
 
     }

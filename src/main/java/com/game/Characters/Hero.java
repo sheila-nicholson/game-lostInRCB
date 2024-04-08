@@ -227,7 +227,6 @@ public class Hero extends Character implements Score{
         }
     }
 
-
     /**
      * Increments the hero's score by a specified amount.
      * <p>

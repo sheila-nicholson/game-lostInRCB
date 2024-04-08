@@ -12,41 +12,40 @@ public class TestPathFinder {
     private Enemy enemy;
     private PathFinder pathFinder;
 
-    /**
-     * Sets up the testing environment before each test.
-     * Initializes game panel, sets up the game, and prepares the enemy and pathfinder instances.
-     */
     @BeforeEach
     public void setUp() {
+
         gamePanel = new MainGamePanel();
         gamePanel.setupGame("Medium");
         enemy = gamePanel.getEnemy();
         pathFinder = gamePanel.pathFinder;
+
     }
 
-    /**
-     * Tests the pathfinder's ability to find a path over a short distance.
-     * Verifies that a path is correctly identified between two nearby points.
-     */
     @Test
     public void testEnemySearchToGoalWithShortDistance() {
+
+        //the map index limit is Row:18,Col:28
         int startCol = 1;
         int startRow = 1;
         int goalCol = 4;
         int goalRow = 4;
 
         enemy.setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
+
         pathFinder.setNode(startCol, startRow, goalCol, goalRow, enemy);
+
+       // Run the pathfinding search
         boolean pathFound = pathFinder.search();
         assertTrue(pathFound);
+
     }
 
-    /**
-     * Tests the pathfinder's ability to find a path over a long distance.
-     * Verifies that a path is correctly identified between two distant points.
-     */
+
     @Test
     public void testEnemySearchToGoalWithLongDistance() {
+
+        //the map index limit is Row:18,Col:28
         int startCol = 1;
         int startRow = 1;
         int goalCol = 25;
@@ -56,12 +55,10 @@ public class TestPathFinder {
         pathFinder.setNode(startCol, startRow, goalCol, goalRow, enemy);
         boolean pathFound = pathFinder.search();
         assertTrue(pathFound);
+
     }
 
-    /**
-     * Tests the pathfinder's ability to find a path when there is an obstacle.
-     * Verifies that the pathfinder can navigate around obstacles to find a path.
-     */
+
     @Test
     public void testSearchWithCollsion() {
         int startCol = 1;
@@ -71,15 +68,13 @@ public class TestPathFinder {
 
         enemy.setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
         pathFinder.setNode(startCol, startRow, goalCol, goalRow, enemy);
+
+        // Run the pathfinding search
         boolean pathFound = pathFinder.search();
         assertTrue(pathFound);
+
     }
 
-    /**
-     * Tests the pathfinder when the starting position and goal position are the same.
-     * This should simulate the condition where the hero and enemy are on the same position,
-     * and verify that no path needs to be found.
-     */
     @Test
     public void testSearchWithPositionThatHeroAndEnemyOnTheSamePosition() {
         pathFinder.goalReached = true;
@@ -90,7 +85,11 @@ public class TestPathFinder {
 
         enemy.setPosition(startCol * gamePanel.tileSize, startRow * gamePanel.tileSize);
         pathFinder.setNode(startCol, startRow, goalCol, goalRow, enemy);
+
+        // Run the pathfinding search
         boolean pathFound = !pathFinder.search();
         assertTrue(pathFound);
+
     }
+
 }

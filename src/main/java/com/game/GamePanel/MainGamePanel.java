@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 public class MainGamePanel extends GamePanel{
 
+    private int difficulty;
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public PathFinder pathFinder = new PathFinder(this);
@@ -103,18 +104,9 @@ public class MainGamePanel extends GamePanel{
      */
     public void setEnemy() {
         switch (tileM.getMapDifficulty()) {
-            case "Easy":
-                    this.enemy = new ZombieProfessor(2, this);
-                    this.difficulty = "Easy";
-                    break;
-            case "Medium":
-                    this.enemy = new Bear(3, this);
-                    this.difficulty = "Medium";
-                    break;
-            case "Hard":
-                    this.enemy = new FailedExam(4, this);
-                    this.difficulty = "Hard";
-                    break;
+            case "Easy" -> this.enemy = new ZombieProfessor(2, this);
+            case "Medium" -> this.enemy = new Bear(3, this);
+            case "Hard" -> this.enemy = new FailedExam(4, this);
         }
     }
     /**

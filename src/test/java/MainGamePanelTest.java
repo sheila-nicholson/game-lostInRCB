@@ -1,10 +1,8 @@
-import com.game.Characters.*;
-import com.game.GamePanel.GamePanel;
 import com.game.GamePanel.MainGamePanel;
-import com.game.Key.Direction;
-import com.game.Tile.TileManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,26 +45,25 @@ public class MainGamePanelIntegrationTest {
         assertFalse(gamePanel.isRunning());
     }
 
-
     @Test
-    void testGameLevelOfDifficulty(){
+    void paintComponentShouldDrawWithoutErrors() {
 
-        gamePanel.startGame("Easy");
-        gamePanel.tileM = new TileManager(gamePanel,"Easy");
-        assertEquals("Easy", gamePanel.getDifficulty());
-        gamePanel.gameTerminator.endGame();
+        gamePanel.setPreferredSize(new Dimension(800, 600));
+        gamePanel.setSize(gamePanel.getPreferredSize());
 
-        gamePanel.startGame("Medium");
-        gamePanel.tileM = new TileManager(gamePanel,"Medium");
-        assertEquals("Medium", gamePanel.getDifficulty());
-        gamePanel.gameTerminator.endGame();
+        BufferedImage bufferedImage = new BufferedImage(
+                gamePanel.getWidth(),
+                gamePanel.getHeight(),
+                BufferedImage.TYPE_INT_ARGB
+        );
 
-        gamePanel.startGame("Hard");
-        gamePanel.tileM = new TileManager(gamePanel,"Hard");
-        assertEquals("Hard", gamePanel.getDifficulty());
-        gamePanel.gameTerminator.endGame();
+        Graphics graphics = bufferedImage.getGraphics();
+        assertDoesNotThrow(() -> gamePanel.paintComponent(graphics),
+                "The paintComponent method should not throw an exception."
+        );
+
+        graphics.dispose();
     }
-
 
 }
 

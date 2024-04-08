@@ -11,9 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * when a hero picks up different items in the game.
  */
 public class TestItemScoreBonus {
+    private CollisionChecker collisionChecker;
     private MainGamePanel gamePanel;
     KeyHandler keyHandler;
     private static Hero hero;
+    private Enemy enemy;
+    private Item[] items;
 
     @BeforeEach
     public void setUp() {
