@@ -146,31 +146,25 @@ public class Hero extends Character implements Score{
                     return true;
                 }
             }
-<<<<<<< HEAD
-
-            if(collectedAllRewardItems){
-                gamePanel.ui.gameDone = true;
-
-                Timer timer;
-                timer = new Timer(2000, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        gamePanel.gameTerminator.terminate();
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-            }
-=======
+            Timer timer;
+            timer = new Timer(2000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gamePanel.gameTerminator.terminate();
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
             gamePanel.ui.gameDone = true;
             gamePanel.gameTerminator.terminate();
             return true;
->>>>>>> 97318eaa0925da07952092e8236e6e1c12d2c881
-        }
+            }
 
         handleMysteriousSmoke();
         return true;
     }
+
+
 
     /**
      * Handles interaction with an enemy character.
