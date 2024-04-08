@@ -7,9 +7,12 @@ import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
 import com.game.Utilities.Score;
 import com.game.Tile.MysteriousSmokeTile;
-
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import java.awt.*;
+import javax.swing.Timer;
 
 /**
  * Represents the hero character controlled by the player in the game.
@@ -148,9 +151,16 @@ public class Hero extends Character implements Score{
 
             if(collectedAllRewardItems){
                 gamePanel.ui.gameDone = true;
-                gamePanel.gameTerminator.terminate();
-                return true;
 
+                Timer timer;
+                timer = new Timer(2000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        gamePanel.gameTerminator.terminate();
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
             }
         }
 
