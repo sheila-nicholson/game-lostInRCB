@@ -138,30 +138,22 @@ public class Hero extends Character implements Score{
 
         if (reachedEndOn){
 
-            boolean collectedAllRewardItems = true;
-
             for(Item item: gamePanel.getItem()){
                 if (item != null && (item.itemType == ItemType.Reward)){
                     gamePanel.ui.showMessage("You haven't collected all reward items!");
-                    reachedEndOn = false;
                     return true;
                 }
             }
-
-            if(collectedAllRewardItems){
-
-                gamePanel.ui.gameDone = true;
-                Timer timer;
-                timer = new Timer(2000, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        gamePanel.gameTerminator.terminate();
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-
-            }
+            gamePanel.ui.gameDone = true;
+            Timer timer;
+            timer = new Timer(2000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gamePanel.gameTerminator.terminate();
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
             return true;
             }
 
