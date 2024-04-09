@@ -23,6 +23,7 @@ public class ZombieProfessor extends Enemy {
      */
     public ZombieProfessor (int speed, MainGamePanel gamePanel){
         super(speed, gamePanel);
+        this.setPosition(5 * gamePanel.tileSize, 14 * gamePanel.tileSize);
     }
 
 

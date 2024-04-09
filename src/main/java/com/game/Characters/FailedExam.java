@@ -31,7 +31,7 @@ public class FailedExam extends Enemy {
     }
 
     /**
-     * Loads the image resources specifically for the {@code FailedExam} enemy.
+     * Loads the image ressurces specifically for the {@code FailedExam} enemy.
      * <p>
      * This method overrides the {@code getImage} method in the superclass to load
      * unique images for the {@code FailedExam}, giving it a distinct appearance.

@@ -39,7 +39,6 @@ public class Enemy extends Character {
     public Enemy(int speed, MainGamePanel gamePanel) {
         super(speed, gamePanel);
         this.movementSpeed = speed;
-        this.setPosition(2 * gamePanel.tileSize, 14 * gamePanel.tileSize);
     }
 
     /**

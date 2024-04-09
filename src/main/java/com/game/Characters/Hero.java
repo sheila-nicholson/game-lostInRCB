@@ -99,18 +99,34 @@ public class Hero extends Character implements Score{
         }
     }
 
+    /**
+     * Checks for collision between the hero and any enemy characters.
+     * If a collision is detected, it triggers an interaction with the enemy,
+     * usually resulting in a game event like the hero losing health or being defeated.
+     */
     public void checkEnemyCollision(){
         int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
         interactEnemy(enemyIndex);
 
     }
 
+    /**
+     * Checks for collision between the hero and game items.
+     * If a collision is detected, it triggers the item pickup logic,
+     * which can result in changes to the hero's score, inventory, or state.
+     */
     public void checkItemCollision(){
         int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
         pickUpItem(itemIndex);
 
     }
 
+    /**
+     * Handles the effect of mysterious smoke tiles on the hero when encountered.
+     * If the hero is on a tile with mysterious smoke, this method triggers
+     * the logic associated with the mysterious smoke, such as altering the hero's state
+     * or affecting the hero's health or abilities.
+     */
     public void handleMysteriousSmoke() {
         if (mysteriousSmokeTileOn) {
             MysteriousSmokeTile.engageSmoke(this, gamePanel);
