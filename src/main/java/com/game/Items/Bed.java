@@ -8,12 +8,11 @@ import com.game.GamePanel.MainGamePanel;
  * <p>
  * Collecting a bed rewards the player with points and contributes towards level completion.
  * Each bed is worth a set number of points, and players must collect all beds within a level
- * to unlock the finish. This class extends {@link RewardItem} to implement the specific behaviors
+ * to unlock the finish. This class extends {@link Item} to implement the specific behaviors
  * and properties associated with bed items.
  *
- * @author: Sheila
  */
-public class Bed extends RewardItem {
+public class Bed extends Item {
 
     /**
      * Constructs a Bed item associated with a specific game panel.
@@ -24,21 +23,9 @@ public class Bed extends RewardItem {
      */
     public Bed(MainGamePanel gamePanel) {
         super(gamePanel);
-        scoreBonus = 5;
         name = "Bed";
+        this.itemType = ItemType.Reward;
         image = utilityTool.setImage("/Items/Bed",gamePanel);
+        setScoreEffect();
     }
-
-    /**
-     * Defines the action to take upon collision with the Hero character.
-     * <p>
-     * When the Hero character collides with this bed item, this method is called to apply the score bonus
-     * to the Hero, effectively "collecting" the bed and contributing towards level completion.
-     *
-     * @param hero The Hero character with which the bed has collided.
-     */
-    public void collisionAction(Hero hero) {
-        hero.addScore(scoreBonus);      // adds 5 to hero score
-    }
-
 }

@@ -6,12 +6,12 @@ import com.game.Utilities.Position;
 /**
  * Represents an A+ paper item in the game that grants the player a score bonus upon collection.
  * <p>
- * This class extends {@link RewardItem} to provide specific functionality for the A+ paper item,
+ * This class extends {@link Item} to provide specific functionality for the A+ paper item,
  * including a predefined score bonus. When collected by the Hero, it increases the player's score,
  * symbolizing the acquisition of a valuable academic reward. Additionally, it includes a method to
  * update its position randomly within valid game bounds to maintain gameplay dynamics.
  */
-public class APlusPaper extends RewardItem {
+public class APlusPaper extends Item {
 
     /**
      * Constructs an APlusPaper item associated with a specific game panel.
@@ -23,22 +23,10 @@ public class APlusPaper extends RewardItem {
      */
     public APlusPaper(MainGamePanel gamePanel) {
         super(gamePanel);
-        scoreBonus = 10;
-        this.gamePanel = gamePanel;
         name = "APlusPaper";
+        this.itemType = ItemType.Reward;
         image = utilityTool.setImage("/Items/APlusPaper",gamePanel);
-    }
-
-    /**
-     * Defines the action to take upon collision with the Hero character.
-     * <p>
-     * When the Hero character collides with this item, this method is called to apply the score bonus
-     * to the Hero, effectively "collecting" the item.
-     *
-     * @param hero The Hero character with which the item has collided.
-     */
-    public void collisionAction(Hero hero) {
-        hero.addScore(scoreBonus);      // adds 10 to hero score
+        setScoreEffect();
     }
 
     /**
@@ -49,7 +37,6 @@ public class APlusPaper extends RewardItem {
      * is validated to ensure it is within appropriate bounds and not colliding with the Hero.
      */
     public void reSpawnPosition() {
-
         Position validPosition = validSpawnPosition();
         this.setPosition(validPosition.getXPosition(), validPosition.getYPosition());
     }

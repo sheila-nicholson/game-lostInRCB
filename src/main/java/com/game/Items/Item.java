@@ -15,7 +15,7 @@ import com.game.Utilities.UtilityTool;
  * collision actions. Specific item classes extend this base class to implement item-specific
  * behaviors and effects.
  */
-public abstract class Item extends Position {
+public class Item extends Position {
 
     public BufferedImage image;
     public String name;
@@ -28,6 +28,20 @@ public abstract class Item extends Position {
     protected int yCoordinate;
     public ItemType itemType;
     public UtilityTool utilityTool = new UtilityTool();
+    protected int scoreEffect;
+
+    public Item(MainGamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+    }
+
+    protected void setScoreEffect() {
+        if(name.equals("APlusPaper"))
+            scoreEffect = 10;
+        else if(name.equals("Coffee") || name.equals("Bed"))
+            scoreEffect = 5;
+        else if(name.equals("Vortex") || name.equals("PileOfBooks"))
+            scoreEffect = -5;
+    }
 
     /**
      * Draws the item on the game panel.
@@ -36,10 +50,8 @@ public abstract class Item extends Position {
      * @param gp The game panel where the item is to be drawn.
      */
     public void draw(Graphics2D g2, MainGamePanel gp) {
-
         int screenX = getXPosition();
         int screenY = getYPosition();
-
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 
@@ -48,7 +60,9 @@ public abstract class Item extends Position {
      *
      * @param hero The Hero character with which the item has collided.
      */
-    public abstract void collisionAction(Hero hero);
+    public void collisionAction(Hero hero) {
+        hero.addScore(scoreEffect);
+    }
 
     public Position validSpawnPosition() {
 
@@ -65,7 +79,7 @@ public abstract class Item extends Position {
             // range of columns: 0-27
             newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
             newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            RewardItem checkPositionValid = new RewardItem(gamePanel);
+            Item checkPositionValid = new Item(gamePanel);
             checkPositionValid.setPosition(newColPos, newRowPos);
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 

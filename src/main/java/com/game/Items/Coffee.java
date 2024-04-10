@@ -7,11 +7,11 @@ import com.game.GamePanel.MainGamePanel;
  * Represents a coffee item in the game that temporarily increases the Hero's movement speed.
  * <p>
  * Upon collection, this item awards the Hero a score bonus and temporarily boosts their movement
- * speed, simulating the energizing effect of coffee. This class extends {@link RewardItem} to
+ * speed, simulating the energizing effect of coffee. This class extends {@link Item} to
  * implement specific behaviors and properties associated with coffee items, including the duration
  * of the speed boost and the score bonus provided.
  */
-public class Coffee extends RewardItem {
+public class Coffee extends Item {
     private int speedModifierSeconds = 5;
     private int increaseSpeed = 6;
 
@@ -26,22 +26,10 @@ public class Coffee extends RewardItem {
      */
     public Coffee(MainGamePanel gamePanel) {
         super(gamePanel);
-        scoreBonus = 5;
         name = "Coffee";
+        this.itemType = ItemType.Reward;
         image = utilityTool.setImage("/Items/Coffee",gamePanel);
-
-    }
-
-    /**
-     * Retrieves the duration of the speed modifier effect in seconds.
-     * <p>
-     * This method allows access to the specific time duration that the Hero's speed boost
-     * will last upon collecting a coffee.
-     *
-     * @return The duration of the speed boost effect in seconds.
-     */
-    public int getSpeedModifierSeconds() {
-        return this.speedModifierSeconds;
+        setScoreEffect();
     }
 
     /**
@@ -54,10 +42,8 @@ public class Coffee extends RewardItem {
      * @param hero The Hero character with which the coffee has collided.
      */
     public void collisionAction(Hero hero) {
-        hero.addScore(scoreBonus);      // adds 5 to hero score
-        hero.setMovementSpeed(increaseSpeed);       // increases hero speed for 5 seconds
+        super.collisionAction(hero);
+        hero.setMovementSpeed(increaseSpeed);
         hero.coffeeTimeEnd = (hero.currentTime + speedModifierSeconds);
-
     }
-
 }

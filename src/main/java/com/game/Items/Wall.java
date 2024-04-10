@@ -1,7 +1,6 @@
 package com.game.Items;
 
 import com.game.Utilities.Position;
-
 import java.awt.*;
 
 /**
@@ -13,7 +12,6 @@ import java.awt.*;
  */
 public class Wall extends Position {
 
-    private int wallLength = 1; // temporary value
     private Image wallSprite;
 
     /**
@@ -23,8 +21,6 @@ public class Wall extends Position {
      * @param param_y The y-coordinate of the wall's position.
      */
     Wall(int param_X, int param_y){
-
         setPosition(param_X,param_y);
-
     }
 }

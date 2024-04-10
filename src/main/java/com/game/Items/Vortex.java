@@ -11,12 +11,11 @@ import com.game.Characters.Hero;
 /**
  * Represents a vortex item that teleports the Hero to a random position and applies a score penalty.
  * <p>
- * Extends {@link PunishmentItem} to implement the behavior of a vortex, including a negative score
+ * Extends {@link Item} to implement the behavior of a vortex, including a negative score
  * modifier and the action of teleporting the Hero upon collision. It encapsulates the logic for
  * determining a valid new position for the Hero within the game environment.
  */
-public class Vortex extends PunishmentItem {
-    private int damagePoints = -5;
+public class Vortex extends Item {
 
     /**
      * Constructs a Vortex item associated with a specific game panel.
@@ -28,10 +27,10 @@ public class Vortex extends PunishmentItem {
      */
     public Vortex(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.gamePanel = gamePanel;
-        name = "Vortex";
+        this.name = "Vortex";
+        this.itemType = ItemType.Punishment;
         image = utilityTool.setImage("/Items/Vortex",gamePanel);
-
+        setScoreEffect();
     }
 
     /**
@@ -44,8 +43,7 @@ public class Vortex extends PunishmentItem {
      */
     @Override
     public void collisionAction(Hero hero) {
-        hero.addScore(damagePoints);      // adds -5 to hero score
-
+        super.collisionAction(hero);
         Position validPosition = validSpawnPosition();
         hero.setPosition(validPosition.getXPosition() * gamePanel.tileSize, validPosition.getYPosition() * gamePanel.tileSize);
     }

@@ -1,6 +1,6 @@
 package com.game.Tile;
 
-import com.game.Items.PunishmentItem;
+import com.game.Items.*;
 
 import java.awt.*;
 
@@ -8,11 +8,11 @@ import java.awt.*;
  * Represents a tile that has negative consequences when interacted with by the player.
  * <p>
  * This class extends {@link Tile} to create tiles that, when stepped on, can trigger
- * a punishment effect through an associated {@link PunishmentItem}. These tiles may
+ * a punishment effect through an associated {@link Item}. These tiles may
  * influence the game state or the player's performance negatively.
  */
 public class BadTile extends Tile {
-    private PunishmentItem tileItem;
+    private Item tileItem;
     private boolean tileSteppability;
 
 /*    BadTile(PunishmentItem param_item, Image param_image, int param_X, int param_y){
@@ -24,12 +24,12 @@ public class BadTile extends Tile {
     /**
      * Retrieves the punishment item associated with this tile.
      * <p>
-     * This method allows access to the {@link PunishmentItem} associated with this tile,
+     * This method allows access to the {@link Item} associated with this tile,
      * enabling the application of its effects when the tile is interacted with.
      *
-     * @return the {@link PunishmentItem} associated with this tile.
+     * @return the {@link Item} associated with this tile.
      */
-    public PunishmentItem getTileItem() {
+    public Item getTileItem() {
         return this.tileItem;
     }
 
