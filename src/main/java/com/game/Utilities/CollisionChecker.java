@@ -123,64 +123,45 @@ public class CollisionChecker {
                 item[i].solidArea.x = item[i].getXPosition() + item[i].solidArea.x;
                 item[i].solidArea.y = item[i].getYPosition() + item[i].solidArea.y;
 
-                switch (position.currentDirection) {
-
-                    case UP:
-                        position.solidArea.y -= position.movementSpeed;
-
-                        if (position.solidArea.intersects(item[i].solidArea)) {
-                            if (item[i].collision) {
-                                position.collisionOn = true;
-                                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
-                            }
-                            if (hero)
-                                index = i;
-                        }
-                        break;
-                    case DOWN:
-                        position.solidArea.y += position.movementSpeed;
-
-                        if (position.solidArea.intersects(item[i].solidArea)) {
-                            if (item[i].collision) {
-                                position.collisionOn = true;
-                                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
-                            }
-                            if (hero)
-                                index = i;
-                        }
-                        break;
-                    case LEFT:
-                        position.solidArea.x -= position.movementSpeed;
-
-                        if (position.solidArea.intersects(item[i].solidArea)) {
-                            if (item[i].collision) {
-                                position.collisionOn = true;
-                                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
-                            }
-                            if (hero)
-                                index = i;
-                        }
-                        break;
-                    case RIGHT:
-                        position.solidArea.x += position.movementSpeed;
-
-                        if (position.solidArea.intersects(item[i].solidArea)) {
-                            if (item[i].collision) {
-                                position.collisionOn = true;
-                                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
-                            }
-                            if (hero)
-
-                                index = i;
-                        }
-                        break;
+                if (position.currentDirection == UP) {
+                    position.solidArea.y -= position.movementSpeed;
+                } else if (position.currentDirection == DOWN) {
+                    position.solidArea.y += position.movementSpeed;
+                } else if (position.currentDirection == LEFT) {
+                    position.solidArea.x -= position.movementSpeed;
+                } else if (position.currentDirection == RIGHT) {
+                    position.solidArea.x += position.movementSpeed;
                 }
+                index = handleItemCollsion(position,i,index,hero,item);
+
                 position.solidArea.x = position.solidAreaDefaultX;
                 position.solidArea.y = position.solidAreaDefaultY;
 
                 item[i].solidArea.x = item[i].solidAreaDefaultX;
                 item[i].solidArea.y = item[i].solidAreaDefaultY;
             }
+        }
+        return index;
+    }
+
+    /**
+     * Handles collision between an entity and an item.
+     *
+     * @param position The position of the entity checking for item interaction.
+     * @param i        The index of the item being checked.
+     * @param index    The current index of the item interacted with.
+     * @param hero     A boolean indicating if the entity is the hero (true) or not (false).
+     * @param item    An array of items in the game world.
+     * @return The updated index of the item interacted with.
+     */
+    private int handleItemCollsion(Position position, int i, int index, boolean hero, Item[] item){
+        if (position.solidArea.intersects(item[i].solidArea)) {
+            if (item[i].collision) {
+                position.collisionOn = true;
+                gamePanel.ui.showMessage(item[i].itemType + " item collected!");
+            }
+            if (hero)
+                return i;
         }
         return index;
     }
