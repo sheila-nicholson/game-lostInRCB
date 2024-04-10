@@ -5,6 +5,9 @@ import com.game.Characters.Enemy;
 import com.game.GamePanel.MainGamePanel;
 import com.game.Items.Item;
 import com.game.Characters.Hero;
+import com.game.Key.Direction;
+
+import static com.game.Key.Direction.*;
 
 /**
  * Handles collision detection for various game elements.
@@ -48,69 +51,47 @@ public class CollisionChecker {
         int entityTopRow = entityTopWorldY / gamePanel.tileSize;
         int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
 
-        int tileNum1, tileNum2;
+        int tileNum1 = 0, tileNum2 = 0;
+        if (position.currentDirection == UP) {
+            entityTopRow = (entityTopWorldY - position.movementSpeed) / gamePanel.tileSize;
+            tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityTopRow];
+            tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityTopRow];
+        } else if (position.currentDirection == DOWN) {
+            entityBottomRow = (entityBottomWorldY + position.movementSpeed) / gamePanel.tileSize;
+            tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityBottomRow];
+            tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityBottomRow];
+        } else if (position.currentDirection == LEFT) {
+            entityLeftCol = (entityLeftWorldX - position.movementSpeed) / gamePanel.tileSize;
+            tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityTopRow];
+            tileNum2 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityBottomRow];
+        } else if (position.currentDirection == RIGHT) {
+            entityRightCol = (entityRightWorldX + position.movementSpeed) / gamePanel.tileSize;
+            tileNum1 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityTopRow];
+            tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityBottomRow];
+        }
+        setPositionTags(tileNum1, tileNum2, position);
+    }
 
-        switch (position.currentDirection) {
-            case UP:
-                entityTopRow = (entityTopWorldY - position.movementSpeed)/ gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityTopRow];
-                if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
-                    position.collisionOn = true;
-                }
-                if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd()  || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
-                    position.reachedEndOn = true;
-                }
-                if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
-                    position.mysteriousSmokeTileOn = true;
-                    gamePanel.ui.showMessage("Mysterious smoke tile hit!");
-
-                }
-                break;
-            case DOWN:
-                entityBottomRow = (entityBottomWorldY + position.movementSpeed)/ gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityBottomRow];
-                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityBottomRow];
-                if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
-                    position.collisionOn = true;
-                }
-                if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd() || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
-                    position.reachedEndOn = true;
-                }
-                if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
-                    position.mysteriousSmokeTileOn = true;
-                }
-                break;
-            case LEFT:
-                entityLeftCol = (entityLeftWorldX - position.movementSpeed)/ gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.getMapTileNum()[entityLeftCol][entityBottomRow];
-                if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
-                    position.collisionOn = true;
-                }
-                if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd() || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
-                    position.reachedEndOn = true;
-                }
-                if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
-                    position.mysteriousSmokeTileOn = true;
-                }
-                break;
-            case RIGHT:
-
-                entityRightCol = (entityRightWorldX + position.movementSpeed)/ gamePanel.tileSize;
-                tileNum1 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityTopRow];
-                tileNum2 = gamePanel.tileM.getMapTileNum()[entityRightCol][entityBottomRow];
-                if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
-                    position.collisionOn = true;
-                }
-                if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd() || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
-
-                    position.reachedEndOn = true;
-                }
-                if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
-                    position.mysteriousSmokeTileOn = true;
-                }
-                break;
+    /**
+     * Sets position tags based on interactions with specified tiles.
+     *
+     * This method checks properties of two specified tiles within the game panel's tile manager
+     * and updates the given position object accordingly based on the tile properties.
+     *
+     * @param tileNum1 The index of the first tile to check.
+     * @param tileNum2 The index of the second tile to check.
+     * @param position The Position object to update based on tile interactions.
+     */
+    private void setPositionTags(int tileNum1, int tileNum2, Position position){
+        if (!gamePanel.tileM.getTile()[tileNum1].tileSteppable() || !gamePanel.tileM.getTile()[tileNum2].tileSteppable()){
+            position.collisionOn = true;
+        }
+        if (gamePanel.tileM.getTile()[tileNum1].isLevelEnd()  || gamePanel.tileM.getTile()[tileNum2].isLevelEnd()){
+            position.reachedEndOn = true;
+        }
+        if(gamePanel.tileM.getTile()[tileNum1].isMysteriousSmokeTile() || gamePanel.tileM.getTile()[tileNum2].isMysteriousSmokeTile()){
+            position.mysteriousSmokeTileOn = true;
+            gamePanel.ui.showMessage("Mysterious smoke tile hit!");
         }
     }
 
