@@ -1,9 +1,7 @@
 package com.game.Items;
-
 import com.game.GamePanel.MainGamePanel;
-
-import java.util.concurrent.ThreadLocalRandom;
 import com.game.Characters.Hero;
+import com.game.Utilities.Position;
 
 /**
  * Represents an A+ paper item in the game that grants the player a score bonus upon collection.
@@ -50,33 +48,13 @@ public class APlusPaper extends RewardItem {
      * to simulate dynamic placement and encourage exploration. The new position is chosen randomly but
      * is validated to ensure it is within appropriate bounds and not colliding with the Hero.
      */
-    public void updateItemState() {
+    public void reSpawnPosition() {
 
-        boolean validPositionItem = false;
-        boolean validPositionHero = false;
-        int newRowPos;
-        int newColPos;
-
-        while(!validPositionItem && !validPositionHero) {
-            // range of rows: 0-17
-            // range of columns: 0-27
-            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            RewardItem checkPositionValid = new RewardItem(gamePanel);
-            checkPositionValid.setPosition(newColPos, newRowPos);
-
-            int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-
-            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor") {
-                validPositionItem = !(gamePanel.collisionChecker.isHeroIntersecting(checkPositionValid));
-                validPositionHero = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
-            }
-
-            if(validPositionItem && validPositionHero)
-                this.setPosition(newColPos, newRowPos);
-
-        }
+        Position validPosition = validSpawnPosition();
+        this.setPosition(validPosition.getXPosition(), validPosition.getYPosition());
     }
 }
+
+
 
 

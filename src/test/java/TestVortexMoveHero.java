@@ -47,7 +47,7 @@ public class TestVortexMoveHero {
         int enemyYCoord = enemy.getYPosition();
         RewardItem dummyItem = new RewardItem(gamePanel);
         dummyItem.setPosition(enemyXCoord/48, enemyYCoord/48);
-        validPosition = !(gamePanel.collisionChecker.isEnemyIntersecting(dummyItem));
+        validPosition = !(gamePanel.collisionChecker.isCharacterIntersecting(dummyItem));
         assertFalse(validPosition);
     }
 
@@ -57,14 +57,15 @@ public class TestVortexMoveHero {
     @Test
     public void placementAllowed(){
 
-        boolean validPositionEnemy;
+        boolean validPositionCharacter;
         boolean validPositionFloor;
         hero.setPosition(6,1);
         int tileNum = gamePanel.tileM.getMapTileNum()[6][1];
         RewardItem dummyItem = new RewardItem(gamePanel);
-        validPositionEnemy = !(gamePanel.collisionChecker.isEnemyIntersecting(dummyItem));
+        dummyItem.setPosition(6, 1);
+        validPositionCharacter = !(gamePanel.collisionChecker.isCharacterIntersecting(dummyItem));
         validPositionFloor = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-        assertTrue(validPositionEnemy);
+        assertTrue(validPositionCharacter);
         assertTrue(validPositionFloor);
     }
 

@@ -204,71 +204,32 @@ public class CollisionChecker {
         return index;
     }
 
-    /**
-     * Checks if the hero intersects with any item.
-     *
-     * @param position The item to check for intersection.
-     * @return {@code true} if there is an intersection, {@code false} otherwise.
-     */
-    public boolean isHeroIntersecting(Item position) {
-        boolean intersect = false;
+    public boolean isCharacterIntersecting(Item position){
+
         Hero hero = gamePanel.getHero();
+        Enemy enemy = gamePanel.getEnemy();
 
         hero.solidArea.x = hero.getXPosition() + hero.solidArea.x;
         hero.solidArea.y = hero.getYPosition() + hero.solidArea.y;
-
+        enemy.solidArea.x = enemy.getXPosition() + enemy.solidArea.x;
+        enemy.solidArea.y = enemy.getYPosition() + enemy.solidArea.y;
         position.solidArea.x = position.getXPosition() + position.solidArea.x;
         position.solidArea.y = position.getYPosition() + position.solidArea.y;
 
-        if (position.solidArea.intersects(hero.solidArea)) {
-            intersect = true;
-            return intersect;
-        }
+        if (position.solidArea.intersects(hero.solidArea))
+            return true;
+
+        else if (position.solidArea.intersects(enemy.solidArea))
+            return true;
 
         hero.solidArea.x = hero.solidAreaDefaultX;
         hero.solidArea.y = hero.solidAreaDefaultY;
-
+        enemy.solidArea.x = enemy.solidAreaDefaultX;
+        enemy.solidArea.y = enemy.solidAreaDefaultY;
         position.solidArea.x = position.solidAreaDefaultX;
         position.solidArea.y = position.solidAreaDefaultY;
 
-        return intersect;
-    }
-
-    /**
-     * Checks for a collision between an enemy and an item, such as a vortex.
-     * <p>
-     * This method is used to determine if an enemy intersects with a specific item on the map,
-     * potentially triggering effects or interactions specific to the item. It's particularly
-     * useful in scenarios where items like vortexes can move the hero or enemies across the map,
-     * requiring collision checks between enemies and such items.
-     *
-     * @param item The item with which the enemy's collision is being checked.
-     * @return {@code true} if the enemy intersects with the item, {@code false} otherwise.
-     */
-    public boolean isEnemyIntersecting(Item item) {
-        Boolean intersect = false;
-
-        Enemy enemy = gamePanel.getEnemy();
-
-        item.solidArea.x = item.getXPosition() + item.solidArea.x;
-        item.solidArea.y = item.getYPosition() + item.solidArea.y;
-
-        enemy.solidArea.x = enemy.getXPosition() + enemy.solidArea.x;
-        enemy.solidArea.y = enemy.getYPosition() + enemy.solidArea.y;
-
-
-        if(item.solidArea.intersects(enemy.solidArea)) {
-
-            intersect = true;
-        }
-
-        item.solidArea.x = item.solidAreaDefaultX;
-        item.solidArea.y = item.solidAreaDefaultY;
-
-        enemy.solidArea.x = enemy.solidAreaDefaultX;
-        enemy.solidArea.y = enemy.solidAreaDefaultY;
-
-        return intersect;
+        return false;
     }
 
     public boolean isTileOccupied(Item[] item, Position newItem) {

@@ -1,10 +1,9 @@
 package com.game.Items;
-
 import com.game.GamePanel.MainGamePanel;
 import com.game.Utilities.Position;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.ThreadLocalRandom;
 import com.game.Characters.Hero;
 import com.game.Utilities.UtilityTool;
 
@@ -30,7 +29,6 @@ public abstract class Item extends Position {
     public ItemType itemType;
     public UtilityTool utilityTool = new UtilityTool();
 
-
     /**
      * Draws the item on the game panel.
      *
@@ -46,18 +44,38 @@ public abstract class Item extends Position {
     }
 
     /**
-     * Updates the state of the item. Override in subclasses to implement state logic.
-     */
-    public void updateItemState() {
-        return;
-    }
-
-    /**
      * Defines the action to take when the item collides with the Hero. Override in subclasses.
      *
      * @param hero The Hero character with which the item has collided.
      */
     public abstract void collisionAction(Hero hero);
+
+    public Position validSpawnPosition() {
+
+        int newRowPos;
+        int newColPos;
+        boolean validPositionCharacter = false;
+        boolean validPositionItem = false;
+        boolean validTileFloor = false;
+        Position validPosition = new Position();
+
+        while(!validPositionCharacter || !validPositionItem || !validTileFloor) {
+
+            // range of rows: 0-17
+            // range of columns: 0-27
+            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
+            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
+            RewardItem checkPositionValid = new RewardItem(gamePanel);
+            checkPositionValid.setPosition(newColPos, newRowPos);
+            int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
+
+            validTileFloor = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
+            validPositionItem = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
+            validPositionCharacter = !(gamePanel.collisionChecker.isCharacterIntersecting(checkPositionValid));
+            validPosition.setPosition(newColPos, newRowPos);
+        }
+        return validPosition;
+    }
 
     public void setPosition(int param_X, int param_y) { // setter
         xCoordinate = param_X;

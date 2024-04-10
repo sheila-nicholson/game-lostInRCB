@@ -3,6 +3,7 @@ package com.game.Items;
 import com.game.GamePanel.MainGamePanel;
 
 import java.util.concurrent.ThreadLocalRandom;
+import com.game.Utilities.Position;
 
 import com.game.Characters.Hero;
 
@@ -33,7 +34,6 @@ public class Vortex extends PunishmentItem {
 
     }
 
-
     /**
      * Applies the vortex effect to the Hero character upon collision.
      * <p>
@@ -46,26 +46,7 @@ public class Vortex extends PunishmentItem {
     public void collisionAction(Hero hero) {
         hero.addScore(damagePoints);      // adds -5 to hero score
 
-        boolean validPosition = false;
-        int newRowPos;
-        int newColPos;
-
-        while(!validPosition) {
-            // range of rows: 0-17
-            // range of columns: 0-27
-            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            RewardItem checkPositionValid = new RewardItem(gamePanel);
-            checkPositionValid.setPosition(newColPos, newRowPos);
-            int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-
-            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor")
-                validPosition = !(gamePanel.collisionChecker.isEnemyIntersecting(checkPositionValid)); //
-
-            if(validPosition)
-                hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
-
-        }
+        Position validPosition = validSpawnPosition();
+        hero.setPosition(validPosition.getXPosition() * gamePanel.tileSize, validPosition.getYPosition() * gamePanel.tileSize);
     }
-
 }

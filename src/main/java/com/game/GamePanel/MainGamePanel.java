@@ -86,12 +86,12 @@ public class MainGamePanel extends GamePanel{
         thread.start();
     }
 
-    public void alertItemState() {
+    public void reSpawnAPlusPaperPosition() {
         // Move the position of APlusPaper items every 10 seconds
         for(int i = 0; i < item.length; i++) {
 
             if(item[i] instanceof APlusPaper)
-                item[i].updateItemState();
+                ((APlusPaper)item[i]).reSpawnPosition();
         }
     }
 
@@ -166,7 +166,7 @@ public class MainGamePanel extends GamePanel{
 
             // Calls updateItemState() every 10 seconds that has elapsed
             if (previousTimeElapsedSec != timeElapsedSec && timeElapsedSec % 10 == 0) {
-                alertItemState();
+                reSpawnAPlusPaperPosition();
                 previousTimeElapsedSec = timeElapsedSec;
             }
 

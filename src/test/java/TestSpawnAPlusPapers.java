@@ -54,7 +54,7 @@ public class TestSpawnAPlusPapers {
         boolean validPosition;
         APlusPaper testItem = new APlusPaper(gamePanel);
         testItem.setPosition(1,1);
-        validPosition = !(gamePanel.collisionChecker.isHeroIntersecting(testItem));
+        validPosition = !(gamePanel.collisionChecker.isCharacterIntersecting(testItem));
         assertFalse(validPosition);
     }
 
@@ -68,12 +68,12 @@ public class TestSpawnAPlusPapers {
         boolean validPositionHero;
         boolean validPositionFloor;
         APlusPaper testItem = new APlusPaper(gamePanel);
-        testItem.updateItemState();
+        testItem.reSpawnPosition();
         int spawnXCoord = testItem.getXPosition()/48;
         int spawnYCoord = testItem.getYPosition()/48;
         int tileNum = gamePanel.tileM.getMapTileNum()[spawnXCoord][spawnYCoord];
         validPositionItem = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, testItem));
-        validPositionHero = !(gamePanel.collisionChecker.isHeroIntersecting(testItem));
+        validPositionHero = !(gamePanel.collisionChecker.isCharacterIntersecting(testItem));
         validPositionFloor = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
         assertTrue(validPositionItem);
         assertTrue(validPositionHero);
@@ -87,7 +87,7 @@ public class TestSpawnAPlusPapers {
     public void doesAPlusPaperReSpawn(){
         int orgPosX = gamePanel.item[3].getXPosition();
         int orgPosY = gamePanel.item[3].getYPosition();
-        gamePanel.item[3].updateItemState();
+        gamePanel.reSpawnAPlusPaperPosition();
         int respawnPosX = gamePanel.item[3].getXPosition();
         int respawnPosY = gamePanel.item[3].getYPosition();
         boolean xPosChanged = orgPosX != respawnPosX;

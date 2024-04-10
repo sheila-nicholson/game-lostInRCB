@@ -33,7 +33,7 @@ public abstract class GamePanel extends JPanel implements Runnable, ScreenSettin
     public int getTimeElapsedSec() {return timeElapsedSec;}
 
     public abstract void startGame(String diff);
-    public abstract void alertItemState();
+    public abstract void reSpawnAPlusPaperPosition();
 
 
     public GamePanel(){
