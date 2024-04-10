@@ -1,5 +1,6 @@
 import com.game.GamePanel.MainGamePanel;
 import com.game.Items.*;
+import com.game.Tile.FloorTile;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import com.game.Characters.*;
@@ -32,7 +33,7 @@ public class TestVortexMoveHero {
         boolean validPosition;
         hero.setPosition(0,0);
         int tileNum = gamePanel.tileM.getMapTileNum()[0][0];
-        validPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
+        validPosition = gamePanel.tileM.getTile()[tileNum] instanceof FloorTile;
         assertFalse(validPosition);
     }
 
@@ -64,7 +65,7 @@ public class TestVortexMoveHero {
         Item dummyItem = new Item(gamePanel);
         dummyItem.setPosition(6, 1);
         validPositionCharacter = !(gamePanel.collisionChecker.isCharacterIntersecting(dummyItem));
-        validPositionFloor = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
+        validPositionFloor = gamePanel.tileM.getTile()[tileNum] instanceof FloorTile;
         assertTrue(validPositionCharacter);
         assertTrue(validPositionFloor);
     }

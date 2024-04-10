@@ -1,5 +1,6 @@
 package com.game.Items;
 import com.game.GamePanel.MainGamePanel;
+import com.game.Tile.FloorTile;
 import com.game.Utilities.Position;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -83,7 +84,7 @@ public class Item extends Position {
             checkPositionValid.setPosition(newColPos, newRowPos);
             int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
 
-            validTileFloor = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
+            validTileFloor = gamePanel.tileM.getTile()[tileNum] instanceof FloorTile;
             validPositionItem = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
             validPositionCharacter = !(gamePanel.collisionChecker.isCharacterIntersecting(checkPositionValid));
             validPosition.setPosition(newColPos, newRowPos);

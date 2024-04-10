@@ -22,7 +22,6 @@ public class TileManager {
     private MainGamePanel gp;
     private Tile[] tile;
     private int mapTileNum[][];
-    boolean drawPath = true;
     private String mapDifficulty;
 
     /**
@@ -50,30 +49,23 @@ public class TileManager {
      */
     public void getTileImage(){
         try{
-            tile[0] = new GoodTile(true, false);
+            tile[0] = new FloorTile();
             tile[0].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/Wood Floor.png")));
-            tile[0].setTileType("floor");
 
-            tile[1] = new GoodTile(false, false);
+            tile[1] = new NotSteppableTile();
             tile[1].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/start_door.png")));
-            tile[1].setTileType("start");
 
-            tile[2] = new GoodTile(false, false);
+            tile[2] = new NotSteppableTile();
             tile[2].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/locker.png")));
-            tile[2].setTileType("inner wall");
-            //tile[2].collision = true;
 
-            tile[3] = new GoodTile(false, false);
+            tile[3] = new NotSteppableTile();
             tile[3].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/bricks.png")));
-            tile[3].setTileType("outer wall");
 
-            tile[4] = new GoodTile(false, true);
+            tile[4] = new EndTile();
             tile[4].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/end_door.png")));
-            tile[4].setTileType("end");
 
             tile[5] = new MysteriousSmokeTile();
             tile[5].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/Wood Floor.png")));
-            tile[5].setTileType("smoke");
 
         }catch(IOException e){
             e.printStackTrace();

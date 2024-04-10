@@ -1,5 +1,6 @@
 import com.game.GamePanel.MainGamePanel;
 import com.game.Items.*;
+import com.game.Tile.FloorTile;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,7 +42,7 @@ public class TestSpawnAPlusPapers {
         APlusPaper testItem = new APlusPaper(gamePanel);
         testItem.setPosition(0,0);
         int tileNum = gamePanel.tileM.getMapTileNum()[0][0];
-        validPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
+        validPosition = gamePanel.tileM.getTile()[tileNum] instanceof FloorTile;
         assertFalse(validPosition);
     }
 
@@ -74,7 +75,7 @@ public class TestSpawnAPlusPapers {
         int tileNum = gamePanel.tileM.getMapTileNum()[spawnXCoord][spawnYCoord];
         validPositionItem = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, testItem));
         validPositionHero = !(gamePanel.collisionChecker.isCharacterIntersecting(testItem));
-        validPositionFloor = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
+        validPositionFloor = gamePanel.tileM.getTile()[tileNum] instanceof FloorTile;
         assertTrue(validPositionItem);
         assertTrue(validPositionHero);
         assertTrue(validPositionFloor);
