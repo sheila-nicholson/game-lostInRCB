@@ -66,11 +66,9 @@ public class TileManager {
             tile[3] = new GoodTile(false, false);
             tile[3].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/bricks.png")));
             tile[3].setTileType("outer wall");
-            //tile[0].collision = true;
 
             tile[4] = new GoodTile(false, true);
             tile[4].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/end_door.png")));
-            //tile[4].levelEnd = true;
             tile[4].setTileType("end");
 
             tile[5] = new MysteriousSmokeTile();
@@ -174,9 +172,6 @@ public class TileManager {
      * @param g2 The Graphics2D object used for drawing.
      */
     public void draw(Graphics2D g2){
-/*        g2.drawImage(tile[0].getTileSprite(),0,0,gp.tileSize,gp.tileSize,null);
-        g2.drawImage(tile[1].getTileSprite(),48,0,gp.tileSize,gp.tileSize,null);
-        g2.drawImage(tile[2].getTileSprite(),96,0,gp.tileSize,gp.tileSize,null);*/
         int col = 0;
         int row = 0;
         int x = 0;
@@ -194,16 +189,6 @@ public class TileManager {
                 y += gp.tileSize;
             }
         }
-        //for testing
-//        if(drawPath){
-//            g2.setColor(new Color(255,0,0,70));
-//
-//            for(int i = 0; i < gp.pathFinder.pathList.size(); i++){
-//                int worldX = gp.pathFinder.pathList.get(i).col * gp.tileSize;
-//                int worldY = gp.pathFinder.pathList.get(i).row * gp.tileSize;
-//
-//            }
-//        }
     }
 
     public String getMapDifficulty(){return mapDifficulty;}
