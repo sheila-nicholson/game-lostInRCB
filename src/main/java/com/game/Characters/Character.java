@@ -26,7 +26,7 @@ public abstract class Character extends Position {
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
-    public boolean onPath = true; //temp for testing]
+    public boolean onPath = true;
 
     /**
      * Sets the default position of the character within the game world.
@@ -47,6 +47,11 @@ public abstract class Character extends Position {
      */
     public void setAction(){};
 
+    public MainGamePanel getGamePanel() {
+        return gamePanel;
+    }
+
+
     /**
      * Constructs a Character with specified movement speed and associates it with a game panel.
      *
@@ -63,29 +68,29 @@ public abstract class Character extends Position {
             this.getImage();
     }
 
-    public MainGamePanel getGamePanel() {
-        return gamePanel;
+    /**
+     * Updates the current image to be displayed based on the character's current and last direction.
+     * If the current direction is either LEFT or RIGHT, the current image is updated accordingly.
+     * Otherwise, the last direction is used to determine the current image.
+     */
+    private void updateCurrentImage() {
+        if (currentDirection == Direction.LEFT || currentDirection == Direction.RIGHT) {
+            currentImage = currentDirection == Direction.LEFT ? leftImage : rightImage;
+        } else {
+            currentImage = lastDirection == Direction.LEFT ? leftImage : rightImage;
+        }
     }
 
     /**
-     * Draws the character on the game panel.
+     * Draws the current image at the character's position.
+     * The method first updates the current image based on the character's direction,
+     * then it draws that image on the given Graphics2D context at the current X and Y position.
+     * The size of the image is determined by the tile size of the game panel.
      *
-     * @param g2 the Graphics2D object used for drawing
+     * @param g2 The Graphics2D context on which the image will be drawn.
      */
     public void draw(Graphics2D g2) {
-
-        switch (currentDirection){
-            case LEFT:
-                currentImage = leftImage;
-                break;
-            case RIGHT:
-                currentImage = rightImage;
-                break;
-            default:
-                currentImage = (lastDirection == Direction.LEFT)?leftImage:rightImage;
-                break;
-        }
-
+        updateCurrentImage();
         g2.drawImage(currentImage,this.getXPosition(), this.getYPosition(), gamePanel.tileSize,gamePanel.tileSize,null);
     }
     /**
@@ -98,7 +103,6 @@ public abstract class Character extends Position {
     }
 
     public void checkCollision(){};
-
 
     /**
      * Initiates pathfinding from the character's current position to a specified goal.

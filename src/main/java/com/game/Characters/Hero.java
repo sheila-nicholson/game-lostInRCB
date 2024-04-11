@@ -24,7 +24,6 @@ public class Hero extends Character implements Score{
 
 
     private int currentScore = 0;
-    protected static Hero instance = null;
     protected boolean alive  = true;
     protected boolean isInvincible = false;
     protected KeyHandler keyHandler;
@@ -133,6 +132,14 @@ public class Hero extends Character implements Score{
         }
     }
 
+    public void CollisionCheck(){
+
+        checkTileCollisionAndMoveHero();
+        checkEnemyCollision();
+        checkItemCollision();
+
+    }
+
     /**
      * Updates the hero's state based on player input and game environment interactions.
      * <p>
@@ -148,9 +155,8 @@ public class Hero extends Character implements Score{
             return true;
         }
 
-        checkTileCollisionAndMoveHero();
-        checkEnemyCollision();
-        checkItemCollision();
+        //check tile collision, enemy collision, item collision
+        CollisionCheck();
 
         if (reachedEndOn){
 

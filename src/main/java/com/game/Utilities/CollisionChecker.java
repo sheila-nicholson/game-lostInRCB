@@ -247,22 +247,18 @@ public class CollisionChecker {
                 case UP:
                     hero.solidArea.y -= hero.movementSpeed;
                     index = checkInteract(hero,enemy);
-
                     break;
                 case DOWN:
                     hero.solidArea.y += hero.movementSpeed;
                     index = checkInteract(hero,enemy);
-
                     break;
                 case LEFT:
                     hero.solidArea.x -= hero.movementSpeed;
                     index = checkInteract(hero,enemy);
-
                     break;
                 case RIGHT:
                     hero.solidArea.x += hero.movementSpeed;
                     index = checkInteract(hero,enemy);
-
                     break;
             }
             hero.solidArea.x = hero.solidAreaDefaultX;
