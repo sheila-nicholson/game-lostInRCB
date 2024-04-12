@@ -1,7 +1,5 @@
-import com.game.GamePanel.GamePanel;
 import com.game.GamePanel.MainGamePanel;
-import com.game.Main;
-import com.game.Tile.GoodTile;
+import com.game.Tile.NotSteppableTile;
 import com.game.Tile.Tile;
 import com.game.Tile.TileManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,7 +44,7 @@ public class TestTileManager {
      */
     @Test
     public void testSetSpriteChange() throws IOException {
-        Tile lockerTile = new GoodTile(true, false);
+        Tile lockerTile = new NotSteppableTile();
         BufferedImage originalSprite = ImageIO.read(getClass().getResourceAsStream("/Tiles/locker.png"));
         lockerTile.setTileSprite(originalSprite);
 
