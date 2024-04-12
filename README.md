@@ -2,12 +2,10 @@
 
 Brendan, Jonas, Yanjun, Sheila
 
-Also, there is an updated version of the phase 2 documentation - see commit for details.
-
 ## To build:
 
 ```bash
-mvn package 
+mvn compile 
 ```
 
 ## To run:
@@ -21,3 +19,11 @@ mvn exec:java
 ```bash
 mvn test
 ```
+
+## To create JAR:
+```bash
+mvn package 
+```
+
+
+
