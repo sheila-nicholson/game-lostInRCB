@@ -25,5 +25,6 @@ mvn test
 mvn package 
 ```
 
+The created JAR file will be found in the Game directory. An executable JAR file is already present in the Game directory. 
 
 
