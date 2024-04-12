@@ -24,7 +24,6 @@ public class APlusPaper extends Item {
     public APlusPaper(MainGamePanel gamePanel) {
         super(gamePanel);
         name = "APlusPaper";
-        this.itemType = ItemType.Reward;
         image = utilityTool.setImage("/Items/APlusPaper",gamePanel);
         setScoreEffect();
     }

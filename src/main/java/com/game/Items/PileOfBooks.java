@@ -24,7 +24,6 @@ public class PileOfBooks extends Item {
     public PileOfBooks(MainGamePanel gamePanel) {
         super(gamePanel);
         this.name = "PileOfBooks";
-        this.itemType = ItemType.Punishment;
         image = utilityTool.setImage("/Items/PileOfBooks",gamePanel);
         setScoreEffect();
     }

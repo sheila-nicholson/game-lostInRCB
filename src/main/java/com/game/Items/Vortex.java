@@ -28,7 +28,6 @@ public class Vortex extends Item {
     public Vortex(MainGamePanel gamePanel) {
         super(gamePanel);
         this.name = "Vortex";
-        this.itemType = ItemType.Punishment;
         image = utilityTool.setImage("/Items/Vortex",gamePanel);
         setScoreEffect();
     }

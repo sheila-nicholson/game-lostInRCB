@@ -24,7 +24,6 @@ public class Bed extends Item {
     public Bed(MainGamePanel gamePanel) {
         super(gamePanel);
         name = "Bed";
-        this.itemType = ItemType.Reward;
         image = utilityTool.setImage("/Items/Bed",gamePanel);
         setScoreEffect();
     }

@@ -27,7 +27,6 @@ public class Coffee extends Item {
     public Coffee(MainGamePanel gamePanel) {
         super(gamePanel);
         name = "Coffee";
-        this.itemType = ItemType.Reward;
         image = utilityTool.setImage("/Items/Coffee",gamePanel);
         setScoreEffect();
     }

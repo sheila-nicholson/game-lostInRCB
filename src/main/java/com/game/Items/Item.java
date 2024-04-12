@@ -36,12 +36,18 @@ public class Item extends Position {
     }
 
     protected void setScoreEffect() {
-        if(name.equals("APlusPaper"))
+        if(name.equals("APlusPaper")) {
             scoreEffect = 10;
-        else if(name.equals("Coffee") || name.equals("Bed"))
+            itemType = ItemType.Reward;
+        }
+        else if(name.equals("Coffee") || name.equals("Bed")) {
             scoreEffect = 5;
-        else if(name.equals("Vortex") || name.equals("PileOfBooks"))
+            itemType = ItemType.Reward;
+        }
+        else if(name.equals("Vortex") || name.equals("PileOfBooks")) {
             scoreEffect = -5;
+            itemType = ItemType.Punishment;
+        }
     }
 
     /**
