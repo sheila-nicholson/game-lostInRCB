@@ -1,7 +1,8 @@
-package com.game;
+package com.game.Utilities;
 
 import com.game.Key.Direction;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -33,6 +34,8 @@ public class Position {
         this.Y = 0;
     }
 
+    public boolean getCollisionOn(){return this.collisionOn;}
+
     public void setMovementSpeed(int speed){
         this.movementSpeed = speed;
     }
@@ -43,10 +46,10 @@ public class Position {
      * @param param_X The initial X-coordinate.
      * @param param_y The initial Y-coordinate.
      */
-    public Position(int param_X, int param_y){ // parameterized constructor
-        this.X = param_X;
-        this.Y = param_y;
-    }
+//    public Position(int param_X, int param_y){ // parameterized constructor
+//        this.X = param_X;
+//        this.Y = param_y;
+//    }
 
     /**
      * Sets the position of the entity.
@@ -65,6 +68,8 @@ public class Position {
     public int getYPosition(){return this.Y;}
     public int getMovementSpeed(){return  this.movementSpeed;}
     public Direction getCurrentDirection(){return this.currentDirection;}
+    public void setCurrentDirection(Direction d){this.currentDirection = d;}
+    public Direction getLastDirection(){return this.lastDirection;}
 
 
     public void moveUp(int s){this.Y-=s;}

@@ -1,8 +1,7 @@
-package com.game;
+package com.game.Utilities;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Items.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
@@ -16,49 +15,21 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AssetSetter {
 
-    GamePanel gamePanel;
+    MainGamePanel gamePanel;
     private String mapDifficulty;
 
     /**
      * Constructs an AssetSetter associated with a specific game panel.
      * <p>
-     * Initializes the AssetSetter with a reference to the {@link GamePanel}, allowing
+     * Initializes the AssetSetter with a reference to the {@link MainGamePanel}, allowing
      * it to place items within the context of the current game environment.
      *
      * @param gamepanel The game panel to which the items will be added.
      */
-    public AssetSetter(GamePanel gamepanel) {
+    public AssetSetter(MainGamePanel gamepanel) {
         this.gamePanel = gamepanel;
 
     }
-
-    private Position SpawnRandPosItems(Item[] items){
-
-        int newRowPos;
-        int newColPos;
-        Position checkPosValid = new Position();
-        boolean validPosition = false;
-
-        while (!validPosition) {
-
-            boolean floorPosition = false;
-            boolean itemOccupy = false;
-            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-            checkPosValid.setPosition(newColPos * 48, newRowPos * 48);
-            floorPosition = gamePanel.tileM.getTile()[tileNum].getTileType() == "floor";
-            itemOccupy = !(gamePanel.collisionChecker.isTileOccupied(items, checkPosValid));
-
-            if (floorPosition && itemOccupy)
-                return checkPosValid;
-
-        }
-        return checkPosValid;
-    }
-
-
-
 
 
     // Setting original position of objects on the map

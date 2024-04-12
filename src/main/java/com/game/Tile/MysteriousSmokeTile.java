@@ -1,9 +1,7 @@
 package com.game.Tile;
 
-import com.game.Character.Hero;
-import com.game.GamePanel.GamePanel;
-
-import java.awt.*;
+import com.game.Characters.Hero;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a tile that can affect the player's speed and has visibility toggles.
@@ -59,7 +57,7 @@ public class MysteriousSmokeTile extends Tile {
      * revealing the tile to the player. It can be called based on specific game events or
      * conditions.
      */
-    public static void engageSmoke(Hero hero, GamePanel gp){
+    public static void engageSmoke(Hero hero, MainGamePanel gp){
         gp.tileM.setSpriteChange(5,"smoke");
         hero.setMovementSpeed(slowSpeed);
         hero.coffeeTimeEnd = (hero.currentTime + handicapTime);

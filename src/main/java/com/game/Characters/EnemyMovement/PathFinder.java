@@ -1,7 +1,7 @@
-package com.game.Character.EnemyMovement;
+package com.game.Characters.EnemyMovement;
 
-import com.game.Character.Character;
-import com.game.GamePanel.GamePanel;
+import com.game.Characters.Character;
+import com.game.GamePanel.MainGamePanel;
 
 import java.util.ArrayList;
 
@@ -12,25 +12,25 @@ import java.util.ArrayList;
  * the shortest path for an enemy character from a starting point to a goal
  * point considering obstacles and terrain costs. This class relies on a
  * simplified A* (A-Star) pathfinding algorithm and is specifically tailored
- * for use within a {@link GamePanel} context.
+ * for use within a {@link MainGamePanel} context.
  *
  */
 public class PathFinder {
-    GamePanel gamePanel;
-    Node[][] node;
+    MainGamePanel gamePanel;
+    public Node[][] node;
     ArrayList<Node> openList = new ArrayList<>();
     public ArrayList<Node> pathList = new ArrayList<>();
     Node startNode, goalNode, currentNode;
-    boolean goalReached = false;
+    public boolean goalReached = false;
     int step = 0;
 
-    public PathFinder(GamePanel gamePanel){
+    public PathFinder(MainGamePanel gamePanel){
         this.gamePanel = gamePanel;
         instantiateNode();
     }
 
     /**
-     * Instantiates grid nodes based on the dimensions provided by the {@link GamePanel}.
+     * Instantiates grid nodes based on the dimensions provided by the {@link MainGamePanel}.
      * <p>
      * This method creates a grid of {@link Node} objects that represent possible
      * positions in the game environment. Each node is initialized with its grid
@@ -39,15 +39,9 @@ public class PathFinder {
     public void instantiateNode(){
         node = new Node[gamePanel.maxScreenCol][gamePanel.maxScreeRow];
 
-        int c = 0;
-        int r = 0;
-
-        while(c < gamePanel.maxScreenCol && r < gamePanel.maxScreeRow){
-            node[c][r] = new Node(c,r);
-            c++;
-            if(c == gamePanel.maxScreenCol){
-                c = 0;
-                r++;
+        for (int r = 0; r < gamePanel.maxScreeRow; r++) {
+            for (int c = 0; c < gamePanel.maxScreenCol; c++) {
+                node[c][r] = new Node(c, r);
             }
         }
     }
@@ -60,19 +54,13 @@ public class PathFinder {
      * are cleared, and pathfinding state variables are reinitialized.
      */
     public  void resetNodes(){
-        int c = 0;
-        int r = 0;
 
-        while(c < gamePanel.maxScreenCol && r < gamePanel.maxScreeRow){
-            node[c][r].open = false;
-            node[c][r].checked = false;
-            node[c][r].solid = false;
-            c++;
-            if(c == gamePanel.maxScreenCol){
-                c = 0;
-                r++;
+        for (int r = 0; r < gamePanel.maxScreeRow; r++) {
+            for (int c = 0; c < gamePanel.maxScreenCol; c++) {
+                node[c][r].open = false;
+                node[c][r].checked = false;
+                node[c][r].solid = false;
             }
-
         }
 
         openList.clear();
@@ -104,26 +92,15 @@ public class PathFinder {
         goalNode = node[goalCol][goalRow];
         openList.add(currentNode);
 
-        int col = 0;
-        int row = 0;
-        int tileNum = 0;
+        for (int r = 0; r < gamePanel.maxScreeRow; r++) {
+            for (int c = 0; c < gamePanel.maxScreenCol; c++) {
+                int tileNum = gamePanel.tileM.getMapTileNum()[c][r];
+//                if (gamePanel.tileM.getTile()[tileNum].getCollisionOn()) {
+//                    node[c][r].solid = true;
+//                    System.out.println("check");
+//                }
 
-        while (col < gamePanel.maxScreenCol && row < gamePanel.maxScreeRow) {
-
-            //set solid node and check tiles
-            tileNum = gamePanel.tileM.getMapTileNum()[col][row];
-
-            //set cost
-            if (gamePanel.tileM.getTile()[tileNum].collision) {
-                node[col][row].solid = true;
-            }
-
-            getCost(node[col][row]);
-            col++;
-
-            if (col == gamePanel.maxScreenCol) {
-                col = 0;
-                row++;
+                getCost(node[c][r]);
             }
         }
     }
@@ -138,14 +115,16 @@ public class PathFinder {
      *
      * @param node the {@link Node} for which costs are calculated
      */
-    public void getCost(Node node){//not finished
+    public void getCost(Node node){
 
         int xDistance = Math.abs(node.col-startNode.col);
         int yDistance = Math.abs(node.row-startNode.row);
         node.gCost = xDistance + yDistance;
 
-        xDistance = Math.abs(node.col-startNode.col);
-        yDistance = Math.abs(node.row-startNode.row);
+//        xDistance = Math.abs(node.col-startNode.col);
+//        yDistance = Math.abs(node.row-startNode.row);
+        xDistance = Math.abs(node.col-goalNode.col);
+        yDistance = Math.abs(node.row-goalNode.row);
         node.hCost = xDistance + yDistance;
 
         node.fCost = node.gCost + node.hCost;
@@ -164,7 +143,8 @@ public class PathFinder {
      * @return {@code true} if a path to the goal was found, {@code false} otherwise
      */
     public boolean search() {
-        while (!goalReached && step < 4000) { ///temp original: 500
+
+        while (!goalReached && step < 8000) { ///temp original: 500
             int col = currentNode.col;
             int row = currentNode.row;
 
@@ -197,33 +177,34 @@ public class PathFinder {
                 if (openList.get(i).fCost < bestNodeCost) {
                     bestNodeIndex = i;
                     bestNodeCost = openList.get(i).fCost;
-
-                    //if f cost is equal, check the g cost
-                } else if (openList.get(i).fCost == bestNodeCost) {
-                    if (openList.get(i).gCost < openList.get(bestNodeIndex).gCost) {
-                        bestNodeIndex = i;
-                    }
                 }
 
-                //if there is no node in the openlist, end the loop
-                if (openList.isEmpty()) {
-                    break;
-                }
+                  //if f cost is equal, check the g cost
+//                } else if (openList.get(i).fCost == bestNodeCost) {
+//                    if (openList.get(i).gCost < openList.get(bestNodeIndex).gCost) {
+//                        bestNodeIndex = i;
+//                    }
+//                }
 
-                //after the loop, openList[bestNodeIndex] is the next step => currentNode
-                currentNode = openList.get(bestNodeIndex);
-
-                if (currentNode == goalNode) {
-                    goalReached = true;
-                    trackThePath();
-
-                }
-
-                step++;
+            }
+            //if there is no node in the openlist, end the loop
+            if (openList.isEmpty()) {
+                break;
             }
 
+            //after the loop, openList[bestNodeIndex] is the next step => currentNode
+            currentNode = openList.get(bestNodeIndex);
+
+            if (currentNode == goalNode) {
+                goalReached = true;
+                trackThePath();
+
+            }
+
+            step++;
+
         }
-            return goalReached;
+        return goalReached;
     }
 
     /**
@@ -252,8 +233,8 @@ public class PathFinder {
      * @param node the {@link Node} to be opened
      */
     public void openNode(Node node){
-        if (!node.open && !node.checked && !node.solid){
-            node.open =true;
+        if (!node.open && !node.checked && !node.solid) {
+            node.open = true;
             node.parent = currentNode;
             openList.add(node);
         }

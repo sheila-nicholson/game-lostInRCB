@@ -1,19 +1,17 @@
-package com.game.Character;
+package com.game.Characters;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Items.Item;
 import com.game.Items.ItemType;
 import com.game.Key.Direction;
 import com.game.Key.KeyHandler;
-import com.game.Score;
+import com.game.Utilities.Score;
 import com.game.Tile.MysteriousSmokeTile;
-
-import javax.imageio.ImageIO;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import java.awt.*;
-import java.io.IOException;
-import java.util.Objects;
+import javax.swing.Timer;
 
 /**
  * Represents the hero character controlled by the player in the game.
@@ -26,7 +24,6 @@ public class Hero extends Character implements Score{
 
 
     private int currentScore = 0;
-    protected static Hero instance = null;
     protected boolean alive  = true;
     protected boolean isInvincible = false;
     protected KeyHandler keyHandler;
@@ -46,7 +43,7 @@ public class Hero extends Character implements Score{
      * @param keyHandler the key handler for processing player input
      * @param gamePanel the game panel the hero belongs to
      */
-    protected Hero(int speed, KeyHandler keyHandler, GamePanel gamePanel){
+    public Hero(int speed, KeyHandler keyHandler, MainGamePanel gamePanel){
 
         super(speed,gamePanel);
         this.keyHandler = keyHandler;
@@ -78,7 +75,6 @@ public class Hero extends Character implements Score{
         collisionOn = false;
         mysteriousSmokeTileOn = false;
         gamePanel.collisionChecker.checkTile(this);
-//        gamePanel.collisionChecker.checkPlayer(this);
 
         if(keyHandler.getPressed(Direction.UP)){
             this.currentDirection = Direction.UP;
@@ -102,22 +98,46 @@ public class Hero extends Character implements Score{
         }
     }
 
+    /**
+     * Checks for collision between the hero and any enemy characters.
+     * If a collision is detected, it triggers an interaction with the enemy,
+     * usually resulting in a game event like the hero losing health or being defeated.
+     */
     public void checkEnemyCollision(){
         int enemyIndex = gamePanel.collisionChecker.checkCharacter(this,gamePanel.getEnemy());
         interactEnemy(enemyIndex);
 
     }
 
-    public void checkItemCollsion(){
+    /**
+     * Checks for collision between the hero and game items.
+     * If a collision is detected, it triggers the item pickup logic,
+     * which can result in changes to the hero's score, inventory, or state.
+     */
+    public void checkItemCollision(){
         int itemIndex = gamePanel.collisionChecker.checkItem(this, true);
         pickUpItem(itemIndex);
 
     }
 
+    /**
+     * Handles the effect of mysterious smoke tiles on the hero when encountered.
+     * If the hero is on a tile with mysterious smoke, this method triggers
+     * the logic associated with the mysterious smoke, such as altering the hero's state
+     * or affecting the hero's health or abilities.
+     */
     public void handleMysteriousSmoke() {
         if (mysteriousSmokeTileOn) {
             MysteriousSmokeTile.engageSmoke(this, gamePanel);
         }
+    }
+
+    public void CollisionCheck(){
+
+        checkTileCollisionAndMoveHero();
+        checkEnemyCollision();
+        checkItemCollision();
+
     }
 
     /**
@@ -126,71 +146,45 @@ public class Hero extends Character implements Score{
      * Manages movement, collision detection, enemy interactions, and item pickups. Also handles
      * game state transitions such as reaching the end of a level or encountering an enemy.
      *
-     * @throws IOException if there is an error loading image resources
      */
-    public void update() throws IOException {
+
+    public boolean update() {
 
         if(this.getScore() < 0){    // Game ends if hero's score is negative;
-            System.exit(0);
+            gamePanel.gameTerminator.terminate();
+            return true;
         }
 
-        checkTileCollisionAndMoveHero();
-        checkEnemyCollision();
-        checkItemCollsion();
+        //check tile collision, enemy collision, item collision
+        CollisionCheck();
 
         if (reachedEndOn){
-
-            boolean collectedAllRewardItems = true;
 
             for(Item item: gamePanel.getItem()){
                 if (item != null && (item.itemType == ItemType.Reward)){
                     gamePanel.ui.showMessage("You haven't collected all reward items!");
-                    collectedAllRewardItems = false;
+                    reachedEndOn = false;
+                    return true;
                 }
             }
-
-            if(collectedAllRewardItems){
-                gamePanel.ui.gameDone = true;
-                //System.exit(0);
+            gamePanel.ui.gameDone = true;
+            Timer timer;
+            timer = new Timer(2000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gamePanel.gameTerminator.terminate();
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
+            return true;
             }
-//            if (this.diff == "Easy") {
-//                if (this.itemsCollected == 15) {
-//                    System.exit(0);//test for terminating the game after collision between hero and enemy
-//                }
-//                else{
-//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (15-this.itemsCollected) + " more.");
-//                }
-//            }
-//
-//            else if (this.diff == "Medium"){
-//                if (this.itemsCollected == 17) {
-//                    System.exit(0);//test for terminating the game after collision between hero and enemy
-//                }
-//                else{
-//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (17-this.itemsCollected) + " more.");
-//                }
-//
-//            }
-//            else if(this.diff == "Hard"){
-//                if (this.itemsCollected == 16) {
-//                    System.exit(0);//test for terminating the game after collision between hero and enemy
-//                }
-//                else{
-//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
-//                }
-//            }
-//            else{
-//                if (this.itemsCollected == 15) {
-//                    System.exit(0);//test for terminating the game after collision between hero and enemy
-//                }
-//                else{
-//                    gamePanel.ui.showMessage("You haven't collected enough items! You must collect " + (16-this.itemsCollected) + " more.");
-//                }
-//            }
-        }
 
         handleMysteriousSmoke();
+        return true;
     }
+
+
 
     /**
      * Handles interaction with an enemy character.
@@ -200,9 +194,9 @@ public class Hero extends Character implements Score{
     public void interactEnemy(int enemyIndex){
 
         if(enemyIndex != 999) {
-             System.out.println("collision"); //for testing
-            System.exit(0);//test for terminating the game after collision between hero and enemy
+
             this.alive = false;
+            gamePanel.gameTerminator.terminate();
         }
     }
 
@@ -223,20 +217,6 @@ public class Hero extends Character implements Score{
         }
     }
 
-    /**
-     * Retrieves the singleton instance of the Hero, creating it if it does not already exist.
-     *
-     * @param speed the speed of the hero
-     * @param keyHandler the key handler for the hero
-     * @param gamePanel the game panel to which the hero belongs
-     * @return the singleton instance of the Hero
-     */
-    public static synchronized Hero getInstance(int speed,KeyHandler keyHandler,GamePanel gamePanel) {
-        if (instance == null) {
-            instance = new Hero(speed,keyHandler,gamePanel);
-        }
-        return instance;
-    }
 
     /**
      * Checks if the current score is greater than zero.
@@ -274,7 +254,6 @@ public class Hero extends Character implements Score{
             this.currentScore = score;
         }
     }
-
 
     /**
      * Increments the hero's score by a specified amount.

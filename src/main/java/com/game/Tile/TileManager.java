@@ -1,6 +1,6 @@
 package com.game.Tile;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -19,10 +19,9 @@ import java.util.Random;
  * to reflect different game states or effects.
  */
 public class TileManager {
-    private GamePanel gp;
+    private MainGamePanel gp;
     private Tile[] tile;
     private int mapTileNum[][];
-    boolean drawPath = true;
     private String mapDifficulty;
 
     /**
@@ -33,7 +32,7 @@ public class TileManager {
      * @param gp The game panel to which the tiles will be rendered.
      * @param diff The difficulty setting of the game, affecting map layout and tile types.
      */
-    public TileManager(GamePanel gp, String diff){
+    public TileManager(MainGamePanel gp, String diff){
         this.mapDifficulty = diff;
         this.gp = gp;
         tile = new Tile[10];
@@ -50,32 +49,23 @@ public class TileManager {
      */
     public void getTileImage(){
         try{
-            tile[0] = new GoodTile(true, false);
+            tile[0] = new FloorTile();
             tile[0].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/Wood Floor.png")));
-            tile[0].setTileType("floor");
 
-            tile[1] = new GoodTile(false, false);
+            tile[1] = new NotSteppableTile();
             tile[1].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/start_door.png")));
-            tile[1].setTileType("start");
 
-            tile[2] = new GoodTile(false, false);
+            tile[2] = new NotSteppableTile();
             tile[2].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/locker.png")));
-            tile[2].setTileType("inner wall");
-            //tile[2].collision = true;
 
-            tile[3] = new GoodTile(false, false);
+            tile[3] = new NotSteppableTile();
             tile[3].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/bricks.png")));
-            tile[3].setTileType("outer wall");
-            //tile[0].collision = true;
 
-            tile[4] = new GoodTile(false, true);
+            tile[4] = new EndTile();
             tile[4].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/end_door.png")));
-            //tile[4].levelEnd = true;
-            tile[4].setTileType("end");
 
             tile[5] = new MysteriousSmokeTile();
             tile[5].setTileSprite(ImageIO.read(getClass().getResourceAsStream("/Tiles/Wood Floor.png")));
-            tile[5].setTileType("smoke");
 
         }catch(IOException e){
             e.printStackTrace();
@@ -174,9 +164,6 @@ public class TileManager {
      * @param g2 The Graphics2D object used for drawing.
      */
     public void draw(Graphics2D g2){
-/*        g2.drawImage(tile[0].getTileSprite(),0,0,gp.tileSize,gp.tileSize,null);
-        g2.drawImage(tile[1].getTileSprite(),48,0,gp.tileSize,gp.tileSize,null);
-        g2.drawImage(tile[2].getTileSprite(),96,0,gp.tileSize,gp.tileSize,null);*/
         int col = 0;
         int row = 0;
         int x = 0;
@@ -194,16 +181,6 @@ public class TileManager {
                 y += gp.tileSize;
             }
         }
-        //for testing
-//        if(drawPath){
-//            g2.setColor(new Color(255,0,0,70));
-//
-//            for(int i = 0; i < gp.pathFinder.pathList.size(); i++){
-//                int worldX = gp.pathFinder.pathList.get(i).col * gp.tileSize;
-//                int worldY = gp.pathFinder.pathList.get(i).row * gp.tileSize;
-//
-//            }
-//        }
     }
 
     public String getMapDifficulty(){return mapDifficulty;}

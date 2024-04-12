@@ -1,23 +1,17 @@
 package com.game.Items;
-
-import com.game.GamePanel.GamePanel;
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
-import com.game.Character.Hero;
+import com.game.GamePanel.MainGamePanel;
+import com.game.Characters.Hero;
+import com.game.Utilities.Position;
 
 /**
  * Represents an A+ paper item in the game that grants the player a score bonus upon collection.
  * <p>
- * This class extends {@link RewardItem} to provide specific functionality for the A+ paper item,
+ * This class extends {@link Item} to provide specific functionality for the A+ paper item,
  * including a predefined score bonus. When collected by the Hero, it increases the player's score,
  * symbolizing the acquisition of a valuable academic reward. Additionally, it includes a method to
  * update its position randomly within valid game bounds to maintain gameplay dynamics.
  */
-public class APlusPaper extends RewardItem {
-
-    private final int scoreBonus = 10;
+public class APlusPaper extends Item {
 
     /**
      * Constructs an APlusPaper item associated with a specific game panel.
@@ -27,36 +21,11 @@ public class APlusPaper extends RewardItem {
      *
      * @param gamePanel The game panel to which this item belongs.
      */
-    public APlusPaper(GamePanel gamePanel) {
+    public APlusPaper(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.gamePanel = gamePanel;
-        this.rewardType = RewardType.APLUSPAPAER;
         name = "APlusPaper";
-        utilityTool.setImage("/Items/APlusPaper",gamePanel);
-    }
-
-    /**
-     * Retrieves the score bonus amount provided by this item.
-     * <p>
-     * This method allows access to the specific score bonus value that the hero receives upon
-     * collecting an A+ paper.
-     *
-     * @return The score bonus value.
-     */
-    public int getScoreModifier(){
-        return this.scoreBonus;
-    }
-
-    /**
-     * Defines the action to take upon collision with the Hero character.
-     * <p>
-     * When the Hero character collides with this item, this method is called to apply the score bonus
-     * to the Hero, effectively "collecting" the item.
-     *
-     * @param hero The Hero character with which the item has collided.
-     */
-    public void collisionAction(Hero hero) {
-        hero.addScore(scoreBonus);      // adds 10 to hero score
+        image = utilityTool.setImage("/Items/APlusPaper",gamePanel);
+        setScoreEffect();
     }
 
     /**
@@ -66,35 +35,12 @@ public class APlusPaper extends RewardItem {
      * to simulate dynamic placement and encourage exploration. The new position is chosen randomly but
      * is validated to ensure it is within appropriate bounds and not colliding with the Hero.
      */
-    public void updateItemState() {
-
-        boolean validPosition = false;
-        int newRowPos;
-        int newColPos;
-
-        while(!validPosition) {
-            // range of rows: 0-17
-            // range of columns: 0-27
-            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            APlusPaper checkPositionValid = new APlusPaper(gamePanel);
-            checkPositionValid.setPosition(newColPos, newRowPos);
-            //this.setPosition(newColPos * gp.tileSize, newRowPos * gp.tileSize);
-
-
-            int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-
-            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor") {
-                validPosition = !(gamePanel.collisionChecker.isHeroIntersecting(this));
-                validPosition = !(gamePanel.collisionChecker.isTileOccupied(gamePanel.item, checkPositionValid));
-            }
-
-
-            if(validPosition)
-                this.setPosition(newColPos, newRowPos);
-
-        }
+    public void reSpawnPosition() {
+        Position validPosition = validSpawnPosition();
+        this.setPosition(validPosition.getXPosition(), validPosition.getYPosition());
     }
 }
+
+
 
 

@@ -1,6 +1,6 @@
-package com.game.Character;
+package com.game.Characters;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 /**a
  * Represents a Bear enemy type in the game.
@@ -20,9 +20,11 @@ public class Bear extends Enemy {
      * @param speed the movement speed of the Bear.
      * @param gamePanel the game panel the Bear belongs to.
      */
-    public Bear(int speed, GamePanel gamePanel){
+    public Bear(int speed, MainGamePanel gamePanel){
         super(speed,gamePanel);
-        this.setPosition(7*gamePanel.tileSize,12*gamePanel.tileSize);//temp
+//        this.setPosition(7*gamePanel.tileSize,12*gamePanel.tileSize);//temp
+       this.setPosition(13*gamePanel.tileSize,11*gamePanel.tileSize);
+
     }
 
     /**s
@@ -34,7 +36,7 @@ public class Bear extends Enemy {
     @Override
     public void getImage() {//pic is temp
         rightImage = utilityTool.setImage("/Enemy/Bear_right",gamePanel);
-        leftImage = utilityTool.setImage("/Enemy/Bear_right",gamePanel);
+        leftImage = utilityTool.setImage("/Enemy/Bear_left",gamePanel);
     }
 
 }

@@ -1,26 +1,21 @@
 package com.game.Items;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
+import com.game.Utilities.Position;
 
-import com.game.Character.Hero;
+import com.game.Characters.Hero;
 
 
 /**
  * Represents a vortex item that teleports the Hero to a random position and applies a score penalty.
  * <p>
- * Extends {@link PunishmentItem} to implement the behavior of a vortex, including a negative score
+ * Extends {@link Item} to implement the behavior of a vortex, including a negative score
  * modifier and the action of teleporting the Hero upon collision. It encapsulates the logic for
  * determining a valid new position for the Hero within the game environment.
  */
-public class Vortex extends PunishmentItem {
-
-    private PunishmentType punishmentType = PunishmentType.VORTEX;
-    private int damagePoints = -5;
+public class Vortex extends Item {
 
     /**
      * Constructs a Vortex item associated with a specific game panel.
@@ -30,14 +25,12 @@ public class Vortex extends PunishmentItem {
      *
      * @param gamePanel The game panel to which this vortex item belongs.
      */
-    public Vortex(GamePanel gamePanel) {
+    public Vortex(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.gamePanel = gamePanel;
-        name = "Vortex";
+        this.name = "Vortex";
         image = utilityTool.setImage("/Items/Vortex",gamePanel);
-
+        setScoreEffect();
     }
-
 
     /**
      * Applies the vortex effect to the Hero character upon collision.
@@ -49,37 +42,8 @@ public class Vortex extends PunishmentItem {
      */
     @Override
     public void collisionAction(Hero hero) {
-        hero.addScore(damagePoints);      // adds -5 to hero score
-
-        boolean validPosition = false;
-        int newRowPos;
-        int newColPos;
-
-        while(!validPosition) {
-            // range of rows: 0-17
-            // range of columns: 0-27
-            newRowPos = ThreadLocalRandom.current().nextInt(0, 18);
-            newColPos = ThreadLocalRandom.current().nextInt(0, 28);
-            Vortex checkPositionValid = new Vortex(gamePanel);
-            checkPositionValid.setPosition(newColPos, newRowPos);
-            //hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
-            int tileNum = gamePanel.tileM.getMapTileNum()[newColPos][newRowPos];
-
-            if (gamePanel.tileM.getTile()[tileNum].getTileType() == "floor")
-                validPosition = !(gamePanel.collisionChecker.isEnemyIntersecting(checkPositionValid)); //
-
-            if(validPosition)
-                hero.setPosition(newColPos * gamePanel.tileSize, newRowPos * gamePanel.tileSize);
-
-        }
+        super.collisionAction(hero);
+        Position validPosition = validSpawnPosition();
+        hero.setPosition(validPosition.getXPosition() * gamePanel.tileSize, validPosition.getYPosition() * gamePanel.tileSize);
     }
-
-    public int getScoreModifier(){
-        return this.damagePoints; // unnecessary?
-    }
-
-    public void updateItemState() {
-
-    }
-
 }

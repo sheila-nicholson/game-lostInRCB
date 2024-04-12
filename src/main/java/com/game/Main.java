@@ -1,6 +1,7 @@
 package com.game;
 
 import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,7 +24,7 @@ public class Main {
     /**
      * The main method that serves as the entry point for the game application.
      * <p>
-     * It sets up the main game window, including the background, buttons for difficulty selection,
+     * It sets up the main game windsow, including the background, buttons for difficulty selection,
      * and the exit button. It defines the action listeners for these buttons to start the game
      * with the chosen difficulty or exit the game.
      *
@@ -141,9 +142,8 @@ public class Main {
         // Implement your game startup logic here based on difficulty
         System.out.println("Starting game with difficulty: " + difficulty);
         JFrame gameWindow = new JFrame();
-        GamePanel gamePanel = new GamePanel();
-        gamePanel.setupGame(difficulty);
-        gamePanel.startGame();
+        GamePanel gamePanel = new MainGamePanel();
+        gamePanel.startGame(difficulty);
 
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWindow.setResizable(false);

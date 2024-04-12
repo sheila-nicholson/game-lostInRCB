@@ -1,6 +1,6 @@
 package com.game.Tile;
 
-import com.game.Position;
+import com.game.Utilities.Position;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,11 +17,9 @@ import java.awt.image.BufferedImage;
 public abstract class Tile extends Position {
     private BufferedImage tileSprite; // The visual sprite for the tile
     public boolean collision; // Indicates if the tile causes collision
-    public boolean levelEnd; // Marks the tile as a level-ending tile
     protected boolean tileSteppability; // Indicates if the tile can be stepped on
     protected boolean isLevelEndBool; // More specific flag for level ending condition
     protected boolean isMysteriousSmokeTileBool; // Flags the tile as having a mysterious smoke effect
-    protected String tileType; // Describes the type of tile
 
     /**
      * Gets the sprite image of the tile.
@@ -30,7 +28,7 @@ public abstract class Tile extends Position {
      *
      * @return The sprite image of the tile.
      */
-    public Image getTileSprite() {
+    public BufferedImage getTileSprite() {
         return this.tileSprite;
     }
 
@@ -76,59 +74,5 @@ public abstract class Tile extends Position {
      */
     public boolean isMysteriousSmokeTile(){
         return this.isMysteriousSmokeTileBool;
-    }
-
-    /**
-     * Sets the type of the tile.
-     * <p>
-     * Assigns a descriptive type to the tile, aiding in game logic and level design.
-     *
-     * @param inp The type to set for the tile.
-     */
-    public void setTileType(String inp){
-        this.tileType = inp;
-    }
-
-    /**
-     * Retrieves the type of the tile.
-     * <p>
-     * Provides access to the tile's type, which describes its role or behavior in the game environment.
-     *
-     * @return The type of the tile.
-     */
-    public String getTileType(){
-        return this.tileType;
-    }
-
-    /**
-     * Converts the tile type to an index.
-     * <p>
-     * Useful for mapping tile types to array indices or other data structures, facilitating easy access
-     * and management of tile-specific information or behavior.
-     *
-     * @return An index corresponding to the tile's type.
-     */
-    public int getTileTypeIndex(){
-        if (this.getTileType() == "outer wall"){
-            return 0;
-        }
-        else if (this.getTileType() == "start"){
-            return 1;
-        }
-        else if (this.getTileType() == "inner wall") {
-            return 2;
-        }
-        else if (this.getTileType() == "floor"){
-            return 3;
-        }
-        else if (this.getTileType() == "end"){
-            return 4;
-        }
-        else if (this.getTileType() == "smoke"){
-            return 5;
-        }
-        else{
-            return 0;
-        }
     }
 }

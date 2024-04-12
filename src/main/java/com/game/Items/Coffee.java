@@ -1,23 +1,18 @@
 package com.game.Items;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
-import com.game.Character.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.Characters.Hero;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a coffee item in the game that temporarily increases the Hero's movement speed.
  * <p>
  * Upon collection, this item awards the Hero a score bonus and temporarily boosts their movement
- * speed, simulating the energizing effect of coffee. This class extends {@link RewardItem} to
+ * speed, simulating the energizing effect of coffee. This class extends {@link Item} to
  * implement specific behaviors and properties associated with coffee items, including the duration
  * of the speed boost and the score bonus provided.
  */
-public class Coffee extends RewardItem {
-
-    private int scoreBonus = 5;
-    private int modifierSeconds = 5;
+public class Coffee extends Item {
+    private int speedModifierSeconds = 5;
     private int increaseSpeed = 6;
 
     /**
@@ -29,37 +24,11 @@ public class Coffee extends RewardItem {
      *
      * @param gamePanel The game panel to which this coffee item belongs.
      */
-    public Coffee(GamePanel gamePanel) {
+    public Coffee(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.rewardType = RewardType.COFFEE;
-        // set position, no need to randomize, harder level = less spawn
         name = "Coffee";
         image = utilityTool.setImage("/Items/Coffee",gamePanel);
-
-    }
-
-    /**
-     * Retrieves the duration of the speed modifier effect in seconds.
-     * <p>
-     * This method allows access to the specific time duration that the Hero's speed boost
-     * will last upon collecting a coffee.
-     *
-     * @return The duration of the speed boost effect in seconds.
-     */
-    public int getModifierSeconds() {
-        return this.modifierSeconds;
-    }
-
-    /**
-     * Retrieves the score bonus amount provided by this coffee item.
-     * <p>
-     * This method allows access to the specific score bonus value that the Hero receives upon
-     * collecting a coffee.
-     *
-     * @return The score bonus value.
-     */
-    public int getScoreModifier(){
-        return this.scoreBonus;
+        setScoreEffect();
     }
 
     /**
@@ -72,10 +41,8 @@ public class Coffee extends RewardItem {
      * @param hero The Hero character with which the coffee has collided.
      */
     public void collisionAction(Hero hero) {
-        hero.addScore(scoreBonus);      // adds 5 to hero score
-        hero.setMovementSpeed(increaseSpeed);       // increases hero speed for 5 seconds
-        hero.coffeeTimeEnd = (hero.currentTime + 5);
-
+        super.collisionAction(hero);
+        hero.setMovementSpeed(increaseSpeed);
+        hero.coffeeTimeEnd = (hero.currentTime + speedModifierSeconds);
     }
-
 }

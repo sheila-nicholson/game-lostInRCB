@@ -1,25 +1,18 @@
 package com.game.Items;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
-import com.game.Character.Hero;
-import com.game.GamePanel.GamePanel;
+import com.game.Characters.Hero;
+import com.game.GamePanel.MainGamePanel;
 
 /**
  * Represents a bed item in the game, serving as a main reward for the player.
  * <p>
  * Collecting a bed rewards the player with points and contributes towards level completion.
  * Each bed is worth a set number of points, and players must collect all beds within a level
- * to unlock the finish. This class extends {@link RewardItem} to implement the specific behaviors
+ * to unlock the finish. This class extends {@link Item} to implement the specific behaviors
  * and properties associated with bed items.
  *
- * @author:
  */
-public class Bed extends RewardItem {
-
-    private int scoreBonus = 5;
-    private boolean collected = false; // true means door to finish level is unlocked
+public class Bed extends Item {
 
     /**
      * Constructs a Bed item associated with a specific game panel.
@@ -28,37 +21,10 @@ public class Bed extends RewardItem {
      * The bed's image is loaded from resources, and it's marked with the "Bed" reward type.
      *
      */
-    public Bed(GamePanel gamePanel) {
+    public Bed(MainGamePanel gamePanel) {
         super(gamePanel);
-        this.rewardType = RewardType.BED;
         name = "Bed";
         image = utilityTool.setImage("/Items/Bed",gamePanel);
-        // set position, no need to randomize, harder level = more spawn
+        setScoreEffect();
     }
-
-    /**
-     * Retrieves the score bonus amount provided by this bed item.
-     * <p>
-     * This method allows access to the specific score bonus value that the hero receives upon
-     * collecting a bed.
-     *
-     * @return The score bonus value.
-     */
-    public int getScoreModifier(){
-        return this.scoreBonus;
-    }
-
-    /**
-     * Defines the action to take upon collision with the Hero character.
-     * <p>
-     * When the Hero character collides with this bed item, this method is called to apply the score bonus
-     * to the Hero, effectively "collecting" the bed and contributing towards level completion.
-     *
-     * @param hero The Hero character with which the bed has collided.
-     */
-    public void collisionAction(Hero hero) {
-        hero.addScore(scoreBonus);      // adds 5 to hero score
-
-    }
-
 }

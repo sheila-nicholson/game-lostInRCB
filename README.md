@@ -2,6 +2,29 @@
 
 Brendan, Jonas, Yanjun, Sheila
 
-Also, there is an updated version of the phase 2 documentation - see commit for details.
+## To build:
 
-To be updated with phase 3 requirements detailing specific instructions on how to 'run and build' game:
+```bash
+mvn compile 
+```
+
+## To run:
+
+```bash
+mvn exec:java
+```
+
+## To test:
+
+```bash
+mvn test
+```
+
+## To create JAR:
+```bash
+mvn package 
+```
+
+The created JAR file will be found in the Game directory. An executable JAR file is already present in our Game directory. 
+
+

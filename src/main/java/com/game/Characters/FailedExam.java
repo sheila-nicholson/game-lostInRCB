@@ -1,8 +1,7 @@
-package com.game.Character;
+package com.game.Characters;
 
-import com.game.GamePanel.GamePanel;
+import com.game.GamePanel.MainGamePanel;
 import com.game.Key.Direction;
-import com.game.UtilityTool;
 
 /**
  * Represents the "FailedExam" enemy within the game.
@@ -25,14 +24,14 @@ public class FailedExam extends Enemy {
      * @param speed the movement speed of the {@code FailedExam} enemy
      * @param gamePanel the game panel the enemy belongs to
      */
-    public FailedExam(int speed, GamePanel gamePanel){
+    public FailedExam(int speed, MainGamePanel gamePanel){
         super(speed,gamePanel);
         this.setPosition(5*gamePanel.tileSize,11*gamePanel.tileSize);
         this.currentDirection=Direction.LEFT;
     }
 
     /**
-     * Loads the image resources specifically for the {@code FailedExam} enemy.
+     * Loads the image ressurces specifically for the {@code FailedExam} enemy.
      * <p>
      * This method overrides the {@code getImage} method in the superclass to load
      * unique images for the {@code FailedExam}, giving it a distinct appearance.
