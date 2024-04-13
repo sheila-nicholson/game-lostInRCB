@@ -20,11 +20,10 @@ mvn exec:java
 mvn test
 ```
 
-## To create JAR:
+## To create JAR and Javadoc:
 ```bash
 mvn package 
 ```
 
 The created JAR file will be found in the Game directory. An executable JAR file is already present in our Game directory. 
-
 
