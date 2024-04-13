@@ -31,4 +31,5 @@ mvn install
 ```
 
 The created JAR file will be found in the Game directory. An executable JAR file is already present in our Game directory. 
+The generated Javadocs will be found in the Game/JavaDoc directory.
 
