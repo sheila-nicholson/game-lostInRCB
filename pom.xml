@@ -97,7 +97,7 @@
                             <mainClass>com.game.Main</mainClass>
                         </manifest>
                     </archive>
-                    <outputDirectory>Game</outputDirectory>
+                    <outputDirectory>Game/JavaDoc</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
