@@ -1,0 +1,10 @@
+com.game
+com.game.Characters
+com.game.Characters.EnemyMovement
+com.game.GamePanel
+com.game.GameTerminator
+com.game.Items
+com.game.Key
+com.game.Tile
+com.game.UI
+com.game.Utilities
