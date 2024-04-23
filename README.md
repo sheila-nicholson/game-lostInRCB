@@ -1,5 +1,6 @@
-# CMPT 276 - Introduction to Software Engineering - 2D Style Video Game - Escape from RCB
+# 2D Style Video Game - Escape from RCB
 This project was created by: Sheila Nicholson, Brendan Shen, Jonas Lam and Yanjun Qian
+For the class: CMPT 276 - Introduction to Software Engineering, taken in Spring 2024
 
 # The Game: Escape from RCB
 The main character of the game is a student attending SFU. In the midst of
@@ -11,8 +12,11 @@ out. With the help of copious amounts of caffeine, ever-moving A+ papers, and a 
 two along the way, they just might be able to escape from the labyrinth that is Robert C. Brown
 Hall. That is, if they are not defeated by the many piles of books, vortexes that respawn the
 student's location, and the decelerating hidden smoke.
+
 Game Objective: Collect all reward items (A+ papers, coffees, beds) and exit the level. The game
 ends if the player is caught by the enemy or if their score becomes negative.
+
+An executable JAR file is already present in the 'Game' directory. 
 
 
 ## To build:
